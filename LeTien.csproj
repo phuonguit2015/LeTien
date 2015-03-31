@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A88AE7E2-568D-4E55-B441-1409BE59836F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LeTien</RootNamespace>
+    <AssemblyName>LeTien</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>ftp://letien.kyanon.com/application/</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://letien.kyanon.com/application/</InstallUrl>
+    <TargetCulture>vi-VN</TargetCulture>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsUrl>http://letien.kyanon.com/prerequisites/</BootstrapperComponentsUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>EAA2BE88138186AC4890D92BB2987FE84387A62F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>LeTien_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1" />
+    <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v14.1.Core" />
+    <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v14.1" />
+    <Reference Include="DevExpress.Xpo.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v14.1" />
+    <Reference Include="DevExpress.Sparkline.v14.1.Core" />
+    <Reference Include="DevExpress.XtraEditors.v14.1" />
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IModule.cs" />
+    <Compile Include="Objects\AdvancePayment.cs" />
+    <Compile Include="Objects\Attendance.cs" />
+    <Compile Include="Objects\AttendanceSymbol.cs" />
+    <Compile Include="Objects\Branch.cs" />
+    <Compile Include="Objects\ChamCong.cs" />
+    <Compile Include="Objects\Chant.cs" />
+    <Compile Include="Objects\Competence.cs" />
+    <Compile Include="Objects\EasyObject.cs" />
+    <Compile Include="Objects\Employee.cs" />
+    <Compile Include="Objects\LaborContract.cs" />
+    <Compile Include="Objects\LoaiDuLieuChamCong.cs" />
+    <Compile Include="Objects\PublicHoliday.cs" />
+    <Compile Include="Objects\Religion.cs" />
+    <Compile Include="Objects\User.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\Configurations\FrmAttendanceSymbol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmAttendanceSymbol.Designer.cs">
+      <DependentUpon>FrmAttendanceSymbol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmBranch.Designer.cs">
+      <DependentUpon>FrmBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmCompetence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmCompetence.Designer.cs">
+      <DependentUpon>FrmCompetence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmPublicHoliday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmPublicHoliday.Designer.cs">
+      <DependentUpon>FrmPublicHoliday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmPublicHolidayDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmPublicHolidayDetail.Designer.cs">
+      <DependentUpon>FrmPublicHolidayDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Employees\FormEmployeeDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Employees\FormEmployeeDetails.Designer.cs">
+      <DependentUpon>FormEmployeeDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Employees\FormEmployeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Employees\FormEmployeeList.Designer.cs">
+      <DependentUpon>FormEmployeeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\FormBase.Designer.cs">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\HopDong\FormLaborContractDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\HopDong\FormLaborContractDetail.Designer.cs">
+      <DependentUpon>FormLaborContractDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\HopDong\FormLaborContractList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\HopDong\FormLaborContractList.Designer.cs">
+      <DependentUpon>FormLaborContractList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\FormViewBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\FormViewBranch.Designer.cs">
+      <DependentUpon>FormViewBranch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\frmBranchList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\frmBranchList.Designer.cs">
+      <DependentUpon>frmBranchList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\frmCompetenceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\frmCompetenceList.Designer.cs">
+      <DependentUpon>frmCompetenceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\frmCompetenceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\frmCompetenceView.Designer.cs">
+      <DependentUpon>frmCompetenceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\FrmLoaiDuLieuChamCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\FrmLoaiDuLieuChamCong.Designer.cs">
+      <DependentUpon>FrmLoaiDuLieuChamCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\FrmLoaiDuLieuChamCongDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\FrmLoaiDuLieuChamCongDetail.Designer.cs">
+      <DependentUpon>FrmLoaiDuLieuChamCongDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\frmReligionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\frmReligionList.Designer.cs">
+      <DependentUpon>frmReligionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\frmReligionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\frmReligionView.Designer.cs">
+      <DependentUpon>frmReligionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmAttendance.Designer.cs">
+      <DependentUpon>FrmAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmPutAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmPutAttendance.Designer.cs">
+      <DependentUpon>FrmPutAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmTaoDuLieuChamCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmTaoDuLieuChamCong.Designer.cs">
+      <DependentUpon>FrmTaoDuLieuChamCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\User\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\User\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\User\FrmUserDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\User\FrmUserDetail.Designer.cs">
+      <DependentUpon>FrmUserDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\User\FrmUserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\User\FrmUserList.Designer.cs">
+      <DependentUpon>FrmUserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\WaitSaving.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\WaitSaving.Designer.cs">
+      <DependentUpon>WaitSaving.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\WaitFormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\WaitFormMain.Designer.cs">
+      <DependentUpon>WaitFormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCMainControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCMainControl.Designer.cs">
+      <DependentUpon>UCMainControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Connector.cs" />
+    <Compile Include="Utils\EasyDialog.cs" />
+    <Compile Include="Utils\EasyParam.cs" />
+    <Compile Include="Utils\Global.cs" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Screens\Configurations\FrmAttendanceSymbol.resx">
+      <DependentUpon>FrmAttendanceSymbol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Configurations\FrmBranch.resx">
+      <DependentUpon>FrmBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Configurations\FrmCompetence.resx">
+      <DependentUpon>FrmCompetence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Configurations\FrmPublicHoliday.resx">
+      <DependentUpon>FrmPublicHoliday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Configurations\FrmPublicHolidayDetail.resx">
+      <DependentUpon>FrmPublicHolidayDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Employees\FormEmployeeDetails.resx">
+      <DependentUpon>FormEmployeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Employees\FormEmployeeList.resx">
+      <DependentUpon>FormEmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\FormBase.resx">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\HopDong\FormLaborContractDetail.resx">
+      <DependentUpon>FormLaborContractDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\HopDong\FormLaborContractList.resx">
+      <DependentUpon>FormLaborContractList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\FormViewBranch.resx">
+      <DependentUpon>FormViewBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\frmBranchList.resx">
+      <DependentUpon>frmBranchList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\frmCompetenceList.resx">
+      <DependentUpon>frmCompetenceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\frmCompetenceView.resx">
+      <DependentUpon>frmCompetenceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\FrmLoaiDuLieuChamCong.resx">
+      <DependentUpon>FrmLoaiDuLieuChamCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\FrmLoaiDuLieuChamCongDetail.resx">
+      <DependentUpon>FrmLoaiDuLieuChamCongDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\frmReligionList.resx">
+      <DependentUpon>frmReligionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\frmReligionView.resx">
+      <DependentUpon>frmReligionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmAttendance.resx">
+      <DependentUpon>FrmAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmPutAttendance.resx">
+      <DependentUpon>FrmPutAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmTaoDuLieuChamCong.resx">
+      <DependentUpon>FrmTaoDuLieuChamCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\User\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\User\FrmUserDetail.resx">
+      <DependentUpon>FrmUserDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\User\FrmUserList.resx">
+      <DependentUpon>FrmUserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\WaitSaving.resx">
+      <DependentUpon>WaitSaving.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\WaitFormMain.resx">
+      <DependentUpon>WaitFormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCMainControl.resx">
+      <DependentUpon>UCMainControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="LeTien_TemporaryKey.pfx" />
+    <None Include="Properties\DataSources\LeTien.Objects.Employee.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_32x322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_32x323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\publicfix_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\publicfix_32x321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\publicfix_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\publicfix_16x161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\publicfix_32x322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="DevExpress.Data.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.Office.v14.1.Core">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.Printing.v14.1.Core">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.RichEdit.v14.1.Core">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.Sparkline.v14.1.Core">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.Utils.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.Xpo.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraBars.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraEditors.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraGrid.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraLayout.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraNavBar.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraPrinting.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraRichEdit.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="DevExpress.XtraTreeList.v14.1">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="es\DevExpress.RichEdit.v14.1.Core.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="ja\DevExpress.XtraEditors.v14.1.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tools\calc.exe" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

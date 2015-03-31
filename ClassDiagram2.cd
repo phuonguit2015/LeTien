@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LeTien.Object.User">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAgAIAAAAAAAAEAAAgAAAAAAAAAAkAAAAA=</HashCode>
+      <FileName>Object\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeTien.Object.Employee">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAICACgIAAAYAEBAIAgAggOCIxAAIIgABMAAEgQAA=</HashCode>
+      <FileName>Object\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeTien.Object.Competence" Collapsed="true">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAIBAAAAAAAAAAAAAAAAAAAAAAAAgCAA=</HashCode>
+      <FileName>Object\Competence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeTien.Object.Branch" Collapsed="true">
+    <Position X="1.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAQAAQJAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Object\Branch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeTien.Object.Attendance" Collapsed="true">
+    <Position X="7.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DACAAQAAAAABAMAQAAAAABAQCAgAAQwAAAAAAAMAEAI=</HashCode>
+      <FileName>Object\Attendance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

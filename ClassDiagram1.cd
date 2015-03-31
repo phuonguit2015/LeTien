@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LeTien.Objects.Employee">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IBQAAAAKAgAAgIgQAAABAQIABKJIAQAIAiEQAAAAAAI=</HashCode>
+      <FileName>Objects\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeTien.Objects.Branch">
+    <Position X="4" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgQABAAQAAAJABAAAAQAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Objects\Branch.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LeTien.Objects.LaborContract">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAABAAAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAIA=</HashCode>
+      <FileName>Objects\LaborContract.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="NhanVien" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="LeTien.Objects.AdvancePayment">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAgAIAAAAABAAAAAAAABIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\AdvancePayment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="NhanVien" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="LeTien.Objects.LoaiDuLieuChamCong">
+    <Position X="6.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAQAAAAAAIIAgAAAAoGAAABBAEAAAAAAACAQAAA=</HashCode>
+      <FileName>Objects\LoaiDuLieuChamCong.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LeTien.Objects.ChamCong">
+    <Position X="3.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAQAAAAAAIIAQAEAAoGAAQAABMAAAAAAACAQAAA=</HashCode>
+      <FileName>Objects\ChamCong.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="NhanVien" />
+      <Field Name="LoaiDuLieuChamCong" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
