@@ -17,6 +17,7 @@ namespace LeTien.Screens.HopDong
     public partial class FormLaborContractList : FormBase
     {
         private LaborContract lb;
+        private string _maHopDong;
         public FormLaborContractList()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace LeTien.Screens.HopDong
 
         protected override void OnEdit()
         {
-            FormLaborContractDetail f = new FormLaborContractDetail(lb);
+            FormLaborContractDetail f = new FormLaborContractDetail(_maHopDong);
             f.Text = "Cập nhật hợp đồng";
             f.Tag = this;
             f.ShowDialog();
@@ -93,6 +94,7 @@ namespace LeTien.Screens.HopDong
 
             ucMenu.UCMain_Edit.Enabled = false;
             ucMenu.UCMain_Delete.Enabled = false;
+            ucMenu.UCMain_MayTinh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
 
         private void ucMenu_MayTinh_Clicked(object sender, EventArgs e)
@@ -130,11 +132,13 @@ namespace LeTien.Screens.HopDong
 
         private void grvUCList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            lb.MaHopDong = grvUCList.GetRowCellValue(e.RowHandle, "MaHopDong").ToString();
-            lb.TenHopDong = grvUCList.GetRowCellValue(e.RowHandle, "TenHopDong").ToString();
-            //lb.MaNhanVien = grvUCList.GetRowCellValue(e.RowHandle, "MaNhanVien").ToString();
-            lb.NgayKy = DateTime.Parse(grvUCList.GetRowCellValue(e.RowHandle, "NgayKy").ToString());
-            lb.NgayHetHan = DateTime.Parse(grvUCList.GetRowCellValue(e.RowHandle, "NgayHetHan").ToString());
+            _maHopDong = grvUCList.GetRowCellValue(e.RowHandle, "MaHopDong").ToString();
+
+            //lb.MaHopDong = grvUCList.GetRowCellValue(e.RowHandle, "MaHopDong").ToString();
+            //lb.TenHopDong = grvUCList.GetRowCellValue(e.RowHandle, "TenHopDong").ToString();
+            ////lb.MaNhanVien = grvUCList.GetRowCellValue(e.RowHandle, "MaNhanVien").ToString();
+            //lb.NgayKy = DateTime.Parse(grvUCList.GetRowCellValue(e.RowHandle, "NgayKy").ToString());
+            //lb.NgayHetHan = DateTime.Parse(grvUCList.GetRowCellValue(e.RowHandle, "NgayHetHan").ToString());
 
             ucMenu.UCMain_Edit.Enabled = true;
             ucMenu.UCMain_Delete.Enabled = true;

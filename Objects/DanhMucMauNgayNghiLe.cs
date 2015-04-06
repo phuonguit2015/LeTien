@@ -5,16 +5,16 @@ using System.Drawing;
 namespace LeTien.Objects
 {
 
-    public class PublicHoliday : XPObject
+    public class DanhMucMauNgayNghiLe : XPObject
     {
-        public PublicHoliday()
+        public DanhMucMauNgayNghiLe()
             : base()
         {
             // This constructor is used when an object is loaded from a persistent storage.
             // Do not place any code here.
         }
 
-        public PublicHoliday(Session session)
+        public DanhMucMauNgayNghiLe(Session session)
             : base(session)
         {
             // This constructor is used when an object is loaded from a persistent storage.
@@ -26,15 +26,17 @@ namespace LeTien.Objects
             base.AfterConstruction();
             // Place here your initialization code.
         }
-        [DisplayName ("Ngày Lễ")]
-        public string PublicHolidayName;
 
-        [DisplayName ("Ngày Bắt Đầu")]
-        public DateTime PublicHolidayStart;
+        [DisplayName("Ngày nghĩ lễ")]
+        [Indexed(Unique = true)]
+        public string TenNgayNghi
+        {
+            get;
+            set;
+        }
 
-        [DisplayName ("Ngày Kết Thúc")]
-        public DateTime PublicHolidayEnd;
 
+        
         [Persistent("MauHienThi")]
         private Int32 _mauHienThi;
         [NonPersistent, System.ComponentModel.Browsable(false)]
@@ -42,7 +44,7 @@ namespace LeTien.Objects
         {
             get { return ColorTranslator.ToOle(Color.FromArgb(_mauHienThi)); }
         }
-        [DisplayName("Màu Hiển Thi")]
+        [DisplayName("Màu Hiển Thi")] 
         [NonPersistent]
         public Color MauHienThi
         {
@@ -53,9 +55,6 @@ namespace LeTien.Objects
                 OnChanged("MauHienThi");
             }
         }
-
-        [DisplayName ("Ghi Chú")]
-        public string PublicHolidayDescription;
     }
 
 }

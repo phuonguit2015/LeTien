@@ -22,15 +22,6 @@ namespace LeTien.Screens.Configurations
             InitializeComponent();
             btnCapNhat.Enabled = false;
             this.BindingContext[xpcPublicHoliday].AddNew();
-            //dtTuNgay.Properties.NullDate = DateTime.Now;
-            //dtTuNgay.EditValue = DateTime.Now;
-            //dtTuNgay.Properties.NullText = dtTuNgay.Properties.NullDate.ToString();
-            //dtTuNgay.DateTime = DateTime.Now;
-
-            //dtDenNgay.Properties.NullDate = DateTime.Now;
-            //dtDenNgay.EditValue = DateTime.Now;
-            //dtDenNgay.Properties.NullText = dtDenNgay.Properties.NullDate.ToString();
-            //dtDenNgay.DateTime = DateTime.Now;
         }
 
         public FrmPublicHolidayDetail(string TenNgayNghi)

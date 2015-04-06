@@ -34,11 +34,13 @@
             this.gridUCList = new DevExpress.XtraGrid.GridControl();
             this.xpcLaborContract = new DevExpress.Xpo.XPCollection(this.components);
             this.grvUCList = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.IDEmployee = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.NgayKy = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.NgayHetHan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaHopDong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLoaiHopDong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNgayKy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNgayHetHan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLuongCoBan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RITextFistname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.RITextLastname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.R_BranchSelect = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -107,68 +109,80 @@
             // 
             // xpcLaborContract
             // 
-            this.xpcLaborContract.DisplayableProperties = "MaHopDong;TenHopDong;MaNhanVien;NgayKy;NgayHetHan";
             this.xpcLaborContract.ObjectType = typeof(LeTien.Objects.LaborContract);
             // 
             // grvUCList
             // 
             this.grvUCList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.ID,
-            this.Name,
-            this.IDEmployee,
-            this.NgayKy,
-            this.NgayHetHan});
+            this.colMaHopDong,
+            this.colLoaiHopDong,
+            this.colNgayKy,
+            this.colNgayHetHan,
+            this.gridColumn3,
+            this.gridColumn5,
+            this.colLuongCoBan});
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grvUCList.Name = "grvUCList";
             this.grvUCList.OptionsBehavior.ReadOnly = true;
             this.grvUCList.OptionsView.ShowAutoFilterRow = true;
+            this.grvUCList.OptionsView.ShowDetailButtons = false;
             this.grvUCList.OptionsView.ShowGroupPanel = false;
+            this.grvUCList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             this.grvUCList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvUCList_RowClick);
             this.grvUCList.DoubleClick += new System.EventHandler(this.grvUCList_DoubleClick);
             // 
-            // ID
+            // colMaHopDong
             // 
-            this.ID.FieldName = "MaHopDong";
-            this.ID.Name = "ID";
-            this.ID.Visible = true;
-            this.ID.VisibleIndex = 0;
-            this.ID.Width = 98;
+            this.colMaHopDong.FieldName = "MaHopDong";
+            this.colMaHopDong.Name = "colMaHopDong";
+            this.colMaHopDong.Visible = true;
+            this.colMaHopDong.VisibleIndex = 0;
             // 
-            // Name
+            // colLoaiHopDong
             // 
-            this.Name.FieldName = "TenHopDong";
-            this.Name.Name = "Name";
-            this.Name.Visible = true;
-            this.Name.VisibleIndex = 1;
-            this.Name.Width = 150;
+            this.colLoaiHopDong.FieldName = "LoaiHopDong";
+            this.colLoaiHopDong.Name = "colLoaiHopDong";
+            this.colLoaiHopDong.Visible = true;
+            this.colLoaiHopDong.VisibleIndex = 1;
             // 
-            // IDEmployee
+            // colNgayKy
             // 
-            this.IDEmployee.Caption = "Mã Nhân Viên";
-            this.IDEmployee.FieldName = "MaNhanVien";
-            this.IDEmployee.Name = "IDEmployee";
-            this.IDEmployee.Visible = true;
-            this.IDEmployee.VisibleIndex = 2;
-            this.IDEmployee.Width = 117;
+            this.colNgayKy.FieldName = "NgayKy";
+            this.colNgayKy.Name = "colNgayKy";
+            this.colNgayKy.Visible = true;
+            this.colNgayKy.VisibleIndex = 5;
             // 
-            // NgayKy
+            // colNgayHetHan
             // 
-            this.NgayKy.FieldName = "NgayKy";
-            this.NgayKy.Name = "NgayKy";
-            this.NgayKy.Visible = true;
-            this.NgayKy.VisibleIndex = 3;
-            this.NgayKy.Width = 132;
+            this.colNgayHetHan.FieldName = "NgayHetHan";
+            this.colNgayHetHan.Name = "colNgayHetHan";
+            this.colNgayHetHan.Visible = true;
+            this.colNgayHetHan.VisibleIndex = 6;
             // 
-            // NgayHetHan
+            // gridColumn3
             // 
-            this.NgayHetHan.Caption = "Ngày Hết Hạn";
-            this.NgayHetHan.FieldName = "NgayHetHan";
-            this.NgayHetHan.Name = "NgayHetHan";
-            this.NgayHetHan.Visible = true;
-            this.NgayHetHan.VisibleIndex = 4;
-            this.NgayHetHan.Width = 88;
+            this.gridColumn3.Caption = "Họ Tên Nhân Viên";
+            this.gridColumn3.FieldName = "iNhanVien.HoTen";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 2;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.FieldName = "ChucVu.CompetenceName";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 3;
+            // 
+            // colLuongCoBan
+            // 
+            this.colLuongCoBan.FieldName = "LuongCoBan";
+            this.colLuongCoBan.Name = "colLuongCoBan";
+            this.colLuongCoBan.Visible = true;
+            this.colLuongCoBan.VisibleIndex = 4;
             // 
             // RITextFistname
             // 
@@ -271,7 +285,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 469);
             this.Controls.Add(this.layoutControl1);
-           // this.Name = "FormLaborContractList";
+            this.Name = "FormLaborContractList";
             this.Text = "Danh sách hợp đồng";
             this.Load += new System.EventHandler(this.FormLaborContractList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
@@ -304,16 +318,18 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         public DevExpress.XtraGrid.GridControl gridUCList;
         private DevExpress.XtraGrid.Views.Grid.GridView grvUCList;
-        private DevExpress.XtraGrid.Columns.GridColumn ID;
-        private DevExpress.XtraGrid.Columns.GridColumn Name;
-        private DevExpress.XtraGrid.Columns.GridColumn IDEmployee;
-        private DevExpress.XtraGrid.Columns.GridColumn NgayKy;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RITextFistname;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RITextLastname;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit R_BranchSelect;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit R_CompentenceSelect;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.Xpo.XPCollection xpcLaborContract;
-        private DevExpress.XtraGrid.Columns.GridColumn NgayHetHan;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaHopDong;
+        private DevExpress.XtraGrid.Columns.GridColumn colLoaiHopDong;
+        private DevExpress.XtraGrid.Columns.GridColumn colNgayKy;
+        private DevExpress.XtraGrid.Columns.GridColumn colNgayHetHan;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn colLuongCoBan;
     }
 }

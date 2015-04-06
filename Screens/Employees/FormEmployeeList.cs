@@ -44,6 +44,7 @@ namespace LeTien.Screens.Employees
 
             ucMenu.UCMain_Edit.Enabled = false;
             ucMenu.UCMain_Delete.Enabled = false;
+            ucMenu.UCMain_MayTinh.Visibility = BarItemVisibility.Never;
         }
         public void RefreshData()
         {

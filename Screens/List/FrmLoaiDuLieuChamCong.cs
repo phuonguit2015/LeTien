@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using LeTien.Objects;
 using System;
 using System.Collections.Generic;
@@ -150,8 +151,10 @@ namespace LeTien.Screens.List
             ucMenu.UCMain_Dong_Clicked += ucMenu_Dong_Clicked;
             ucMenu.UCMain_MayTinh_Clicked += ucMenu_MayTinh_Clicked;
 
-            ucMenu.UCMain_Edit.Enabled = false;
-            ucMenu.UCMain_Delete.Enabled = false;
+            ucMenu.UCMain_Edit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            ucMenu.UCMain_Delete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            ucMenu.UCMain_Add.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            ucMenu.UCMain_MayTinh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
 
             ucMenu.UCMain_MayTinh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
         }
@@ -159,6 +162,34 @@ namespace LeTien.Screens.List
         public void RefreshData()
         {
             OnReload();
+        }
+
+        private void grvUCList_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            GridView gv = sender as GridView;
+            if (e.Column.FieldName == "DuLieuMacDinh")
+            {
+                if (gv.GetRowCellValue(e.RowHandle, gv.Columns["KieuDuLieu"]) != null)
+                {
+                    var l = gv.GetRowCellValue(e.RowHandle, grvUCList.Columns["KieuDuLieu"]);                   
+                    switch (l.ToString())
+                    {
+                        case "Int":
+                            e.RepositoryItem = spinEdit;
+                            break;
+                        case "DateTime":
+                            e.RepositoryItem = repositoryItemTimeEdit1;
+                            break;
+                        case "String":
+                            e.RepositoryItem = textEdit;
+                            break;
+                    }
+
+
+                }
+            }
+
+
         }
     }
 }

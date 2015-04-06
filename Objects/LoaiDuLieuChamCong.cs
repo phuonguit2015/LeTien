@@ -236,7 +236,11 @@ namespace LeTien.Objects
         public string GhiChu;
 
         [DisplayName("Giá trị mặc định")]
-        public string DuLieuMacDinh;
+        public string DuLieuMacDinh
+        {
+            get;
+            set;
+        }
 
        
 
@@ -249,7 +253,7 @@ namespace LeTien.Objects
         }
 
         [NonPersistent]
-        [DisplayName("Màu hiển thị âm")]
+        [DisplayName("Màu hiển thị dương")]
         public Color MauHienThiDuong
         {
             get { return Color.FromArgb(_mauHienThiDuong); }

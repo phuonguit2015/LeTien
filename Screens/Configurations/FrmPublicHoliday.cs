@@ -29,6 +29,7 @@ namespace LeTien.Screens
         public FrmPublicHoliday()
         {
             InitializeComponent();
+            spinNam.EditValue = DateTime.Now.Year;
         }
 
         #region "Override FormBase"
@@ -166,10 +167,12 @@ namespace LeTien.Screens
 
         private void spinNam_EditValueChanged(object sender, EventArgs e)
         {
-            DateTime date = new DateTime(int.Parse(spinNam.EditValue.ToString()), 1, 1);
-            CriteriaOperator criteria = CriteriaOperator.And(
-               new BinaryOperator("PublicHolidayStart", date, BinaryOperatorType.Greater),
-               new BinaryOperator("PublicHolidayEnd", date, BinaryOperatorType.Greater));
+            int year = int.Parse(spinNam.EditValue.ToString());
+            //DateTime date = new DateTime(int.Parse(spinNam.EditValue.ToString()), 1, 1);
+            //CriteriaOperator criteria = CriteriaOperator.And(
+            //   new BinaryOperator("PublicHolidayStart", date, BinaryOperatorType.Greater),
+            //   new BinaryOperator("PublicHolidayEnd", date, BinaryOperatorType.Greater));
+            CriteriaOperator criteria = CriteriaOperator.Parse("PublicHolidayStart like '%" + year + "%' AND PublicHolidayEnd like '%" + year + "%'");
             xpcPublicHoliday.Filter = criteria;
         }
     }

@@ -247,6 +247,8 @@ namespace LeTien.Objects
             set;
         }
         #endregion
+
+
         public override void AfterConstruction()
         {
             base.AfterConstruction();

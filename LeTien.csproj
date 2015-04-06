@@ -66,19 +66,28 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Charts.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v14.1" />
+    <Reference Include="DevExpress.DataAccess.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v14.1.Core" />
     <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v14.1" />
+    <Reference Include="DevExpress.Utils.v14.1.UI, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v14.1" />
     <Reference Include="DevExpress.Sparkline.v14.1.Core" />
+    <Reference Include="DevExpress.XtraCharts.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v14.1" />
+    <Reference Include="DevExpress.XtraGauges.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v14.1.Extensions, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -101,16 +110,29 @@
     <Compile Include="Objects\Branch.cs" />
     <Compile Include="Objects\ChamCong.cs" />
     <Compile Include="Objects\Chant.cs" />
+    <Compile Include="Objects\ChiTietTienLuong.cs" />
     <Compile Include="Objects\Competence.cs" />
+    <Compile Include="Objects\DanhMucMauNgayNghiLe.cs" />
+    <Compile Include="Objects\LoaiDuLieuTinhLuong.cs" />
     <Compile Include="Objects\EasyObject.cs" />
     <Compile Include="Objects\Employee.cs" />
     <Compile Include="Objects\LaborContract.cs" />
     <Compile Include="Objects\LoaiDuLieuChamCong.cs" />
+    <Compile Include="Objects\Luong.cs" />
+    <Compile Include="Objects\NhomDuLieuTinhLuong.cs" />
     <Compile Include="Objects\PublicHoliday.cs" />
+    <Compile Include="Objects\QuanLyNgayNghi.cs" />
     <Compile Include="Objects\Religion.cs" />
+    <Compile Include="Objects\ThamSo.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\DataReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DataReport.Designer.cs">
+      <DependentUpon>DataReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Configurations\FrmAttendanceSymbol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +217,12 @@
     <Compile Include="Screens\List\frmCompetenceView.Designer.cs">
       <DependentUpon>frmCompetenceView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\List\FrmDanhMucMauNgayNghiLe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\FrmDanhMucMauNgayNghiLe.Designer.cs">
+      <DependentUpon>FrmDanhMucMauNgayNghiLe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\List\FrmLoaiDuLieuChamCong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +234,12 @@
     </Compile>
     <Compile Include="Screens\List\FrmLoaiDuLieuChamCongDetail.Designer.cs">
       <DependentUpon>FrmLoaiDuLieuChamCongDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\FrmQuanLyNgayNghi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\FrmQuanLyNgayNghi.Designer.cs">
+      <DependentUpon>FrmQuanLyNgayNghi.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\List\frmReligionList.cs">
       <SubType>Form</SubType>
@@ -231,6 +265,12 @@
     <Compile Include="Screens\Salaries\FrmAttendance.Designer.cs">
       <DependentUpon>FrmAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Salaries\FrmBangTinhLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmBangTinhLuong.Designer.cs">
+      <DependentUpon>FrmBangTinhLuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Salaries\FrmPutAttendance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +282,18 @@
     </Compile>
     <Compile Include="Screens\Salaries\FrmTaoDuLieuChamCong.Designer.cs">
       <DependentUpon>FrmTaoDuLieuChamCong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ManHinhThamSo\FrmThamSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ManHinhThamSo\FrmThamSo.Designer.cs">
+      <DependentUpon>FrmThamSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\LoaiDuLieuTinhLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\LoaiDuLieuTinhLuong.Designer.cs">
+      <DependentUpon>LoaiDuLieuTinhLuong.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\User\FrmLogin.cs">
       <SubType>Form</SubType>
@@ -294,6 +346,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\DataReport.resx">
+      <DependentUpon>DataReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\Configurations\FrmAttendanceSymbol.resx">
       <DependentUpon>FrmAttendanceSymbol.cs</DependentUpon>
     </EmbeddedResource>
@@ -336,11 +391,17 @@
     <EmbeddedResource Include="Screens\List\frmCompetenceView.resx">
       <DependentUpon>frmCompetenceView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\FrmDanhMucMauNgayNghiLe.resx">
+      <DependentUpon>FrmDanhMucMauNgayNghiLe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\List\FrmLoaiDuLieuChamCong.resx">
       <DependentUpon>FrmLoaiDuLieuChamCong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\List\FrmLoaiDuLieuChamCongDetail.resx">
       <DependentUpon>FrmLoaiDuLieuChamCongDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\FrmQuanLyNgayNghi.resx">
+      <DependentUpon>FrmQuanLyNgayNghi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\List\frmReligionList.resx">
       <DependentUpon>frmReligionList.cs</DependentUpon>
@@ -354,11 +415,20 @@
     <EmbeddedResource Include="Screens\Salaries\FrmAttendance.resx">
       <DependentUpon>FrmAttendance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmBangTinhLuong.resx">
+      <DependentUpon>FrmBangTinhLuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmPutAttendance.resx">
       <DependentUpon>FrmPutAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmTaoDuLieuChamCong.resx">
       <DependentUpon>FrmTaoDuLieuChamCong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ManHinhThamSo\FrmThamSo.resx">
+      <DependentUpon>FrmThamSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\LoaiDuLieuTinhLuong.resx">
+      <DependentUpon>LoaiDuLieuTinhLuong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\User\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

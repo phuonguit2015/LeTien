@@ -38,10 +38,30 @@ namespace LeTien.Objects
         [Indexed(Unique = true)]
         public string MaHopDong;
 
-        [DisplayName("Tên Hợp Đồng")]
-        public string TenHopDong;
+        [DisplayName("Loại Hợp Đồng")]
+        public string LoaiHopDong;
 
-        
+        [DisplayName ("Nhân Viên")]
+        public Employee iNhanVien
+        {
+            get;
+            set;
+        }
+
+
+        [DisplayName ("Chức Vụ")]
+        public Competence ChucVu
+        {
+            get;
+            set;
+        }
+
+        [DisplayName ("Lương Cơ Bản")]
+        public decimal LuongCoBan
+        {
+            get;
+            set;
+        }
 
         [DisplayName("Ngày Ký")]
         public DateTime NgayKy;

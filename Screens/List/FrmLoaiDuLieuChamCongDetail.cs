@@ -89,12 +89,16 @@ namespace LeTien.Screens.List
                 er.SetError(txtLoaiDuLieu, "Vui lòng nhập kiểu dữ liệu.");
                 flag = false;
             }
-            if (cbbKieuDuLieu.EditValue == string.Empty)
+            if (cbbKieuDuLieu.Text == string.Empty)
             {
                 er.SetError(cbbKieuDuLieu, "Vui lòng chọn kiểu dữ liệu.");
                 flag = false;
             }
             return flag;
+        }
+
+        private void cbbKieuDuLieu_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

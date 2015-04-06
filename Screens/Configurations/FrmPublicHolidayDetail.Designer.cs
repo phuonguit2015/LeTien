@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPublicHolidayDetail));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtGhiChu = new DevExpress.XtraEditors.MemoEdit();
+            this.xpcPublicHoliday = new DevExpress.Xpo.XPCollection(this.components);
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.btnCapNhat = new DevExpress.XtraEditors.SimpleButton();
             this.btnDong = new DevExpress.XtraEditors.SimpleButton();
@@ -52,10 +53,12 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.xpcPublicHoliday = new DevExpress.Xpo.XPCollection(this.components);
+            this.colorPickEdit1 = new DevExpress.XtraEditors.ColorPickEdit();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcPublicHoliday)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDenNgay.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDenNgay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTuNgay.Properties.CalendarTimeProperties)).BeginInit();
@@ -75,11 +78,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpcPublicHoliday)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.colorPickEdit1);
             this.layoutControl1.Controls.Add(this.txtGhiChu);
             this.layoutControl1.Controls.Add(this.btnThem);
             this.layoutControl1.Controls.Add(this.btnCapNhat);
@@ -98,11 +103,15 @@
             // txtGhiChu
             // 
             this.txtGhiChu.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcPublicHoliday, "PublicHolidayDescription", true));
-            this.txtGhiChu.Location = new System.Drawing.Point(87, 111);
+            this.txtGhiChu.Location = new System.Drawing.Point(88, 135);
             this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(386, 87);
+            this.txtGhiChu.Size = new System.Drawing.Size(385, 63);
             this.txtGhiChu.StyleController = this.layoutControl1;
             this.txtGhiChu.TabIndex = 11;
+            // 
+            // xpcPublicHoliday
+            // 
+            this.xpcPublicHoliday.ObjectType = typeof(LeTien.Objects.PublicHoliday);
             // 
             // btnThem
             // 
@@ -141,14 +150,14 @@
             // 
             this.dtDenNgay.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcPublicHoliday, "PublicHolidayEnd", true));
             this.dtDenNgay.EditValue = null;
-            this.dtDenNgay.Location = new System.Drawing.Point(313, 77);
+            this.dtDenNgay.Location = new System.Drawing.Point(314, 77);
             this.dtDenNgay.Name = "dtDenNgay";
             this.dtDenNgay.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.dtDenNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDenNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtDenNgay.Size = new System.Drawing.Size(160, 20);
+            this.dtDenNgay.Size = new System.Drawing.Size(159, 20);
             this.dtDenNgay.StyleController = this.layoutControl1;
             this.dtDenNgay.TabIndex = 6;
             // 
@@ -156,23 +165,23 @@
             // 
             this.dtTuNgay.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcPublicHoliday, "PublicHolidayStart", true));
             this.dtTuNgay.EditValue = null;
-            this.dtTuNgay.Location = new System.Drawing.Point(87, 77);
+            this.dtTuNgay.Location = new System.Drawing.Point(88, 77);
             this.dtTuNgay.Name = "dtTuNgay";
             this.dtTuNgay.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.dtTuNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtTuNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtTuNgay.Size = new System.Drawing.Size(159, 20);
+            this.dtTuNgay.Size = new System.Drawing.Size(158, 20);
             this.dtTuNgay.StyleController = this.layoutControl1;
             this.dtTuNgay.TabIndex = 5;
             // 
             // txtTenNgayLe
             // 
             this.txtTenNgayLe.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcPublicHoliday, "PublicHolidayName", true));
-            this.txtTenNgayLe.Location = new System.Drawing.Point(87, 43);
+            this.txtTenNgayLe.Location = new System.Drawing.Point(88, 43);
             this.txtTenNgayLe.Name = "txtTenNgayLe";
-            this.txtTenNgayLe.Size = new System.Drawing.Size(386, 20);
+            this.txtTenNgayLe.Size = new System.Drawing.Size(385, 20);
             this.txtTenNgayLe.StyleController = this.layoutControl1;
             this.txtTenNgayLe.TabIndex = 4;
             // 
@@ -204,7 +213,8 @@
             this.emptySpaceItem4,
             this.layoutControlItem7,
             this.emptySpaceItem5,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.layoutControlItem8});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(477, 228);
@@ -228,7 +238,7 @@
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(453, 24);
             this.layoutControlItem1.Text = "Tên Ngày Lễ";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(60, 13);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(61, 13);
             // 
             // layoutControlItem2
             // 
@@ -238,7 +248,7 @@
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(226, 24);
             this.layoutControlItem2.Text = "Từ Ngày";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(60, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(61, 13);
             // 
             // layoutControlItem3
             // 
@@ -248,7 +258,7 @@
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(227, 24);
             this.layoutControlItem3.Text = "Đến Ngày";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(60, 13);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(61, 13);
             // 
             // emptySpaceItem2
             // 
@@ -330,15 +340,33 @@
             // 
             this.layoutControlItem4.Control = this.txtGhiChu;
             this.layoutControlItem4.CustomizationFormText = "Ghi chú";
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 68);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 92);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(453, 91);
+            this.layoutControlItem4.Size = new System.Drawing.Size(453, 67);
             this.layoutControlItem4.Text = "Ghi chú";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(60, 13);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(61, 13);
             // 
-            // xpcPublicHoliday
+            // colorPickEdit1
             // 
-            this.xpcPublicHoliday.ObjectType = typeof(LeTien.Objects.PublicHoliday);
+            this.colorPickEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcPublicHoliday, "MauHienThi", true));
+            this.colorPickEdit1.EditValue = System.Drawing.Color.Empty;
+            this.colorPickEdit1.Location = new System.Drawing.Point(88, 111);
+            this.colorPickEdit1.Name = "colorPickEdit1";
+            this.colorPickEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.colorPickEdit1.Size = new System.Drawing.Size(385, 20);
+            this.colorPickEdit1.StyleController = this.layoutControl1;
+            this.colorPickEdit1.TabIndex = 12;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.colorPickEdit1;
+            this.layoutControlItem8.CustomizationFormText = "Màu Hiển Thị";
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 68);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(453, 24);
+            this.layoutControlItem8.Text = "Màu Hiển Thị";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(61, 13);
             // 
             // FrmPublicHolidayDetail
             // 
@@ -356,6 +384,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcPublicHoliday)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDenNgay.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDenNgay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTuNgay.Properties.CalendarTimeProperties)).EndInit();
@@ -375,7 +404,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpcPublicHoliday)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.colorPickEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -405,5 +435,7 @@
         private DevExpress.Xpo.XPCollection xpcPublicHoliday;
         private DevExpress.XtraEditors.MemoEdit txtGhiChu;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraEditors.ColorPickEdit colorPickEdit1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
     }
 }

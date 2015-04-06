@@ -16,6 +16,8 @@ using LeTien.Screens.Employees;
 using LeTien.Utils;
 using LeTien.Screens.List;
 using LeTien.Screens.HopDong;
+using LeTien.Screens.MaHinhThamSo;
+using LeTien.Screens.Salaries;
 namespace LeTien.Screens
 {
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -112,13 +114,11 @@ namespace LeTien.Screens
                 f.BringToFront();
             else
             {
-                SplashScreenManager.ShowForm(typeof(WaitFormMain));
-                f = new FrmLoaiDuLieuChamCong();
-                f.Name = f.GetType().ToString();
-                e.Item.Tag = f.Name;
-                f.MdiParent = this;
-                f.Show();
-                SplashScreenManager.CloseForm();
+                //SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                //f = new FrmDanhMucMauNgayNghiLe();
+                f = new FrmQuanLyNgayNghi();
+                f.ShowDialog();
+                //SplashScreenManager.CloseForm();
             }
         }
 
@@ -253,6 +253,24 @@ namespace LeTien.Screens
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
                 f = new FormLaborContractList();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmBangTinhLuong();
                 f.Name = f.GetType().ToString();
                 e.Item.Tag = f.Name;
                 f.MdiParent = this;

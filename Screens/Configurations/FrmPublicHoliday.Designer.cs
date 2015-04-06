@@ -45,6 +45,8 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.colMauHienThi = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcPublicHoliday)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -58,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // xpcPublicHoliday
@@ -84,6 +87,8 @@
             this.gridUCList.Location = new System.Drawing.Point(24, 77);
             this.gridUCList.MainView = this.grvUCList;
             this.gridUCList.Name = "gridUCList";
+            this.gridUCList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemColorPickEdit1});
             this.gridUCList.Size = new System.Drawing.Size(938, 315);
             this.gridUCList.TabIndex = 7;
             this.gridUCList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -95,7 +100,8 @@
             this.colPublicHolidayName,
             this.colPublicHolidayStart,
             this.colPublicHolidayEnd,
-            this.colPublicHolidayDescription});
+            this.colPublicHolidayDescription,
+            this.colMauHienThi});
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.Name = "grvUCList";
             this.grvUCList.OptionsView.ShowAutoFilterRow = true;
@@ -235,6 +241,21 @@
             this.layoutControlItem3.TextToControlDistance = 0;
             this.layoutControlItem3.TextVisible = false;
             // 
+            // colMauHienThi
+            // 
+            this.colMauHienThi.ColumnEdit = this.repositoryItemColorPickEdit1;
+            this.colMauHienThi.FieldName = "MauHienThi";
+            this.colMauHienThi.Name = "colMauHienThi";
+            this.colMauHienThi.Visible = true;
+            this.colMauHienThi.VisibleIndex = 4;
+            // 
+            // repositoryItemColorPickEdit1
+            // 
+            this.repositoryItemColorPickEdit1.AutoHeight = false;
+            this.repositoryItemColorPickEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemColorPickEdit1.Name = "repositoryItemColorPickEdit1";
+            // 
             // FrmPublicHoliday
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,6 +278,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -279,5 +301,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPublicHolidayDescription;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn colMauHienThi;
+        private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit repositoryItemColorPickEdit1;
     }
 }

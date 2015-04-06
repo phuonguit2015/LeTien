@@ -2,6 +2,7 @@
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
 using LeTien.Objects;
+using LeTien.Screens.HopDong;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,10 +64,7 @@ namespace LeTien.Screens.Employees
         }
        
         
-        private bool LaHopLe()
-        {
-            return true;
-        }
+      
         private void btnDong_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Bạn có chắc muốn thoát?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -99,17 +97,46 @@ namespace LeTien.Screens.Employees
              {
                  if (lkuChucVu.EditValue != null)
                  {
-                     Competence c = uow.FindObject<Competence>(CriteriaOperator.Parse("CompetenceID = ?", (lkuChucVu.EditValue as Competence).CompetenceID));
-                     if (c != null)
+                     try
                      {
-                         txtPhuCapChucVu.Text = c.Allowance;
+                         Competence c = uow.FindObject<Competence>(CriteriaOperator.Parse("CompetenceID = ?", (lkuChucVu.EditValue as Competence).CompetenceID));
+                         if (c != null)
+                         {
+                             txtPhuCapChucVu.Text = c.Allowance;
+                         }
                      }
+                     catch
+                     { }
+                     
                  }
              }
         }
 
         private void lkuSoHopDong_EditValueChanged(object sender, EventArgs e)
         {
+            using (var uow = new UnitOfWork())
+            {
+                if (lkuSoHopDong.EditValue != null)
+                {
+                    try
+                    {
+                        LaborContract l = uow.FindObject<LaborContract>(CriteriaOperator.Parse("MaHopDong = ?", lkuSoHopDong.Text));
+                        if (l != null)
+                        {
+                            dtNgayVaoHopDong.EditValue = l.NgayKy;
+                        }
+                    }
+                    catch
+                    { }
+                
+                }
+            }
+        }
+
+        private void btnThemHopDong_Click(object sender, EventArgs e)
+        {
+            FormLaborContractDetail f = new FormLaborContractDetail();
+            f.ShowDialog();
 
         }
 

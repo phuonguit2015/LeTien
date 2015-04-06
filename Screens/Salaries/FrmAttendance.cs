@@ -19,6 +19,8 @@ using LeTien.Objects;
 using LeTien.Screens;
 using DevExpress.Utils;
 using DevExpress.Data.Filtering;
+using LeTien.Screens.List;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace LeTien.Screens
 {
@@ -61,37 +63,13 @@ namespace LeTien.Screens
             return strReturn;
         }
 
-
         public FrmAttendance(string attendanceMonth = null, string attendanceYear = null)
         {
             InitializeComponent();
-            this.renderAttendanDateceColumn();
-            //this.renderAttendanceSymbol();
-
+            dtThang_EditValueChanged(dtThang,new EventArgs());
         }
 
-        private void gridView1_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
-        {
-            if (e.Column.Name == "DateOfMonth")
-            {
-                GridView currentView = sender as GridView;
-                string employeeID = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["Oid"]).ToString();
-                //int date = int.Parse(e.Column.Caption.ToString());
-                int date = e.Column.VisibleIndex - 1;
-
-                string attendanceDate = this.attendanceYear.ToString() + "-" + (this.attendanceMonth < 10 ? "0" + this.attendanceMonth.ToString() : this.attendanceMonth.ToString()) + "-" + (date < 10 ? "0" + date.ToString() : date.ToString());
-
-                //int attendanceColor = Objects.Attendance.GetAttendanceSymbolColorEmployeeByDate(employeeID, attendanceDate, session1);
-                //if (attendanceColor != 0)
-                //{
-                //    e.Appearance.BackColor = System.Drawing.Color.FromArgb(attendanceColor); 
-                //    //e.DisplayText = Objects.Attendance.GetAttendanceSymbolKeyEmployeeByDate(employeeID, attendanceDate, session1);
-                //}
-            }
-        }
-
-
-        public void renderAttendanDateceColumn()
+        private int SoNgayTrongThang()
         {
             int daysInMonth;
 
@@ -108,19 +86,22 @@ namespace LeTien.Screens
             {
                 daysInMonth = System.DateTime.DaysInMonth(this.attendanceYear, this.attendanceMonth);
             }
+            return daysInMonth;
+        }
 
-
+        public void renderAttendanDateceColumn()
+        {
             foreach (GridColumn col in ((ColumnView)gridControl1.Views[0]).Columns)
             {
                 if (col.FieldName.Contains("Ngay"))
                 {
                     string s = col.FieldName.Substring(4);
-                    if (int.Parse(s) > daysInMonth)
+                    if (int.Parse(s) > SoNgayTrongThang())
                     {
                         col.Visible = false;
                         continue;
                     }
-                    for (int i = 1; i <= daysInMonth; i++)
+                    for (int i = 1; i <= SoNgayTrongThang(); i++)
                     {
                         if (i == int.Parse(s))
                         {
@@ -128,11 +109,22 @@ namespace LeTien.Screens
                             col.Caption = i.ToString() + " (" + dateVN(curDate.DayOfWeek.ToString()) + ")";
                             col.VisibleIndex = i + 4;
                             col.Visible = true;
+                            col.AppearanceHeader.ForeColor = System.Drawing.Color.Black;
+                            col.AppearanceCell.Options.UseBackColor = false;
                             if (curDate.DayOfWeek.ToString() == "Sunday")
                             {
                                 col.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
-                                col.AppearanceHeader.Options.UseForeColor = true;
+                                col.AppearanceCell.BackColor = System.Drawing.Color.Yellow;
+                                col.AppearanceCell.Options.UseBackColor = true;
                             }
+                            Color color = KiemTraNgayLe(xpcPublicHoliday,curDate);
+                            if(color != Color.White)
+                            {
+
+                                col.AppearanceCell.BackColor = color;
+                                col.AppearanceCell.Options.UseBackColor = true;
+                            }
+                            col.AppearanceHeader.Options.UseForeColor = true;
                             break;
                         }
                     }
@@ -140,37 +132,6 @@ namespace LeTien.Screens
             }
         }
 
-
-        public void renderAttendanceSymbol()
-        {
-            layoutControl1.BeginUpdate();
-
-            //DevExpress.Xpo.DB.SelectedData resAttendanceSymbols = Objects.AttendanceSymbol.GetAllAttendanceSymbols(session1);
-
-            //if (resAttendanceSymbols.ResultSet[0].Rows.Length > 0)
-            //{
-            //    for (int i = 0; i < resAttendanceSymbols.ResultSet[0].Rows.Length; i++)
-            //    {
-            //        int symbolColor = int.Parse(resAttendanceSymbols.ResultSet[0].Rows[i].Values[3].ToString());
-
-            //        LayoutControlItem newItem = new LayoutControlItem();
-
-            //        newItem.Control = new LabelControl();
-
-            //        newItem.Control.BackColor = System.Drawing.Color.FromArgb(symbolColor);
-            //        newItem.Control.Text = resAttendanceSymbols.ResultSet[0].Rows[i].Values[1].ToString();
-            //        Size newSize = new Size(105, 41);
-            //        newItem.MaxSize = newSize;
-            //        newItem.MinSize = newSize;
-            //        layoutControlGroup2.AddItem(newItem);
-            //    }
-            //}
-
-
-
-
-            layoutControl1.EndUpdate();
-        }
         private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
         {
             if (e.Column.Name == "DateOfMonth")
@@ -217,17 +178,18 @@ namespace LeTien.Screens
 
         private void dtThang_EditValueChanged(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(WaitFormMain));
+           // SplashScreenManager.ShowForm(typeof(WaitFormMain));
             this.attendanceMonth = DateTime.Parse(dtThang.EditValue.ToString()).Month;
             this.attendanceYear = DateTime.Parse(dtThang.EditValue.ToString()).Year;
 
             System.Threading.Thread.Sleep(2000);
             this.renderAttendanDateceColumn();
             gridControl1.DataSource = TaoBangChamCong();
-
-            SplashScreenManager.CloseForm();
+            gridView1.SortInfo.Clear();
+            gridView1.SortInfo.Add(new GridColumnSortInfo(colMaNhanVien, DevExpress.Data.ColumnSortOrder.Ascending));
+            gridView1.SortInfo.Add(new GridColumnSortInfo(colThoiGian, DevExpress.Data.ColumnSortOrder.Ascending));
+            //SplashScreenManager.CloseForm();
         }
-
 
         public XPCollection TaoBangChamCong()
         {
@@ -266,7 +228,8 @@ namespace LeTien.Screens
 
         private void gridView1_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
         {
-            if (e.Column.FieldName == "LoaiDuLieuChamCong.LoaiChamCong") return;
+            if (e.Column.FieldName == "LoaiDuLieuChamCong.LoaiChamCong" || e.Column.FieldName == "NhanVien.MaNhanVien" || e.Column.FieldName == "NhanVien.HoTen" || e.Column.FieldName == "HieuSuat") return;
+
             GridView gv = sender as GridView;
             LoaiDuLieuChamCong l = (LoaiDuLieuChamCong)gv.GetRowCellValue(e.RowHandle, gv.Columns["LoaiDuLieuChamCong!"]);
             if (l == null) return;
@@ -275,6 +238,7 @@ namespace LeTien.Screens
                 case "Int":
                     repositoryItemSpinEdit1.NullText = "";
                     e.RepositoryItem = repositoryItemSpinEdit1;
+                    string s = e.Column.FieldName;
                     break;
                 case "DateTime":
                     e.RepositoryItem = timeEdit;
@@ -283,32 +247,187 @@ namespace LeTien.Screens
                     e.RepositoryItem = txtEdit;
                     break;
             }
+           
+
         }
 
         private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
             GridView gv = sender as GridView;
+
+            #region "Màu ngày nghĩ"
+            if (e.RowHandle < 0) return;
             if (e.Column.VisibleIndex > 2 && e.Column.VisibleIndex < 31)
             {
+                Employee nv = (Employee)gv.GetRowCellValue(e.RowHandle, gv.Columns["NhanVien!"]);
+                DateTime dt = new DateTime(attendanceYear, attendanceMonth, int.Parse(e.Column.FieldName.Substring(4)));
+                XPCollection xpc = new XPCollection(xpcQuanLyNgayNghi, new BinaryOperator("NhanVien.Oid", nv.Oid));
+                foreach(QuanLyNgayNghi ql in xpc)
+                {
+                    if (dt.CompareTo(ql.NgayBatDau) >= 0 && dt.CompareTo(ql.NgayKetThuc) < 0)
+                    {
+                        e.Appearance.BackColor = ql.LoaiNgayNghi.MauHienThi;
+                        break;
+                    }    
+                }
+            }
+            #endregion
+           
+            #region "Màu đi trể về sớm"
+            if (e.Column.VisibleIndex > 2 && e.Column.VisibleIndex < 31)
+            {
+                string kieudulieu = gv.GetRowCellDisplayText(e.RowHandle, gv.Columns["LoaiDuLieuChamCong.LoaiChamCong"]);
                 LoaiDuLieuChamCong l = (LoaiDuLieuChamCong)gv.GetRowCellValue(e.RowHandle, gv.Columns["LoaiDuLieuChamCong!"]);
-                if (gv.GetRowCellValue(e.RowHandle, e.Column)==null) return;
-                string value = gv.GetRowCellValue(e.RowHandle, e.Column).ToString();
+                DateTime value;
+                switch (l.LoaiChamCong)
+                {
+                    case "Thời Gian Vào":
+                        if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
+                        {
+                            value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
+                            if (SoSanhThoiGian(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, 7, 0, 0) == true)
+                            {
+                                e.Appearance.BackColor = l.MauHienThiDuong;
+                            }
+                        }
+                        //So phut di tre    
+                        break;
+                    case "Thời Gian Ra":
+                        if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
+                        {
+                            value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
+                            if (SoSanhThoiGian(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, 17, 0, 0) == false)
+                            {
+                                e.Appearance.BackColor = l.MauHienThiAm;
+                            }
+                        }
+                        break;
+                }
 
+            }
+            #endregion
 
-                e.Appearance.BackColor = LayMauHienThi(l, value);
-               // e.Appearance.BackColor2 = Color.AliceBlue;
+            
+        }
+        private bool SoSanhThoiGian(int h1, int m1, int s1, int h2, int m2, int s2)
+        {
+            long t1 = h1 * 3600 + m1 * 60 + s1;
+            long t2 = h2 * 3600 + m2 * 60 + s2;
+            if (t1 > t2)
+                return true;
+            return false;
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = new FrmLoaiDuLieuChamCong();
+            if (f != null)
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f.Text = "Loại Dữ Liệu Chấm Công";
+                f.ShowDialog();
+                SplashScreenManager.CloseForm();
             }
         }
 
-        private Color LayMauHienThi(LoaiDuLieuChamCong l, string value)
+        private List<int> DanhSachNgayChuNhatTrongThang()
         {
-            if( l.KieuDuLieu == "Int" && Int32.Parse(value) > Int32.Parse(l.DuLieuMacDinh)) 
-                return l.MauHienThiDuong;
-            else
-                return l.MauHienThiAm;
-            
+            List<int> arr = new List<int>();
+             for (int i = 1; i <= SoNgayTrongThang(); i++)
+             {
+                 DateTime curDate = new DateTime(this.attendanceYear, this.attendanceMonth, i);
+                 if (curDate.DayOfWeek.ToString() == "Sunday")
+                     arr.Add(i);
+             }                            
+            return arr;
         }
 
+        private void gridView1_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
+        {
+            //#region "Màu ngày chủ nhật"
+            //foreach (int i in DanhSachNgayChuNhatTrongThang())
+            //{
+            //    string fieldName = "Ngay" + i.ToString();
+            //    if (e.Column.FieldName == fieldName)
+            //    {
+            //        e.Appearance.BackColor = Color.YellowGreen;                    
+            //    }
+            //}
+            //#endregion
+           
+        }
 
-    }
+        private Color KiemTraNgayLe(XPCollection xpc, DateTime dt)
+        {
+            foreach(PublicHoliday p in xpc)
+            {            
+                if(dt.CompareTo(p.PublicHolidayStart) >= 0 && dt.CompareTo(p.PublicHolidayEnd) < 0)
+                {
+                    return p.MauHienThi;
+                }              
+            }
+            return Color.White;
+        }
+
+        private void gridView1_ShowingEditor(object sender, CancelEventArgs e)
+        {
+            #region "Chỉ đọc ngày nghĩ"
+            if (gridView1.FocusedColumn.VisibleIndex > 2 && gridView1.FocusedColumn.VisibleIndex < 31)
+            {
+                Employee nv = (Employee)gridView1.GetRowCellValue(gridView1.FocusedRowHandle, gridView1.Columns["NhanVien!"]);
+                DateTime dt = new DateTime(attendanceYear, attendanceMonth, int.Parse(gridView1.FocusedColumn.FieldName.Substring(4)));
+                XPCollection xpc = new XPCollection(xpcQuanLyNgayNghi, new BinaryOperator("NhanVien.Oid", nv.Oid));
+                foreach (QuanLyNgayNghi ql in xpc)
+                {
+                    if (dt.CompareTo(ql.NgayBatDau) >= 0 && dt.CompareTo(ql.NgayKetThuc) < 0)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                }
+            }
+            #endregion
+        }
+
+        private void toolTipController1_GetActiveObjectInfo(object sender, ToolTipControllerGetActiveObjectInfoEventArgs e)
+        {
+            if (e.SelectedControl != gridControl1) return;
+
+            ToolTipControlInfo info = null;
+            //Get the view at the current mouse position
+            GridView view = gridControl1.GetViewAt(e.ControlMousePosition) as GridView;
+            if (view == null) return;
+            //Get the view's element information that resides at the current position
+            GridHitInfo hi = view.CalcHitInfo(e.ControlMousePosition);
+            //Display a hint for row indicator cells
+            if (hi.HitTest == GridHitTest.RowCell)
+            {
+                Employee nv = (Employee)gridView1.GetRowCellValue(hi.RowHandle, gridView1.Columns["NhanVien!"]);
+                if (nv == null) return;
+               
+                int i;
+                if (!int.TryParse(hi.Column.FieldName.Substring(4), out i)) return;
+                DateTime dt = new DateTime(attendanceYear, attendanceMonth, i);
+                XPCollection xpc = new XPCollection(xpcQuanLyNgayNghi, new BinaryOperator("NhanVien.Oid", nv.Oid));
+                foreach (QuanLyNgayNghi ql in xpc)
+                {
+                    if (dt.CompareTo(ql.NgayBatDau) >= 0 && dt.CompareTo(ql.NgayKetThuc) < 0)
+                    {
+                        //An object that uniquely identifies a row indicator cell
+                        object o = hi.HitTest.ToString() + hi.RowHandle.ToString();
+                        string text = ql.LoaiNgayNghi.TenNgayNghi;
+                        info = new ToolTipControlInfo(o, text);                        
+                        break;
+                    }
+                }
+                            }
+            //Supply tooltip information if applicable, otherwise preserve default tooltip (if any)
+            if (info != null)
+                e.Info = info;
+
+           
+        }
+    }  
+    
 }

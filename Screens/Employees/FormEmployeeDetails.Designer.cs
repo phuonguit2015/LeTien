@@ -250,6 +250,7 @@ namespace LeTien.Screens.Employees
             this.btnThemHopDong.StyleController = this.layoutControl1;
             this.btnThemHopDong.TabIndex = 45;
             this.btnThemHopDong.Text = "Thêm HĐ";
+            this.btnThemHopDong.Click += new System.EventHandler(this.btnThemHopDong_Click);
             // 
             // calLuongDongBHXH
             // 
