@@ -21,6 +21,9 @@ namespace LeTien.Screens.List
         {
             InitializeComponent();
             competence = new Competence();
+            ucMenu.UCMain_Edit.Enabled = false;
+            ucMenu.UCMain_MayTinh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            ucMenu.UCMain_Delete.Enabled = false;
         }
 
         private void grvUCList_DoubleClick(object sender, EventArgs e)

@@ -25,6 +25,7 @@ namespace LeTien.Screens.List
 
         public frmCompetenceView(Competence competence)
         {
+            InitializeComponent();
             btnThem.Enabled = false;
             txtMaChucVu.Enabled = false;
 
@@ -109,25 +110,10 @@ namespace LeTien.Screens.List
                     {
                         insert.Save();
                         uow.CommitChanges();
-                        frmBranchList f = this.Tag as frmBranchList;
+                        frmCompetenceList f = this.Tag as frmCompetenceList;
                         f.RefreshData();
                         XtraMessageBox.Show("Thêm thành công", "Đã lưu");
-                        CleanForm();
-                    //}
-                    //else
-                    //{
-                    //    if (txtMaChucVu.Text == string.Empty)
-                    //    {
-                    //        XtraMessageBox.Show("Mã chức vụ không được để trống", "Có lỗi");
-                    //    }
-                    //    else if (txtTenChucVu.Text == string.Empty)
-                    //    {
-                    //        XtraMessageBox.Show("Tên chức vụ không được để trống", "Có lỗi");
-                    //    }
-                    //    else if (txtTienPhuCap.Text == string.Empty)
-                    //    {
-                    //        XtraMessageBox.Show("Tiền phụ cấp không được để trống", "Có lỗi");
-                    //    }
+                        CleanForm();                 
                     }
                 }
                 catch (Exception ex)

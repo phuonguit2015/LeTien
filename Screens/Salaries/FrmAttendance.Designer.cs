@@ -76,14 +76,11 @@
             this.colNgay31 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMaNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKetQua = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colHieuSuat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xpcThamSo = new DevExpress.Xpo.XPCollection(this.components);
@@ -92,9 +89,9 @@
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.dtThang = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.btnEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btnIn = new DevExpress.XtraBars.BarButtonItem();
             this.btnXuat = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.btnNapLai = new DevExpress.XtraBars.BarButtonItem();
             this.btnDong = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -130,8 +127,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcThamSo)).BeginInit();
@@ -176,7 +171,7 @@
             this.panelControl1.Controls.Add(this.gridControl1);
             this.panelControl1.Location = new System.Drawing.Point(24, 43);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(852, 243);
+            this.panelControl1.Size = new System.Drawing.Size(852, 358);
             this.panelControl1.TabIndex = 6;
             // 
             // gridControl1
@@ -193,7 +188,7 @@
             this.repositoryItemLookUpEdit1,
             this.timeEdit,
             this.txtEdit});
-            this.gridControl1.Size = new System.Drawing.Size(848, 239);
+            this.gridControl1.Size = new System.Drawing.Size(848, 354);
             this.gridControl1.TabIndex = 5;
             this.gridControl1.ToolTipController = this.toolTipController1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -244,10 +239,10 @@
             this.colNgay31,
             this.colMaNhanVien,
             this.colKetQua,
-            this.colHieuSuat,
             this.gridColumn2});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsDetail.EnableMasterViewMode = false;
             this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsView.AllowCellMerge = true;
@@ -304,7 +299,6 @@
             // 
             // colNgay2
             // 
-            this.colNgay2.ColumnEdit = this.timeEdit;
             this.colNgay2.FieldName = "Ngay2";
             this.colNgay2.Name = "colNgay2";
             this.colNgay2.Visible = true;
@@ -541,13 +535,6 @@
             this.colKetQua.Visible = true;
             this.colKetQua.VisibleIndex = 34;
             // 
-            // colHieuSuat
-            // 
-            this.colHieuSuat.FieldName = "HieuSuat";
-            this.colHieuSuat.Name = "colHieuSuat";
-            this.colHieuSuat.Visible = true;
-            this.colHieuSuat.VisibleIndex = 35;
-            // 
             // gridColumn2
             // 
             this.gridColumn2.FieldName = "NhanVien!";
@@ -584,33 +571,12 @@
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroup2,
             this.layoutControlGroup4});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(900, 425);
             this.layoutControlGroup1.Text = "Root";
             this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.CustomizationFormText = "Ký hiệu chấm công";
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.emptySpaceItem2});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 290);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(880, 115);
-            this.layoutControlGroup2.Text = "Ký hiệu chấm công";
-            // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.CustomizationFormText = "emptySpaceItem2";
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 0);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(856, 72);
-            this.emptySpaceItem2.Text = "emptySpaceItem2";
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlGroup4
             // 
@@ -619,7 +585,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(880, 290);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(880, 405);
             this.layoutControlGroup4.Text = "Chấm công nhân viên";
             // 
             // layoutControlItem1
@@ -628,15 +594,11 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(856, 247);
+            this.layoutControlItem1.Size = new System.Drawing.Size(856, 362);
             this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextToControlDistance = 0;
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // xpcThamSo
-            // 
-            this.xpcThamSo.ObjectType = typeof(LeTien.Objects.ThamSo);
             // 
             // barManager1
             // 
@@ -658,7 +620,7 @@
             this.barButtonItem1,
             this.dtThang,
             this.btnImport,
-            this.barButtonItem2});
+            this.btnEdit});
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 15;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -677,9 +639,9 @@
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.dtThang),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnIn, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnEdit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnIn, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXuat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barButtonItem2, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnNapLai, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDong, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.MultiLine = true;
@@ -696,7 +658,6 @@
             // 
             // dtThang
             // 
-            this.dtThang.Caption = "barEditItem1";
             this.dtThang.Edit = this.repositoryItemDateEdit2;
             this.dtThang.EditValue = new System.DateTime(2015, 3, 31, 22, 42, 16, 547);
             this.dtThang.Id = 12;
@@ -717,6 +678,15 @@
             this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
             this.repositoryItemDateEdit2.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Caption = "Đang ở chế đố chỉ đọc";
+            this.btnEdit.Glyph = ((System.Drawing.Image)(resources.GetObject("btnEdit.Glyph")));
+            this.btnEdit.Id = 14;
+            this.btnEdit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEdit.LargeGlyph")));
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
             // btnIn
             // 
             this.btnIn.Caption = "In";
@@ -732,15 +702,6 @@
             this.btnXuat.Id = 7;
             this.btnXuat.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXuat.LargeGlyph")));
             this.btnXuat.Name = "btnXuat";
-            // 
-            // barButtonItem2
-            // 
-            this.barButtonItem2.Caption = "Loại Dữ Liệu Chấm Công";
-            this.barButtonItem2.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.Glyph")));
-            this.barButtonItem2.Id = 14;
-            this.barButtonItem2.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.LargeGlyph")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // btnNapLai
             // 
@@ -937,8 +898,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcThamSo)).EndInit();
@@ -962,7 +921,6 @@
         private DevExpress.Xpo.XPCollection xpcEmployee;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraGrid.Columns.GridColumn colOid;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn colLastName;
@@ -1008,7 +966,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNgay31;
         private DevExpress.XtraGrid.Columns.GridColumn colMaNhanVien;
         private DevExpress.XtraGrid.Columns.GridColumn colKetQua;
-        private DevExpress.XtraGrid.Columns.GridColumn colHieuSuat;
         private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit repositoryItemColorPickEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
@@ -1039,8 +996,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colLoaiDuLieuChamCong;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtEdit;
         private DevExpress.Xpo.XPCollection xpcThamSo;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem btnEdit;
         private DevExpress.Xpo.XPCollection xpcPublicHoliday;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.Xpo.XPCollection xpcQuanLyNgayNghi;

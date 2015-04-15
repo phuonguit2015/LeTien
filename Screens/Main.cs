@@ -16,7 +16,6 @@ using LeTien.Screens.Employees;
 using LeTien.Utils;
 using LeTien.Screens.List;
 using LeTien.Screens.HopDong;
-using LeTien.Screens.MaHinhThamSo;
 using LeTien.Screens.Salaries;
 namespace LeTien.Screens
 {
@@ -108,18 +107,7 @@ namespace LeTien.Screens
 
         private void BButton_AttendanceSymbol_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
-            Form f = GetMdiFormByName(typeName);
-            if (f != null)
-                f.BringToFront();
-            else
-            {
-                //SplashScreenManager.ShowForm(typeof(WaitFormMain));
-                //f = new FrmDanhMucMauNgayNghiLe();
-                f = new FrmQuanLyNgayNghi();
-                f.ShowDialog();
-                //SplashScreenManager.CloseForm();
-            }
+           
         }
 
         private void barButtonItem3_ItemClick(object sender, ItemClickEventArgs e)
@@ -271,6 +259,87 @@ namespace LeTien.Screens
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
                 f = new FrmBangTinhLuong();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnItem_NgayNghi_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmQuanLyNgayNghi();
+                f.ShowDialog();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnItem_MauNgayNghi_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmDanhMucMauNgayNghiLe();
+                f.ShowDialog();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnItem_LoaiDLChamCong_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmLoaiDuLieuChamCong();
+                f.ShowDialog();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnTamUngLuong_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmTamUngLuong();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnGTriLuongTheoChucVu_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmTienLuongTheoChucVu();
                 f.Name = f.GetType().ToString();
                 e.Item.Tag = f.Name;
                 f.MdiParent = this;

@@ -1,7 +1,6 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Grid;
 using LeTien.Objects;
 using System;
 using System.Collections.Generic;
@@ -13,39 +12,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeTien.Screens.List
+namespace LeTien.Screens.Salaries
 {
-    public partial class FrmLoaiDuLieuChamCong : FormBase
+    public partial class FrmTienLuongTheoChucVu : FormBase
     {
-        private string _id = string.Empty;
-        public FrmLoaiDuLieuChamCong()
+        public FrmTienLuongTheoChucVu()
         {
             InitializeComponent();
         }
-
+          private string _id = string.Empty;
+     
         private void grvUCList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            _id = grvUCList.GetRowCellValue(e.RowHandle, "LoaiChamCong").ToString();         
+            _id = grvUCList.GetRowCellValue(e.RowHandle, "Oid").ToString();         
         }    
      
 
-        #region "Override FromBase"
-        protected override void OnNew()
-        {
-            FrmLoaiDuLieuChamCongDetail f = new FrmLoaiDuLieuChamCongDetail();
-            f.Text = "Thêm loại dữ liệu hợp đồng";
-            f.Tag = this;
-            f.ShowDialog();
-        }
-
-        protected override void OnEdit()
-        {
-            FrmLoaiDuLieuChamCongDetail f = new FrmLoaiDuLieuChamCongDetail(_id);
-            f.Text = "Cập nhật loại dữ liệu chấm công";
-            f.Tag = this;
-            f.ShowDialog();
-        }
-
+        #region "Override FromBase"     
+     
         protected override void OnDelete()
         {
             if (XtraMessageBox.Show("Bạn có muốn xóa không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
@@ -54,7 +38,7 @@ namespace LeTien.Screens.List
             }
             using (var uow = new UnitOfWork())
             {
-                LoaiDuLieuChamCong br = uow.FindObject<LoaiDuLieuChamCong>(CriteriaOperator.Parse("LoaiChamCong = ?", _id));
+                GiaTriTienLuongTheoChucVu br = uow.FindObject<GiaTriTienLuongTheoChucVu>(CriteriaOperator.Parse("Oid = ?", _id));
                 if (br != null)
                 {
                     br.Delete();
@@ -67,7 +51,7 @@ namespace LeTien.Screens.List
         protected override void OnReload()
         {
             UOW.ReloadChangedObjects();
-            xpcLoaiDuLieuChamCong.Reload();
+            xpcTienLuongTheoChucVu.Reload();
         }
 
         protected override void OnPreview()
@@ -83,47 +67,18 @@ namespace LeTien.Screens.List
             this.PrintCaption = "Danh sách loại dữ liệu chấm công";
             base.OnExportXls();
         }
-
         #endregion
 
       
 
-        private void frmBranchList_Load(object sender, EventArgs e)
-        {
-        }
+     
 
         public void RefreshData()
         {
             OnReload();
         }
 
-        private void grvUCList_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
-        {
-            GridView gv = sender as GridView;
-            if (e.Column.FieldName == "DuLieuMacDinh")
-            {
-                if (gv.GetRowCellValue(e.RowHandle, gv.Columns["KieuDuLieu"]) != null)
-                {
-                    var l = gv.GetRowCellValue(e.RowHandle, grvUCList.Columns["KieuDuLieu"]);                   
-                    switch (l.ToString())
-                    {
-                        case "Int":
-                            e.RepositoryItem = spinEdit;
-                            break;
-                        case "DateTime":
-                            e.RepositoryItem = repositoryItemTimeEdit1;
-                            break;
-                        case "String":
-                            e.RepositoryItem = textEdit;
-                            break;
-                    }
 
-
-                }
-            }
-
-
-        }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

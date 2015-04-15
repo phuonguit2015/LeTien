@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
+using LeTien.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +14,13 @@ using System.Windows.Forms;
 
 namespace LeTien.Screens.Salaries
 {
-    public partial class LoaiDuLieuTinhLuong : FormBase
+    public partial class FrmTamUngLuong : FormBase
     {
-        private string _tenLoaiDuLieu;
-
-        public LoaiDuLieuTinhLuong()
+        private string _Oid = string.Empty;
+        public FrmTamUngLuong()
         {
             InitializeComponent();
-            btnXoa.Enabled = false;
         }
-
         protected override void OnDelete()
         {
             if (XtraMessageBox.Show("Bạn có muốn xóa không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
@@ -31,7 +29,7 @@ namespace LeTien.Screens.Salaries
             }
             using (var uow = new UnitOfWork())
             {
-                LoaiDuLieuTinhLuong br = uow.FindObject<LoaiDuLieuTinhLuong>(CriteriaOperator.Parse("TenLoaiDuLieu = ?", _tenLoaiDuLieu));
+                AdvancePayment br = uow.FindObject<AdvancePayment>(CriteriaOperator.Parse("Oid = ?", _Oid));
                 if (br != null)
                 {
                     br.Delete();
@@ -45,20 +43,20 @@ namespace LeTien.Screens.Salaries
         protected override void OnReload()
         {
             UOW.ReloadChangedObjects();
-            xpcLoaiDuLieuTinhLuong.Reload();
+            xpcTamUngLuong.Reload();
         }
 
         protected override void OnPreview()
         {
             this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách mục tính lương";
+            this.PrintCaption = "Danh sách tạm ứng lương";
             base.OnPreview();
         }
 
         protected override void OnExportXls()
         {
             this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách mục tính lương";
+            this.PrintCaption = "Danh sách tạm ứng lương";
             base.OnExportXls();
         }
 
@@ -77,7 +75,15 @@ namespace LeTien.Screens.Salaries
 
         private void btnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnPreview();
+
+            //// Create a report. 
+            //XtraReport report = XtraReport.FromFile(@".\\Reports\\DataReport-QLngaynghi.repx", true);
+            //report.DataSource = xpcQuanLyNgayNghi;
+
+            ////OnPreview();
+            //ReportPrintTool pt = new ReportPrintTool(report);
+            //pt.AutoShowParametersPanel = true;
+            //pt.ShowPreviewDialog();
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -91,17 +97,20 @@ namespace LeTien.Screens.Salaries
             {
                 btnEdit.Caption = "Đang ở chế độ chỉnh sửa";
                 grvUCList.OptionsBehavior.ReadOnly = false;
+                grvUCList.OptionsBehavior.Editable = true;
             }
             else
             {
+                grvUCList.OptionsBehavior.Editable = false;
                 grvUCList.OptionsBehavior.ReadOnly = true;
-                btnEdit.Caption = "Đang ở chế độ chỉ đọc";
+                btnEdit.Caption = "Đang ở Chế độ chỉ đọc";
             }
         }
-
+        
         private void grvUCList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
-            _tenLoaiDuLieu = grvUCList.GetRowCellDisplayText(e.RowHandle, "TenLoaiDuLieu");
+            if (grvUCList.GetRowCellDisplayText(e.RowHandle, "Oid") == string.Empty) return;
+            _Oid = grvUCList.GetRowCellDisplayText(e.RowHandle, "Oid");
             btnXoa.Enabled = true;
         }
     }

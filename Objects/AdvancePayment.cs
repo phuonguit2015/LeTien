@@ -20,59 +20,42 @@ namespace LeTien.Objects
             // Do not place any code here.
         }
 
+
+        [DisplayName ("Ngày Tạm Ứng")]
         public DateTime NgayTamUng
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
+
+        [DisplayName ("Nhân Viên")]
         public Employee NhanVien
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
+        [DisplayName ("Số Tiền")]
         public decimal SoTien
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
+
+        [DisplayName ("Tháng Tạm Ứng")]
         public DateTime ThangTamUng
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
+        [DisplayName ("Mã Phiếu Tạm Ứng")]
         public string MaPhieuTamUng
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
         public override void AfterConstruction()

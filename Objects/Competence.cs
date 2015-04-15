@@ -36,6 +36,9 @@ namespace LeTien.Objects
         [DisplayName ("Tiền Phụ Cấp")]
         public string Allowance;
 
+        [DisplayName ("Lương Cơ Bản")]
+        public string LuongCB;
+
         public static string GetNumberOfEmployeesByCompetenceOid(string Oid, Session session)
         {
             DevExpress.Xpo.DB.SelectedData res = session.ExecuteQuery("SELECT COUNT(*) FROM `NhanVien` WHERE `Competence` = " + Oid);

@@ -50,9 +50,10 @@
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
             this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
             this.subItem_BangLuong = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_BangTinhLuongThang = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTamUngLuong = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLoaiDuLieuTinhLuong = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.barListItem1 = new DevExpress.XtraBars.BarListItem();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.BButton_List = new DevExpress.XtraBars.BarButtonItem();
@@ -65,6 +66,9 @@
             this.btnItem_ChucVu = new DevExpress.XtraBars.BarButtonItem();
             this.btnItem_TonGiao = new DevExpress.XtraBars.BarButtonItem();
             this.btnItem_NgayLe = new DevExpress.XtraBars.BarButtonItem();
+            this.btnItem_NgayNghi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnItem_MauNgayNghi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnItem_LoaiDLChamCong = new DevExpress.XtraBars.BarButtonItem();
             this.btnItem_CaLamViec = new DevExpress.XtraBars.BarButtonItem();
             this.barItem_ThongTinHopDong = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -78,6 +82,7 @@
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.MdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.SplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::LeTien.Screens.WaitFormMain), true, true);
+            this.btnGTriLuongTheoChucVu = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
@@ -108,9 +113,9 @@
             this.barButtonItem10,
             this.barToggleSwitchItem1,
             this.subItem_BangLuong,
-            this.barButtonItem11,
+            this.btn_BangTinhLuongThang,
             this.barButtonItem12,
-            this.barButtonItem13,
+            this.btnTamUngLuong,
             this.barListItem1,
             this.barSubItem2,
             this.BButton_List,
@@ -123,9 +128,14 @@
             this.btnItem_TonGiao,
             this.btnItem_NgayLe,
             this.btnItem_CaLamViec,
-            this.barItem_ThongTinHopDong});
+            this.barItem_ThongTinHopDong,
+            this.btnItem_MauNgayNghi,
+            this.btnItem_NgayNghi,
+            this.btnItem_LoaiDLChamCong,
+            this.btnLoaiDuLieuTinhLuong,
+            this.btnGTriLuongTheoChucVu});
             resources.ApplyResources(this.ribbon, "ribbon");
-            this.ribbon.MaxItemId = 51;
+            this.ribbon.MaxItemId = 57;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -275,33 +285,45 @@
             this.subItem_BangLuong.Glyph = ((System.Drawing.Image)(resources.GetObject("subItem_BangLuong.Glyph")));
             this.subItem_BangLuong.Id = 31;
             this.subItem_BangLuong.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(((DevExpress.XtraBars.BarLinkUserDefines)((DevExpress.XtraBars.BarLinkUserDefines.Caption | DevExpress.XtraBars.BarLinkUserDefines.PaintStyle))), this.barButtonItem11, "Bảng tính lương tháng", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem12),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem13)});
+            new DevExpress.XtraBars.LinkPersistInfo(((DevExpress.XtraBars.BarLinkUserDefines)((DevExpress.XtraBars.BarLinkUserDefines.Caption | DevExpress.XtraBars.BarLinkUserDefines.PaintStyle))), this.btn_BangTinhLuongThang, "Bảng tính lương tháng", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTamUngLuong, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnLoaiDuLieuTinhLuong, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnGTriLuongTheoChucVu)});
             this.subItem_BangLuong.Name = "subItem_BangLuong";
             this.subItem_BangLuong.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
             | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
             // 
-            // barButtonItem11
+            // btn_BangTinhLuongThang
             // 
-            resources.ApplyResources(this.barButtonItem11, "barButtonItem11");
-            this.barButtonItem11.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.Glyph")));
-            this.barButtonItem11.Id = 32;
-            this.barButtonItem11.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem11.LargeGlyph")));
-            this.barButtonItem11.Name = "barButtonItem11";
-            this.barButtonItem11.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
+            resources.ApplyResources(this.btn_BangTinhLuongThang, "btn_BangTinhLuongThang");
+            this.btn_BangTinhLuongThang.Glyph = ((System.Drawing.Image)(resources.GetObject("btn_BangTinhLuongThang.Glyph")));
+            this.btn_BangTinhLuongThang.Id = 32;
+            this.btn_BangTinhLuongThang.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btn_BangTinhLuongThang.LargeGlyph")));
+            this.btn_BangTinhLuongThang.Name = "btn_BangTinhLuongThang";
+            this.btn_BangTinhLuongThang.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem11_ItemClick);
+            // 
+            // btnTamUngLuong
+            // 
+            resources.ApplyResources(this.btnTamUngLuong, "btnTamUngLuong");
+            this.btnTamUngLuong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnTamUngLuong.Glyph")));
+            this.btnTamUngLuong.Id = 35;
+            this.btnTamUngLuong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnTamUngLuong.LargeGlyph")));
+            this.btnTamUngLuong.Name = "btnTamUngLuong";
+            this.btnTamUngLuong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTamUngLuong_ItemClick);
+            // 
+            // btnLoaiDuLieuTinhLuong
+            // 
+            resources.ApplyResources(this.btnLoaiDuLieuTinhLuong, "btnLoaiDuLieuTinhLuong");
+            this.btnLoaiDuLieuTinhLuong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnLoaiDuLieuTinhLuong.Glyph")));
+            this.btnLoaiDuLieuTinhLuong.Id = 55;
+            this.btnLoaiDuLieuTinhLuong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnLoaiDuLieuTinhLuong.LargeGlyph")));
+            this.btnLoaiDuLieuTinhLuong.Name = "btnLoaiDuLieuTinhLuong";
             // 
             // barButtonItem12
             // 
             resources.ApplyResources(this.barButtonItem12, "barButtonItem12");
             this.barButtonItem12.Id = 34;
             this.barButtonItem12.Name = "barButtonItem12";
-            // 
-            // barButtonItem13
-            // 
-            resources.ApplyResources(this.barButtonItem13, "barButtonItem13");
-            this.barButtonItem13.Id = 35;
-            this.barButtonItem13.Name = "barButtonItem13";
             // 
             // barListItem1
             // 
@@ -362,7 +384,10 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnItem_ChiNhanh, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnItem_ChucVu),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnItem_TonGiao),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnItem_NgayLe, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnItem_NgayLe, true),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnItem_NgayNghi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnItem_MauNgayNghi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnItem_LoaiDLChamCong, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.barSubItem3.Name = "barSubItem3";
             // 
             // btnItem_ChiNhanh
@@ -402,6 +427,33 @@
             this.btnItem_NgayLe.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnItem_NgayLe.LargeGlyph")));
             this.btnItem_NgayLe.Name = "btnItem_NgayLe";
             this.btnItem_NgayLe.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_NgayLe_ItemClick);
+            // 
+            // btnItem_NgayNghi
+            // 
+            resources.ApplyResources(this.btnItem_NgayNghi, "btnItem_NgayNghi");
+            this.btnItem_NgayNghi.Glyph = ((System.Drawing.Image)(resources.GetObject("btnItem_NgayNghi.Glyph")));
+            this.btnItem_NgayNghi.Id = 53;
+            this.btnItem_NgayNghi.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnItem_NgayNghi.LargeGlyph")));
+            this.btnItem_NgayNghi.Name = "btnItem_NgayNghi";
+            this.btnItem_NgayNghi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_NgayNghi_ItemClick);
+            // 
+            // btnItem_MauNgayNghi
+            // 
+            resources.ApplyResources(this.btnItem_MauNgayNghi, "btnItem_MauNgayNghi");
+            this.btnItem_MauNgayNghi.Glyph = ((System.Drawing.Image)(resources.GetObject("btnItem_MauNgayNghi.Glyph")));
+            this.btnItem_MauNgayNghi.Id = 52;
+            this.btnItem_MauNgayNghi.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnItem_MauNgayNghi.LargeGlyph")));
+            this.btnItem_MauNgayNghi.Name = "btnItem_MauNgayNghi";
+            this.btnItem_MauNgayNghi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_MauNgayNghi_ItemClick);
+            // 
+            // btnItem_LoaiDLChamCong
+            // 
+            resources.ApplyResources(this.btnItem_LoaiDLChamCong, "btnItem_LoaiDLChamCong");
+            this.btnItem_LoaiDLChamCong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnItem_LoaiDLChamCong.Glyph")));
+            this.btnItem_LoaiDLChamCong.Id = 54;
+            this.btnItem_LoaiDLChamCong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnItem_LoaiDLChamCong.LargeGlyph")));
+            this.btnItem_LoaiDLChamCong.Name = "btnItem_LoaiDLChamCong";
+            this.btnItem_LoaiDLChamCong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnItem_LoaiDLChamCong_ItemClick);
             // 
             // btnItem_CaLamViec
             // 
@@ -487,6 +539,15 @@
             // 
             this.MdiManager.MdiParent = this;
             // 
+            // btnGTriLuongTheoChucVu
+            // 
+            resources.ApplyResources(this.btnGTriLuongTheoChucVu, "btnGTriLuongTheoChucVu");
+            this.btnGTriLuongTheoChucVu.Glyph = ((System.Drawing.Image)(resources.GetObject("btnGTriLuongTheoChucVu.Glyph")));
+            this.btnGTriLuongTheoChucVu.Id = 56;
+            this.btnGTriLuongTheoChucVu.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnGTriLuongTheoChucVu.LargeGlyph")));
+            this.btnGTriLuongTheoChucVu.Name = "btnGTriLuongTheoChucVu";
+            this.btnGTriLuongTheoChucVu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGTriLuongTheoChucVu_ItemClick);
+            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
@@ -540,9 +601,9 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
         private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
         private DevExpress.XtraBars.BarSubItem subItem_BangLuong;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarButtonItem btn_BangTinhLuongThang;
         private DevExpress.XtraBars.BarButtonItem barButtonItem12;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem13;
+        private DevExpress.XtraBars.BarButtonItem btnTamUngLuong;
         private DevExpress.XtraBars.BarListItem barListItem1;
         private DevExpress.XtraBars.BarSubItem barSubItem2;
         private DevExpress.XtraBars.BarButtonItem BButton_List;
@@ -557,6 +618,11 @@
         private DevExpress.XtraBars.BarButtonItem btnItem_NgayLe;
         private DevExpress.XtraBars.BarButtonItem btnItem_CaLamViec;
         private DevExpress.XtraBars.BarButtonItem barItem_ThongTinHopDong;
+        private DevExpress.XtraBars.BarButtonItem btnItem_MauNgayNghi;
+        private DevExpress.XtraBars.BarButtonItem btnItem_NgayNghi;
+        private DevExpress.XtraBars.BarButtonItem btnItem_LoaiDLChamCong;
+        private DevExpress.XtraBars.BarButtonItem btnLoaiDuLieuTinhLuong;
+        private DevExpress.XtraBars.BarButtonItem btnGTriLuongTheoChucVu;
         private DevExpress.XtraSplashScreen.SplashScreenManager SplashScreenManager;
     }
 }

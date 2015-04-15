@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCompetenceView));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.txtTienPhuCap = new DevExpress.XtraEditors.TextEdit();
             this.txtTenChucVu = new DevExpress.XtraEditors.TextEdit();
             this.txtMaChucVu = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -41,9 +40,9 @@
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.btnDong = new DevExpress.XtraEditors.SimpleButton();
             this.btnCapNhat = new DevExpress.XtraEditors.SimpleButton();
+            this.txtTienPhuCap = new DevExpress.XtraEditors.CalcEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTienPhuCap.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenChucVu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaChucVu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -51,28 +50,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTienPhuCap.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.txtTienPhuCap);
             this.layoutControl1.Controls.Add(this.txtTenChucVu);
             this.layoutControl1.Controls.Add(this.txtMaChucVu);
+            this.layoutControl1.Controls.Add(this.txtTienPhuCap);
             this.layoutControl1.Location = new System.Drawing.Point(3, 6);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(375, 141);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
-            // 
-            // txtTienPhuCap
-            // 
-            this.txtTienPhuCap.Location = new System.Drawing.Point(88, 91);
-            this.txtTienPhuCap.Name = "txtTienPhuCap";
-            this.txtTienPhuCap.Size = new System.Drawing.Size(263, 20);
-            this.txtTienPhuCap.StyleController = this.layoutControl1;
-            this.txtTienPhuCap.TabIndex = 6;
-            this.txtTienPhuCap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTienPhuCap_KeyPress);
             // 
             // txtTenChucVu
             // 
@@ -182,11 +173,23 @@
             this.btnCapNhat.Text = "Cập Nhật";
             this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
+            // txtTienPhuCap
+            // 
+            this.txtTienPhuCap.Location = new System.Drawing.Point(88, 91);
+            this.txtTienPhuCap.Name = "txtTienPhuCap";
+            this.txtTienPhuCap.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtTienPhuCap.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
+            this.txtTienPhuCap.Size = new System.Drawing.Size(263, 20);
+            this.txtTienPhuCap.StyleController = this.layoutControl1;
+            this.txtTienPhuCap.TabIndex = 6;
+            this.txtTienPhuCap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTienPhuCap_KeyPress);
+            // 
             // frmCompetenceView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(385, 208);
+            this.ClientSize = new System.Drawing.Size(385, 207);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnCapNhat);
@@ -200,7 +203,6 @@
             this.Text = "Thông tin chức vụ";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtTienPhuCap.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenChucVu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaChucVu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -208,6 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTienPhuCap.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,7 +219,6 @@
 
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.XtraEditors.TextEdit txtTienPhuCap;
         private DevExpress.XtraEditors.TextEdit txtTenChucVu;
         private DevExpress.XtraEditors.TextEdit txtMaChucVu;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
@@ -226,5 +228,6 @@
         private DevExpress.XtraEditors.SimpleButton btnThem;
         private DevExpress.XtraEditors.SimpleButton btnDong;
         private DevExpress.XtraEditors.SimpleButton btnCapNhat;
+        private DevExpress.XtraEditors.CalcEdit txtTienPhuCap;
     }
 }

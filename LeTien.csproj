@@ -105,25 +105,20 @@
   <ItemGroup>
     <Compile Include="IModule.cs" />
     <Compile Include="Objects\AdvancePayment.cs" />
-    <Compile Include="Objects\Attendance.cs" />
-    <Compile Include="Objects\AttendanceSymbol.cs" />
     <Compile Include="Objects\Branch.cs" />
     <Compile Include="Objects\ChamCong.cs" />
-    <Compile Include="Objects\Chant.cs" />
     <Compile Include="Objects\ChiTietTienLuong.cs" />
     <Compile Include="Objects\Competence.cs" />
     <Compile Include="Objects\DanhMucMauNgayNghiLe.cs" />
+    <Compile Include="Objects\GiaTriTienLuongTheoChucVu.cs" />
     <Compile Include="Objects\LoaiDuLieuTinhLuong.cs" />
     <Compile Include="Objects\EasyObject.cs" />
     <Compile Include="Objects\Employee.cs" />
     <Compile Include="Objects\LaborContract.cs" />
     <Compile Include="Objects\LoaiDuLieuChamCong.cs" />
-    <Compile Include="Objects\Luong.cs" />
-    <Compile Include="Objects\NhomDuLieuTinhLuong.cs" />
     <Compile Include="Objects\PublicHoliday.cs" />
     <Compile Include="Objects\QuanLyNgayNghi.cs" />
     <Compile Include="Objects\Religion.cs" />
-    <Compile Include="Objects\ThamSo.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,11 +266,11 @@
     <Compile Include="Screens\Salaries\FrmBangTinhLuong.Designer.cs">
       <DependentUpon>FrmBangTinhLuong.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Salaries\FrmPutAttendance.cs">
+    <Compile Include="Screens\Salaries\FrmTamUngLuong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Salaries\FrmPutAttendance.Designer.cs">
-      <DependentUpon>FrmPutAttendance.cs</DependentUpon>
+    <Compile Include="Screens\Salaries\FrmTamUngLuong.Designer.cs">
+      <DependentUpon>FrmTamUngLuong.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\Salaries\FrmTaoDuLieuChamCong.cs">
       <SubType>Form</SubType>
@@ -283,17 +278,17 @@
     <Compile Include="Screens\Salaries\FrmTaoDuLieuChamCong.Designer.cs">
       <DependentUpon>FrmTaoDuLieuChamCong.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\ManHinhThamSo\FrmThamSo.cs">
+    <Compile Include="Screens\Salaries\FrmTienLuongTheoChucVu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\ManHinhThamSo\FrmThamSo.Designer.cs">
-      <DependentUpon>FrmThamSo.cs</DependentUpon>
+    <Compile Include="Screens\Salaries\FrmTienLuongTheoChucVu.Designer.cs">
+      <DependentUpon>FrmTienLuongTheoChucVu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Salaries\LoaiDuLieuTinhLuong.cs">
+    <Compile Include="Screens\Salaries\FrmLoaiDuLieuTinhLuong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Salaries\LoaiDuLieuTinhLuong.Designer.cs">
-      <DependentUpon>LoaiDuLieuTinhLuong.cs</DependentUpon>
+    <Compile Include="Screens\Salaries\FrmLoaiDuLieuTinhLuong.Designer.cs">
+      <DependentUpon>FrmLoaiDuLieuTinhLuong.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\User\FrmLogin.cs">
       <SubType>Form</SubType>
@@ -418,17 +413,17 @@
     <EmbeddedResource Include="Screens\Salaries\FrmBangTinhLuong.resx">
       <DependentUpon>FrmBangTinhLuong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Salaries\FrmPutAttendance.resx">
-      <DependentUpon>FrmPutAttendance.cs</DependentUpon>
+    <EmbeddedResource Include="Screens\Salaries\FrmTamUngLuong.resx">
+      <DependentUpon>FrmTamUngLuong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmTaoDuLieuChamCong.resx">
       <DependentUpon>FrmTaoDuLieuChamCong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\ManHinhThamSo\FrmThamSo.resx">
-      <DependentUpon>FrmThamSo.cs</DependentUpon>
+    <EmbeddedResource Include="Screens\Salaries\FrmTienLuongTheoChucVu.resx">
+      <DependentUpon>FrmTienLuongTheoChucVu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Salaries\LoaiDuLieuTinhLuong.resx">
-      <DependentUpon>LoaiDuLieuTinhLuong.cs</DependentUpon>
+    <EmbeddedResource Include="Screens\Salaries\FrmLoaiDuLieuTinhLuong.resx">
+      <DependentUpon>FrmLoaiDuLieuTinhLuong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\User\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

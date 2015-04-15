@@ -134,30 +134,30 @@ namespace LeTien.Screens
 
         private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
         {
-            if (e.Column.Name == "DateOfMonth")
-            {
-                GridView currentView = sender as GridView;
-                string employeeID = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["Oid"]).ToString();
-                string employeeFName = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["first_name"]).ToString();
-                string employeeLName = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["last_name"]).ToString();
-                string employeeIDText = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["employee_id"]).ToString();
-                //int date = int.Parse(e.Column.Caption.ToString());
-                int date = e.Column.VisibleIndex - 1;
+            //if (e.Column.Name == "DateOfMonth")
+            //{
+            //    GridView currentView = sender as GridView;
+            //    string employeeID = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["Oid"]).ToString();
+            //    string employeeFName = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["first_name"]).ToString();
+            //    string employeeLName = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["last_name"]).ToString();
+            //    string employeeIDText = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["employee_id"]).ToString();
+            //    //int date = int.Parse(e.Column.Caption.ToString());
+            //    int date = e.Column.VisibleIndex - 1;
 
-                string attendanceDate = this.attendanceYear.ToString() + "-" + (this.attendanceMonth < 10 ? "0" + this.attendanceMonth.ToString() : this.attendanceMonth.ToString()) + "-" + (date < 10 ? "0" + date.ToString() : date.ToString());
-                /// string attendanceID = Objects.Attendance.GetAttendanceIdOfEmployeeByDate(employeeID, attendanceDate, session1);
+            //    string attendanceDate = this.attendanceYear.ToString() + "-" + (this.attendanceMonth < 10 ? "0" + this.attendanceMonth.ToString() : this.attendanceMonth.ToString()) + "-" + (date < 10 ? "0" + date.ToString() : date.ToString());
+            //    /// string attendanceID = Objects.Attendance.GetAttendanceIdOfEmployeeByDate(employeeID, attendanceDate, session1);
 
-                //Call form input attendance
-                string frmCaption = "Chấm công nhân viên - " + employeeLName + " " + employeeLName + " (" + employeeIDText + ") ngày " + attendanceDate;
-                SplashScreenManager.ShowForm(typeof(WaitFormMain));
-                FrmPutAttendance frm = new FrmPutAttendance();
-                System.Threading.Thread.Sleep(2000);
-                frm.Text = frmCaption;
-                frm.Show();
-                SplashScreenManager.CloseForm();
+            //    //Call form input attendance
+            //    string frmCaption = "Chấm công nhân viên - " + employeeLName + " " + employeeLName + " (" + employeeIDText + ") ngày " + attendanceDate;
+            //    SplashScreenManager.ShowForm(typeof(WaitFormMain));
+            //    FrmPutAttendance frm = new FrmPutAttendance();
+            //    System.Threading.Thread.Sleep(2000);
+            //    frm.Text = frmCaption;
+            //    frm.Show();
+            //    SplashScreenManager.CloseForm();
 
             }
-        }
+ 
 
         private void gridView1_CellMerge(object sender, CellMergeEventArgs e)
         {
@@ -237,8 +237,7 @@ namespace LeTien.Screens
             {
                 case "Int":
                     repositoryItemSpinEdit1.NullText = "";
-                    e.RepositoryItem = repositoryItemSpinEdit1;
-                    string s = e.Column.FieldName;
+                    e.RepositoryItem = repositoryItemSpinEdit1;    
                     break;
                 case "DateTime":
                     e.RepositoryItem = timeEdit;
@@ -254,60 +253,60 @@ namespace LeTien.Screens
         private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
             GridView gv = sender as GridView;
-
-            #region "Màu ngày nghĩ"
             if (e.RowHandle < 0) return;
-            if (e.Column.VisibleIndex > 2 && e.Column.VisibleIndex < 31)
+            if (e.Column.FieldName == "LoaiDuLieuChamCong.LoaiChamCong" || e.Column.FieldName == "NhanVien.MaNhanVien" || e.Column.FieldName == "NhanVien.HoTen" || e.Column.FieldName == "HieuSuat" || e.Column.FieldName == "KetQua") return;
+       
+            #region "Màu ngày nghĩ"            
+            Employee nv = (Employee)gv.GetRowCellValue(e.RowHandle, gv.Columns["NhanVien!"]);
+            DateTime dt = new DateTime(attendanceYear, attendanceMonth, int.Parse(e.Column.FieldName.Substring(4)));
+            XPCollection xpc = new XPCollection(xpcQuanLyNgayNghi, new BinaryOperator("NhanVien.Oid", nv.Oid));
+            foreach (QuanLyNgayNghi ql in xpc)
             {
-                Employee nv = (Employee)gv.GetRowCellValue(e.RowHandle, gv.Columns["NhanVien!"]);
-                DateTime dt = new DateTime(attendanceYear, attendanceMonth, int.Parse(e.Column.FieldName.Substring(4)));
-                XPCollection xpc = new XPCollection(xpcQuanLyNgayNghi, new BinaryOperator("NhanVien.Oid", nv.Oid));
-                foreach(QuanLyNgayNghi ql in xpc)
+                if (dt.CompareTo(ql.NgayBatDau) >= 0 && dt.CompareTo(ql.NgayKetThuc) < 0)
                 {
-                    if (dt.CompareTo(ql.NgayBatDau) >= 0 && dt.CompareTo(ql.NgayKetThuc) < 0)
-                    {
-                        e.Appearance.BackColor = ql.LoaiNgayNghi.MauHienThi;
-                        break;
-                    }    
+                    e.Appearance.BackColor = ql.LoaiNgayNghi.MauHienThi;
+                    break;
                 }
             }
+
             #endregion
-           
+
             #region "Màu đi trể về sớm"
-            if (e.Column.VisibleIndex > 2 && e.Column.VisibleIndex < 31)
+            string kieudulieu = gv.GetRowCellDisplayText(e.RowHandle, gv.Columns["LoaiDuLieuChamCong.LoaiChamCong"]);
+            LoaiDuLieuChamCong l = (LoaiDuLieuChamCong)gv.GetRowCellValue(e.RowHandle, gv.Columns["LoaiDuLieuChamCong!"]);
+            DateTime value;
+            DateTime t1;
+            switch (l.LoaiChamCong)
             {
-                string kieudulieu = gv.GetRowCellDisplayText(e.RowHandle, gv.Columns["LoaiDuLieuChamCong.LoaiChamCong"]);
-                LoaiDuLieuChamCong l = (LoaiDuLieuChamCong)gv.GetRowCellValue(e.RowHandle, gv.Columns["LoaiDuLieuChamCong!"]);
-                DateTime value;
-                switch (l.LoaiChamCong)
-                {
-                    case "Thời Gian Vào":
-                        if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
-                        {
-                            value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
-                            if (SoSanhThoiGian(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, 7, 0, 0) == true)
-                            {
-                                e.Appearance.BackColor = l.MauHienThiDuong;
-                            }
-                        }
-                        //So phut di tre    
-                        break;
-                    case "Thời Gian Ra":
-                        if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
-                        {
-                            value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
-                            if (SoSanhThoiGian(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, 17, 0, 0) == false)
-                            {
-                                e.Appearance.BackColor = l.MauHienThiAm;
-                            }
-                        }
-                        break;
-                }
 
+                case "Thời Gian Vào":
+                    if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
+                    {
+                        t1 = DateTime.Parse(l.DuLieuMacDinh);
+                        value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
+                        if (SoSanhThoiGian(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, t1.Hour, t1.Minute, t1.Second) == true)
+                        {
+                            e.Appearance.BackColor = l.MauHienThiDuong;
+                        }
+                    }
+                    //So phut di tre    
+                    break;
+                case "Thời Gian Ra":
+                    if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
+                    {
+                        t1 = DateTime.Parse(l.DuLieuMacDinh);
+                        value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
+                        if (SoSanhThoiGian(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, t1.Hour, t1.Minute, t1.Second) == false)
+                        {
+                            e.Appearance.BackColor = l.MauHienThiAm;
+                        }
+                    }
+                    break;
             }
+
+
             #endregion
 
-            
         }
         private bool SoSanhThoiGian(int h1, int m1, int s1, int h2, int m2, int s2)
         {
@@ -320,14 +319,18 @@ namespace LeTien.Screens
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
-            Form f = new FrmLoaiDuLieuChamCong();
-            if (f != null)
+            if (gridView1.OptionsBehavior.ReadOnly)
             {
-                SplashScreenManager.ShowForm(typeof(WaitFormMain));
-                f.Text = "Loại Dữ Liệu Chấm Công";
-                f.ShowDialog();
-                SplashScreenManager.CloseForm();
+                btnEdit.Caption = "Đang ở chế độ chỉnh sửa";
+                gridView1.OptionsBehavior.ReadOnly = false;
+                //btnEdit.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/edit_16x16.png");
+            }
+            else
+            {
+                gridView1.OptionsBehavior.ReadOnly = true;
+                btnEdit.Caption = "Đang ở chế độ chỉ đọc";
+                //btnEdit.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/show_16x16.png");
+
             }
         }
 
@@ -395,6 +398,8 @@ namespace LeTien.Screens
             if (e.SelectedControl != gridControl1) return;
 
             ToolTipControlInfo info = null;
+            string text = string.Empty;
+            object o = new object();
             //Get the view at the current mouse position
             GridView view = gridControl1.GetViewAt(e.ControlMousePosition) as GridView;
             if (view == null) return;
@@ -403,9 +408,10 @@ namespace LeTien.Screens
             //Display a hint for row indicator cells
             if (hi.HitTest == GridHitTest.RowCell)
             {
+                #region "Ngày nghĩ"
                 Employee nv = (Employee)gridView1.GetRowCellValue(hi.RowHandle, gridView1.Columns["NhanVien!"]);
                 if (nv == null) return;
-               
+
                 int i;
                 if (!int.TryParse(hi.Column.FieldName.Substring(4), out i)) return;
                 DateTime dt = new DateTime(attendanceYear, attendanceMonth, i);
@@ -415,19 +421,38 @@ namespace LeTien.Screens
                     if (dt.CompareTo(ql.NgayBatDau) >= 0 && dt.CompareTo(ql.NgayKetThuc) < 0)
                     {
                         //An object that uniquely identifies a row indicator cell
-                        object o = hi.HitTest.ToString() + hi.RowHandle.ToString();
-                        string text = ql.LoaiNgayNghi.TenNgayNghi;
-                        info = new ToolTipControlInfo(o, text);                        
+                        o = hi.HitTest.ToString() + hi.RowHandle.ToString();
+                        text = ql.LoaiNgayNghi.TenNgayNghi;                        
                         break;
                     }
                 }
-                            }
+                #endregion
+
+                #region "Ngày lễ"
+                foreach (PublicHoliday p in xpcPublicHoliday)
+                {
+                    if (dt.CompareTo(p.PublicHolidayStart) >= 0 && dt.CompareTo(p.PublicHolidayEnd) < 0)
+                    {
+                        o = hi.HitTest.ToString() + hi.RowHandle.ToString();
+                        text = p.PublicHolidayName;
+                        break;
+                    }
+                }
+                #endregion
+
+                #region "Di trể về sớm"
+                
+                #endregion 
+
+                info = new ToolTipControlInfo(o, text);
+            }
             //Supply tooltip information if applicable, otherwise preserve default tooltip (if any)
             if (info != null)
                 e.Info = info;
 
            
         }
+    
     }  
     
 }

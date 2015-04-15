@@ -55,8 +55,7 @@
             this.SuspendLayout();
             // 
             // xpCollection1
-            // 
-            this.xpCollection1.ObjectType = typeof(LeTien.Objects.AttendanceSymbol);
+            //             
             this.xpCollection1.Session = this.session1;
             // 
             // session1

@@ -59,6 +59,14 @@ namespace LeTien.Objects
             get;
             set;
         }
+        
+
+        [DisplayName ("Theo Chức Vụ")]
+        public bool NhomChucVu
+        {
+            get;
+            set;
+        }
    }
 
 }

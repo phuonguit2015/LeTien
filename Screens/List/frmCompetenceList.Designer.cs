@@ -289,6 +289,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmCompetenceList";
             this.Text = "Danh sách chức vụ";
+            this.Load += new System.EventHandler(this.frmCompetenceList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();

@@ -1,6 +1,6 @@
-﻿namespace LeTien.Screens.List
+﻿namespace LeTien.Screens.Salaries
 {
-    partial class FrmLoaiDuLieuChamCong
+    partial class FrmTienLuongTheoChucVu
     {
         /// <summary>
         /// Required designer variable.
@@ -29,32 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLoaiDuLieuChamCong));
-            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTienLuongTheoChucVu));
+            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gridUCList = new DevExpress.XtraGrid.GridControl();
-            this.xpcLoaiDuLieuChamCong = new DevExpress.Xpo.XPCollection(this.components);
+            this.xpcTienLuongTheoChucVu = new DevExpress.Xpo.XPCollection(this.components);
             this.grvUCList = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colLoaiChamCong = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colKieuDuLieu = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cbbKieuDuLieu = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.colDuLieuMacDinh = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colGhiChu = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMauHienThiAm = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
-            this.colMauHienThiDuong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lkupChucVu = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.xpcChucVu = new DevExpress.Xpo.XPCollection(this.components);
+            this.colGiaTri = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lkupMucTienLuong = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.xpcMucTienLuong = new DevExpress.Xpo.XPCollection(this.components);
             this.RITextFistname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.RITextLastname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.R_BranchSelect = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.R_CompentenceSelect = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.dtThang = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            this.cbbKieuDuLieu = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.timeEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.spinEdit = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.textEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.repositoryItemTimeEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
-            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.btnEdit = new DevExpress.XtraBars.BarButtonItem();
@@ -67,58 +69,112 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
-            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
-            this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUCList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpcLoaiDuLieuChamCong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcTienLuongTheoChucVu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvUCList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbKieuDuLieu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupChucVu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcChucVu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupMucTienLuong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcMucTienLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RITextFistname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RITextLastname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.R_BranchSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.R_CompentenceSelect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtThang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtThang.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbKieuDuLieu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            this.layoutControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // layoutControl1
+            // barEditItem1
             // 
-            this.layoutControl1.Controls.Add(this.panelControl1);
-            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 24);
-            this.layoutControl1.Name = "layoutControl1";
-            this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(662, 404);
-            this.layoutControl1.TabIndex = 0;
-            this.layoutControl1.Text = "layoutControl1";
+            this.barEditItem1.Caption = "barEditItem1";
+            this.barEditItem1.Edit = this.repositoryItemCheckEdit1;
+            this.barEditItem1.Id = 7;
+            this.barEditItem1.Name = "barEditItem1";
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
+            // repositoryItemTimeEdit1
+            // 
+            this.repositoryItemTimeEdit1.AutoHeight = false;
+            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "HH:mm";
+            this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemTimeEdit1.EditFormat.FormatString = "HH:mm";
+            this.repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.repositoryItemTimeEdit1.Mask.EditMask = "HH:mm";
+            this.repositoryItemTimeEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.repositoryItemTimeEdit1.Mask.UseMaskAsDisplayFormat = true;
+            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
+            this.repositoryItemTimeEdit1.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlGroup2});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(656, 428);
+            this.layoutControlGroup1.Text = "layoutControlGroup1";
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.CustomizationFormText = "Danh mục loại dữ liệu chấm công";
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(636, 408);
+            this.layoutControlGroup2.Text = "Danh mục giá trị tiền lương theo chức vụ";
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.Control = this.panelControl1;
+            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(612, 365);
+            this.layoutControlItem1.Text = "layoutControlItem1";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextToControlDistance = 0;
+            this.layoutControlItem1.TextVisible = false;
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.gridUCList);
             this.panelControl1.Location = new System.Drawing.Point(24, 43);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(614, 337);
+            this.panelControl1.Size = new System.Drawing.Size(608, 361);
             this.panelControl1.TabIndex = 4;
             // 
             // gridUCList
             // 
             this.gridUCList.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gridUCList.DataSource = this.xpcLoaiDuLieuChamCong;
+            this.gridUCList.DataSource = this.xpcTienLuongTheoChucVu;
             this.gridUCList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridUCList.Location = new System.Drawing.Point(2, 2);
             this.gridUCList.MainView = this.grvUCList;
@@ -134,102 +190,93 @@
             this.timeEdit,
             this.spinEdit,
             this.textEdit,
-            this.repositoryItemTimeEdit1});
-            this.gridUCList.Size = new System.Drawing.Size(610, 333);
+            this.repositoryItemTimeEdit1,
+            this.lkupChucVu,
+            this.lkupMucTienLuong});
+            this.gridUCList.Size = new System.Drawing.Size(604, 357);
             this.gridUCList.TabIndex = 12;
             this.gridUCList.UseEmbeddedNavigator = true;
             this.gridUCList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvUCList});
             // 
-            // xpcLoaiDuLieuChamCong
+            // xpcTienLuongTheoChucVu
             // 
-            this.xpcLoaiDuLieuChamCong.DisplayableProperties = "This;Oid;GhiChu;LoaiChamCong;Thang;KieuDuLieu;DuLieuMacDinh;OleMauHienThiDuong;Ma" +
-    "uHienThiDuong;OleMauHienThiAm;MauHienThiAm";
-            this.xpcLoaiDuLieuChamCong.ObjectType = typeof(LeTien.Objects.LoaiDuLieuChamCong);
+            this.xpcTienLuongTheoChucVu.ObjectType = typeof(LeTien.Objects.GiaTriTienLuongTheoChucVu);
             // 
             // grvUCList
             // 
             this.grvUCList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colLoaiChamCong,
-            this.colKieuDuLieu,
-            this.colDuLieuMacDinh,
-            this.colGhiChu,
-            this.colMauHienThiAm,
-            this.colMauHienThiDuong});
+            this.gridColumn1,
+            this.colGiaTri,
+            this.gridColumn2});
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grvUCList.Name = "grvUCList";
             this.grvUCList.OptionsBehavior.ReadOnly = true;
             this.grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.grvUCList.OptionsView.ShowAutoFilterRow = true;
+            this.grvUCList.OptionsView.ShowDetailButtons = false;
             this.grvUCList.OptionsView.ShowGroupPanel = false;
             this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
-            this.grvUCList.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grvUCList_CustomRowCellEdit);
             // 
-            // colLoaiChamCong
+            // gridColumn1
             // 
-            this.colLoaiChamCong.FieldName = "LoaiChamCong";
-            this.colLoaiChamCong.Name = "colLoaiChamCong";
-            this.colLoaiChamCong.Visible = true;
-            this.colLoaiChamCong.VisibleIndex = 0;
+            this.gridColumn1.ColumnEdit = this.lkupChucVu;
+            this.gridColumn1.FieldName = "ChucVu!";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
             // 
-            // colKieuDuLieu
+            // lkupChucVu
             // 
-            this.colKieuDuLieu.ColumnEdit = this.cbbKieuDuLieu;
-            this.colKieuDuLieu.FieldName = "KieuDuLieu";
-            this.colKieuDuLieu.Name = "colKieuDuLieu";
-            this.colKieuDuLieu.Visible = true;
-            this.colKieuDuLieu.VisibleIndex = 1;
-            // 
-            // cbbKieuDuLieu
-            // 
-            this.cbbKieuDuLieu.AutoHeight = false;
-            this.cbbKieuDuLieu.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lkupChucVu.AutoHeight = false;
+            this.lkupChucVu.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbbKieuDuLieu.Items.AddRange(new object[] {
-            "DateTime",
-            "Int",
-            "String",
-            "Double",
-            "Decimal"});
-            this.cbbKieuDuLieu.Name = "cbbKieuDuLieu";
+            this.lkupChucVu.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CompetenceID", "Mã Chức Vụ", 67, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CompetenceName", "Tên Chức Vụ", 71, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lkupChucVu.DataSource = this.xpcChucVu;
+            this.lkupChucVu.DisplayMember = "CompetenceName";
+            this.lkupChucVu.Name = "lkupChucVu";
+            this.lkupChucVu.NullText = "[Chọn Chức Vụ]";
+            this.lkupChucVu.ValueMember = "This";
             // 
-            // colDuLieuMacDinh
+            // xpcChucVu
             // 
-            this.colDuLieuMacDinh.FieldName = "DuLieuMacDinh";
-            this.colDuLieuMacDinh.Name = "colDuLieuMacDinh";
-            this.colDuLieuMacDinh.Visible = true;
-            this.colDuLieuMacDinh.VisibleIndex = 3;
+            this.xpcChucVu.ObjectType = typeof(LeTien.Objects.Competence);
             // 
-            // colGhiChu
+            // colGiaTri
             // 
-            this.colGhiChu.FieldName = "GhiChu";
-            this.colGhiChu.Name = "colGhiChu";
-            this.colGhiChu.Visible = true;
-            this.colGhiChu.VisibleIndex = 2;
+            this.colGiaTri.FieldName = "GiaTri";
+            this.colGiaTri.Name = "colGiaTri";
+            this.colGiaTri.Visible = true;
+            this.colGiaTri.VisibleIndex = 2;
             // 
-            // colMauHienThiAm
+            // gridColumn2
             // 
-            this.colMauHienThiAm.ColumnEdit = this.repositoryItemColorPickEdit1;
-            this.colMauHienThiAm.FieldName = "MauHienThiAm";
-            this.colMauHienThiAm.Name = "colMauHienThiAm";
-            this.colMauHienThiAm.Visible = true;
-            this.colMauHienThiAm.VisibleIndex = 4;
+            this.gridColumn2.ColumnEdit = this.lkupMucTienLuong;
+            this.gridColumn2.FieldName = "MucTienLuong!";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
             // 
-            // repositoryItemColorPickEdit1
+            // lkupMucTienLuong
             // 
-            this.repositoryItemColorPickEdit1.AutoHeight = false;
-            this.repositoryItemColorPickEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lkupMucTienLuong.AutoHeight = false;
+            this.lkupMucTienLuong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemColorPickEdit1.Name = "repositoryItemColorPickEdit1";
+            this.lkupMucTienLuong.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenLoaiDuLieu", "Mục Tiền Lương", 85, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lkupMucTienLuong.DataSource = this.xpcMucTienLuong;
+            this.lkupMucTienLuong.DisplayMember = "TenLoaiDuLieu";
+            this.lkupMucTienLuong.Name = "lkupMucTienLuong";
+            this.lkupMucTienLuong.NullText = "[Chọn Mục Tiền Lương]";
+            this.lkupMucTienLuong.ValueMember = "This";
             // 
-            // colMauHienThiDuong
+            // xpcMucTienLuong
             // 
-            this.colMauHienThiDuong.ColumnEdit = this.repositoryItemColorPickEdit1;
-            this.colMauHienThiDuong.FieldName = "MauHienThiDuong";
-            this.colMauHienThiDuong.Name = "colMauHienThiDuong";
-            this.colMauHienThiDuong.Visible = true;
-            this.colMauHienThiDuong.VisibleIndex = 5;
+            this.xpcMucTienLuong.CriteriaString = "[NhomChucVu] = True";
+            this.xpcMucTienLuong.ObjectType = typeof(LeTien.Objects.LoaiDuLieuTinhLuong);
             // 
             // RITextFistname
             // 
@@ -281,6 +328,26 @@
             this.dtThang.Mask.EditMask = "M/yyyy";
             this.dtThang.Name = "dtThang";
             // 
+            // cbbKieuDuLieu
+            // 
+            this.cbbKieuDuLieu.AutoHeight = false;
+            this.cbbKieuDuLieu.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbbKieuDuLieu.Items.AddRange(new object[] {
+            "DateTime",
+            "Int",
+            "String",
+            "Double",
+            "Decimal"});
+            this.cbbKieuDuLieu.Name = "cbbKieuDuLieu";
+            // 
+            // repositoryItemColorPickEdit1
+            // 
+            this.repositoryItemColorPickEdit1.AutoHeight = false;
+            this.repositoryItemColorPickEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemColorPickEdit1.Name = "repositoryItemColorPickEdit1";
+            // 
             // timeEdit
             // 
             this.timeEdit.AutoHeight = false;
@@ -305,56 +372,6 @@
             // 
             this.textEdit.AutoHeight = false;
             this.textEdit.Name = "textEdit";
-            // 
-            // repositoryItemTimeEdit1
-            // 
-            this.repositoryItemTimeEdit1.AutoHeight = false;
-            this.repositoryItemTimeEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemTimeEdit1.DisplayFormat.FormatString = "HH:mm";
-            this.repositoryItemTimeEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.repositoryItemTimeEdit1.EditFormat.FormatString = "HH:mm";
-            this.repositoryItemTimeEdit1.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.repositoryItemTimeEdit1.Mask.EditMask = "HH:mm";
-            this.repositoryItemTimeEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
-            this.repositoryItemTimeEdit1.Mask.UseMaskAsDisplayFormat = true;
-            this.repositoryItemTimeEdit1.Name = "repositoryItemTimeEdit1";
-            this.repositoryItemTimeEdit1.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
-            // 
-            // layoutControlGroup1
-            // 
-            this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
-            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            this.layoutControlGroup1.GroupBordersVisible = false;
-            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlGroup2});
-            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(662, 404);
-            this.layoutControlGroup1.Text = "layoutControlGroup1";
-            this.layoutControlGroup1.TextVisible = false;
-            // 
-            // layoutControlGroup2
-            // 
-            this.layoutControlGroup2.CustomizationFormText = "Danh mục loại dữ liệu chấm công";
-            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(642, 384);
-            this.layoutControlGroup2.Text = "Danh mục loại dữ liệu chấm công";
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.Control = this.panelControl1;
-            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(618, 341);
-            this.layoutControlItem1.Text = "layoutControlItem1";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem1.TextToControlDistance = 0;
-            this.layoutControlItem1.TextVisible = false;
             // 
             // barManager1
             // 
@@ -446,120 +463,117 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(662, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(656, 24);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 428);
-            this.barDockControlBottom.Size = new System.Drawing.Size(662, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 452);
+            this.barDockControlBottom.Size = new System.Drawing.Size(656, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 404);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 428);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(662, 24);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 404);
+            this.barDockControlRight.Location = new System.Drawing.Point(656, 24);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 428);
             // 
             // barButtonItem2
             // 
             this.barButtonItem2.Id = 1;
             this.barButtonItem2.Name = "barButtonItem2";
             // 
-            // barEditItem1
+            // layoutControl1
             // 
-            this.barEditItem1.Caption = "barEditItem1";
-            this.barEditItem1.Edit = this.repositoryItemCheckEdit1;
-            this.barEditItem1.Id = 7;
-            this.barEditItem1.Name = "barEditItem1";
+            this.layoutControl1.Controls.Add(this.panelControl1);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.Location = new System.Drawing.Point(0, 24);
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.Root = this.layoutControlGroup1;
+            this.layoutControl1.Size = new System.Drawing.Size(656, 428);
+            this.layoutControl1.TabIndex = 4;
+            this.layoutControl1.Text = "layoutControl1";
             // 
-            // repositoryItemCheckEdit1
-            // 
-            this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-            // 
-            // FrmLoaiDuLieuChamCong
+            // FrmTienLuongTheoChucVu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 428);
+            this.ClientSize = new System.Drawing.Size(656, 452);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(678, 467);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(678, 467);
-            this.Name = "FrmLoaiDuLieuChamCong";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Loại dữ liệu chấm công";
-            this.Load += new System.EventHandler(this.frmBranchList_Load);
+            this.Name = "FrmTienLuongTheoChucVu";
+            this.Text = "Giá Trị Tiền Lương Theo Chức Vụ";
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
-            this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridUCList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpcLoaiDuLieuChamCong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcTienLuongTheoChucVu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvUCList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbbKieuDuLieu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupChucVu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcChucVu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupMucTienLuong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcMucTienLuong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RITextFistname)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RITextLastname)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.R_BranchSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.R_CompentenceSelect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtThang.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtThang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbKieuDuLieu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            this.layoutControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraBars.BarEditItem barEditItem1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
-        private DevExpress.Xpo.XPCollection xpcLoaiDuLieuChamCong;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         public DevExpress.XtraGrid.GridControl gridUCList;
+        private DevExpress.Xpo.XPCollection xpcTienLuongTheoChucVu;
         private DevExpress.XtraGrid.Views.Grid.GridView grvUCList;
-        private DevExpress.XtraGrid.Columns.GridColumn colLoaiChamCong;
-        private DevExpress.XtraGrid.Columns.GridColumn colKieuDuLieu;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbbKieuDuLieu;
-        private DevExpress.XtraGrid.Columns.GridColumn colDuLieuMacDinh;
-        private DevExpress.XtraGrid.Columns.GridColumn colGhiChu;
-        private DevExpress.XtraGrid.Columns.GridColumn colMauHienThiAm;
-        private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit repositoryItemColorPickEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn colMauHienThiDuong;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkupChucVu;
+        private DevExpress.XtraGrid.Columns.GridColumn colGiaTri;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkupMucTienLuong;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RITextFistname;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit RITextLastname;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit R_BranchSelect;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit R_CompentenceSelect;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit dtThang;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbbKieuDuLieu;
+        private DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit repositoryItemColorPickEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit timeEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit textEdit;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit repositoryItemTimeEdit1;
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.BarButtonItem btnEdit;
@@ -571,8 +585,9 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarEditItem barEditItem1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.Xpo.XPCollection xpcChucVu;
+        private DevExpress.Xpo.XPCollection xpcMucTienLuong;
     }
 }

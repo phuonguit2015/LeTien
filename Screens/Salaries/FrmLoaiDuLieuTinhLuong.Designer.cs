@@ -1,6 +1,6 @@
 ﻿namespace LeTien.Screens.Salaries
 {
-    partial class LoaiDuLieuTinhLuong
+    partial class FrmLoaiDuLieuTinhLuong
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoaiDuLieuTinhLuong));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLoaiDuLieuTinhLuong));
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -62,6 +62,7 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.colNhomChucVu = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -140,7 +141,8 @@
             this.colNhomDuLieu,
             this.colGiaTriMacDinh,
             this.gridColumn1,
-            this.colCongThuc});
+            this.colCongThuc,
+            this.colNhomChucVu});
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grvUCList.Name = "grvUCList";
@@ -174,6 +176,7 @@
             this.cbbNhomDuLieu.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbNhomDuLieu.Items.AddRange(new object[] {
+            "Chức Vụ",
             "Khoản Trừ",
             "Phụ Cấp",
             "Tăng Ca"});
@@ -391,6 +394,13 @@
             this.barDockControlRight.Location = new System.Drawing.Point(700, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 398);
             // 
+            // colNhomChucVu
+            // 
+            this.colNhomChucVu.FieldName = "NhomChucVu";
+            this.colNhomChucVu.Name = "colNhomChucVu";
+            this.colNhomChucVu.Visible = true;
+            this.colNhomChucVu.VisibleIndex = 5;
+            // 
             // LoaiDuLieuTinhLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -458,5 +468,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkLoaiDuLieuChamCong;
         private DevExpress.Xpo.XPCollection xpcLoaiDuLieuChamCong;
         private DevExpress.XtraGrid.Columns.GridColumn colCongThuc;
+        private DevExpress.XtraGrid.Columns.GridColumn colNhomChucVu;
     }
 }
