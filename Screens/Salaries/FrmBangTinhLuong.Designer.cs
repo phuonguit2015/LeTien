@@ -54,7 +54,6 @@
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colThang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lkupNhanVien = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.xpcNhanVien = new DevExpress.Xpo.XPCollection(this.components);
@@ -62,9 +61,11 @@
             this.lkupMucTienLuong = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.xpcMucTienLuong = new DevExpress.Xpo.XPCollection(this.components);
             this.colGiaTri = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSTT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.xpcTamUngLuong = new DevExpress.Xpo.XPCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xpcChiTietLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
@@ -87,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcTamUngLuong)).BeginInit();
             this.SuspendLayout();
             // 
             // xpcChiTietLuong
@@ -314,10 +316,10 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colThang,
             this.gridColumn1,
             this.gridColumn3,
-            this.colGiaTri});
+            this.colGiaTri,
+            this.colSTT});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
@@ -325,17 +327,10 @@
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
-            this.gridView1.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gridView1.OptionsView.ShowChildrenInGroupPanel = true;
+            this.gridView1.OptionsView.ShowDetailButtons = false;
             this.gridView1.OptionsView.ShowGroupedColumns = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // colThang
-            // 
-            this.colThang.FieldName = "Thang";
-            this.colThang.Name = "colThang";
-            this.colThang.Visible = true;
-            this.colThang.VisibleIndex = 0;
             // 
             // gridColumn1
             // 
@@ -343,7 +338,7 @@
             this.gridColumn1.FieldName = "NhanVien!";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.VisibleIndex = 0;
             // 
             // lkupNhanVien
             // 
@@ -370,7 +365,7 @@
             this.gridColumn3.FieldName = "LoaiDLTinhLuong!";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 1;
             // 
             // lkupMucTienLuong
             // 
@@ -389,14 +384,19 @@
             // 
             this.xpcMucTienLuong.ObjectType = typeof(LeTien.Objects.LoaiDuLieuTinhLuong);
             this.xpcMucTienLuong.Sorting.AddRange(new DevExpress.Xpo.SortProperty[] {
-            new DevExpress.Xpo.SortProperty("[CongThuc]", DevExpress.Xpo.DB.SortingDirection.Ascending)});
+            new DevExpress.Xpo.SortProperty("[CongThuc]", DevExpress.Xpo.DB.SortingDirection.Ascending),
+            new DevExpress.Xpo.SortProperty("[STT]", DevExpress.Xpo.DB.SortingDirection.Ascending)});
             // 
             // colGiaTri
             // 
             this.colGiaTri.FieldName = "GiaTri";
             this.colGiaTri.Name = "colGiaTri";
             this.colGiaTri.Visible = true;
-            this.colGiaTri.VisibleIndex = 3;
+            this.colGiaTri.VisibleIndex = 2;
+            // 
+            // colSTT
+            // 
+            this.colSTT.Name = "colSTT";
             // 
             // layoutControlGroup1
             // 
@@ -433,6 +433,10 @@
             this.layoutControlItem1.TextToControlDistance = 0;
             this.layoutControlItem1.TextVisible = false;
             // 
+            // xpcTamUngLuong
+            // 
+            this.xpcTamUngLuong.ObjectType = typeof(LeTien.Objects.AdvancePayment);
+            // 
             // FrmBangTinhLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -467,6 +471,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcTamUngLuong)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -499,7 +504,6 @@
         private DevExpress.Xpo.XPCollection xpcNhanVien;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkupMucTienLuong;
         private DevExpress.Xpo.XPCollection xpcMucTienLuong;
-        private DevExpress.XtraGrid.Columns.GridColumn colThang;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn colGiaTri;
@@ -508,5 +512,7 @@
         private DevExpress.XtraPivotGrid.PivotGridField fieldGiaTri1;
         private DevExpress.XtraPivotGrid.PivotGridField fieldNhanVienHoTen1;
         private DevExpress.XtraPivotGrid.PivotGridField fieldLoaiDLTinhLuongTenLoaiDuLieu;
+        private DevExpress.Xpo.XPCollection xpcTamUngLuong;
+        private DevExpress.XtraGrid.Columns.GridColumn colSTT;
     }
 }

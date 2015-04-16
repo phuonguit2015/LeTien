@@ -452,6 +452,23 @@ namespace LeTien.Screens
 
            
         }
+
+        private void gridView1_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName == "LoaiDuLieuChamCong.LoaiChamCong" || e.Column.FieldName == "NhanVien.MaNhanVien" || e.Column.FieldName == "NhanVien.HoTen" || e.Column.FieldName == "HieuSuat" || e.Column.FieldName == "KetQua") return;
+            //Tổng KQ theo kiểu int    
+            decimal d = 0;
+            if (gridView1.GetRowCellDisplayText(e.RowHandle, "KetQua") != string.Empty)
+            {
+                d = decimal.Parse(gridView1.GetRowCellDisplayText(e.RowHandle, "KetQua"));           
+            }           
+            if (gridView1.GetRowCellDisplayText(e.RowHandle, gridView1.FocusedColumn) != null)
+            {
+                d += decimal.Parse(gridView1.GetRowCellDisplayText(e.RowHandle, gridView1.FocusedColumn));
+            }
+            gridView1.SetRowCellValue(e.RowHandle, "KetQua", d);
+
+        }
     
     }  
     

@@ -53,6 +53,7 @@
             this.lkNhanVien = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.xpcNhanVien = new DevExpress.Xpo.XPCollection(this.components);
             this.colSoTien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.calSoTien = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
             this.colThangTamUng = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
@@ -63,7 +64,6 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.calSoTien = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -75,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grvUCList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkNhanVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcNhanVien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.calSoTien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbNhomDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkLoaiDuLieuChamCong)).BeginInit();
@@ -82,7 +83,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.calSoTien)).BeginInit();
             this.SuspendLayout();
             // 
             // barDockControlRight
@@ -253,6 +253,9 @@
             this.grvUCList.OptionsView.ShowGroupPanel = false;
             this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             this.grvUCList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvUCList_RowClick);
+            this.grvUCList.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvUCList_CellValueChanged);
+            this.grvUCList.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.grvUCList_InvalidRowException);
+            this.grvUCList.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.grvUCList_ValidateRow);
             // 
             // colNgayTamUng
             // 
@@ -294,6 +297,13 @@
             this.colSoTien.Name = "colSoTien";
             this.colSoTien.Visible = true;
             this.colSoTien.VisibleIndex = 2;
+            // 
+            // calSoTien
+            // 
+            this.calSoTien.AutoHeight = false;
+            this.calSoTien.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.calSoTien.Name = "calSoTien";
             // 
             // colThangTamUng
             // 
@@ -406,13 +416,6 @@
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
             // 
-            // calSoTien
-            // 
-            this.calSoTien.AutoHeight = false;
-            this.calSoTien.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.calSoTien.Name = "calSoTien";
-            // 
             // FrmTamUngLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -436,6 +439,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grvUCList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkNhanVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcNhanVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.calSoTien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbNhomDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkLoaiDuLieuChamCong)).EndInit();
@@ -443,7 +447,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.calSoTien)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -60,38 +60,94 @@ namespace LeTien.Screens.Salaries
                             NhanVien = nv,
                             LoaiDLTinhLuong = loaiDLTinhLuong
                         };
+
+                        #region "Lương theo chức vụ"
                         XPCollection xpcLCV = new XPCollection(xpcLuongChucVu, new BinaryOperator("MucTienLuong", loaiDLTinhLuong));
                         if (xpcLCV.Count != 0)
                         {
                             ctLuong.GiaTri = (xpcLCV[0] as GiaTriTienLuongTheoChucVu).GiaTri;
                         }
+                        #endregion
+
+
+                        #region "Bảo Hiểm + Công Đoàn"
                         //to do
+                        //if (loaiDLTinhLuong.CongThuc != null && loaiDLTinhLuong.CongThuc != string.Empty)
+                        //{
+                        //    string[] CongThuc = loaiDLTinhLuong.CongThuc.Split('[', ']');
+                        //    decimal value = decimal.Parse(loaiDLTinhLuong.GiaTriMacDinh);
+                        //    //todo lay gia tri cong thuc
+                        //     XPCollection xpcvalue = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
+                        //    new BinaryOperator("Thang", ctLuong.Thang), new BinaryOperator("NhanVien", ctLuong.NhanVien)
+                        //    , new BinaryOperator("LoaiDLTinhLuong.TenLoaiDuLieu",CongThuc[1])));
+                        //     decimal giatri = (xpcvalue[0] as ChiTietTienLuong).GiaTri;
+
+                        //     if (CongThuc[2].Trim() == "*")
+                        //     {
+                        //         ctLuong.GiaTri = value * giatri;
+                        //     }
+                        //     else if (CongThuc[2].Trim() == "/")
+                        //     {
+                        //         ctLuong.GiaTri = value / giatri;
+                        //     }
+                        //     else if (CongThuc[2].Trim() == "+")
+                        //     {
+                        //         ctLuong.GiaTri = value + giatri;
+                        //     }
+                        //     else if (CongThuc[2].Trim() == "-")
+                        //     {
+                        //         ctLuong.GiaTri = value - giatri;
+                        //     }
+                        //}
+                        #endregion
+
+
+                        #region "Tạm ứng lương"
+                        //TienTamUng
+                       
+                        XPCollection xpcTienTamUng = new XPCollection(xpcTamUngLuong, CriteriaOperator.Parse(
+                          "NgayTamUng like '%" + ctLuong.Thang.Month + "%" + ctLuong.Thang.Year + "%' AND NhanVien! like '%"
+                          + ctLuong.NhanVien + "'" ));
+                        if(xpcTienTamUng.Count > 0 && loaiDLTinhLuong.TenLoaiDuLieu == "Tạm Ứng")
+                        {
+                            ctLuong.GiaTri = 0;
+                            foreach(AdvancePayment _tienTamUng in xpcTienTamUng)
+                            {
+                                ctLuong.GiaTri += _tienTamUng.SoTien;
+                            }
+
+                        }
+                        #endregion
+
+
+                        #region "Tính lương theo công thức"
                         if (loaiDLTinhLuong.CongThuc != null && loaiDLTinhLuong.CongThuc != string.Empty)
                         {
                             string[] CongThuc = loaiDLTinhLuong.CongThuc.Split('[', ']');
+                
+                        
                             decimal value = decimal.Parse(loaiDLTinhLuong.GiaTriMacDinh);
-                            //todo lay gia tri cong thuc
-                             XPCollection xpcvalue = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
+                            for(int i = 2; i < CongThuc.Length - 2; i+=2)
+                            {
+                                XPCollection xpcvalue = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
                             new BinaryOperator("Thang", ctLuong.Thang), new BinaryOperator("NhanVien", ctLuong.NhanVien)
-                            , new BinaryOperator("LoaiDLTinhLuong.TenLoaiDuLieu",CongThuc[1] )));
-                             decimal giatri = (xpcvalue[0] as ChiTietTienLuong).GiaTri;
-                            if(CongThuc[2].Trim() == "*")
-                            {
-                                ctLuong.GiaTri = value * giatri;
+                            , new BinaryOperator("LoaiDLTinhLuong.TenLoaiDuLieu", CongThuc[i + 1])));
+                                decimal giatri = (xpcvalue[0] as ChiTietTienLuong).GiaTri;
+                                value = TinhToan(value, giatri, CongThuc[i]);
                             }
-                            else if (CongThuc[2].Trim() == "/")
-                            {
-                                ctLuong.GiaTri = value / giatri;
-                            }
-                            else if(CongThuc[2].Trim() == "+")
-                            {
-                                ctLuong.GiaTri = value + giatri;
-                            }
-                            else if (CongThuc[2].Trim() == "-")
-                            {
-                                ctLuong.GiaTri = value - giatri;
-                            }
+                            ctLuong.GiaTri = value;
                         }
+                        #endregion
+
+
+                        #region "Trợ cấp chuyên cần"
+
+                        #endregion
+
+
+                        #region "Tiền ăn"
+                        #endregion
+
                         XPCollection xpc = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
                             new BinaryOperator("Thang", ctLuong.Thang), new BinaryOperator("NhanVien", ctLuong.NhanVien)
                             , new BinaryOperator("LoaiDLTinhLuong", ctLuong.LoaiDLTinhLuong)));
@@ -107,5 +163,27 @@ namespace LeTien.Screens.Salaries
             }
         }
 
+
+        private decimal TinhToan(decimal a, decimal b, string dau)
+        {
+            decimal ketqua = 0;
+            if (dau.Trim() == "*")
+            {
+                ketqua = a * b;
+            }
+            else if (dau.Trim() == "/")
+            {
+                ketqua = a / b;
+            }
+            else if (dau.Trim() == "+")
+            {
+                ketqua = a + b;
+            }
+            else if (dau.Trim() == "-")
+            {
+                ketqua = a - b;
+            }
+            return ketqua;
+        }
     }
 }

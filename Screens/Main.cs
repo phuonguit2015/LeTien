@@ -348,6 +348,60 @@ namespace LeTien.Screens
             }
         }
 
+        private void btnDanhMucCa_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmDanhMucCa();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnGTriDLChamCongTheoCa_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmGTriDLChamCongTheoCa();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnXepCa_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmXepCa();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
       
 
     }

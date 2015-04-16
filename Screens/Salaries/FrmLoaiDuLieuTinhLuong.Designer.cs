@@ -44,6 +44,7 @@
             this.lkLoaiDuLieuChamCong = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.xpcLoaiDuLieuChamCong = new DevExpress.Xpo.XPCollection(this.components);
             this.colCongThuc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNhomChucVu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -62,7 +63,7 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.colNhomChucVu = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSTT = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -142,7 +143,8 @@
             this.colGiaTriMacDinh,
             this.gridColumn1,
             this.colCongThuc,
-            this.colNhomChucVu});
+            this.colNhomChucVu,
+            this.colSTT});
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grvUCList.Name = "grvUCList";
@@ -152,6 +154,8 @@
             this.grvUCList.OptionsView.ShowAutoFilterRow = true;
             this.grvUCList.OptionsView.ShowDetailButtons = false;
             this.grvUCList.OptionsView.ShowGroupPanel = false;
+            this.grvUCList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colSTT, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             this.grvUCList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvUCList_RowClick);
             // 
@@ -160,7 +164,7 @@
             this.colTenLoaiDuLieu.FieldName = "TenLoaiDuLieu";
             this.colTenLoaiDuLieu.Name = "colTenLoaiDuLieu";
             this.colTenLoaiDuLieu.Visible = true;
-            this.colTenLoaiDuLieu.VisibleIndex = 0;
+            this.colTenLoaiDuLieu.VisibleIndex = 1;
             // 
             // colNhomDuLieu
             // 
@@ -168,7 +172,7 @@
             this.colNhomDuLieu.FieldName = "NhomDuLieu";
             this.colNhomDuLieu.Name = "colNhomDuLieu";
             this.colNhomDuLieu.Visible = true;
-            this.colNhomDuLieu.VisibleIndex = 1;
+            this.colNhomDuLieu.VisibleIndex = 2;
             // 
             // cbbNhomDuLieu
             // 
@@ -187,7 +191,7 @@
             this.colGiaTriMacDinh.FieldName = "GiaTriMacDinh";
             this.colGiaTriMacDinh.Name = "colGiaTriMacDinh";
             this.colGiaTriMacDinh.Visible = true;
-            this.colGiaTriMacDinh.VisibleIndex = 2;
+            this.colGiaTriMacDinh.VisibleIndex = 3;
             // 
             // gridColumn1
             // 
@@ -196,7 +200,7 @@
             this.gridColumn1.FieldName = "LoaiDLChamCong!";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 3;
+            this.gridColumn1.VisibleIndex = 4;
             // 
             // lkLoaiDuLieuChamCong
             // 
@@ -221,7 +225,14 @@
             this.colCongThuc.FieldName = "CongThuc";
             this.colCongThuc.Name = "colCongThuc";
             this.colCongThuc.Visible = true;
-            this.colCongThuc.VisibleIndex = 4;
+            this.colCongThuc.VisibleIndex = 5;
+            // 
+            // colNhomChucVu
+            // 
+            this.colNhomChucVu.FieldName = "NhomChucVu";
+            this.colNhomChucVu.Name = "colNhomChucVu";
+            this.colNhomChucVu.Visible = true;
+            this.colNhomChucVu.VisibleIndex = 6;
             // 
             // repositoryItemColorPickEdit1
             // 
@@ -394,14 +405,14 @@
             this.barDockControlRight.Location = new System.Drawing.Point(700, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 398);
             // 
-            // colNhomChucVu
+            // colSTT
             // 
-            this.colNhomChucVu.FieldName = "NhomChucVu";
-            this.colNhomChucVu.Name = "colNhomChucVu";
-            this.colNhomChucVu.Visible = true;
-            this.colNhomChucVu.VisibleIndex = 5;
+            this.colSTT.FieldName = "STT";
+            this.colSTT.Name = "colSTT";
+            this.colSTT.Visible = true;
+            this.colSTT.VisibleIndex = 0;
             // 
-            // LoaiDuLieuTinhLuong
+            // FrmLoaiDuLieuTinhLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -411,7 +422,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "LoaiDuLieuTinhLuong";
+            this.Name = "FrmLoaiDuLieuTinhLuong";
             this.Text = "Loại Dữ Liệu Tính Lương";
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -469,5 +480,6 @@
         private DevExpress.Xpo.XPCollection xpcLoaiDuLieuChamCong;
         private DevExpress.XtraGrid.Columns.GridColumn colCongThuc;
         private DevExpress.XtraGrid.Columns.GridColumn colNhomChucVu;
+        private DevExpress.XtraGrid.Columns.GridColumn colSTT;
     }
 }

@@ -1,19 +1,19 @@
-﻿using System;
+using System;
 using DevExpress.Xpo;
 
 namespace LeTien.Objects
 {
 
-    public class ChiTietTienLuong : XPObject
+    public class XepCa : XPObject
     {
-        public ChiTietTienLuong()
+        public XepCa()
             : base()
         {
             // This constructor is used when an object is loaded from a persistent storage.
             // Do not place any code here.
         }
 
-        public ChiTietTienLuong(Session session)
+        public XepCa(Session session)
             : base(session)
         {
             // This constructor is used when an object is loaded from a persistent storage.
@@ -25,34 +25,27 @@ namespace LeTien.Objects
             base.AfterConstruction();
             // Place here your initialization code.
         }
-        [DisplayName("Tháng")]
-        public DateTime Thang
+
+        [DisplayName("Ng�y")]
+        public DateTime Ngay
         {
             get;
             set;
         }
 
-        [DisplayName("Nhân Viên")]
+        [DisplayName("Nh�n Vi�n")]
         public Employee NhanVien
         {
             get;
             set;
         }
 
-        [DisplayName("Mục Tiền Lương")]
-        public LoaiDuLieuTinhLuong LoaiDLTinhLuong
+        [DisplayName("Ca")]
+        public DanhMucCa Ca
         {
             get;
             set;
         }
-
-        [DisplayName("Giá Trị")]
-        public decimal GiaTri
-        {
-            get;
-            set;
-        }
-
     }
 
 }

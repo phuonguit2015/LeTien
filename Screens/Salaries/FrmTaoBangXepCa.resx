@@ -117,7 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="barManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnLuu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABd0RVh0VGl0
+        bGUAU2F2ZSBBbGw7U2F2ZTtBbGxuFPWhAAAC90lEQVQ4T22TyU9TURSHwYJQCogbE/4JF0YlzHOBQkuh
+        LRT62lKgdKDQQh+dKVBmqSjIYAwmiEaCKJJgom4MkGiMiStFNHEnYVQxEWT5895HgqZ6k2/zcs53zr3n
+        vDAAJyQmJoYTThEiQoj8DzxCeKiA1+yfXLZ2TKK5fQJNvnE0esZgdo/C6LoOg2MYensQmsYeqA2dKyQ+
+        IlQQ2eyfwNTcC/ROLKBn/BG6xx+ie3QegZEHsHnHYCICY+sQVA0dIPFRYeSEE04RIgQCQZTRec0+Or1k
+        bx++x/qCd1nvlRnWM3iHbQvcYvXWPnuDbaDVYBtEZa2HCqKpgKexBZe1LUFIq9tgcVwlVQahb+qF1tQF
+        Vb0P+WIDxConJNXs51pLt11v7YdC66ICPhVEamxDGJl+CnGFDbv7v7D97RCbXw+wsXeAL7s/kS2qg7LO
+        jyJFC9RGf1udpQ/lDEsFMVRwmmkaQHBqCYXljVzi2087eLO+jddrW3j1fhMZQg0qdKSTMgtUem+bztyD
+        UmULFQioIKrK3IeBycfIkxiwQSoeJ27h5btNjpRcFeRaD3IkJih1bofWGECJopkKYqkgutLQjcCNea7V
+        rAId0knFtDwGqSQxObsKSVlK0rIbmSI9KrQOp7qhC8WyRiqIowK+vK4D7cOzMHsmYXJPwOAeB2PqgUzt
+        Qhnj5JBWO5EmrIVcxToZfScKpUYqiKeCGGmND87+Gch1XrIO/57iCiskShbJuRqUVbW4FBoXhOKGE4FA
+        wrhgD9yGlHFwCXs/jo7ZP+KmIpSaUaywk6uokJnPuIplFuQUaVeJgJtCrKjSTlb3Jqlk4wQ0aYfynXJI
+        3qYeInkrLqYrwefzz5HEBIKAwKOCuAKZFSbXGISlZngXP8K5sA52fh22uQ9our9GHlSLnBITLqQoQOLj
+        SY2T9aeHn5KrXknNr+EqSdqfQeR5jjz2CdIti7hcP4ukDDoJBucvSVZJfEyogP4H9C5nCAl/cTYE+o0u
+        Du+PAGG/ARDb9RFcHU5rAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <metadata name="xpcCa.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>246, 17</value>
+  </metadata>
+  <metadata name="xpcNhanVien.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 17</value>
+  </metadata>
+  <metadata name="xpcXepCa.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
 </root>

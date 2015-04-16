@@ -44,7 +44,6 @@
             this.colNgay1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colNgay2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timeEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.colNgay3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNgay4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNgay5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -79,6 +78,7 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.timeEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -123,9 +123,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.xpcChamCong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -257,9 +257,11 @@
             this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             this.gridView1.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridView1_CustomRowCellEdit);
             this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
+            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             // 
             // colLoaiDuLieuChamCong
             // 
+            this.colLoaiDuLieuChamCong.Caption = "Total";
             this.colLoaiDuLieuChamCong.FieldName = "LoaiDuLieuChamCong!";
             this.colLoaiDuLieuChamCong.Name = "colLoaiDuLieuChamCong";
             // 
@@ -303,19 +305,6 @@
             this.colNgay2.Name = "colNgay2";
             this.colNgay2.Visible = true;
             this.colNgay2.VisibleIndex = 4;
-            // 
-            // timeEdit
-            // 
-            this.timeEdit.AutoHeight = false;
-            this.timeEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.timeEdit.DisplayFormat.FormatString = "HH:mm";
-            this.timeEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.timeEdit.Mask.EditMask = "HH:mm";
-            this.timeEdit.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
-            this.timeEdit.Mask.UseMaskAsDisplayFormat = true;
-            this.timeEdit.Name = "timeEdit";
-            this.timeEdit.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             // 
             // colNgay3
             // 
@@ -558,6 +547,19 @@
             this.repositoryItemLookUpEdit1.DisplayMember = "HoTen";
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             this.repositoryItemLookUpEdit1.ValueMember = "This";
+            // 
+            // timeEdit
+            // 
+            this.timeEdit.AutoHeight = false;
+            this.timeEdit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.timeEdit.DisplayFormat.FormatString = "HH:mm";
+            this.timeEdit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.timeEdit.Mask.EditMask = "HH:mm";
+            this.timeEdit.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
+            this.timeEdit.Mask.UseMaskAsDisplayFormat = true;
+            this.timeEdit.Name = "timeEdit";
+            this.timeEdit.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI;
             // 
             // toolTipController1
             // 
@@ -894,9 +896,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.xpcChamCong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();

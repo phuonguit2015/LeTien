@@ -91,6 +91,7 @@
     <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -109,7 +110,9 @@
     <Compile Include="Objects\ChamCong.cs" />
     <Compile Include="Objects\ChiTietTienLuong.cs" />
     <Compile Include="Objects\Competence.cs" />
+    <Compile Include="Objects\DanhMucCa.cs" />
     <Compile Include="Objects\DanhMucMauNgayNghiLe.cs" />
+    <Compile Include="Objects\GiaTriDuLieuChamCongTheoCa.cs" />
     <Compile Include="Objects\GiaTriTienLuongTheoChucVu.cs" />
     <Compile Include="Objects\LoaiDuLieuTinhLuong.cs" />
     <Compile Include="Objects\EasyObject.cs" />
@@ -120,6 +123,7 @@
     <Compile Include="Objects\QuanLyNgayNghi.cs" />
     <Compile Include="Objects\Religion.cs" />
     <Compile Include="Objects\User.cs" />
+    <Compile Include="Objects\XepCa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\DataReport.cs">
@@ -212,11 +216,23 @@
     <Compile Include="Screens\List\frmCompetenceView.Designer.cs">
       <DependentUpon>frmCompetenceView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\List\FrmDanhMucCa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\FrmDanhMucCa.Designer.cs">
+      <DependentUpon>FrmDanhMucCa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\List\FrmDanhMucMauNgayNghiLe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Screens\List\FrmDanhMucMauNgayNghiLe.Designer.cs">
       <DependentUpon>FrmDanhMucMauNgayNghiLe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\FrmGTriDLChamCongTheoCa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\FrmGTriDLChamCongTheoCa.Designer.cs">
+      <DependentUpon>FrmGTriDLChamCongTheoCa.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\List\FrmLoaiDuLieuChamCong.cs">
       <SubType>Form</SubType>
@@ -272,6 +288,12 @@
     <Compile Include="Screens\Salaries\FrmTamUngLuong.Designer.cs">
       <DependentUpon>FrmTamUngLuong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Salaries\FrmTaoBangXepCa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmTaoBangXepCa.Designer.cs">
+      <DependentUpon>FrmTaoBangXepCa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Salaries\FrmTaoDuLieuChamCong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,6 +311,12 @@
     </Compile>
     <Compile Include="Screens\Salaries\FrmLoaiDuLieuTinhLuong.Designer.cs">
       <DependentUpon>FrmLoaiDuLieuTinhLuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmXepCa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmXepCa.Designer.cs">
+      <DependentUpon>FrmXepCa.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\User\FrmLogin.cs">
       <SubType>Form</SubType>
@@ -386,8 +414,14 @@
     <EmbeddedResource Include="Screens\List\frmCompetenceView.resx">
       <DependentUpon>frmCompetenceView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\FrmDanhMucCa.resx">
+      <DependentUpon>FrmDanhMucCa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\List\FrmDanhMucMauNgayNghiLe.resx">
       <DependentUpon>FrmDanhMucMauNgayNghiLe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\FrmGTriDLChamCongTheoCa.resx">
+      <DependentUpon>FrmGTriDLChamCongTheoCa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\List\FrmLoaiDuLieuChamCong.resx">
       <DependentUpon>FrmLoaiDuLieuChamCong.cs</DependentUpon>
@@ -416,6 +450,9 @@
     <EmbeddedResource Include="Screens\Salaries\FrmTamUngLuong.resx">
       <DependentUpon>FrmTamUngLuong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmTaoBangXepCa.resx">
+      <DependentUpon>FrmTaoBangXepCa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmTaoDuLieuChamCong.resx">
       <DependentUpon>FrmTaoDuLieuChamCong.cs</DependentUpon>
     </EmbeddedResource>
@@ -424,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmLoaiDuLieuTinhLuong.resx">
       <DependentUpon>FrmLoaiDuLieuTinhLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmXepCa.resx">
+      <DependentUpon>FrmXepCa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\User\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

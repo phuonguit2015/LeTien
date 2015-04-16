@@ -1,6 +1,9 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Base;
 using LeTien.Objects;
 using System;
 using System.Collections.Generic;
@@ -20,6 +23,7 @@ namespace LeTien.Screens.Salaries
         public FrmTamUngLuong()
         {
             InitializeComponent();
+            DevExpress.XtraGrid.Localization.GridLocalizer.Active = new MyLocalizer();
         }
         protected override void OnDelete()
         {
@@ -106,12 +110,77 @@ namespace LeTien.Screens.Salaries
                 btnEdit.Caption = "Đang ở Chế độ chỉ đọc";
             }
         }
-        
+
         private void grvUCList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
             if (grvUCList.GetRowCellDisplayText(e.RowHandle, "Oid") == string.Empty) return;
             _Oid = grvUCList.GetRowCellDisplayText(e.RowHandle, "Oid");
             btnXoa.Enabled = true;
         }
+
+        private void grvUCList_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            DataRow r = grvUCList.GetFocusedDataRow();
+            ColumnView view = sender as ColumnView;
+            GridColumn column1 = view.Columns["SoTien"];
+            string str = view.GetRowCellValue(e.RowHandle,column1).ToString();            
+            if (decimal.Parse(str) > 1000000 || decimal.Parse(str) < 500000)
+            {
+                e.Valid = false;
+                view.SetColumnError(view.Columns["SoTien"], "Tiền tạm ứng tối thiểu là 500000, tối đa là 1000000");
+            }
+
+
+        }
+
+        private void grvUCList_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = ExceptionMode.NoAction;
+        }
+
+        private void grvUCList_CellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            //if(e.Column.FieldName == "NgayTamUng" || e.Column.FieldName == "NhanVien!")
+            //{
+            //    try
+            //    {
+            //        DataRow r = grvUCList.GetFocusedDataRow();
+            //        ColumnView view = sender as ColumnView;
+            //        DateTime dt = DateTime.Parse(view.GetRowCellDisplayText(e.RowHandle, view.Columns["NgayTamUng"]));
+            //        string str = view.GetRowCellDisplayText(e.RowHandle, view.Columns["NhanVien!"]);
+            //        using (var uow = new UnitOfWork())
+            //        {
+            //            Employee nv = uow.FindObject<Employee>(CriteriaOperator.Parse("HoTen like '" + str + "'"));
+            //            XPCollection xpc = new XPCollection(xpcTamUngLuong, CriteriaOperator.Parse(
+            //                "NgayTamUng like '%" + dt.Month + "%" + dt.Year + "%'"));
+
+            //            if (xpc.Count != 0)
+            //            {
+            //                view.SetColumnError(view.Columns["NhanVien!"], "Nhân viên đã tạm ứng trong tháng.");
+            //            }
+            //        }
+            //    }
+            //    catch
+            //    { }
+            //}
+          
+        }
+
+
+    
+
     }
+    public class MyLocalizer : DevExpress.XtraGrid.Localization.GridLocalizer
+    {
+        public override string GetLocalizedString(DevExpress.XtraGrid.Localization.GridStringId id)
+        {
+            if (id == DevExpress.XtraGrid.Localization.GridStringId.ColumnViewExceptionMessage)
+                return "Tiền tạm ứng tối thiểu là 500000, tối đa là 1000000";
+            return base.GetLocalizedString(id);
+        }
+    }
+
 }
+
+
+

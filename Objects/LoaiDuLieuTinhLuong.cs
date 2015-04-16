@@ -67,6 +67,12 @@ namespace LeTien.Objects
             get;
             set;
         }
+        
+        public long STT
+        {
+            get;
+            set;
+        }
    }
 
 }
