@@ -129,5 +129,42 @@ namespace LeTien.Screens.Salaries
             f.Tag = this;
             f.ShowDialog();
         }
+
+        private XPCollection HienThiDanhSachTheoThang(DateTime dt)
+        {
+            DateTime minDate = new DateTime(dt.Year, dt.Month, 1);
+            DateTime maxDate = new DateTime(dt.Year, dt.Month, SoNgayTrongThang(dt.Month, dt.Year));
+
+            XPCollection _xpcXepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", minDate, BinaryOperatorType.GreaterOrEqual),
+                new BinaryOperator("Ngay", maxDate, BinaryOperatorType.LessOrEqual)));
+            return _xpcXepCa;
+        }
+
+        private void dtItemThang_EditValueChanged(object sender, EventArgs e)
+        {
+            DateTime dt = DateTime.Parse(dtItemThang.EditValue.ToString());
+           
+
+            gridUCList.DataSource = HienThiDanhSachTheoThang(dt);
+        }
+        private int SoNgayTrongThang(int m, int y)
+        {
+            int daysInMonth;
+
+            DateTime now = DateTime.Now;
+
+            if (m == 0 || y == 0)
+            {
+
+                daysInMonth = System.DateTime.DaysInMonth(now.Year, now.Month);
+                m = now.Month;
+                y = now.Year;
+            }
+            else
+            {
+                daysInMonth = System.DateTime.DaysInMonth(y, m);
+            }
+            return daysInMonth;
+        }
     }
 }

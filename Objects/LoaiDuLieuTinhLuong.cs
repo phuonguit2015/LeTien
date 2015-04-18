@@ -32,7 +32,7 @@ namespace LeTien.Objects
         {
             get;
             set;
-        }
+        }      
 
         [DisplayName("Nhóm Dữ Liệu Tính Lương ")]
         public string NhomDuLieu

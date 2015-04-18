@@ -451,11 +451,11 @@
             // 
             // dtItemThang
             // 
-            this.dtItemThang.Caption = "barEditItem2";
             this.dtItemThang.Edit = this.dateThang;
             this.dtItemThang.Id = 10;
             this.dtItemThang.Name = "dtItemThang";
             this.dtItemThang.Width = 91;
+            this.dtItemThang.EditValueChanged += new System.EventHandler(this.dtItemThang_EditValueChanged);
             // 
             // dateThang
             // 

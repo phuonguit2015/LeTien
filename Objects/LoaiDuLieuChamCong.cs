@@ -49,8 +49,20 @@ namespace LeTien.Objects
             set;
         }
 
-       
 
+        [DisplayName("Loại Tính Tổng")]
+        public string TinhTong
+        {
+            get;
+            set;
+        }
+
+        [DisplayName("Đơn Vị Tổng")]
+        public string DonViTong
+        {
+            get;
+            set;
+        }
         [Persistent("MauHienThiDuong")]
         private Int32 _mauHienThiDuong;
         [NonPersistent, System.ComponentModel.Browsable(false)]
@@ -91,6 +103,8 @@ namespace LeTien.Objects
                 OnChanged("MauHienThiAm");
             }
         }
+        //Chỉ dùng 1 cột màu, 1 cột so sánh
+
         public override void AfterConstruction()
         {
             base.AfterConstruction();

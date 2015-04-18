@@ -163,5 +163,10 @@ namespace LeTien.Screens.List
                 btnEdit.Caption = "Đang ở Chế độ chỉ đọc";
             }
         }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
