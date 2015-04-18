@@ -5,7 +5,6 @@ using System.Drawing;
 
 namespace LeTien.Objects
 {
-
     public class LoaiDuLieuChamCong : XPObject
     {
         public LoaiDuLieuChamCong()

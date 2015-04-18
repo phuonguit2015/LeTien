@@ -14,5 +14,24 @@ namespace LeTien.Utils
             get { return _User;  }
             set { _User = value; }
         }
+        public static int SoNgayTrongThang(int m, int y)
+        {
+            int daysInMonth;
+
+            DateTime now = DateTime.Now;
+
+            if (m == 0 || y == 0)
+            {
+
+                daysInMonth = System.DateTime.DaysInMonth(now.Year, now.Month);
+                m = now.Month;
+                y = now.Year;
+            }
+            else
+            {
+                daysInMonth = System.DateTime.DaysInMonth(y, m);
+            }
+            return daysInMonth;
+        }
     }
 }

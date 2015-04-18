@@ -70,56 +70,6 @@ namespace LeTien.Screens.Salaries
                         #endregion
 
 
-                        #region "Bảo Hiểm + Công Đoàn"
-                        //to do
-                        //if (loaiDLTinhLuong.CongThuc != null && loaiDLTinhLuong.CongThuc != string.Empty)
-                        //{
-                        //    string[] CongThuc = loaiDLTinhLuong.CongThuc.Split('[', ']');
-                        //    decimal value = decimal.Parse(loaiDLTinhLuong.GiaTriMacDinh);
-                        //    //todo lay gia tri cong thuc
-                        //     XPCollection xpcvalue = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
-                        //    new BinaryOperator("Thang", ctLuong.Thang), new BinaryOperator("NhanVien", ctLuong.NhanVien)
-                        //    , new BinaryOperator("LoaiDLTinhLuong.TenLoaiDuLieu",CongThuc[1])));
-                        //     decimal giatri = (xpcvalue[0] as ChiTietTienLuong).GiaTri;
-
-                        //     if (CongThuc[2].Trim() == "*")
-                        //     {
-                        //         ctLuong.GiaTri = value * giatri;
-                        //     }
-                        //     else if (CongThuc[2].Trim() == "/")
-                        //     {
-                        //         ctLuong.GiaTri = value / giatri;
-                        //     }
-                        //     else if (CongThuc[2].Trim() == "+")
-                        //     {
-                        //         ctLuong.GiaTri = value + giatri;
-                        //     }
-                        //     else if (CongThuc[2].Trim() == "-")
-                        //     {
-                        //         ctLuong.GiaTri = value - giatri;
-                        //     }
-                        //}
-                        #endregion
-
-
-                        #region "Tạm ứng lương"
-                        //TienTamUng
-                       
-                        XPCollection xpcTienTamUng = new XPCollection(xpcTamUngLuong, CriteriaOperator.Parse(
-                          "NgayTamUng like '%" + ctLuong.Thang.Month + "%" + ctLuong.Thang.Year + "%' AND NhanVien! like '%"
-                          + ctLuong.NhanVien + "'" ));
-                        if(xpcTienTamUng.Count > 0 && loaiDLTinhLuong.TenLoaiDuLieu == "Tạm Ứng")
-                        {
-                            ctLuong.GiaTri = 0;
-                            foreach(AdvancePayment _tienTamUng in xpcTienTamUng)
-                            {
-                                ctLuong.GiaTri += _tienTamUng.SoTien;
-                            }
-
-                        }
-                        #endregion
-
-
                         #region "Tính lương theo công thức"
                         if (loaiDLTinhLuong.CongThuc != null && loaiDLTinhLuong.CongThuc != string.Empty)
                         {
@@ -140,13 +90,26 @@ namespace LeTien.Screens.Salaries
                         #endregion
 
 
-                        #region "Trợ cấp chuyên cần"
+                        #region "Tính lương dựa vào dữ liệu chấm công"
+                        DateTime minDate = new DateTime(ctLuong.Thang.Year, ctLuong.Thang.Month, 1);
+                        DateTime maxDate = new DateTime(ctLuong.Thang.Year, ctLuong.Thang.Month, SoNgayTrongThang(ctLuong.Thang.Month, ctLuong.Thang.Year));
+                       XPCollection _xpcTinhLuong = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("Thang",minDate,BinaryOperatorType.GreaterOrEqual),
+                            new BinaryOperator("Thang",maxDate,BinaryOperatorType.LessOrEqual), new BinaryOperator("NhanVien",ctLuong.NhanVien)));
 
+
+                        if(_xpcTinhLuong.Count > 0)
+                        {
+                            ctLuong.GiaTri = decimal.Parse((_xpcTinhLuong[0] as ChamCong).KetQua);
+                        }
                         #endregion
 
-
-                        #region "Tiền ăn"
+                        #region "Loại DL Tính Lương Tự Nhập"
+                        if(ctLuong.GiaTri == null)
+                        {
+                            ctLuong.GiaTri = 0;
+                        }
                         #endregion
+
 
                         XPCollection xpc = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
                             new BinaryOperator("Thang", ctLuong.Thang), new BinaryOperator("NhanVien", ctLuong.NhanVien)
@@ -184,6 +147,25 @@ namespace LeTien.Screens.Salaries
                 ketqua = a - b;
             }
             return ketqua;
+        }
+        private int SoNgayTrongThang(int m, int y)
+        {
+            int daysInMonth;
+
+            DateTime now = DateTime.Now;
+
+            if (m == 0 || y == 0)
+            {
+
+                daysInMonth = System.DateTime.DaysInMonth(now.Year, now.Month);
+                m = now.Month;
+                y = now.Year;
+            }
+            else
+            {
+                daysInMonth = System.DateTime.DaysInMonth(y, m);
+            }
+            return daysInMonth;
         }
     }
 }

@@ -282,6 +282,12 @@
     <Compile Include="Screens\Salaries\FrmBangTinhLuong.Designer.cs">
       <DependentUpon>FrmBangTinhLuong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Salaries\FrmPhieuChamCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmPhieuChamCong.Designer.cs">
+      <DependentUpon>FrmPhieuChamCong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Salaries\FrmTamUngLuong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -446,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmBangTinhLuong.resx">
       <DependentUpon>FrmBangTinhLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmPhieuChamCong.resx">
+      <DependentUpon>FrmPhieuChamCong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmTamUngLuong.resx">
       <DependentUpon>FrmTamUngLuong.cs</DependentUpon>

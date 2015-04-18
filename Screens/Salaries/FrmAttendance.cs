@@ -359,12 +359,20 @@ namespace LeTien.Screens
             {
                 btnEdit.Caption = "Đang ở chế độ chỉnh sửa";
                 gridView1.OptionsBehavior.ReadOnly = false;
+                foreach (GridColumn col in gridView1.Columns)
+                {
+                    col.OptionsColumn.AllowEdit = true;
+                }
                 //btnEdit.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/edit_16x16.png");
             }
             else
             {
                 gridView1.OptionsBehavior.ReadOnly = true;
                 btnEdit.Caption = "Đang ở chế độ chỉ đọc";
+                foreach(GridColumn col in gridView1.Columns)
+                {
+                    col.OptionsColumn.AllowEdit = false;
+                }
                 //btnEdit.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/show_16x16.png");
 
             }
@@ -532,6 +540,8 @@ namespace LeTien.Screens
             DateTime minDate = new DateTime(attendanceYear,attendanceMonth,1);
             DateTime maxDate = new DateTime(attendanceYear,attendanceMonth,SoNgayTrongThang());
 
+            xpcXepCa.Reload();
+
             XPCollection _xpcXepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", minDate, BinaryOperatorType.GreaterOrEqual),
                 new BinaryOperator("Ngay", maxDate, BinaryOperatorType.LessOrEqual)));
             if(_xpcXepCa.Count == 0)
@@ -576,42 +586,10 @@ namespace LeTien.Screens
             switch (cc.LoaiDuLieuChamCong.TinhTong)
             {
                 case "Tổng":
-                    if (KDLLoaiDLChamCong == "Int")
-                    {
-                        #region "_Tong Int"
-                        _Tong += (cc.Ngay1 != null) ? decimal.Parse(cc.Ngay1) : 0;
-                        _Tong += (cc.Ngay2 != null) ? decimal.Parse(cc.Ngay2) : 0;
-                        _Tong += (cc.Ngay3 != null) ? decimal.Parse(cc.Ngay3) : 0;
-                        _Tong += (cc.Ngay4 != null) ? decimal.Parse(cc.Ngay4) : 0;
-                        _Tong += (cc.Ngay5 != null) ? decimal.Parse(cc.Ngay5) : 0;
-                        _Tong += (cc.Ngay6 != null) ? decimal.Parse(cc.Ngay6) : 0;
-                        _Tong += (cc.Ngay7 != null) ? decimal.Parse(cc.Ngay7) : 0;
-                        _Tong += (cc.Ngay8 != null) ? decimal.Parse(cc.Ngay8) : 0;
-                        _Tong += (cc.Ngay9 != null) ? decimal.Parse(cc.Ngay9) : 0;
-                        _Tong += (cc.Ngay10 != null) ? decimal.Parse(cc.Ngay10) : 0;
-                        _Tong += (cc.Ngay11 != null) ? decimal.Parse(cc.Ngay11) : 0;
-                        _Tong += (cc.Ngay12 != null) ? decimal.Parse(cc.Ngay12) : 0;
-                        _Tong += (cc.Ngay13 != null) ? decimal.Parse(cc.Ngay13) : 0;
-                        _Tong += (cc.Ngay14 != null) ? decimal.Parse(cc.Ngay14) : 0;
-                        _Tong += (cc.Ngay15 != null) ? decimal.Parse(cc.Ngay15) : 0;
-                        _Tong += (cc.Ngay16 != null) ? decimal.Parse(cc.Ngay16) : 0;
-                        _Tong += (cc.Ngay17 != null) ? decimal.Parse(cc.Ngay17) : 0;
-                        _Tong += (cc.Ngay18 != null) ? decimal.Parse(cc.Ngay18) : 0;
-                        _Tong += (cc.Ngay19 != null) ? decimal.Parse(cc.Ngay19) : 0;
-                        _Tong += (cc.Ngay20 != null) ? decimal.Parse(cc.Ngay20) : 0;
-                        _Tong += (cc.Ngay21 != null) ? decimal.Parse(cc.Ngay21) : 0;
-                        _Tong += (cc.Ngay22 != null) ? decimal.Parse(cc.Ngay22) : 0;
-                        _Tong += (cc.Ngay23 != null) ? decimal.Parse(cc.Ngay23) : 0;
-                        _Tong += (cc.Ngay24 != null) ? decimal.Parse(cc.Ngay24) : 0;
-                        _Tong += (cc.Ngay25 != null) ? decimal.Parse(cc.Ngay25) : 0;
-                        _Tong += (cc.Ngay26 != null) ? decimal.Parse(cc.Ngay26) : 0;
-                        _Tong += (cc.Ngay27 != null) ? decimal.Parse(cc.Ngay27) : 0;
-                        _Tong += (cc.Ngay28 != null) ? decimal.Parse(cc.Ngay28) : 0;
-                        _Tong += (cc.Ngay29 != null) ? decimal.Parse(cc.Ngay29) : 0;
-                        _Tong += (cc.Ngay30 != null) ? decimal.Parse(cc.Ngay30) : 0;
-                        _Tong += (cc.Ngay31 != null) ? decimal.Parse(cc.Ngay31) : 0;
-                        #endregion
-                    }
+                    //if (KDLLoaiDLChamCong == "Int")
+                    //{
+                        
+                    //}
                     if (KDLLoaiDLChamCong == "DateTime")
                     {
                         #region "Tổng Số Ngày"
@@ -650,6 +628,42 @@ namespace LeTien.Screens
 
                         str = "Ngày";
                     }
+                    else
+                    {
+                        #region "Tổng"
+                        _Tong += (cc.Ngay1 != null) ? decimal.Parse(cc.Ngay1) : 0;
+                        _Tong += (cc.Ngay2 != null) ? decimal.Parse(cc.Ngay2) : 0;
+                        _Tong += (cc.Ngay3 != null) ? decimal.Parse(cc.Ngay3) : 0;
+                        _Tong += (cc.Ngay4 != null) ? decimal.Parse(cc.Ngay4) : 0;
+                        _Tong += (cc.Ngay5 != null) ? decimal.Parse(cc.Ngay5) : 0;
+                        _Tong += (cc.Ngay6 != null) ? decimal.Parse(cc.Ngay6) : 0;
+                        _Tong += (cc.Ngay7 != null) ? decimal.Parse(cc.Ngay7) : 0;
+                        _Tong += (cc.Ngay8 != null) ? decimal.Parse(cc.Ngay8) : 0;
+                        _Tong += (cc.Ngay9 != null) ? decimal.Parse(cc.Ngay9) : 0;
+                        _Tong += (cc.Ngay10 != null) ? decimal.Parse(cc.Ngay10) : 0;
+                        _Tong += (cc.Ngay11 != null) ? decimal.Parse(cc.Ngay11) : 0;
+                        _Tong += (cc.Ngay12 != null) ? decimal.Parse(cc.Ngay12) : 0;
+                        _Tong += (cc.Ngay13 != null) ? decimal.Parse(cc.Ngay13) : 0;
+                        _Tong += (cc.Ngay14 != null) ? decimal.Parse(cc.Ngay14) : 0;
+                        _Tong += (cc.Ngay15 != null) ? decimal.Parse(cc.Ngay15) : 0;
+                        _Tong += (cc.Ngay16 != null) ? decimal.Parse(cc.Ngay16) : 0;
+                        _Tong += (cc.Ngay17 != null) ? decimal.Parse(cc.Ngay17) : 0;
+                        _Tong += (cc.Ngay18 != null) ? decimal.Parse(cc.Ngay18) : 0;
+                        _Tong += (cc.Ngay19 != null) ? decimal.Parse(cc.Ngay19) : 0;
+                        _Tong += (cc.Ngay20 != null) ? decimal.Parse(cc.Ngay20) : 0;
+                        _Tong += (cc.Ngay21 != null) ? decimal.Parse(cc.Ngay21) : 0;
+                        _Tong += (cc.Ngay22 != null) ? decimal.Parse(cc.Ngay22) : 0;
+                        _Tong += (cc.Ngay23 != null) ? decimal.Parse(cc.Ngay23) : 0;
+                        _Tong += (cc.Ngay24 != null) ? decimal.Parse(cc.Ngay24) : 0;
+                        _Tong += (cc.Ngay25 != null) ? decimal.Parse(cc.Ngay25) : 0;
+                        _Tong += (cc.Ngay26 != null) ? decimal.Parse(cc.Ngay26) : 0;
+                        _Tong += (cc.Ngay27 != null) ? decimal.Parse(cc.Ngay27) : 0;
+                        _Tong += (cc.Ngay28 != null) ? decimal.Parse(cc.Ngay28) : 0;
+                        _Tong += (cc.Ngay29 != null) ? decimal.Parse(cc.Ngay29) : 0;
+                        _Tong += (cc.Ngay30 != null) ? decimal.Parse(cc.Ngay30) : 0;
+                        _Tong += (cc.Ngay31 != null) ? decimal.Parse(cc.Ngay31) : 0;
+                        #endregion
+                    }
                     break;
                 case "Tổng Dương":
                     if (KDLLoaiDLChamCong == "DateTime")
@@ -681,7 +695,7 @@ namespace LeTien.Screens
 
                         str = "Phút";
                     }
-                    if(KDLLoaiDLChamCong == "Int")
+                    else
                     {
                         #region "Tổng Dương"
                         int maxDate = SoNgayTrongThang();
@@ -732,7 +746,7 @@ namespace LeTien.Screens
 
                         str = "Phút";
                     }
-                    if (KDLLoaiDLChamCong == "Int")
+                    else
                     {
                         #region "Tổng Âm"
                         int maxDate = SoNgayTrongThang();
@@ -766,6 +780,35 @@ namespace LeTien.Screens
             }
             XpoDefault.Session.Save(xpcChamCong);
             xpcChamCong.Reload();
+        }
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
+
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
+        {
+
+        }
+
+        private void gridView1_RowCellClick_1(object sender, RowCellClickEventArgs e)
+        {
+             if (e.Column.FieldName == "LoaiDuLieuChamCong.LoaiChamCong" || e.Column.FieldName == "NhanVien.MaNhanVien" || e.Column.FieldName == "NhanVien.HoTen" || e.Column.FieldName == "HieuSuat" || e.Column.FieldName == "KetQua") return;
+             if (e.Clicks >= 2)
+             {
+
+                 DateTime d = DateTime.Parse(dtThang.EditValue.ToString());
+                 DateTime dt = new DateTime(d.Year, d.Month, int.Parse(e.Column.FieldName.Substring(4)));
+                 Employee nv = (gridView1.GetRowCellValue(e.RowHandle, colNhanVien)) as Employee;
+                 e.Handled = true;
+                 if (nv == null)
+                     return;
+                 Form f = new FrmPhieuChamCong(nv, dt);
+                 f.ShowDialog();
+             }
+            
         }
 
        

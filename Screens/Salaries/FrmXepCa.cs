@@ -125,6 +125,11 @@ namespace LeTien.Screens.Salaries
 
         private void btnTaoBangXepCa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if(dtItemThang.EditValue == null)
+            {
+                XtraMessageBox.Show("Chưa chọn tháng.");
+                return;
+            }
             Form f = new FrmTaoBangXepCa(DateTime.Parse(dtItemThang.EditValue.ToString()));
             f.Tag = this;
             f.ShowDialog();

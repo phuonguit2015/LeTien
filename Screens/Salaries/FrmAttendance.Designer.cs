@@ -75,7 +75,7 @@
             this.colNgay31 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMaNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKetQua = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.timeEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
@@ -246,7 +246,7 @@
             this.colNgay31,
             this.colMaNhanVien,
             this.colKetQua,
-            this.gridColumn2});
+            this.colNhanVien});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
@@ -259,12 +259,15 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colNgay1, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
+            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick_1);
             this.gridView1.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridView1_CellMerge);
             this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
             this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             this.gridView1.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridView1_CustomRowCellEdit);
             this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colLoaiDuLieuChamCong
             // 
@@ -298,6 +301,7 @@
             this.colNgay1.ColumnEdit = this.txtEdit;
             this.colNgay1.FieldName = "Ngay1";
             this.colNgay1.Name = "colNgay1";
+            this.colNgay1.OptionsColumn.AllowEdit = false;
             this.colNgay1.Visible = true;
             this.colNgay1.VisibleIndex = 3;
             // 
@@ -531,10 +535,10 @@
             this.colKetQua.Visible = true;
             this.colKetQua.VisibleIndex = 34;
             // 
-            // gridColumn2
+            // colNhanVien
             // 
-            this.gridColumn2.FieldName = "NhanVien!";
-            this.gridColumn2.Name = "gridColumn2";
+            this.colNhanVien.FieldName = "NhanVien!";
+            this.colNhanVien.Name = "colNhanVien";
             // 
             // repositoryItemColorPickEdit1
             // 
@@ -1047,7 +1051,7 @@
         private DevExpress.Xpo.XPCollection xpcThamSo;
         private DevExpress.XtraBars.BarButtonItem btnEdit;
         private DevExpress.Xpo.XPCollection xpcPublicHoliday;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn colNhanVien;
         private DevExpress.Xpo.XPCollection xpcQuanLyNgayNghi;
         private DevExpress.Utils.ToolTipController toolTipController1;
         private DevExpress.Xpo.XPCollection xpcXepCa;
