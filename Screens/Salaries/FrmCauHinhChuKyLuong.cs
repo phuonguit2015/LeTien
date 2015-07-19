@@ -1,7 +1,6 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
-using DevExpress.XtraGrid.Views.Grid;
 using LeTien.Objects;
 using System;
 using System.Collections.Generic;
@@ -13,40 +12,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeTien.Screens.List
+namespace LeTien.Screens.Salaries
 {
-    public partial class FrmDanhMucCa : FormBase
+    public partial class FrmCauHinhChuKyLuong : FormBase
     {
-        public FrmDanhMucCa()
+        private string _id = string.Empty;
+
+        private void grvUCList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            if (grvUCList.GetRowCellValue(e.RowHandle, "Oid") != null)
+            {
+                _id = grvUCList.GetRowCellValue(e.RowHandle, "Oid").ToString();
+            }
+        }
+     
+        public FrmCauHinhChuKyLuong()
         {
             InitializeComponent();
+
+
+            ((System.ComponentModel.ISupportInitialize)(this.xpcChuKyLuongThang)).BeginInit();
+            this.xpcChuKyLuongThang.ObjectType = typeof(LeTien.Objects.ChuKyLuongThang);
+            ((System.ComponentModel.ISupportInitialize)(this.xpcChuKyLuongThang)).EndInit();
+
         }
-         private string _id = string.Empty;
-
-         private void grvUCList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-         {
-             if (grvUCList.GetRowCellValue(e.RowHandle, "Oid") != null)
-             {
-                 _id = grvUCList.GetRowCellValue(e.RowHandle, "Oid").ToString();
-             }
-         }
-     
-
         #region "Override FromBase"
         protected override void OnNew()
         {
-            FrmLoaiDuLieuChamCongDetail f = new FrmLoaiDuLieuChamCongDetail();
-            f.Text = "Thêm loại dữ liệu hợp đồng";
-            f.Tag = this;
-            f.ShowDialog();
+           
         }
 
         protected override void OnEdit()
         {
-            FrmLoaiDuLieuChamCongDetail f = new FrmLoaiDuLieuChamCongDetail(_id);
-            f.Text = "Cập nhật loại dữ liệu chấm công";
-            f.Tag = this;
-            f.ShowDialog();
+           
         }
 
         protected override void OnDelete()
@@ -57,20 +55,20 @@ namespace LeTien.Screens.List
             }
             using (var uow = new UnitOfWork())
             {
-                DanhMucCa br = uow.FindObject<DanhMucCa>(CriteriaOperator.Parse("Oid = ?", _id));
+                ChuKyLuongThang br = uow.FindObject<ChuKyLuongThang>(CriteriaOperator.Parse("Oid = ?", _id));
                 if (br != null)
                 {
                     br.Delete();
                     uow.CommitChanges();
                     uow.PurgeDeletedObjects();
-                    RefreshData();
+                    OnReload();
                 }
             }
         }
         protected override void OnReload()
         {
             UOW.ReloadChangedObjects();
-            xpcDanhMucCa.Reload();
+            xpcChuKyLuongThang.Reload();
         }
 
         protected override void OnPreview()
@@ -89,14 +87,6 @@ namespace LeTien.Screens.List
 
         #endregion
 
-
-        public void RefreshData()
-        {
-            OnReload();
-        }
-
-       
-
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             OnDelete();
@@ -109,7 +99,7 @@ namespace LeTien.Screens.List
 
         private void btnXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnExportXls();           
+            OnExportXls();
         }
 
         private void btnDong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -117,7 +107,7 @@ namespace LeTien.Screens.List
             if (XtraMessageBox.Show("Bạn có muốn thoát của sổ làm việc không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 this.Close();
-            }     
+            }
         }
 
         private void btnEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -133,6 +123,17 @@ namespace LeTien.Screens.List
                 grvUCList.OptionsBehavior.Editable = false;
                 grvUCList.OptionsBehavior.ReadOnly = true;
                 btnEdit.Caption = "Đang ở Chế độ chỉ đọc";
+            }
+        }
+            
+     
+
+        private void dtThang_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            DateTime? d = (DateTime?) e.NewValue  ;
+            if(d != null)
+            {
+                e.NewValue = new DateTime(d.Value.Year, d.Value.Month, 1);
             }
         }
     }

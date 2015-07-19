@@ -35,7 +35,7 @@
     <BootstrapperComponentsUrl>http://letien.kyanon.com/prerequisites/</BootstrapperComponentsUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -65,6 +65,26 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Charts.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v14.1" />
@@ -73,6 +93,7 @@
     <Reference Include="DevExpress.PivotGrid.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v14.1.Core" />
     <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Spreadsheet.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v14.1" />
     <Reference Include="DevExpress.Utils.v14.1.UI, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -91,6 +112,7 @@
     <Reference Include="DevExpress.XtraRichEdit.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -109,6 +131,8 @@
     <Compile Include="Objects\Branch.cs" />
     <Compile Include="Objects\ChamCong.cs" />
     <Compile Include="Objects\ChiTietTienLuong.cs" />
+    <Compile Include="Objects\ChiTietXepCa.cs" />
+    <Compile Include="Objects\ChuKyLuongThang.cs" />
     <Compile Include="Objects\Competence.cs" />
     <Compile Include="Objects\DanhMucCa.cs" />
     <Compile Include="Objects\DanhMucMauNgayNghiLe.cs" />
@@ -179,6 +203,12 @@
     </Compile>
     <Compile Include="Screens\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\FrmChamCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\FrmChamCong.Designer.cs">
+      <DependentUpon>FrmChamCong.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\HopDong\FormLaborContractDetail.cs">
       <SubType>Form</SubType>
@@ -282,6 +312,18 @@
     <Compile Include="Screens\Salaries\FrmBangTinhLuong.Designer.cs">
       <DependentUpon>FrmBangTinhLuong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Salaries\FrmCauHinhChuKyLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmCauHinhChuKyLuong.Designer.cs">
+      <DependentUpon>FrmCauHinhChuKyLuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmImportChamCong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmImportChamCong.Designer.cs">
+      <DependentUpon>FrmImportChamCong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Salaries\FrmPhieuChamCong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,6 +365,12 @@
     </Compile>
     <Compile Include="Screens\Salaries\FrmXepCa.Designer.cs">
       <DependentUpon>FrmXepCa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmXepCaTuDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmXepCaTuDong.Designer.cs">
+      <DependentUpon>FrmXepCaTuDong.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\User\FrmLogin.cs">
       <SubType>Form</SubType>
@@ -402,6 +450,9 @@
     <EmbeddedResource Include="Screens\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\FrmChamCong.resx">
+      <DependentUpon>FrmChamCong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\HopDong\FormLaborContractDetail.resx">
       <DependentUpon>FormLaborContractDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -453,6 +504,12 @@
     <EmbeddedResource Include="Screens\Salaries\FrmBangTinhLuong.resx">
       <DependentUpon>FrmBangTinhLuong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmCauHinhChuKyLuong.resx">
+      <DependentUpon>FrmCauHinhChuKyLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmImportChamCong.resx">
+      <DependentUpon>FrmImportChamCong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmPhieuChamCong.resx">
       <DependentUpon>FrmPhieuChamCong.cs</DependentUpon>
     </EmbeddedResource>
@@ -473,6 +530,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmXepCa.resx">
       <DependentUpon>FrmXepCa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmXepCaTuDong.resx">
+      <DependentUpon>FrmXepCaTuDong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\User\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

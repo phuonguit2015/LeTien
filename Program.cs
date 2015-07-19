@@ -19,6 +19,9 @@ namespace LeTien
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Application.ThreadException += Application_ThreadException;
+
             DevExpress.XtraEditors.WindowsFormsSettings.DefaultLookAndFeel.SetSkinStyle("Office 2013 Light Gray");
            // DevExpress.XtraEditors.WindowsFormsSettings.AllowPixelScrolling = Utils.DefaultBoolean.True;
            // DevExpress.XtraEditors.WindowsFormsSettings.ScrollUIMode = XtraEditors.ScrollUIMode.Touch;
@@ -36,6 +39,16 @@ namespace LeTien
                 Application.Run(new FrmLogin());
             }
             
+        }
+
+        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            switch(e.Exception.HResult)
+            {
+                default:
+                    XtraMessageBox.Show("Tháng bạn nhập đã tồn tại vui lòng chọn lại!", "Thông Báo");
+                    break;
+            }
         }
     }
 }

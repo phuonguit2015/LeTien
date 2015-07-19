@@ -39,6 +39,7 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colLoaiDuLieuChamCong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colThang = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMaNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHoTen = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colThoiGian = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNgay1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,7 +74,6 @@
             this.colNgay29 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNgay30 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNgay31 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMaNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKetQua = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
@@ -83,19 +83,18 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.xpcThamSo = new DevExpress.Xpo.XPCollection(this.components);
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.dtThang = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.btnTaoBangChamCong = new DevExpress.XtraBars.BarButtonItem();
+            this.btnImport = new DevExpress.XtraBars.BarButtonItem();
             this.btnEdit = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCapNhatKQ = new DevExpress.XtraBars.BarButtonItem();
             this.btnIn = new DevExpress.XtraBars.BarButtonItem();
             this.btnXuat = new DevExpress.XtraBars.BarButtonItem();
-            this.btnNapLai = new DevExpress.XtraBars.BarButtonItem();
             this.btnDong = new DevExpress.XtraBars.BarButtonItem();
-            this.btnCapNhatKQ = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -103,8 +102,9 @@
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
             this.txtTenBangChamCong = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.btnNapLai = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.btnImport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnImportAC = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
@@ -134,7 +134,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpcThamSo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).BeginInit();
@@ -157,10 +156,6 @@
             this.repositoryItemSpinEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemSpinEdit3.Name = "repositoryItemSpinEdit3";
-            // 
-            // xpcEmployee
-            // 
-            this.xpcEmployee.ObjectType = typeof(LeTien.Objects.Employee);
             // 
             // layoutControl1
             // 
@@ -202,15 +197,12 @@
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
-            // xpcChamCong
-            // 
-            this.xpcChamCong.ObjectType = typeof(LeTien.Objects.ChamCong);
-            // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colLoaiDuLieuChamCong,
             this.colThang,
+            this.colMaNhanVien,
             this.colHoTen,
             this.colThoiGian,
             this.colNgay1,
@@ -244,7 +236,6 @@
             this.colNgay29,
             this.colNgay30,
             this.colNgay31,
-            this.colMaNhanVien,
             this.colKetQua,
             this.colNhanVien});
             this.gridView1.GridControl = this.gridControl1;
@@ -262,7 +253,6 @@
             this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick_1);
             this.gridView1.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridView1_CellMerge);
-            this.gridView1.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridView1_CustomDrawCell);
             this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             this.gridView1.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridView1_CustomRowCellEdit);
             this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
@@ -281,10 +271,22 @@
             this.colThang.Name = "colThang";
             this.colThang.OptionsColumn.FixedWidth = true;
             // 
+            // colMaNhanVien
+            // 
+            this.colMaNhanVien.Caption = "Mã Nhân Viên";
+            this.colMaNhanVien.FieldName = "NhanVien.MaNhanVien";
+            this.colMaNhanVien.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.colMaNhanVien.Name = "colMaNhanVien";
+            this.colMaNhanVien.OptionsColumn.TabStop = false;
+            this.colMaNhanVien.Visible = true;
+            this.colMaNhanVien.VisibleIndex = 0;
+            // 
             // colHoTen
             // 
             this.colHoTen.FieldName = "NhanVien.HoTen";
+            this.colHoTen.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.colHoTen.Name = "colHoTen";
+            this.colHoTen.OptionsColumn.TabStop = false;
             this.colHoTen.Visible = true;
             this.colHoTen.VisibleIndex = 1;
             // 
@@ -292,7 +294,9 @@
             // 
             this.colThoiGian.Caption = "Thời Gian";
             this.colThoiGian.FieldName = "LoaiDuLieuChamCong.LoaiChamCong";
+            this.colThoiGian.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.colThoiGian.Name = "colThoiGian";
+            this.colThoiGian.OptionsColumn.TabStop = false;
             this.colThoiGian.Visible = true;
             this.colThoiGian.VisibleIndex = 2;
             // 
@@ -520,14 +524,6 @@
             this.colNgay31.Visible = true;
             this.colNgay31.VisibleIndex = 33;
             // 
-            // colMaNhanVien
-            // 
-            this.colMaNhanVien.Caption = "Mã Nhân Viên";
-            this.colMaNhanVien.FieldName = "NhanVien.MaNhanVien";
-            this.colMaNhanVien.Name = "colMaNhanVien";
-            this.colMaNhanVien.Visible = true;
-            this.colMaNhanVien.VisibleIndex = 0;
-            // 
             // colKetQua
             // 
             this.colKetQua.FieldName = "KetQua";
@@ -632,12 +628,13 @@
             this.btnDong,
             this.barButtonItem1,
             this.dtThang,
-            this.btnImport,
+            this.btnImportAC,
             this.btnEdit,
             this.btnTaoBangChamCong,
-            this.btnCapNhatKQ});
+            this.btnCapNhatKQ,
+            this.btnImport});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 18;
+            this.barManager1.MaxItemId = 19;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEdit1,
             this.repositoryItemSpinEdit2,
@@ -655,12 +652,12 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.dtThang),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTaoBangChamCong, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnEdit, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCapNhatKQ, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnIn, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXuat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnNapLai, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDong, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCapNhatKQ, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDong, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -689,11 +686,9 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemDateEdit2.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.TouchUI;
             this.repositoryItemDateEdit2.Mask.EditMask = "M/yyyy";
             this.repositoryItemDateEdit2.Mask.UseMaskAsDisplayFormat = true;
             this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
-            this.repositoryItemDateEdit2.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             // 
             // btnTaoBangChamCong
             // 
@@ -704,6 +699,15 @@
             this.btnTaoBangChamCong.Name = "btnTaoBangChamCong";
             this.btnTaoBangChamCong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaoBangChamCong_ItemClick);
             // 
+            // btnImport
+            // 
+            this.btnImport.Caption = "Import Dữ Liệu Chấm Công";
+            this.btnImport.Glyph = ((System.Drawing.Image)(resources.GetObject("btnImport.Glyph")));
+            this.btnImport.Id = 18;
+            this.btnImport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImport.LargeGlyph")));
+            this.btnImport.Name = "btnImport";
+            this.btnImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImport_ItemClick);
+            // 
             // btnEdit
             // 
             this.btnEdit.Caption = "Đang ở chế đố chỉ đọc";
@@ -712,6 +716,15 @@
             this.btnEdit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEdit.LargeGlyph")));
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
+            // btnCapNhatKQ
+            // 
+            this.btnCapNhatKQ.Caption = "Cập Nhật Kết Quả";
+            this.btnCapNhatKQ.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCapNhatKQ.Glyph")));
+            this.btnCapNhatKQ.Id = 17;
+            this.btnCapNhatKQ.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCapNhatKQ.LargeGlyph")));
+            this.btnCapNhatKQ.Name = "btnCapNhatKQ";
+            this.btnCapNhatKQ.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCapNhatKQ_ItemClick);
             // 
             // btnIn
             // 
@@ -731,15 +744,6 @@
             this.btnXuat.Name = "btnXuat";
             this.btnXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXuat_ItemClick);
             // 
-            // btnNapLai
-            // 
-            this.btnNapLai.Caption = "Nạp Lại";
-            this.btnNapLai.Glyph = ((System.Drawing.Image)(resources.GetObject("btnNapLai.Glyph")));
-            this.btnNapLai.Id = 8;
-            this.btnNapLai.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnNapLai.LargeGlyph")));
-            this.btnNapLai.Name = "btnNapLai";
-            this.btnNapLai.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNapLai_ItemClick);
-            // 
             // btnDong
             // 
             this.btnDong.Caption = "Đóng";
@@ -748,15 +752,6 @@
             this.btnDong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnDong.LargeGlyph")));
             this.btnDong.Name = "btnDong";
             this.btnDong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDong_ItemClick);
-            // 
-            // btnCapNhatKQ
-            // 
-            this.btnCapNhatKQ.Caption = "Cập Nhật Kết Quả";
-            this.btnCapNhatKQ.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCapNhatKQ.Glyph")));
-            this.btnCapNhatKQ.Id = 17;
-            this.btnCapNhatKQ.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCapNhatKQ.LargeGlyph")));
-            this.btnCapNhatKQ.Name = "btnCapNhatKQ";
-            this.btnCapNhatKQ.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCapNhatKQ_ItemClick);
             // 
             // barDockControlTop
             // 
@@ -808,18 +803,27 @@
             this.repositoryItemTextEdit1.AutoHeight = false;
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
+            // btnNapLai
+            // 
+            this.btnNapLai.Caption = "Nạp Lại";
+            this.btnNapLai.Glyph = ((System.Drawing.Image)(resources.GetObject("btnNapLai.Glyph")));
+            this.btnNapLai.Id = 8;
+            this.btnNapLai.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnNapLai.LargeGlyph")));
+            this.btnNapLai.Name = "btnNapLai";
+            this.btnNapLai.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNapLai_ItemClick);
+            // 
             // barButtonItem1
             // 
             this.barButtonItem1.Id = 11;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
-            // btnImport
+            // btnImportAC
             // 
-            this.btnImport.Caption = "Import";
-            this.btnImport.Glyph = ((System.Drawing.Image)(resources.GetObject("btnImport.Glyph")));
-            this.btnImport.Id = 13;
-            this.btnImport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImport.LargeGlyph")));
-            this.btnImport.Name = "btnImport";
+            this.btnImportAC.Caption = "Import";
+            this.btnImportAC.Glyph = ((System.Drawing.Image)(resources.GetObject("btnImportAC.Glyph")));
+            this.btnImportAC.Id = 13;
+            this.btnImportAC.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImportAC.LargeGlyph")));
+            this.btnImportAC.Name = "btnImportAC";
             // 
             // repositoryItemSpinEdit1
             // 
@@ -897,30 +901,6 @@
             this.colFirstName.Visible = true;
             this.colFirstName.VisibleIndex = 1;
             // 
-            // xpcLoaiDuLieuChamCong
-            // 
-            this.xpcLoaiDuLieuChamCong.ObjectType = typeof(LeTien.Objects.LoaiDuLieuChamCong);
-            // 
-            // xpcPublicHoliday
-            // 
-            this.xpcPublicHoliday.ObjectType = typeof(LeTien.Objects.PublicHoliday);
-            // 
-            // xpcQuanLyNgayNghi
-            // 
-            this.xpcQuanLyNgayNghi.ObjectType = typeof(LeTien.Objects.QuanLyNgayNghi);
-            // 
-            // xpcXepCa
-            // 
-            this.xpcXepCa.ObjectType = typeof(LeTien.Objects.XepCa);
-            // 
-            // xpcCa
-            // 
-            this.xpcCa.ObjectType = typeof(LeTien.Objects.DanhMucCa);
-            // 
-            // xpcGTDLCCTheoCa
-            // 
-            this.xpcGTDLCCTheoCa.ObjectType = typeof(LeTien.Objects.GiaTriDuLieuChamCongTheoCa);
-            // 
             // FrmAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -950,7 +930,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpcThamSo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit2)).EndInit();
@@ -1043,12 +1022,11 @@
         private DevExpress.XtraBars.BarEditItem dtThang;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem btnImport;
+        private DevExpress.XtraBars.BarButtonItem btnImportAC;
         private DevExpress.Xpo.XPCollection xpcLoaiDuLieuChamCong;
         private DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit timeEdit;
         private DevExpress.XtraGrid.Columns.GridColumn colLoaiDuLieuChamCong;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtEdit;
-        private DevExpress.Xpo.XPCollection xpcThamSo;
         private DevExpress.XtraBars.BarButtonItem btnEdit;
         private DevExpress.Xpo.XPCollection xpcPublicHoliday;
         private DevExpress.XtraGrid.Columns.GridColumn colNhanVien;
@@ -1059,5 +1037,6 @@
         private DevExpress.Xpo.XPCollection xpcGTDLCCTheoCa;
         private DevExpress.XtraBars.BarButtonItem btnTaoBangChamCong;
         private DevExpress.XtraBars.BarButtonItem btnCapNhatKQ;
+        private DevExpress.XtraBars.BarButtonItem btnImport;
     }
 }

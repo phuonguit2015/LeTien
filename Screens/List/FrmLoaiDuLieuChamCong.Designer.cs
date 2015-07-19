@@ -45,6 +45,7 @@
             this.colMauHienThiDuong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTinhTong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cbbTinhTong = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.colDonViTong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RITextFistname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.RITextLastname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.R_BranchSelect = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -71,7 +72,7 @@
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.colDonViTong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShowWhenImport = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -107,7 +108,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 24);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(662, 404);
+            this.layoutControl1.Size = new System.Drawing.Size(879, 404);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -116,7 +117,7 @@
             this.panelControl1.Controls.Add(this.gridUCList);
             this.panelControl1.Location = new System.Drawing.Point(24, 43);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(614, 337);
+            this.panelControl1.Size = new System.Drawing.Size(831, 337);
             this.panelControl1.TabIndex = 4;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
@@ -141,7 +142,7 @@
             this.textEdit,
             this.repositoryItemTimeEdit1,
             this.cbbTinhTong});
-            this.gridUCList.Size = new System.Drawing.Size(610, 333);
+            this.gridUCList.Size = new System.Drawing.Size(827, 333);
             this.gridUCList.TabIndex = 12;
             this.gridUCList.UseEmbeddedNavigator = true;
             this.gridUCList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -161,7 +162,8 @@
             this.colMauHienThiAm,
             this.colMauHienThiDuong,
             this.colTinhTong,
-            this.colDonViTong});
+            this.colDonViTong,
+            this.colShowWhenImport});
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grvUCList.Name = "grvUCList";
@@ -255,6 +257,13 @@
             "Tổng Dương",
             "Tổng Âm"});
             this.cbbTinhTong.Name = "cbbTinhTong";
+            // 
+            // colDonViTong
+            // 
+            this.colDonViTong.FieldName = "DonViTong";
+            this.colDonViTong.Name = "colDonViTong";
+            this.colDonViTong.Visible = true;
+            this.colDonViTong.VisibleIndex = 7;
             // 
             // RITextFistname
             // 
@@ -355,7 +364,7 @@
             this.layoutControlGroup2});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(662, 404);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(879, 404);
             this.layoutControlGroup1.Text = "layoutControlGroup1";
             this.layoutControlGroup1.TextVisible = false;
             // 
@@ -366,7 +375,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(642, 384);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(859, 384);
             this.layoutControlGroup2.Text = "Danh mục loại dữ liệu chấm công";
             // 
             // layoutControlItem1
@@ -375,7 +384,7 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(618, 341);
+            this.layoutControlItem1.Size = new System.Drawing.Size(835, 341);
             this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextToControlDistance = 0;
@@ -471,14 +480,14 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(662, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(879, 24);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 428);
-            this.barDockControlBottom.Size = new System.Drawing.Size(662, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(879, 0);
             // 
             // barDockControlLeft
             // 
@@ -491,7 +500,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(662, 24);
+            this.barDockControlRight.Location = new System.Drawing.Point(879, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 404);
             // 
             // barButtonItem2
@@ -511,27 +520,26 @@
             this.repositoryItemCheckEdit1.AutoHeight = false;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
-            // colDonViTong
+            // colShowWhenImport
             // 
-            this.colDonViTong.FieldName = "DonViTong";
-            this.colDonViTong.Name = "colDonViTong";
-            this.colDonViTong.Visible = true;
-            this.colDonViTong.VisibleIndex = 7;
+            this.colShowWhenImport.Caption = "Hiện Khi Import";
+            this.colShowWhenImport.FieldName = "ShowWhenImport";
+            this.colShowWhenImport.Name = "colShowWhenImport";
+            this.colShowWhenImport.Visible = true;
+            this.colShowWhenImport.VisibleIndex = 8;
             // 
             // FrmLoaiDuLieuChamCong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 428);
+            this.ClientSize = new System.Drawing.Size(879, 428);
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(678, 467);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(678, 467);
             this.Name = "FrmLoaiDuLieuChamCong";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Loại dữ liệu chấm công";
@@ -610,5 +618,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTinhTong;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox cbbTinhTong;
         private DevExpress.XtraGrid.Columns.GridColumn colDonViTong;
+        private DevExpress.XtraGrid.Columns.GridColumn colShowWhenImport;
     }
 }

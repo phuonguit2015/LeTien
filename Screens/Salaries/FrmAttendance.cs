@@ -28,7 +28,6 @@ namespace LeTien.Screens
     public partial class FrmAttendance : DevExpress.XtraEditors.XtraForm
     {
         public int attendanceMonth;
-
         public int attendanceYear;
 
         public string dateVN(string enDate)
@@ -67,7 +66,37 @@ namespace LeTien.Screens
         public FrmAttendance(string attendanceMonth = null, string attendanceYear = null)
         {
             InitializeComponent();
-            dtThang_EditValueChanged(dtThang,new EventArgs());
+
+            ((System.ComponentModel.ISupportInitialize)(this.xpcLoaiDuLieuChamCong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcPublicHoliday)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcQuanLyNgayNghi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcXepCa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcCa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcGTDLCCTheoCa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcChamCong)).BeginInit();
+
+            this.xpcEmployee.ObjectType = typeof(LeTien.Objects.Employee);
+            this.xpcChamCong.ObjectType = typeof(LeTien.Objects.ChamCong);
+            this.xpcLoaiDuLieuChamCong.ObjectType = typeof(LeTien.Objects.LoaiDuLieuChamCong);
+            this.xpcPublicHoliday.ObjectType = typeof(LeTien.Objects.PublicHoliday);
+            this.xpcQuanLyNgayNghi.ObjectType = typeof(LeTien.Objects.QuanLyNgayNghi);
+            this.xpcXepCa.ObjectType = typeof(LeTien.Objects.XepCa);
+            this.xpcCa.ObjectType = typeof(LeTien.Objects.DanhMucCa);
+            this.xpcGTDLCCTheoCa.ObjectType = typeof(LeTien.Objects.GiaTriDuLieuChamCongTheoCa);
+
+            ((System.ComponentModel.ISupportInitialize)(this.xpcLoaiDuLieuChamCong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcPublicHoliday)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcQuanLyNgayNghi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcXepCa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcCa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcGTDLCCTheoCa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcChamCong)).EndInit();
+
+
+
+            dtThang.EditValue = DateTime.Now;
         }
 
         private int SoNgayTrongThang()
@@ -89,6 +118,9 @@ namespace LeTien.Screens
             }
             return daysInMonth;
         }
+        //
+        DateTime firstDate =  new DateTime(2015,5,26);
+        DateTime lastDate = new DateTime(2015, 6, 25);
 
         public void renderAttendanDateceColumn()
         {
@@ -104,68 +136,47 @@ namespace LeTien.Screens
                         col.Visible = false;
                         continue;
                     }
-                    for (i = 1; i <= maxDate; i++)
+                    DateTime curDate = firstDate.AddDays(double.Parse(s) - 1);
+                    //for (i = 1; i <= maxDate; i++)
+                    if(curDate <= lastDate)
                     {
-                        if (i == int.Parse(s))
-                        {
-                            DateTime curDate = new DateTime(this.attendanceYear, this.attendanceMonth, i);
-                            col.Caption = i.ToString() + " (" + dateVN(curDate.DayOfWeek.ToString()) + ")";
-                            col.VisibleIndex = i + 4;
-                            col.Visible = true;
-                            col.AppearanceHeader.ForeColor = System.Drawing.Color.Black;
-                            col.AppearanceCell.Options.UseBackColor = false;
-                            if (curDate.DayOfWeek.ToString() == "Sunday")
-                            {
-                                col.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
-                                col.AppearanceCell.BackColor = System.Drawing.Color.Yellow;
-                                col.AppearanceCell.Options.UseBackColor = true;
-                            }
-                            Color color = KiemTraNgayLe(xpcPublicHoliday,curDate);
-                            if(color != Color.White)
-                            {
+                        //if (i == int.Parse(s))
+                        //{
+                        //DateTime curDate = new DateTime(this.attendanceYear, this.attendanceMonth, i);
+                       
+                        col.Caption = curDate.ToShortDateString();
 
-                                col.AppearanceCell.BackColor = color;
-                                col.AppearanceCell.Options.UseBackColor = true;
-                            }
-                            col.AppearanceHeader.Options.UseForeColor = true;
-                            break;
+                        //col.Caption = i.ToString() + " (" + dateVN(curDate.DayOfWeek.ToString()) + ")";
+                        col.Visible = true;
+                        col.AppearanceHeader.ForeColor = System.Drawing.Color.Black;
+                        col.AppearanceCell.Options.UseBackColor = false;
+                        if (curDate.DayOfWeek.ToString() == "Sunday")
+                        {
+                            col.AppearanceHeader.ForeColor = System.Drawing.Color.Red;
+                            col.AppearanceCell.BackColor = System.Drawing.Color.Yellow;
+                            col.AppearanceCell.Options.UseBackColor = true;
                         }
+                        Color color = KiemTraNgayLe(xpcPublicHoliday, curDate);
+                        if (color != Color.White)
+                        {
+
+                            col.AppearanceCell.BackColor = color;
+                            col.AppearanceCell.Options.UseBackColor = true;
+                        }
+                        col.AppearanceHeader.Options.UseForeColor = true;
+                        //break;
+                        //}
+                        
                     }
                 }
                 if(col.FieldName.Contains("KetQua"))
                 {
-                    col.VisibleIndex = i + 4;
+                    //col.VisibleIndex = i + 4;
                     col.Caption = "Kết Quả";
                 }
             }
         }
-
-        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
-        {
-            //if (e.Column.Name == "DateOfMonth")
-            //{
-            //    GridView currentView = sender as GridView;
-            //    string employeeID = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["Oid"]).ToString();
-            //    string employeeFName = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["first_name"]).ToString();
-            //    string employeeLName = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["last_name"]).ToString();
-            //    string employeeIDText = currentView.GetRowCellValue(e.RowHandle, currentView.Columns["employee_id"]).ToString();
-            //    //int date = int.Parse(e.Column.Caption.ToString());
-            //    int date = e.Column.VisibleIndex - 1;
-
-            //    string attendanceDate = this.attendanceYear.ToString() + "-" + (this.attendanceMonth < 10 ? "0" + this.attendanceMonth.ToString() : this.attendanceMonth.ToString()) + "-" + (date < 10 ? "0" + date.ToString() : date.ToString());
-            //    /// string attendanceID = Objects.Attendance.GetAttendanceIdOfEmployeeByDate(employeeID, attendanceDate, session1);
-
-            //    //Call form input attendance
-            //    string frmCaption = "Chấm công nhân viên - " + employeeLName + " " + employeeLName + " (" + employeeIDText + ") ngày " + attendanceDate;
-            //    SplashScreenManager.ShowForm(typeof(WaitFormMain));
-            //    FrmPutAttendance frm = new FrmPutAttendance();
-            //    System.Threading.Thread.Sleep(2000);
-            //    frm.Text = frmCaption;
-            //    frm.Show();
-            //    SplashScreenManager.CloseForm();
-
-            }
- 
+        
 
         private void gridView1_CellMerge(object sender, CellMergeEventArgs e)
         {
@@ -186,14 +197,16 @@ namespace LeTien.Screens
 
         private void dtThang_EditValueChanged(object sender, EventArgs e)
         {
-         
+            LoadDuLieuChamCongTheoThang(DateTime.Parse(dtThang.EditValue.ToString()));
         }
 
         public void TaoBangChamCong(List<Employee> dsNV)
         {            
-            DateTime date = (DateTime)dtThang.EditValue;
-            CriteriaOperator criteria = new BinaryOperator("Thang", date, BinaryOperatorType.Equal);
-            xpcChamCong.Filter = criteria;
+            DateTime dt = (DateTime)dtThang.EditValue;
+            DateTime minDate = new DateTime(dt.Year, dt.Month, 1);
+            DateTime maxDate = new DateTime(dt.Year, dt.Month, SoNgayTrongThang());
+            XPCollection _xpcChamCong = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("Thang", minDate, BinaryOperatorType.GreaterOrEqual),
+                new BinaryOperator("Thang", maxDate, BinaryOperatorType.LessOrEqual)));
             foreach (Employee e in dsNV)
             {
                 foreach (LoaiDuLieuChamCong l in xpcLoaiDuLieuChamCong)
@@ -201,14 +214,14 @@ namespace LeTien.Screens
                     CriteriaOperator test = CriteriaOperator.And(
                         new BinaryOperator("NhanVien", e, BinaryOperatorType.Equal),
                         new BinaryOperator("LoaiDuLieuChamCong", l, BinaryOperatorType.Equal));
-                    XPCollection a = new XPCollection(xpcChamCong);
+                    XPCollection a = new XPCollection(_xpcChamCong);
                     a.Filter = test;
                     if (a.Count == 0)
                     {
                         ChamCong chamcong = new ChamCong();
                         chamcong.NhanVien = e;
                         chamcong.LoaiDuLieuChamCong = l;
-                        chamcong.Thang = date;
+                        chamcong.Thang = dt;
                         xpcChamCong.Add(chamcong);
                     }
                 }
@@ -220,7 +233,7 @@ namespace LeTien.Screens
         {
             //dtThang.EditValue = DateTime.Now;
             //dtThang.EditValueChanged += dtThang_EditValueChanged;
-            gridControl1.Visible = false;
+            //gridControl1.Visible = false;
         }
 
         private void gridView1_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
@@ -251,7 +264,7 @@ namespace LeTien.Screens
         {
             GridView gv = sender as GridView;
             if (e.RowHandle < 0) return;
-            if (e.Column.FieldName == "LoaiDuLieuChamCong.LoaiChamCong" || e.Column.FieldName == "NhanVien.MaNhanVien" || e.Column.FieldName == "NhanVien.HoTen" || e.Column.FieldName == "HieuSuat" || e.Column.FieldName == "KetQua") return;
+            if (e.Column.FieldName == "LoaiDuLieuChamCong.LoaiChamCong" || e.Column.FieldName == "NhanVien.MaNhanVien" || e.Column.FieldName == "NhanVien.HoTen" || e.Column.FieldName == "HieuSuat"|| e.Column.FieldName == "Ca" || e.Column.FieldName == "KetQua") return;
             DateTime curDate = new DateTime(attendanceYear, attendanceMonth, int.Parse(e.Column.FieldName.Substring(4)));
             Employee nv = (Employee)gv.GetRowCellValue(e.RowHandle, gv.Columns["NhanVien!"]);
 
@@ -269,80 +282,78 @@ namespace LeTien.Screens
             #endregion
 
             #region "Màu đi trể về sớm"
-            string kieudulieu = gv.GetRowCellDisplayText(e.RowHandle, gv.Columns["LoaiDuLieuChamCong.LoaiChamCong"]);
-            LoaiDuLieuChamCong l = (LoaiDuLieuChamCong)gv.GetRowCellValue(e.RowHandle, gv.Columns["LoaiDuLieuChamCong!"]);
-            DateTime value;
-            DateTime t1;
-            //Tim nhan vien trong ngay do lam ca nao
-            //Tim GTDLCCTheoCa thi voi ca do Loai DL CC do thì gt la bao nhieu           
-            XPCollection _xepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", curDate),
-                new BinaryOperator("NhanVien", nv)));
-            if(_xepCa.Count > 0)
-            {
-                XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
-               new BinaryOperator("LoaiDLChamCong", l)));
-                if (_GTDLCCTheoCa.Count > 0)
-                {
+            //string kieudulieu = gv.GetRowCellDisplayText(e.RowHandle, gv.Columns["LoaiDuLieuChamCong.LoaiChamCong"]);
+            //LoaiDuLieuChamCong l = (LoaiDuLieuChamCong)gv.GetRowCellValue(e.RowHandle, gv.Columns["LoaiDuLieuChamCong!"]);
+            //DateTime value;
+            //DateTime t1;
+            ////Tim nhan vien trong ngay do lam ca nao
+            ////Tim GTDLCCTheoCa thi voi ca do Loai DL CC do thì gt la bao nhieu           
+            //XPCollection _xepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", curDate),
+            //    new BinaryOperator("NhanVien", nv)));
+            //if(_xepCa.Count > 0)
+            //{
+               // XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
+               //new BinaryOperator("LoaiDLChamCong", l)));
+               // if (_GTDLCCTheoCa.Count > 0)
+               // {
 
 
-                    switch (l.LoaiChamCong)
-                    {
+               //     switch (l.LoaiChamCong)
+               //     {
 
-                        case "Thời Gian Vào":
-                            if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
-                            {
-                                try
-                                {
-                                    t1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
-                                    value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
-                                    if (SoSanhThoiGianLonHon(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, t1.Hour, t1.Minute, t1.Second) == true)
-                                    {
-                                        e.Appearance.BackColor = l.MauHienThiDuong;
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    XtraMessageBox.Show(ex.Message);
-                                }
+               //         case "Thời Gian Vào":
+               //             if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
+               //             {
+               //                 try
+               //                 {
+               //                     t1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
+               //                     value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
+               //                     if (SoSanhThoiGianLonHon(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, t1.Hour, t1.Minute, t1.Second) == true)
+               //                     {
+               //                         e.Appearance.BackColor = l.MauHienThiDuong;
+               //                     }
+               //                 }
+               //                 catch (Exception ex)
+               //                 {
+               //                     XtraMessageBox.Show(ex.Message);
+               //                 }
 
-                            }
-                            //So phut di tre    
-                            break;
-                        case "Thời Gian Ra":
-                            if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
-                            {
-                                try
-                                {
-                                    t1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
-                                    value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
-                                    if (SoSanhThoiGianLonHon(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, t1.Hour, t1.Minute, t1.Second) == false)
-                                    {
-                                        e.Appearance.BackColor = l.MauHienThiAm;
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    XtraMessageBox.Show(ex.Message);
-                                }
-                            }
-                            break;
-                    }
-                }
+               //             }
+               //             //So phut di tre    
+               //             break;
+               //         case "Thời Gian Ra":
+               //             if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
+               //             {
+               //                 try
+               //                 {
+               //                     t1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
+               //                     value = DateTime.Parse(gv.GetRowCellValue(e.RowHandle, e.Column).ToString());
+               //                     if (SoSanhThoiGianLonHon(((DateTime)value).Hour, ((DateTime)value).Minute, ((DateTime)value).Second, t1.Hour, t1.Minute, t1.Second) == false)
+               //                     {
+               //                         e.Appearance.BackColor = l.MauHienThiAm;
+               //                     }
+               //                 }
+               //                 catch (Exception ex)
+               //                 {
+               //                     XtraMessageBox.Show(ex.Message);
+               //                 }
+               //             }
+               //             break;
+               //     }
+               //}
 
 
-            }
+            //}
            
             #endregion
 
             #region "Màu theo ca"
-            //Lấy màu của ca        
-            if(e.Appearance.BackColor == Color.White && _xepCa.Count > 0)
-            {
-                e.Appearance.BackColor = (_xepCa[0] as XepCa).Ca.MauHienThiCa;        
-            }
-            #endregion
-
-
+            ////Lấy màu của ca        
+            //if(e.Appearance.BackColor == Color.White && _xepCa.Count > 0)
+            //{
+            //    e.Appearance.BackColor = (_xepCa[0] as XepCa).Ca.MauHienThiCa;        
+            //}
+            #endregion    
         }
         private bool SoSanhThoiGianLonHon(int h1, int m1, int s1, int h2, int m2, int s2)
         {
@@ -376,33 +387,6 @@ namespace LeTien.Screens
                 //btnEdit.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/show_16x16.png");
 
             }
-        }
-
-        private List<int> DanhSachNgayChuNhatTrongThang()
-        {
-            List<int> arr = new List<int>();
-             for (int i = 1; i <= SoNgayTrongThang(); i++)
-             {
-                 DateTime curDate = new DateTime(this.attendanceYear, this.attendanceMonth, i);
-                 if (curDate.DayOfWeek.ToString() == "Sunday")
-                     arr.Add(i);
-             }                            
-            return arr;
-        }
-
-        private void gridView1_CustomDrawCell(object sender, RowCellCustomDrawEventArgs e)
-        {
-            //#region "Màu ngày chủ nhật"
-            //foreach (int i in DanhSachNgayChuNhatTrongThang())
-            //{
-            //    string fieldName = "Ngay" + i.ToString();
-            //    if (e.Column.FieldName == fieldName)
-            //    {
-            //        e.Appearance.BackColor = Color.YellowGreen;                    
-            //    }
-            //}
-            //#endregion
-           
         }
 
         private Color KiemTraNgayLe(XPCollection xpc, DateTime dt)
@@ -521,7 +505,8 @@ namespace LeTien.Screens
 
         private void btnXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            Form f = new FrmChamCong();
+            f.ShowDialog();
         }
 
         private void btnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -531,44 +516,74 @@ namespace LeTien.Screens
 
         private void btnTaoBangChamCong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            gridControl1.Visible = true;   
-            this.attendanceMonth = DateTime.Parse(dtThang.EditValue.ToString()).Month;
-            this.attendanceYear = DateTime.Parse(dtThang.EditValue.ToString()).Year;
-            SplashScreenManager.ShowForm(typeof(WaitFormMain));
-     
+            //KiemTraVaTaoBangXepCa(DateTime.Parse(dtThang.EditValue.ToString()));
+            this.renderAttendanDateceColumn();
+            gridControl1.Visible = true; SplashScreenManager.ShowForm(typeof(WaitFormMain));
+            List<Employee> dsNV = new List<Employee>();
 
-            DateTime minDate = new DateTime(attendanceYear,attendanceMonth,1);
-            DateTime maxDate = new DateTime(attendanceYear,attendanceMonth,SoNgayTrongThang());
-
-            xpcXepCa.Reload();
-
-            XPCollection _xpcXepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", minDate, BinaryOperatorType.GreaterOrEqual),
-                new BinaryOperator("Ngay", maxDate, BinaryOperatorType.LessOrEqual)));
-            if(_xpcXepCa.Count == 0)
+            foreach (XepCa xc in KiemTraVaTaoBangXepCa(DateTime.Parse(dtThang.EditValue.ToString())))
             {
-                XtraMessageBox.Show("Chưa có bảng xếp ca cho tháng này. Vui lòng tạo bảng xếp ca trước.");
-                Form f = new FrmXepCa();
-                f.ShowDialog();
+                //dsNV.Add(xc.NhanVien);
             }
-            else
-            {
-                List<Employee> dsNV = new List<Employee>();
-                foreach(XepCa xc in _xpcXepCa)
-                {
-                    dsNV.Add(xc.NhanVien);
-                }
-                System.Threading.Thread.Sleep(1000);
-                this.renderAttendanDateceColumn();
-                TaoBangChamCong(dsNV);
-               // gridControl1.DataSource = TaoBangChamCong(dsNV);
-                //xpcChamCong = TaoBangChamCong(dsNV);
-                gridView1.SortInfo.Clear();
-                gridView1.SortInfo.Add(new GridColumnSortInfo(colMaNhanVien, DevExpress.Data.ColumnSortOrder.Ascending));
-                gridView1.SortInfo.Add(new GridColumnSortInfo(colThoiGian, DevExpress.Data.ColumnSortOrder.Ascending));   
-            }
+            System.Threading.Thread.Sleep(1000);
+            TaoBangChamCong(dsNV);
+            LoadDuLieuChamCongTheoThang(new DateTime(attendanceYear, attendanceMonth, 1));
+            gridView1.SortInfo.Clear();
+            gridView1.SortInfo.Add(new GridColumnSortInfo(colMaNhanVien, DevExpress.Data.ColumnSortOrder.Ascending));
+            gridView1.SortInfo.Add(new GridColumnSortInfo(colThoiGian, DevExpress.Data.ColumnSortOrder.Ascending));
+
             //Danh sach NV da xep ca trong thang thì mơi chấm công
             //
-         SplashScreenManager.CloseForm();
+            SplashScreenManager.CloseForm();
+        }
+
+        private XPCollection KiemTraVaTaoBangXepCa(DateTime dt)
+        {
+            attendanceYear = dt.Year;
+            attendanceMonth = dt.Month;
+            DateTime minDate = new DateTime(attendanceYear,attendanceMonth,1);
+            DateTime maxDate = new DateTime(attendanceYear,attendanceMonth,SoNgayTrongThang());
+            XPCollection _xpcXepCa;
+            do
+            {
+                xpcXepCa.Reload();
+                _xpcXepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", minDate, BinaryOperatorType.GreaterOrEqual),
+                    new BinaryOperator("Ngay", maxDate, BinaryOperatorType.LessOrEqual)));
+                if (_xpcXepCa.Count == 0)
+                {
+                    XtraMessageBox.Show("Chưa có bảng xếp ca cho tháng này. Vui lòng tạo bảng xếp ca trước.");
+                    Form f = new FrmXepCa();
+                    f.ShowDialog();
+                }
+            }while(_xpcXepCa.Count == 0);
+            _xpcXepCa = new XPCollection(_xpcXepCa, new BinaryOperator("Ngay", new DateTime(dt.Year, dt.Month, 1), BinaryOperatorType.Equal));
+            return _xpcXepCa;
+        }
+        private void LoadDuLieuChamCongTheoThang(DateTime dt)
+        {
+            gridControl1.Visible = false;
+            attendanceYear = dt.Year;
+            attendanceMonth = dt.Month;
+            DateTime minDate = new DateTime(dt.Year, dt.Month, 1);
+            DateTime maxDate = new DateTime(dt.Year, dt.Month, SoNgayTrongThang());
+            xpcChamCong.Reload();
+            XPCollection _xpcChamCong = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("Thang",minDate,BinaryOperatorType.GreaterOrEqual),
+               new BinaryOperator("Thang",maxDate,BinaryOperatorType.LessOrEqual)));
+            
+
+            if(_xpcChamCong.Count > 0)
+            {
+                firstDate = (_xpcChamCong[0] as ChamCong).FirstDate;
+                lastDate = (_xpcChamCong[0] as ChamCong).LastDate;
+            }
+            else
+            {               
+                firstDate = minDate;
+                lastDate = maxDate;
+            }
+            renderAttendanDateceColumn();
+            gridControl1.DataSource = _xpcChamCong;
+            gridControl1.Visible = true;
         }
 
         private void barButtonItem2_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -677,17 +692,17 @@ namespace LeTien.Screens
                     new BinaryOperator("NhanVien", cc.NhanVien)));
                             if (_xepCa.Count > 0 && cc[i] != null)
                             {
-                                XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
-                   new BinaryOperator("LoaiDLChamCong", cc.LoaiDuLieuChamCong)));
-                                DateTime d1 = DateTime.Parse(cc[i]);
-                                DateTime d2 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
-                                //Đi trể
-                                if (SoSanhThoiGianLonHon(d1.Hour, d1.Minute, d1.Second, d2.Hour, d2.Minute, d2.Second) == true)
-                                {
-                                    TimeSpan t1 = new TimeSpan(d1.Hour, d1.Minute, d1.Second);
-                                    TimeSpan t2 = new TimeSpan(d2.Hour, d2.Minute, d2.Second);
-                                    _Tong += decimal.Parse((t1.TotalMinutes - t2.TotalMinutes).ToString());
-                                }
+                   //             XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
+                   //new BinaryOperator("LoaiDLChamCong", cc.LoaiDuLieuChamCong)));
+                   //             DateTime d1 = DateTime.Parse(cc[i]);
+                   //             DateTime d2 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
+                   //             //Đi trể
+                   //             if (SoSanhThoiGianLonHon(d1.Hour, d1.Minute, d1.Second, d2.Hour, d2.Minute, d2.Second) == true)
+                   //             {
+                   //                 TimeSpan t1 = new TimeSpan(d1.Hour, d1.Minute, d1.Second);
+                   //                 TimeSpan t2 = new TimeSpan(d2.Hour, d2.Minute, d2.Second);
+                   //                 _Tong += decimal.Parse((t1.TotalMinutes - t2.TotalMinutes).ToString());
+                   //             }
                             }
                         }
 
@@ -706,11 +721,11 @@ namespace LeTien.Screens
                     new BinaryOperator("NhanVien", cc.NhanVien)));
                             if (_xepCa.Count > 0 && cc[i] != null)
                             {
-                                XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
-                   new BinaryOperator("LoaiDLChamCong", cc.LoaiDuLieuChamCong)));
-                                decimal d1 = decimal.Parse(cc[i]);
-                                decimal d2 = decimal.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
-                                _Tong += (d1 > d2) ? d1 - d2 : 0;
+                   //             XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
+                   //new BinaryOperator("LoaiDLChamCong", cc.LoaiDuLieuChamCong)));
+                   //             decimal d1 = decimal.Parse(cc[i]);
+                   //             decimal d2 = decimal.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
+                   //             _Tong += (d1 > d2) ? d1 - d2 : 0;
                             }
                         }
 
@@ -729,17 +744,17 @@ namespace LeTien.Screens
                     new BinaryOperator("NhanVien", cc.NhanVien)));
                             if (_xepCa.Count > 0  && cc[i] != null)
                             {
-                                XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
-                   new BinaryOperator("LoaiDLChamCong", cc.LoaiDuLieuChamCong)));
-                                DateTime d2 = DateTime.Parse(cc[i]);
-                                DateTime d1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
-                                //Về Sớm
-                                if (SoSanhThoiGianLonHon(d1.Hour, d1.Minute, d1.Second, d2.Hour, d2.Minute, d2.Second) == true)
-                                {
-                                    TimeSpan t1 = new TimeSpan(d1.Hour, d1.Minute, d1.Second);
-                                    TimeSpan t2 = new TimeSpan(d2.Hour, d2.Minute, d2.Second);
-                                    _Tong += decimal.Parse((t1.TotalMinutes - t2.TotalMinutes).ToString());
-                                }
+                   //             XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
+                   //new BinaryOperator("LoaiDLChamCong", cc.LoaiDuLieuChamCong)));
+                   //             DateTime d2 = DateTime.Parse(cc[i]);
+                   //             DateTime d1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
+                   //             //Về Sớm
+                   //             if (SoSanhThoiGianLonHon(d1.Hour, d1.Minute, d1.Second, d2.Hour, d2.Minute, d2.Second) == true)
+                   //             {
+                   //                 TimeSpan t1 = new TimeSpan(d1.Hour, d1.Minute, d1.Second);
+                   //                 TimeSpan t2 = new TimeSpan(d2.Hour, d2.Minute, d2.Second);
+                   //                 _Tong += decimal.Parse((t1.TotalMinutes - t2.TotalMinutes).ToString());
+                   //             }
                             }
                         }
                         #endregion
@@ -757,11 +772,11 @@ namespace LeTien.Screens
                     new BinaryOperator("NhanVien", cc.NhanVien)));
                             if (_xepCa.Count > 0 && cc[i] != null)
                             {
-                                XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
-                   new BinaryOperator("LoaiDLChamCong", cc.LoaiDuLieuChamCong)));
-                                decimal d2 = decimal.Parse(cc[i]);
-                                decimal d1 = decimal.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
-                                _Tong += (d1 > d2) ? d1 - d2 : 0;
+                   //             XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as XepCa).Ca),
+                   //new BinaryOperator("LoaiDLChamCong", cc.LoaiDuLieuChamCong)));
+                   //             decimal d2 = decimal.Parse(cc[i]);
+                   //             decimal d1 = decimal.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
+                   //             _Tong += (d1 > d2) ? d1 - d2 : 0;
                             }
                         }
 
@@ -809,6 +824,12 @@ namespace LeTien.Screens
                  f.ShowDialog();
              }
             
+        }
+
+        private void btnImport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = new FrmImportChamCong();
+            f.ShowDialog();
         }
 
        

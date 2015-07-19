@@ -74,6 +74,7 @@
             this.btnItem_CaLamViec = new DevExpress.XtraBars.BarButtonItem();
             this.barItem_ThongTinHopDong = new DevExpress.XtraBars.BarButtonItem();
             this.btnGTriDLChamCongTheoCa = new DevExpress.XtraBars.BarButtonItem();
+            this.btnXepCa = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -86,7 +87,6 @@
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.MdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.SplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::LeTien.Screens.WaitFormMain), true, true);
-            this.btnXepCa = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
@@ -507,6 +507,16 @@
             this.btnGTriDLChamCongTheoCa.Name = "btnGTriDLChamCongTheoCa";
             this.btnGTriDLChamCongTheoCa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGTriDLChamCongTheoCa_ItemClick);
             // 
+            // btnXepCa
+            // 
+            resources.ApplyResources(this.btnXepCa, "btnXepCa");
+            this.btnXepCa.Glyph = ((System.Drawing.Image)(resources.GetObject("btnXepCa.Glyph")));
+            this.btnXepCa.GlyphDisabled = ((System.Drawing.Image)(resources.GetObject("btnXepCa.GlyphDisabled")));
+            this.btnXepCa.Id = 60;
+            this.btnXepCa.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXepCa.LargeGlyph")));
+            this.btnXepCa.Name = "btnXepCa";
+            this.btnXepCa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXepCa_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -582,16 +592,6 @@
             // 
             this.MdiManager.MdiParent = this;
             // 
-            // btnXepCa
-            // 
-            resources.ApplyResources(this.btnXepCa, "btnXepCa");
-            this.btnXepCa.Glyph = ((System.Drawing.Image)(resources.GetObject("btnXepCa.Glyph")));
-            this.btnXepCa.GlyphDisabled = ((System.Drawing.Image)(resources.GetObject("btnXepCa.GlyphDisabled")));
-            this.btnXepCa.Id = 60;
-            this.btnXepCa.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXepCa.LargeGlyph")));
-            this.btnXepCa.Name = "btnXepCa";
-            this.btnXepCa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXepCa_ItemClick);
-            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
@@ -603,6 +603,7 @@
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).EndInit();

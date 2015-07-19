@@ -25,12 +25,12 @@ namespace LeTien.Objects
             set;
         }
 
+        //[Indexed("NhanVien;Thang;LoaiDuLieuChamCong", Unique = true)]
         public Employee NhanVien
         {
             get;
             set;
         }
-
 
         public DateTime Thang
         {
@@ -50,8 +50,20 @@ namespace LeTien.Objects
             get;
             set;
         }
-       
 
+        [DisplayName ("Ngày Đầu Tháng")]
+        public DateTime FirstDate
+        {
+            get;
+            set;
+        }
+
+        [DisplayName("Ngày Cuối Tháng")]
+        public DateTime LastDate
+        {
+            get;
+            set;
+        }
         public string HieuSuat
         {
             get;
@@ -67,100 +79,68 @@ namespace LeTien.Objects
                 {
                     case 1:
                         return Ngay1;
-                        break;
                     case 2:
                         return Ngay2;
-                        break;
                     case 3:
                         return Ngay3;
-                        break;
                     case 4:
                         return Ngay4;
-                        break;
                     case 5:
                         return Ngay5;
-                        break;
                     case 6:
                         return Ngay6;
-                        break;
                     case 7:
                         return Ngay7;
-                        break;
                     case 8:
                         return Ngay8;
-                        break;
                     case 9:
                         return Ngay9;
-                        break;
                     case 10:
                         return Ngay10;
-                        break;
                     case 11:
                         return Ngay11;
-                        break;
                     case 12:
                         return Ngay12;
-                        break;
                     case 13:
                         return Ngay13;
-                        break;
                     case 14:
                         return Ngay14;
-                        break;
                     case 15:
                         return Ngay15;
-                        break;
                     case 16:
                         return Ngay16;
-                        break;
                     case 17:
                         return Ngay17;
-                        break;
                     case 18:
                         return Ngay18;
-                        break;
                     case 19:
                         return Ngay19;
-                        break;
                     case 20:
                         return Ngay10;
-                        break;
                     case 21:
                         return Ngay21;
-                        break;
                     case 22:
-                        return Ngay22;
-                        break;
+                        return Ngay22;     
                     case 23:
                         return Ngay23;
-                        break;
                     case 24:
                         return Ngay24;
-                        break;
                     case 25:
                         return Ngay25;
-                        break;
                     case 26:
                         return Ngay26;
-                        break;
                     case 27:
                         return Ngay27;
-                        break;
                     case 28:
                         return Ngay28;
-                        break;
                     case 29:
                         return Ngay29;
-                        break;
                     case 30:
                         return Ngay30;
-                        break;
                     case 31:
                         return Ngay31;
-                        break;
                     default:
                         return string.Empty;
-                        break;
                 }
             }
             set
@@ -264,8 +244,7 @@ namespace LeTien.Objects
                         break;
                 }
             }
-        }
-        
+        }        
 
         #region "Ngày"
         [DisplayName("Ngày 1")]
@@ -455,8 +434,7 @@ namespace LeTien.Objects
             set;
         }
         #endregion
-
-
+        
         public override void AfterConstruction()
         {
             base.AfterConstruction();

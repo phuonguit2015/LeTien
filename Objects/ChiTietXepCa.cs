@@ -4,16 +4,16 @@ using DevExpress.Xpo;
 namespace LeTien.Objects
 {
 
-    public class XepCa : XPObject
+    public class ChiTietXepCa : XPObject
     {
-        public XepCa()
+        public ChiTietXepCa()
             : base()
         {
             // This constructor is used when an object is loaded from a persistent storage.
             // Do not place any code here.
         }
 
-        public XepCa(Session session)
+        public ChiTietXepCa(Session session)
             : base(session)
         {
             // This constructor is used when an object is loaded from a persistent storage.
@@ -26,14 +26,40 @@ namespace LeTien.Objects
             // Place here your initialization code.
         }
 
-        [DisplayName("Tháng")]
-        public DateTime Thang
+        [DisplayName("Nhân Viên")]
+        public Employee NhanVien
         {
             get;
             set;
-        }      
+        }
 
-        public string TenBangXepCa;
+        [DisplayName("Ca")]
+        public DanhMucCa Ca
+        {
+            get;
+            set;
+        }
+
+        [DisplayName("Ngày")]
+        public DateTime Ngay
+        {
+            get;
+            set;
+        }
+
+        [DisplayName("Ghi Chú")]
+        public string GhiChu
+        {
+            get;
+            set;
+        }
+
+
+        public XepCa xepCa
+        {
+            get;
+            set;
+        }
     }
 
 }
