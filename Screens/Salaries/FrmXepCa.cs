@@ -64,19 +64,6 @@ namespace LeTien.Screens.Salaries
             HienThiDanhSachTheoThang(new DateTime(int.Parse(spinNam.EditValue.ToString()), int.Parse(spinThang.EditValue.ToString()), 1));
         }
 
-        protected override void OnPreview()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách xếp ca";
-            base.OnPreview();
-        }
-
-        protected override void OnExportXls()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách xếp ca";
-            base.OnExportXls();
-        }
 
         #endregion
 
@@ -95,13 +82,13 @@ namespace LeTien.Screens.Salaries
 
         private void btnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnPreview();
+            OnPreview(gridUCList, "DANH SÁCH XẾP CA", "reportTemplate.repx");
+
         }
 
         private void btnXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            HienThiDanhSachTheoThang(new DateTime(int.Parse(spinNam.EditValue.ToString()), int.Parse(spinThang.EditValue.ToString()), 1));
-            //OnExportXls();
+            OnExportXls(gridUCList);
         }
 
         private void btnDong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

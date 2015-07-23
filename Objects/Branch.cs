@@ -7,7 +7,7 @@ namespace LeTien.Objects
 
     public partial class Branch : XPObject, IDXDataErrorInfo
     {
-        public Session curSession;
+        //public Session curSession;
 
        
         public Branch()
@@ -23,7 +23,7 @@ namespace LeTien.Objects
             // This constructor is used when an object is loaded from a persistent storage.
             // Do not place any code here.
 
-            this.curSession = session;
+            //this.curSession = session;
         }
 
     

@@ -27,7 +27,7 @@ namespace LeTien.Screens.HopDong
         protected override void OnNew()
         {
             FormLaborContractDetail f = new FormLaborContractDetail();
-            f.Text = "Thêm hợp đồng";
+            f.Text = "THÊM HỢP ĐỒNG";
             f.Tag = this;
             f.ShowDialog();
         }
@@ -35,48 +35,40 @@ namespace LeTien.Screens.HopDong
         protected override void OnEdit()
         {
             FormLaborContractDetail f = new FormLaborContractDetail(_maHopDong);
-            f.Text = "Cập nhật hợp đồng";
+            f.Text = "CẬP NHẬT HỢP ĐỒNG";
             f.Tag = this;
             f.ShowDialog();
         }
 
         protected override void OnDelete()
         {
-            if (XtraMessageBox.Show("Bạn có muốn xóa không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+            if (XtraMessageBox.Show("Bạn có muốn xóa không?", "THÔNG BÁO!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
             {
                 return;
             }
-            using (var uow = new UnitOfWork())
+
+            for (int i = 0; i < grvUCList.SelectedRowsCount; i++)
             {
-                LaborContract br = uow.FindObject<LaborContract>(CriteriaOperator.Parse("MaHopDong = ?", lb.MaHopDong));
-                if (br != null)
+                _maHopDong = grvUCList.GetRowCellValue(grvUCList.GetSelectedRows()[i], colMaHopDong).ToString();
+                using (var uow = new UnitOfWork())
                 {
-                    br.Delete();
-                    uow.CommitChanges();
-                    uow.PurgeDeletedObjects();                   
-                    RefreshData();
+                    LaborContract br = uow.FindObject<LaborContract>(CriteriaOperator.Parse("MaHopDong = ?", _maHopDong));
+                    if (br != null)
+                    {
+                        br.Delete();
+                        uow.CommitChanges();
+                        uow.PurgeDeletedObjects();
+                    }
                 }
             }
+            RefreshData();
         }
         protected override void OnReload()
         {
-            UOW.ReloadChangedObjects();
+            base.OnReload();           
             xpcLaborContract.Reload();
-        }
-
-        protected override void OnPreview()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách hợp đồng";
-            base.OnPreview();
-        }
-
-        protected override void OnExportXls()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách hợp đồng";
-            base.OnExportXls();
-        }
+            gridUCList.DataSource = xpcLaborContract;
+        }        
 
         public void RefreshData()
         {
@@ -90,34 +82,33 @@ namespace LeTien.Screens.HopDong
             ucMenu.UCMain_Print_Clicked += ucMenu_Print_Clicked;
             ucMenu.UCMain_Export_Clicked += ucMenu_Export_Clicked;
             ucMenu.UCMain_Dong_Clicked += ucMenu_Dong_Clicked;
-            ucMenu.UCMain_MayTinh_Clicked += ucMenu_MayTinh_Clicked;
+            ucMenu.UCMain_Delete_Clicked += ucMenu_Delete_Clicked;
+            ucMenu.UCMain_Edit_Clicked += ucMenu_Edit_Clicked;
 
-            ucMenu.UCMain_Edit.Enabled = false;
-            ucMenu.UCMain_Delete.Enabled = false;
-            ucMenu.UCMain_MayTinh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+
+            ucMenu.btnEdit.Enabled = false;
+            ucMenu.btnXoa.Enabled = false;
+
         }
 
-        private void ucMenu_MayTinh_Clicked(object sender, EventArgs e)
-        {
-            
-        }
+       
 
         private void ucMenu_Dong_Clicked(object sender, EventArgs e)
         {
             if (XtraMessageBox.Show("Bạn có muốn thoát của sổ làm việc không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 this.Close();
-            }     
+            }      
         }
 
         private void ucMenu_Export_Clicked(object sender, EventArgs e)
         {
-            OnExportXls();
+            OnExportXls(gridUCList);
         }
 
         private void ucMenu_Print_Clicked(object sender, EventArgs e)
         {
-            OnPreview();
+            OnPreview(gridUCList,"DANH SÁCH HỢP ĐỒNG","reportTemplate.repx");
         }
 
         private void ucMenu_Refresh_Clicked(object sender, EventArgs e)
@@ -140,11 +131,11 @@ namespace LeTien.Screens.HopDong
             //lb.NgayKy = DateTime.Parse(grvUCList.GetRowCellValue(e.RowHandle, "NgayKy").ToString());
             //lb.NgayHetHan = DateTime.Parse(grvUCList.GetRowCellValue(e.RowHandle, "NgayHetHan").ToString());
 
-            ucMenu.UCMain_Edit.Enabled = true;
-            ucMenu.UCMain_Delete.Enabled = true;
+            //ucMenu.UCMain_Edit.Enabled = true;
+            //ucMenu.UCMain_Delete.Enabled = true;
 
-            ucMenu.UCMain_Edit_Clicked += ucMenu_Edit_Clicked;
-            ucMenu.UCMain_Delete_Clicked += ucMenu_Delete_Clicked;
+            //ucMenu.UCMain_Edit_Clicked += ucMenu_Edit_Clicked;
+            //ucMenu.UCMain_Delete_Clicked += ucMenu_Delete_Clicked;
         }
 
         private void ucMenu_Delete_Clicked(object sender, EventArgs e)
@@ -157,9 +148,24 @@ namespace LeTien.Screens.HopDong
             OnEdit();
         }
 
-        private void grvUCList_DoubleClick(object sender, EventArgs e)
+        private void grvUCList_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
-            OnEdit();
+            ucMenu.btnEdit.Enabled = false;
+            ucMenu.btnXoa.Enabled = false;
+            if(grvUCList.SelectedRowsCount > 0)
+            {
+                if (grvUCList.SelectedRowsCount == 1)
+                {
+                    ucMenu.btnEdit.Enabled = true;
+                    _maHopDong = grvUCList.GetRowCellValue(grvUCList.GetSelectedRows()[0], colMaHopDong).ToString();
+                }
+                ucMenu.btnXoa.Enabled = true;
+            }
+            else
+            {
+                ucMenu.btnEdit.Enabled = false;
+                ucMenu.btnXoa.Enabled = false;
+            }
         }
     }
 }

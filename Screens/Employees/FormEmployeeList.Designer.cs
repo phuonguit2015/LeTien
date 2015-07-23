@@ -237,12 +237,19 @@
             this.bandedGridView1.GridControl = this.gridControl1;
             this.bandedGridView1.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.bandedGridView1.Name = "bandedGridView1";
+            this.bandedGridView1.OptionsBehavior.ReadOnly = true;
+            this.bandedGridView1.OptionsPrint.AllowMultilineHeaders = true;
+            this.bandedGridView1.OptionsSelection.MultiSelect = true;
+            this.bandedGridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.bandedGridView1.OptionsView.ColumnAutoWidth = false;
             this.bandedGridView1.OptionsView.ShowAutoFilterRow = true;
             this.bandedGridView1.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+            this.bandedGridView1.OptionsView.ShowDetailButtons = false;
             this.bandedGridView1.OptionsView.ShowGroupPanel = false;
+            this.bandedGridView1.OptionsView.ShowIndicator = false;
             this.bandedGridView1.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             this.bandedGridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.bandedGridView1_RowClick);
+            this.bandedGridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grvUCList_SelectionChanged_1);
             this.bandedGridView1.DoubleClick += new System.EventHandler(this.bandedGridView1_DoubleClick);
             // 
             // MaNhanVien
@@ -771,8 +778,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1056, 496);
             this.Controls.Add(this.layoutControl1);
+            this.LookAndFeel.SkinName = "Seven Classic";
             this.Name = "FormEmployeeList";
-            this.Text = "Danh sách nhân viên";
+            this.Text = "DANH SÁCH NHÂN VIÊN";
             this.Load += new System.EventHandler(this.FormEmployeeList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

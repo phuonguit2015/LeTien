@@ -50,19 +50,8 @@ namespace LeTien.Screens.Salaries
             xpcTamUngLuong.Reload();
         }
 
-        protected override void OnPreview()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách tạm ứng lương";
-            base.OnPreview();
-        }
-
-        protected override void OnExportXls()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách tạm ứng lương";
-            base.OnExportXls();
-        }
+     
+        
 
         private void btnDong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -74,7 +63,7 @@ namespace LeTien.Screens.Salaries
 
         private void btnXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnExportXls();
+            OnExportXls(gridUCList);
         }
 
         private void btnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

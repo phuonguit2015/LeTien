@@ -54,8 +54,8 @@ namespace LeTien.Objects
             set;
         }
 
-
-        public XepCa xepCa
+        
+        public string Key
         {
             get;
             set;

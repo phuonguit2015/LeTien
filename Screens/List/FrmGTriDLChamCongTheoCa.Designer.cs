@@ -188,7 +188,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Caption = "Đang ở chế độ chỉ đọc";
+            this.btnEdit.Caption = "CHẾ ĐỘ CHỈ ĐỌC";
             this.btnEdit.Glyph = ((System.Drawing.Image)(resources.GetObject("btnEdit.Glyph")));
             this.btnEdit.Id = 0;
             this.btnEdit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEdit.LargeGlyph")));
@@ -197,7 +197,8 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Caption = "Xóa";
+            this.btnXoa.Caption = "XÓA";
+            this.btnXoa.Enabled = false;
             this.btnXoa.Glyph = ((System.Drawing.Image)(resources.GetObject("btnXoa.Glyph")));
             this.btnXoa.Id = 6;
             this.btnXoa.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXoa.LargeGlyph")));
@@ -206,7 +207,7 @@
             // 
             // btnIn
             // 
-            this.btnIn.Caption = "In";
+            this.btnIn.Caption = "IN";
             this.btnIn.Glyph = ((System.Drawing.Image)(resources.GetObject("btnIn.Glyph")));
             this.btnIn.Id = 4;
             this.btnIn.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnIn.LargeGlyph")));
@@ -215,7 +216,7 @@
             // 
             // btnXuat
             // 
-            this.btnXuat.Caption = "Xuất";
+            this.btnXuat.Caption = "XUẤT EXCEL";
             this.btnXuat.Glyph = ((System.Drawing.Image)(resources.GetObject("btnXuat.Glyph")));
             this.btnXuat.Id = 5;
             this.btnXuat.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXuat.LargeGlyph")));
@@ -224,7 +225,7 @@
             // 
             // btnDong
             // 
-            this.btnDong.Caption = "Đóng";
+            this.btnDong.Caption = "ĐÓNG";
             this.btnDong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnDong.Glyph")));
             this.btnDong.Id = 3;
             this.btnDong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnDong.LargeGlyph")));
@@ -351,14 +352,16 @@
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grvUCList.Name = "grvUCList";
+            this.grvUCList.NewItemRowText = "Thêm dòng mới tại đây...";
             this.grvUCList.OptionsBehavior.ReadOnly = true;
-            this.grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.grvUCList.OptionsSelection.MultiSelect = true;
+            this.grvUCList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.grvUCList.OptionsView.ShowAutoFilterRow = true;
             this.grvUCList.OptionsView.ShowDetailButtons = false;
             this.grvUCList.OptionsView.ShowGroupPanel = false;
             this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
-            this.grvUCList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvUCList_RowClick);
             this.grvUCList.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grvUCList_CustomRowCellEdit);
+            this.grvUCList.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grvUCList_SelectionChanged);
             // 
             // colOid
             // 
@@ -371,7 +374,7 @@
             this.gridColumn1.FieldName = "Ca!";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.VisibleIndex = 1;
             // 
             // lkupCa
             // 
@@ -397,7 +400,7 @@
             this.gridColumn3.FieldName = "LoaiDLChamCong!";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
+            this.gridColumn3.VisibleIndex = 2;
             // 
             // lkupLDLChamCong
             // 
@@ -421,7 +424,7 @@
             this.colGiaTri.FieldName = "GiaTri";
             this.colGiaTri.Name = "colGiaTri";
             this.colGiaTri.Visible = true;
-            this.colGiaTri.VisibleIndex = 2;
+            this.colGiaTri.VisibleIndex = 3;
             // 
             // RITextFistname
             // 
@@ -530,8 +533,9 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.LookAndFeel.SkinName = "Seven Classic";
             this.Name = "FrmGTriDLChamCongTheoCa";
-            this.Text = "Giá Trị Dữ Liệu Chấm Công Theo Ca";
+            this.Text = "GIÁ TRỊ DỮ LIỆU CHẤM CÔNG THEO CA";
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtThang.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtThang)).EndInit();

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.ucMenu = new LeTien.UCMainControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gridUCList = new DevExpress.XtraGrid.GridControl();
             this.xpcLaborContract = new DevExpress.Xpo.XPCollection(this.components);
@@ -45,7 +46,6 @@
             this.RITextLastname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.R_BranchSelect = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.R_CompentenceSelect = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.ucMenu = new LeTien.UCMainControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -70,8 +70,8 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Controls.Add(this.ucMenu);
+            this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -80,12 +80,19 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // ucMenu
+            // 
+            this.ucMenu.Location = new System.Drawing.Point(12, 12);
+            this.ucMenu.Name = "ucMenu";
+            this.ucMenu.Size = new System.Drawing.Size(631, 29);
+            this.ucMenu.TabIndex = 6;
+            // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.gridUCList);
-            this.panelControl1.Location = new System.Drawing.Point(24, 78);
+            this.panelControl1.Location = new System.Drawing.Point(24, 76);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(607, 367);
+            this.panelControl1.Size = new System.Drawing.Size(607, 369);
             this.panelControl1.TabIndex = 5;
             // 
             // gridUCList
@@ -101,7 +108,7 @@
             this.RITextLastname,
             this.R_BranchSelect,
             this.R_CompentenceSelect});
-            this.gridUCList.Size = new System.Drawing.Size(603, 363);
+            this.gridUCList.Size = new System.Drawing.Size(603, 365);
             this.gridUCList.TabIndex = 10;
             this.gridUCList.UseEmbeddedNavigator = true;
             this.gridUCList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -123,44 +130,52 @@
             this.colLuongCoBan});
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
+            this.grvUCList.IndicatorWidth = 50;
             this.grvUCList.Name = "grvUCList";
             this.grvUCList.OptionsBehavior.ReadOnly = true;
+            this.grvUCList.OptionsSelection.MultiSelect = true;
+            this.grvUCList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.grvUCList.OptionsSelection.UseIndicatorForSelection = false;
             this.grvUCList.OptionsView.ShowAutoFilterRow = true;
             this.grvUCList.OptionsView.ShowDetailButtons = false;
             this.grvUCList.OptionsView.ShowGroupPanel = false;
+            this.grvUCList.OptionsView.ShowIndicator = false;
             this.grvUCList.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn3, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
-            this.grvUCList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvUCList_RowClick);
-            this.grvUCList.DoubleClick += new System.EventHandler(this.grvUCList_DoubleClick);
+            this.grvUCList.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grvUCList_SelectionChanged);
             // 
             // colMaHopDong
             // 
             this.colMaHopDong.FieldName = "MaHopDong";
             this.colMaHopDong.Name = "colMaHopDong";
             this.colMaHopDong.Visible = true;
-            this.colMaHopDong.VisibleIndex = 0;
+            this.colMaHopDong.VisibleIndex = 1;
+            this.colMaHopDong.Width = 76;
             // 
             // colLoaiHopDong
             // 
             this.colLoaiHopDong.FieldName = "LoaiHopDong";
             this.colLoaiHopDong.Name = "colLoaiHopDong";
             this.colLoaiHopDong.Visible = true;
-            this.colLoaiHopDong.VisibleIndex = 1;
+            this.colLoaiHopDong.VisibleIndex = 2;
+            this.colLoaiHopDong.Width = 76;
             // 
             // colNgayKy
             // 
             this.colNgayKy.FieldName = "NgayKy";
             this.colNgayKy.Name = "colNgayKy";
             this.colNgayKy.Visible = true;
-            this.colNgayKy.VisibleIndex = 5;
+            this.colNgayKy.VisibleIndex = 6;
+            this.colNgayKy.Width = 76;
             // 
             // colNgayHetHan
             // 
             this.colNgayHetHan.FieldName = "NgayHetHan";
             this.colNgayHetHan.Name = "colNgayHetHan";
             this.colNgayHetHan.Visible = true;
-            this.colNgayHetHan.VisibleIndex = 6;
+            this.colNgayHetHan.VisibleIndex = 7;
+            this.colNgayHetHan.Width = 100;
             // 
             // gridColumn3
             // 
@@ -168,21 +183,24 @@
             this.gridColumn3.FieldName = "iNhanVien.HoTen";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
+            this.gridColumn3.VisibleIndex = 3;
+            this.gridColumn3.Width = 76;
             // 
             // gridColumn5
             // 
             this.gridColumn5.FieldName = "ChucVu.CompetenceName";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 3;
+            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.Width = 76;
             // 
             // colLuongCoBan
             // 
             this.colLuongCoBan.FieldName = "LuongCoBan";
             this.colLuongCoBan.Name = "colLuongCoBan";
             this.colLuongCoBan.Visible = true;
-            this.colLuongCoBan.VisibleIndex = 4;
+            this.colLuongCoBan.VisibleIndex = 5;
+            this.colLuongCoBan.Width = 76;
             // 
             // RITextFistname
             // 
@@ -224,13 +242,6 @@
             this.R_CompentenceSelect.NullValuePrompt = "Chưa nhập dữ liệu";
             this.R_CompentenceSelect.NullValuePromptShowForEmptyValue = true;
             // 
-            // ucMenu
-            // 
-            this.ucMenu.Location = new System.Drawing.Point(12, 12);
-            this.ucMenu.Name = "ucMenu";
-            this.ucMenu.Size = new System.Drawing.Size(631, 31);
-            this.ucMenu.TabIndex = 4;
-            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.CustomizationFormText = "layoutControlGroup1";
@@ -250,9 +261,9 @@
             this.layoutControlGroup2.CustomizationFormText = "Danh sách hợp đồng";
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem2});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 35);
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 33);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(635, 414);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(635, 416);
             this.layoutControlGroup2.Text = "Danh sách hợp đồng";
             // 
             // layoutControlItem2
@@ -261,7 +272,7 @@
             this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(611, 371);
+            this.layoutControlItem2.Size = new System.Drawing.Size(611, 373);
             this.layoutControlItem2.Text = "layoutControlItem2";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextToControlDistance = 0;
@@ -273,7 +284,7 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(635, 35);
+            this.layoutControlItem1.Size = new System.Drawing.Size(635, 33);
             this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextToControlDistance = 0;
@@ -286,7 +297,7 @@
             this.ClientSize = new System.Drawing.Size(655, 469);
             this.Controls.Add(this.layoutControl1);
             this.Name = "FormLaborContractList";
-            this.Text = "Danh sách hợp đồng";
+            this.Text = "DANH SÁCH HỢP ĐỒNG";
             this.Load += new System.EventHandler(this.FormLaborContractList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -313,8 +324,6 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
-        private UCMainControl ucMenu;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         public DevExpress.XtraGrid.GridControl gridUCList;
         private DevExpress.XtraGrid.Views.Grid.GridView grvUCList;
@@ -331,5 +340,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn colLuongCoBan;
+        private UCMainControl ucMenu;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
     }
 }

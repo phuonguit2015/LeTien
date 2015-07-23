@@ -35,7 +35,7 @@
     <BootstrapperComponentsUrl>http://letien.kyanon.com/prerequisites/</BootstrapperComponentsUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -86,6 +86,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v14.1" />
     <Reference Include="DevExpress.DataAccess.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -94,6 +95,7 @@
     <Reference Include="DevExpress.Printing.v14.1.Core" />
     <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Spreadsheet.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.TouchSkins.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v14.1" />
     <Reference Include="DevExpress.Utils.v14.1.UI, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -150,40 +152,28 @@
     <Compile Include="Objects\XepCa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\DataReport.cs">
+    <Compile Include="Reports\reportQuanLyNgayNghi.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\DataReport.Designer.cs">
-      <DependentUpon>DataReport.cs</DependentUpon>
+    <Compile Include="Reports\reportQuanLyNgayNghi.Designer.cs">
+      <DependentUpon>reportQuanLyNgayNghi.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Configurations\FrmAttendanceSymbol.cs">
+    <Compile Include="Reports\reportTemplate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\reportTemplate.Designer.cs">
+      <DependentUpon>reportTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\NgayNghiNgayLe\FrmPublicHoliday.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Configurations\FrmAttendanceSymbol.Designer.cs">
-      <DependentUpon>FrmAttendanceSymbol.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Configurations\FrmBranch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\Configurations\FrmBranch.Designer.cs">
-      <DependentUpon>FrmBranch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Configurations\FrmCompetence.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\Configurations\FrmCompetence.Designer.cs">
-      <DependentUpon>FrmCompetence.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Configurations\FrmPublicHoliday.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\Configurations\FrmPublicHoliday.Designer.cs">
+    <Compile Include="Screens\NgayNghiNgayLe\FrmPublicHoliday.Designer.cs">
       <DependentUpon>FrmPublicHoliday.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Configurations\FrmPublicHolidayDetail.cs">
+    <Compile Include="Screens\NgayNghiNgayLe\FrmPublicHolidayDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Configurations\FrmPublicHolidayDetail.Designer.cs">
+    <Compile Include="Screens\NgayNghiNgayLe\FrmPublicHolidayDetail.Designer.cs">
       <DependentUpon>FrmPublicHolidayDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\Employees\FormEmployeeDetails.cs">
@@ -204,12 +194,6 @@
     <Compile Include="Screens\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\FrmChamCong.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\FrmChamCong.Designer.cs">
-      <DependentUpon>FrmChamCong.cs</DependentUpon>
-    </Compile>
     <Compile Include="Screens\HopDong\FormLaborContractDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,28 +206,28 @@
     <Compile Include="Screens\HopDong\FormLaborContractList.Designer.cs">
       <DependentUpon>FormLaborContractList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\List\FormViewBranch.cs">
+    <Compile Include="Screens\ChiNhanh\FormViewBranch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\List\FormViewBranch.Designer.cs">
+    <Compile Include="Screens\ChiNhanh\FormViewBranch.Designer.cs">
       <DependentUpon>FormViewBranch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\List\frmBranchList.cs">
+    <Compile Include="Screens\ChiNhanh\frmBranchList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\List\frmBranchList.Designer.cs">
+    <Compile Include="Screens\ChiNhanh\frmBranchList.Designer.cs">
       <DependentUpon>frmBranchList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\List\frmCompetenceList.cs">
+    <Compile Include="Screens\ChucVu\frmCompetenceList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\List\frmCompetenceList.Designer.cs">
+    <Compile Include="Screens\ChucVu\frmCompetenceList.Designer.cs">
       <DependentUpon>frmCompetenceList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\List\frmCompetenceView.cs">
+    <Compile Include="Screens\ChucVu\frmCompetenceView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\List\frmCompetenceView.Designer.cs">
+    <Compile Include="Screens\ChucVu\frmCompetenceView.Designer.cs">
       <DependentUpon>frmCompetenceView.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\List\FrmDanhMucCa.cs">
@@ -276,22 +260,22 @@
     <Compile Include="Screens\List\FrmLoaiDuLieuChamCongDetail.Designer.cs">
       <DependentUpon>FrmLoaiDuLieuChamCongDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\List\FrmQuanLyNgayNghi.cs">
+    <Compile Include="Screens\NgayNghiNgayLe\FrmQuanLyNgayNghi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\List\FrmQuanLyNgayNghi.Designer.cs">
+    <Compile Include="Screens\NgayNghiNgayLe\FrmQuanLyNgayNghi.Designer.cs">
       <DependentUpon>FrmQuanLyNgayNghi.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\List\frmReligionList.cs">
+    <Compile Include="Screens\TonGiao\frmReligionList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\List\frmReligionList.Designer.cs">
+    <Compile Include="Screens\TonGiao\frmReligionList.Designer.cs">
       <DependentUpon>frmReligionList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\List\frmReligionView.cs">
+    <Compile Include="Screens\TonGiao\frmReligionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\List\frmReligionView.Designer.cs">
+    <Compile Include="Screens\TonGiao\frmReligionView.Designer.cs">
       <DependentUpon>frmReligionView.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\Main.cs">
@@ -300,10 +284,10 @@
     <Compile Include="Screens\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Salaries\FrmAttendance.cs">
+    <Compile Include="Screens\ChamCong\FrmAttendance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Salaries\FrmAttendance.Designer.cs">
+    <Compile Include="Screens\ChamCong\FrmAttendance.Designer.cs">
       <DependentUpon>FrmAttendance.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\Salaries\FrmBangTinhLuong.cs">
@@ -318,10 +302,10 @@
     <Compile Include="Screens\Salaries\FrmCauHinhChuKyLuong.Designer.cs">
       <DependentUpon>FrmCauHinhChuKyLuong.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Salaries\FrmImportChamCong.cs">
+    <Compile Include="Screens\ChamCong\FrmImportChamCong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Salaries\FrmImportChamCong.Designer.cs">
+    <Compile Include="Screens\ChamCong\FrmImportChamCong.Designer.cs">
       <DependentUpon>FrmImportChamCong.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\Salaries\FrmPhieuChamCong.cs">
@@ -365,6 +349,12 @@
     </Compile>
     <Compile Include="Screens\Salaries\FrmXepCa.Designer.cs">
       <DependentUpon>FrmXepCa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmXepCaNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmXepCaNhanVien.Designer.cs">
+      <DependentUpon>FrmXepCaNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\Salaries\FrmXepCaTuDong.cs">
       <SubType>Form</SubType>
@@ -423,22 +413,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports\DataReport.resx">
-      <DependentUpon>DataReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\reportQuanLyNgayNghi.resx">
+      <DependentUpon>reportQuanLyNgayNghi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Configurations\FrmAttendanceSymbol.resx">
-      <DependentUpon>FrmAttendanceSymbol.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\reportTemplate.resx">
+      <DependentUpon>reportTemplate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Configurations\FrmBranch.resx">
-      <DependentUpon>FrmBranch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Configurations\FrmCompetence.resx">
-      <DependentUpon>FrmCompetence.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Configurations\FrmPublicHoliday.resx">
+    <EmbeddedResource Include="Screens\NgayNghiNgayLe\FrmPublicHoliday.resx">
       <DependentUpon>FrmPublicHoliday.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Configurations\FrmPublicHolidayDetail.resx">
+    <EmbeddedResource Include="Screens\NgayNghiNgayLe\FrmPublicHolidayDetail.resx">
       <DependentUpon>FrmPublicHolidayDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Employees\FormEmployeeDetails.resx">
@@ -450,25 +434,22 @@
     <EmbeddedResource Include="Screens\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\FrmChamCong.resx">
-      <DependentUpon>FrmChamCong.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Screens\HopDong\FormLaborContractDetail.resx">
       <DependentUpon>FormLaborContractDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\HopDong\FormLaborContractList.resx">
       <DependentUpon>FormLaborContractList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\List\FormViewBranch.resx">
+    <EmbeddedResource Include="Screens\ChiNhanh\FormViewBranch.resx">
       <DependentUpon>FormViewBranch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\List\frmBranchList.resx">
+    <EmbeddedResource Include="Screens\ChiNhanh\frmBranchList.resx">
       <DependentUpon>frmBranchList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\List\frmCompetenceList.resx">
+    <EmbeddedResource Include="Screens\ChucVu\frmCompetenceList.resx">
       <DependentUpon>frmCompetenceList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\List\frmCompetenceView.resx">
+    <EmbeddedResource Include="Screens\ChucVu\frmCompetenceView.resx">
       <DependentUpon>frmCompetenceView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\List\FrmDanhMucCa.resx">
@@ -486,19 +467,19 @@
     <EmbeddedResource Include="Screens\List\FrmLoaiDuLieuChamCongDetail.resx">
       <DependentUpon>FrmLoaiDuLieuChamCongDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\List\FrmQuanLyNgayNghi.resx">
+    <EmbeddedResource Include="Screens\NgayNghiNgayLe\FrmQuanLyNgayNghi.resx">
       <DependentUpon>FrmQuanLyNgayNghi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\List\frmReligionList.resx">
+    <EmbeddedResource Include="Screens\TonGiao\frmReligionList.resx">
       <DependentUpon>frmReligionList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\List\frmReligionView.resx">
+    <EmbeddedResource Include="Screens\TonGiao\frmReligionView.resx">
       <DependentUpon>frmReligionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Salaries\FrmAttendance.resx">
+    <EmbeddedResource Include="Screens\ChamCong\FrmAttendance.resx">
       <DependentUpon>FrmAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmBangTinhLuong.resx">
@@ -507,7 +488,7 @@
     <EmbeddedResource Include="Screens\Salaries\FrmCauHinhChuKyLuong.resx">
       <DependentUpon>FrmCauHinhChuKyLuong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\Salaries\FrmImportChamCong.resx">
+    <EmbeddedResource Include="Screens\ChamCong\FrmImportChamCong.resx">
       <DependentUpon>FrmImportChamCong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmPhieuChamCong.resx">
@@ -530,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmXepCa.resx">
       <DependentUpon>FrmXepCa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmXepCaNhanVien.resx">
+      <DependentUpon>FrmXepCaNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Salaries\FrmXepCaTuDong.resx">
       <DependentUpon>FrmXepCaTuDong.cs</DependentUpon>
@@ -556,6 +540,8 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="LeTien_TemporaryKey.pfx" />
+    <None Include="Properties\DataSources\LeTien.Objects.Branch.datasource" />
+    <None Include="Properties\DataSources\LeTien.Objects.Competence.datasource" />
     <None Include="Properties\DataSources\LeTien.Objects.Employee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -567,9 +553,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControl\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\cancel_32x321.png" />
   </ItemGroup>

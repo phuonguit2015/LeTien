@@ -160,7 +160,7 @@
             // 
             // btnTinhLuong
             // 
-            this.btnTinhLuong.Caption = "Tính Lương";
+            this.btnTinhLuong.Caption = "TÍNH LƯƠNG";
             this.btnTinhLuong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnTinhLuong.Glyph")));
             this.btnTinhLuong.Id = 3;
             this.btnTinhLuong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnTinhLuong.LargeGlyph")));
@@ -169,7 +169,7 @@
             // 
             // btnLoaiDuLieuTinhLuong
             // 
-            this.btnLoaiDuLieuTinhLuong.Caption = "Loại Dữ Liệu Tính Lương";
+            this.btnLoaiDuLieuTinhLuong.Caption = "LOẠI DỮ LIỆU TÍNH LƯƠNG";
             this.btnLoaiDuLieuTinhLuong.Id = 0;
             this.btnLoaiDuLieuTinhLuong.Name = "btnLoaiDuLieuTinhLuong";
             this.btnLoaiDuLieuTinhLuong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLoaiDuLieuTinhLuong_ItemClick);
@@ -448,7 +448,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "FrmBangTinhLuong";
-            this.Text = "Bảng Tính Lương";
+            this.Text = "BẢNG TÍNH LƯƠNG";
             ((System.ComponentModel.ISupportInitialize)(this.xpcChiTietLuong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();

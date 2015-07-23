@@ -9,12 +9,12 @@ namespace LeTien.Utils
 {
     public class Connector
     {
-        public static string sConnectionString = "XpoProvider=MySql;server=localhost;user id=root; password=root; database=letien_db;persist security info=true;CharSet=utf8;";
+        public static string sConnectionString = /*"Server=127.0.0.1;Port=3306;Database=letien_db;user id=root;charset=utf8 -utf8_unicode_ci;";*/"XpoProvider=MySql;server=127.0.0.1;Uid=root; database=letien_db;persist security info=true; Charset=utf8_unicode_ci;";
         public static bool Connect()
-        { 
+        {
             
-            //sConnectionString = "XpoProvider=MySql;server=27.0.15.162;user id=letien_database; password=cXJI1obP3xB; database=letien_database;persist security info=true;CharSet=utf8;";
-            //sConnectionString = "XpoProvider=MySql;server=localhost;user id=root; password=; database=letien;persist security info=true;CharSet=utf8;";
+            //sConnectionString = "XpoProvider=MySql;server=127.0.0.1;user id=letien_database; password=cXJI1obP3xB; database=letien_database;persist security info=true;CharSet=utf8;";
+            sConnectionString = "XpoProvider=MySql;server=127.0.0.1;user id=root;  database=tiki;persist security info=true;CharSet=utf8;";
             XpoDefault.ConnectionString = sConnectionString;
             try
             {

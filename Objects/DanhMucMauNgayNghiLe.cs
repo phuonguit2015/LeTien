@@ -27,7 +27,7 @@ namespace LeTien.Objects
             // Place here your initialization code.
         }
 
-        [DisplayName("Ngày nghĩ lễ")]
+        [DisplayName("Loại Ngày Nghĩ")]
         [Indexed(Unique = true)]
         public string TenNgayNghi
         {

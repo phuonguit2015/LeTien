@@ -38,9 +38,9 @@ namespace LeTien.Screens.User
             UserList_Control.UCMain_Refresh_Clicked += UserList_Control_UCMain_Refresh_Clicked;
             UserList_Control.UCMain_Edit_Clicked += UserList_Control_UCMain_Edit_Clicked;
 
-            UserList_Control.UCMain_Export.Enabled = false;
-            UserList_Control.UCMain_Print.Enabled = false;
-            UserList_Control.UCMain_Delete.Enabled = false;
+            //UserList_Control.UCMain_Export.Enabled = false;
+            //UserList_Control.UCMain_Print.Enabled = false;
+            //UserList_Control.UCMain_Delete.Enabled = false;
         }
 
         void UserList_Control_UCMain_Edit_Clicked(object sender, EventArgs e)

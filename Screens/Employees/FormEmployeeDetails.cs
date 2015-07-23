@@ -48,7 +48,15 @@ namespace LeTien.Screens.Employees
         private void btnThem_Click(object sender, EventArgs e)
         {
             Session s = XpoDefault.Session;
-            s.Save(xpcEmployee);
+            try
+            {
+                s.Save(xpcEmployee);
+            }
+            catch
+            {
+                XtraMessageBox.Show("Mã Nhân Viên Đã Tồn Tại", "Thông Báo");
+                return;
+            }
             FormEmployeeList f = this.Tag as FormEmployeeList;
             f.RefreshData();            
             XtraMessageBox.Show("Thêm mới thành công", "Đã lưu");
@@ -73,18 +81,7 @@ namespace LeTien.Screens.Employees
             }
         }
 
-        private void calDiemA_TextChanged(object sender, EventArgs e)
-        {
-            //txtLuongCoBan.Text = (double.Parse(calDiemA.Text) * 20000).ToString();
-        }
-
-        //private void cbbChucVu_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    using (var uow = new UnitOfWork())
-        //    {
-        //        txtPhuCapChucVu.Text = uow.FindObject<Competence>(CriteriaOperator.Parse("CompetenceID = ?", lkuChucVu.Text)).Allowance; 
-        //    }
-        //}
+      
 
         private void txtHo_EditValueChanged(object sender, EventArgs e)
         {

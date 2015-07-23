@@ -2,6 +2,7 @@
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraSplashScreen;
 using LeTien.Objects;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,67 +24,53 @@ namespace LeTien.Screens.List
         {
             InitializeComponent();
         }
-
-        private void grvUCList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            _id = grvUCList.GetRowCellValue(e.RowHandle, "LoaiChamCong").ToString();         
-        }    
      
 
         #region "Override FromBase"
         protected override void OnNew()
         {
-            FrmLoaiDuLieuChamCongDetail f = new FrmLoaiDuLieuChamCongDetail();
-            f.Text = "Thêm loại dữ liệu hợp đồng";
-            f.Tag = this;
-            f.ShowDialog();
+            
         }
 
         protected override void OnEdit()
         {
-            FrmLoaiDuLieuChamCongDetail f = new FrmLoaiDuLieuChamCongDetail(_id);
-            f.Text = "Cập nhật loại dữ liệu chấm công";
-            f.Tag = this;
-            f.ShowDialog();
+            
         }
 
         protected override void OnDelete()
         {
-            if (XtraMessageBox.Show("Bạn có muốn xóa không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+            if (XtraMessageBox.Show("Bạn có muốn xóa không?", "THÔNG BÁO", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
             {
                 return;
             }
-            using (var uow = new UnitOfWork())
+            for (int i = 0; i < grvUCList.SelectedRowsCount; i++)
             {
-                LoaiDuLieuChamCong br = uow.FindObject<LoaiDuLieuChamCong>(CriteriaOperator.Parse("LoaiChamCong = ?", _id));
-                if (br != null)
+                _id = grvUCList.GetRowCellValue(grvUCList.GetSelectedRows()[i], colOid).ToString();
+
+                using (var uow = new UnitOfWork())
                 {
-                    br.Delete();
-                    uow.CommitChanges();
-                    uow.PurgeDeletedObjects();
-                    RefreshData();
+                    LoaiDuLieuChamCong br = uow.FindObject<LoaiDuLieuChamCong>(CriteriaOperator.Parse("LoaiChamCong = ?", _id));
+                    if (br != null)
+                    {
+                        br.Delete();
+                        uow.CommitChanges();
+                        uow.PurgeDeletedObjects();
+                        RefreshData();
+                    }
                 }
             }
         }
         protected override void OnReload()
         {
+            SplashScreenManager.ShowForm(typeof(WaitFormMain));
             UOW.ReloadChangedObjects();
             xpcLoaiDuLieuChamCong.Reload();
+            Thread.Sleep(1000);
+            gridUCList.DataSource = xpcLoaiDuLieuChamCong;
+            SplashScreenManager.CloseForm(); 
         }
 
-        protected override void OnPreview()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách loại dữ liệu chấm công";
-            base.OnPreview();
-        }
-
-        protected override void OnExportXls()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách loại dữ liệu chấm công";
-            base.OnExportXls();
-        }
+        
 
         #endregion
 
@@ -132,17 +120,18 @@ namespace LeTien.Screens.List
 
         private void btnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnPreview();
+            OnPreview(gridUCList, "DANH SÁCH LOẠI DỮ LIỆU CHẤM CÔNG", "reportTemplate.repx");
+
         }
 
         private void btnXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnExportXls();           
+            OnExportXls(gridUCList);           
         }
 
         private void btnDong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (XtraMessageBox.Show("Bạn có muốn thoát của sổ làm việc không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (XtraMessageBox.Show("Bạn có muốn thoát của sổ làm việc không?", "THÔNG BÁO", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 this.Close();
             }     
@@ -152,21 +141,43 @@ namespace LeTien.Screens.List
         {
             if (grvUCList.OptionsBehavior.ReadOnly)
             {
-                btnEdit.Caption = "Đang ở chế độ chỉnh sửa";
+                btnEdit.Caption = "CHẾ ĐỘ CHỈNH SỬA";
                 grvUCList.OptionsBehavior.ReadOnly = false;
                 grvUCList.OptionsBehavior.Editable = true;
+                grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+
             }
             else
             {
                 grvUCList.OptionsBehavior.Editable = false;
                 grvUCList.OptionsBehavior.ReadOnly = true;
-                btnEdit.Caption = "Đang ở Chế độ chỉ đọc";
+                btnEdit.Caption = "CHẾ ĐỘ CHỈ ĐỌC";
+                grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+
             }
         }
 
         private void panelControl1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void grvUCList_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            btnXoa.Enabled = false;
+            if (grvUCList.SelectedRowsCount > 0)
+            {
+                btnXoa.Enabled = true;
+            }
+            else
+            {
+                btnXoa.Enabled = false;
+            }
+        }
+
+        private void btnNapLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OnReload();
         }
     }
 }

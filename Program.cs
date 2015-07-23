@@ -22,16 +22,15 @@ namespace LeTien
 
             Application.ThreadException += Application_ThreadException;
 
-            DevExpress.XtraEditors.WindowsFormsSettings.DefaultLookAndFeel.SetSkinStyle("Office 2013 Light Gray");
+            DevExpress.XtraEditors.WindowsFormsSettings.DefaultLookAndFeel.SetSkinStyle("Seven Classic");
            // DevExpress.XtraEditors.WindowsFormsSettings.AllowPixelScrolling = Utils.DefaultBoolean.True;
            // DevExpress.XtraEditors.WindowsFormsSettings.ScrollUIMode = XtraEditors.ScrollUIMode.Touch;
-            DevExpress.Utils.AppearanceObject.DefaultFont = new Font("Segoe UI", 8);
+            DevExpress.Utils.AppearanceObject.DefaultFont = new Font("Segoe UI", 9);
             // kết nối csdl, nếu không được -> cho người dùng cấu hình lại
             bool isConnected = Connector.Connect();
             if (isConnected == false)
             {
                 XtraMessageBox.Show("Không thể kết nối cơ sở dữ liệu, vui lòng liên hệ nhà phát triển để được hỗ trợ!", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             else
             {
