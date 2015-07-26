@@ -439,7 +439,6 @@
             this.btnTaoBangChamCong.Id = 15;
             this.btnTaoBangChamCong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnTaoBangChamCong.LargeGlyph")));
             this.btnTaoBangChamCong.Name = "btnTaoBangChamCong";
-            this.btnTaoBangChamCong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaoBangChamCong_ItemClick);
             // 
             // repositoryItemSpinEdit1
             // 
@@ -632,7 +631,7 @@
             this.colHoTen.FieldName = "NhanVien.HoTen";
             this.colHoTen.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.colHoTen.Name = "colHoTen";
-            this.colHoTen.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colHoTen.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
             this.colHoTen.OptionsColumn.TabStop = false;
             this.colHoTen.Visible = true;
             this.colHoTen.VisibleIndex = 1;
@@ -644,7 +643,7 @@
             this.colThoiGian.FieldName = "LoaiDuLieuChamCong.LoaiChamCong";
             this.colThoiGian.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.colThoiGian.Name = "colThoiGian";
-            this.colThoiGian.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colThoiGian.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
             this.colThoiGian.OptionsColumn.ReadOnly = true;
             this.colThoiGian.OptionsColumn.TabStop = false;
             this.colThoiGian.Visible = true;
@@ -898,7 +897,7 @@
             this.colKetQua.FieldName = "KetQua";
             this.colKetQua.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.colKetQua.Name = "colKetQua";
-            this.colKetQua.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colKetQua.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
             this.colKetQua.Visible = true;
             this.colKetQua.VisibleIndex = 3;
             // 

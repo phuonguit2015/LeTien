@@ -228,18 +228,7 @@ namespace LeTien.Screens
                 gridView1.SortInfo.Add(new GridColumnSortInfo(colThoiGian, DevExpress.Data.ColumnSortOrder.Ascending));
                 gridControl1.Visible = true;
 
-            }
-
-
-            //gridControl1.Visible = false;
-            //xpcChamCong.Reload();
-            //XPCollection _xpcChamCong = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("Thang", firstDate, BinaryOperatorType.GreaterOrEqual),
-            //   new BinaryOperator("Thang", lastDate, BinaryOperatorType.LessOrEqual)));
-            //renderAttendanDateceColumn();
-            //gridControl1.DataSource = _xpcChamCong;
-            //gridControl1.Visible = true;
-
-            
+            }            
         }
 
         private CriteriaOperator FilterData()
@@ -301,7 +290,7 @@ namespace LeTien.Screens
 
         private void FrmAttendance_Load(object sender, EventArgs e)
         {
-
+            gridControl1.Visible = false;
         }
 
         private void gridView1_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
@@ -589,49 +578,9 @@ namespace LeTien.Screens
 
         }
 
-        private void btnTaoBangChamCong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //KiemTraVaTaoBangXepCa(DateTime.Parse(dtThang.EditValue.ToString()));
-            this.renderAttendanDateceColumn();
-            gridControl1.Visible = true; SplashScreenManager.ShowForm(typeof(WaitFormMain));
-            List<Employee> dsNV = new List<Employee>();
-
-            foreach (XepCa xc in KiemTraVaTaoBangXepCa(DateTime.Parse(dtThang.EditValue.ToString())))
-            {
-                //dsNV.Add(xc.NhanVien);
-            }
-            System.Threading.Thread.Sleep(1000);
-            TaoBangChamCong(dsNV);
-            LoadDuLieuChamCongTheoThang();
-            
-            //Danh sach NV da xep ca trong thang thì mơi chấm công
-            //
-            SplashScreenManager.CloseForm();
-        }
-
-        private XPCollection KiemTraVaTaoBangXepCa(DateTime dt)
-        {
-            attendanceYear = dt.Year;
-            attendanceMonth = dt.Month;
-            DateTime minDate = new DateTime(attendanceYear,attendanceMonth,1);
-            DateTime maxDate = new DateTime(attendanceYear,attendanceMonth,SoNgayTrongThang());
-            XPCollection _xpcXepCa;
-            do
-            {
-                xpcXepCa.Reload();
-                _xpcXepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", minDate, BinaryOperatorType.GreaterOrEqual),
-                    new BinaryOperator("Ngay", maxDate, BinaryOperatorType.LessOrEqual)));
-                if (_xpcXepCa.Count == 0)
-                {
-                    XtraMessageBox.Show("Chưa có bảng xếp ca cho tháng này. Vui lòng tạo bảng xếp ca trước.");
-                    Form f = new FrmXepCa();
-                    f.ShowDialog();
-                }
-            }while(_xpcXepCa.Count == 0);
-            _xpcXepCa = new XPCollection(_xpcXepCa, new BinaryOperator("Ngay", new DateTime(dt.Year, dt.Month, 1), BinaryOperatorType.Equal));
-            return _xpcXepCa;
-        }
        
+
+        
 
         private void barButtonItem2_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -911,12 +860,14 @@ namespace LeTien.Screens
                 case "Tổng Dương":
                     if (KDLLoaiDLChamCong == "DateTime")
                     {
-                        #region "Tổng Đi Trể"
+                        #region "Tổng Đi Trể"                       
+
+
                         int maxDate = (lastDate - firstDate).Days;
                         DateTime curDate = firstDate;
                         for (int i = 1; i <= maxDate; i++)
                         {                            
-                            if (curDate < lastDate)
+                            if (curDate <= lastDate)
                             {
                                 XPCollection _xepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", curDate),
                         new BinaryOperator("NhanVien", cc.NhanVien)));
@@ -926,89 +877,76 @@ namespace LeTien.Screens
                        new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Giờ Vào")));
                                     if (cc[i] != "" && cc[i] != null && _GTDLCCTheoCa.Count > 0)
                                     {
-
                                         DateTime d1 = DateTime.Parse(cc[i]);//Giờ vào
                                         DateTime d2 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);//Giờ vào mặc định
-                                        //Đi trể - Nếu Giờ vào lớn hơn Giờ vào mặc định
-                                        if (SoSanhThoiGianLonHon(d1.Hour, d1.Minute, d1.Second, d2.Hour, d2.Minute, d2.Second) == true)
+                                        DateTime d3 = new DateTime(d1.Year, d1.Month, d1.Day, d2.Hour, d2.Minute, d2.Second);
+
+                                        TimeSpan t = d3 - d1;
+                                        if (t.TotalHours < 0)
                                         {
-                                            TimeSpan t1 = new TimeSpan(d1.Hour, d1.Minute, d1.Second);
-                                            TimeSpan t2 = new TimeSpan(d2.Hour, d2.Minute, d2.Second);
-                                            _Tong += decimal.Parse(String.Format("{0:0.00}",(t1.TotalMinutes - t2.TotalMinutes))) / 60;
+                                            _Tong += Convert.ToDecimal(-t.TotalHours);
                                         }
+
+
                                     }
                                 }
-                                curDate.AddDays(1);
                             }
-                        }
-
-                        #endregion
+                            curDate = curDate.AddDays(1);
+                       
                         str = "Số Giờ Đi Trể";
+                        }
+                         #endregion
                     }
-                   
                     break;
                 case "Tổng Âm":
                     if (KDLLoaiDLChamCong == "DateTime")
                     {
                         #region "Tổng Về Sớm"
-                       int maxDate = (lastDate - firstDate).Days;
+                        int maxDate = (lastDate - firstDate).Days;
                         DateTime curDate = firstDate;
                         for (int i = 1; i <= maxDate; i++)
                         {
-                            string str1 = year + "-" + month;
-
-                            //NẾu có tăng ca không xét về muộn
-                            xpcChamCong.Reload();
-                            XPCollection xpcTemp = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("Thang", str1),
-                            new BinaryOperator("NhanVien", cc.NhanVien), new BinaryOperator("LoaiDuLieuChamCong.LoaiChamCong", "Tăng Ca")));
-                            if (xpcTemp.Count > 0)
+                            if (curDate <= lastDate)
                             {
-                                var temp = xpcTemp[0] as ChamCong;
-                                if (temp[i] != "" && temp[i] != null)
+                                XPCollection _xepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", curDate),
+         new BinaryOperator("NhanVien", cc.NhanVien)));
+                                if (_xepCa.Count > 0 && cc[i] != null)
                                 {
-                                    _Tong += 0;
-                                }
-                            }
-                            else
-                            {
-                                if (curDate < lastDate)
-                                {
-                                    XPCollection _xepCa = new XPCollection(xpcXepCa, CriteriaOperator.And(new BinaryOperator("Ngay", curDate),
-                            new BinaryOperator("NhanVien", cc.NhanVien)));
-                                    if (_xepCa.Count > 0 && cc[i] != null)
+                                    XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as ChiTietXepCa).Ca),
+                       new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Giờ Ra")));
+                                    if (cc[i] != "" && cc[i] != null && _GTDLCCTheoCa.Count > 0)
                                     {
-                                        XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as ChiTietXepCa).Ca),
-                           new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Giờ Ra")));
-                                        if (cc[i] != "" && cc[i] != null && _GTDLCCTheoCa.Count > 0)
+                                        DateTime d1 = DateTime.Parse(cc[i]);//Giờ Ra
+                                        DateTime d2 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);//Giờ vào mặc định
+                                        DateTime d3 = new DateTime(d1.Year, d1.Month, d1.Day, d2.Hour, d2.Minute, d2.Second);
+
+                                        TimeSpan t = d1 - d3;
+                                        if (t.TotalHours < 0)
                                         {
-                                            DateTime d2 = DateTime.Parse(cc[i]);//Giờ ra
-                                            DateTime d1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);//Giờ ra lý thuyết
-                                            //Về Sớm
-                                            if (SoSanhThoiGianLonHon(d1.Hour, d1.Minute, d1.Second, d2.Hour, d2.Minute, d2.Second) == false)
-                                            {
-                                                TimeSpan t1 = new TimeSpan(d1.Hour, d1.Minute, d1.Second);
-                                                TimeSpan t2 = new TimeSpan(d2.Hour, d2.Minute, d2.Second);
-                                                _Tong += decimal.Parse(String.Format("{0:0.00}", (t2.TotalMinutes - t1.TotalMinutes))) / 60;
-                                            }
+                                            _Tong += Convert.ToDecimal(-t.TotalHours);
                                         }
                                     }
                                 }
                             }
+                            curDate = curDate.AddDays(1);
+
                         }
-                        #endregion
+
 
                         str = "Số Giờ Về Sớm";
+                        #endregion
                     }
                     break;
             }
 
-            str = cc.LoaiDuLieuChamCong.DonViTong == null ? string.Empty : cc.LoaiDuLieuChamCong.DonViTong;
+            str = cc.LoaiDuLieuChamCong.DonViTong == null ? str : cc.LoaiDuLieuChamCong.DonViTong;
 
             return _Tong;
         }
 
         private void btnCapNhatKQ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (dtThang.EditValue != System.DBNull.Value)
             {
                 DateTime d = DateTime.Parse(dtThang.EditValue.ToString());
@@ -1016,12 +954,13 @@ namespace LeTien.Screens
                 for(int j = 0;j < xpcChamCong.Count; j++)
                 {
                     ChamCong cc = xpcChamCong[j] as ChamCong;
-                    cc.KetQua = String.Format("{0:0.00}", TinhTong(cc, d.Year, d.Month));
+                    cc.KetQua = String.Format("{0:0.0}", TinhTong(cc, d.Year, d.Month));
                     cc.DonVi = str;
                 }
                 XpoDefault.Session.Save(xpcChamCong);
                 xpcChamCong.Reload();
             }
+            Cursor = Cursors.Default;
         }
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
