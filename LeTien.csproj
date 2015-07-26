@@ -129,7 +129,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculator.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="Objects\AdvancePayment.cs" />
     <Compile Include="Objects\Branch.cs" />
