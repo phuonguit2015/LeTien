@@ -101,6 +101,9 @@ namespace LeTien.Screens
             ((System.ComponentModel.ISupportInitialize)(this.xpcChuKyLuong)).EndInit();
 
 
+            ((System.ComponentModel.ISupportInitialize)(this.xpcPhongBan)).BeginInit();
+            this.xpcPhongBan.ObjectType = typeof(LeTien.Objects.PhongBan);
+            ((System.ComponentModel.ISupportInitialize)(this.xpcPhongBan)).EndInit();
 
             dtThang.EditValue = DateTime.Now;
         }
@@ -208,7 +211,9 @@ namespace LeTien.Screens
                 DateTime thang = DateTime.Parse(dtThang.EditValue.ToString());
 
                 string str = thang.Month.ToString() + "-" + thang.Year.ToString();// Phân biệt bảng xếp ca các tháng
-                XPCollection xpc = new XPCollection(xpcChamCong, new BinaryOperator("TenBangChamCong", str, BinaryOperatorType.Equal));
+                XPCollection xpc = new XPCollection(xpcChamCong, 
+                    CriteriaOperator.And(FilterData(),                   
+                    new BinaryOperator("TenBangChamCong", str, BinaryOperatorType.Equal)));
                 if (xpc.Count > 0)
                 {
                     gridControl1.DataSource = xpc;
@@ -235,6 +240,24 @@ namespace LeTien.Screens
             //gridControl1.Visible = true;
 
             
+        }
+
+        private CriteriaOperator FilterData()
+        {
+            CriteriaOperator filter = null;
+            List<CriteriaOperator> filterLoaiDL = new List<CriteriaOperator>();
+
+          
+            foreach (LoaiDuLieuChamCong item in cbbTTChamCong.Properties.Items.GetCheckedValues())
+            {
+                filterLoaiDL.Add(new BinaryOperator("LoaiDuLieuChamCong", item));
+            } 
+            if (lkupPhongBan.EditValue != null)
+            {
+                filter = new BinaryOperator("NhanVien.phongBan", lkupPhongBan.EditValue);            
+                return CriteriaOperator.And(filter, CriteriaOperator.Or(filterLoaiDL.ToArray()));
+            }
+            return  CriteriaOperator.Or(filterLoaiDL.ToArray());
         }
       
 
@@ -297,7 +320,7 @@ namespace LeTien.Screens
                 case "DateTime":
                     e.RepositoryItem = timeEdit;
                     break;
-                case "String":
+                case "String": case "Double":
                     e.RepositoryItem = txtEdit;
                     break;
             }
@@ -349,7 +372,7 @@ namespace LeTien.Screens
                     switch (l.LoaiChamCong)
                     {
 
-                        case "Thời Gian Vào":
+                        case "Giờ Vào":
                             if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
                             {
                                 try
@@ -369,7 +392,7 @@ namespace LeTien.Screens
                             }
                             //So phut di tre    
                             break;
-                        case "Thời Gian Ra":
+                        case "Giờ Ra":
                             if (gv.GetRowCellValue(e.RowHandle, e.Column) != null)
                             {
                                 try
@@ -900,13 +923,13 @@ namespace LeTien.Screens
                                 if (_xepCa.Count > 0 && cc[i] != null)
                                 {
                                     XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as ChiTietXepCa).Ca),
-                       new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Thời Gian Vào")));
+                       new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Giờ Vào")));
                                     if (cc[i] != "" && cc[i] != null && _GTDLCCTheoCa.Count > 0)
                                     {
 
-                                        DateTime d1 = DateTime.Parse(cc[i]);//Thời gian vào
-                                        DateTime d2 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);//Thời gian vào mặc định
-                                        //Đi trể - Nếu thời gian vào lớn hơn thời gian vào mặc định
+                                        DateTime d1 = DateTime.Parse(cc[i]);//Giờ vào
+                                        DateTime d2 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);//Giờ vào mặc định
+                                        //Đi trể - Nếu Giờ vào lớn hơn Giờ vào mặc định
                                         if (SoSanhThoiGianLonHon(d1.Hour, d1.Minute, d1.Second, d2.Hour, d2.Minute, d2.Second) == true)
                                         {
                                             TimeSpan t1 = new TimeSpan(d1.Hour, d1.Minute, d1.Second);
@@ -955,11 +978,11 @@ namespace LeTien.Screens
                                     if (_xepCa.Count > 0 && cc[i] != null)
                                     {
                                         XPCollection _GTDLCCTheoCa = new XPCollection(xpcGTDLCCTheoCa, CriteriaOperator.And(new BinaryOperator("Ca", (_xepCa[0] as ChiTietXepCa).Ca),
-                           new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Thời Gian Ra")));
+                           new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Giờ Ra")));
                                         if (cc[i] != "" && cc[i] != null && _GTDLCCTheoCa.Count > 0)
                                         {
-                                            DateTime d2 = DateTime.Parse(cc[i]);//Thời gian ra
-                                            DateTime d1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);//Thời gian ra lý thuyết
+                                            DateTime d2 = DateTime.Parse(cc[i]);//Giờ ra
+                                            DateTime d1 = DateTime.Parse((_GTDLCCTheoCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);//Giờ ra lý thuyết
                                             //Về Sớm
                                             if (SoSanhThoiGianLonHon(d1.Hour, d1.Minute, d1.Second, d2.Hour, d2.Minute, d2.Second) == false)
                                             {
@@ -1069,6 +1092,11 @@ namespace LeTien.Screens
                 lastDate = new DateTime();
             }
 
+        }
+
+        private void btnLoc_Click(object sender, EventArgs e)
+        {
+            LoadDuLieuChamCongTheoThang();
         }
     
     }  

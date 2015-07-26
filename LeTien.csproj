@@ -129,7 +129,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculator.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="Objects\AdvancePayment.cs" />
     <Compile Include="Objects\Branch.cs" />
@@ -147,9 +146,11 @@
     <Compile Include="Objects\Employee.cs" />
     <Compile Include="Objects\LaborContract.cs" />
     <Compile Include="Objects\LoaiDuLieuChamCong.cs" />
+    <Compile Include="Objects\PhongBan.cs" />
     <Compile Include="Objects\PublicHoliday.cs" />
     <Compile Include="Objects\QuanLyNgayNghi.cs" />
     <Compile Include="Objects\Religion.cs" />
+    <Compile Include="Objects\ThamSo.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Objects\XepCa.cs" />
     <Compile Include="Program.cs" />
@@ -165,6 +166,12 @@
     </Compile>
     <Compile Include="Reports\reportTemplate.Designer.cs">
       <DependentUpon>reportTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\List\FrmThamSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\List\FrmThamSo.Designer.cs">
+      <DependentUpon>FrmThamSo.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\NgayNghiNgayLe\FrmPublicHoliday.cs">
       <SubType>Form</SubType>
@@ -400,6 +407,18 @@
     <Compile Include="Screens\WaitFormMain.Designer.cs">
       <DependentUpon>WaitFormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="TTPhongBan\FrmChiTietPhongBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TTPhongBan\FrmChiTietPhongBan.Designer.cs">
+      <DependentUpon>FrmChiTietPhongBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TTPhongBan\FrmDanhSachPhongBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TTPhongBan\FrmDanhSachPhongBan.Designer.cs">
+      <DependentUpon>FrmDanhSachPhongBan.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCMainControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -426,6 +445,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\reportTemplate.resx">
       <DependentUpon>reportTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\List\FrmThamSo.resx">
+      <DependentUpon>FrmThamSo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\NgayNghiNgayLe\FrmPublicHoliday.resx">
       <DependentUpon>FrmPublicHoliday.cs</DependentUpon>
@@ -543,6 +565,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\WaitFormMain.resx">
       <DependentUpon>WaitFormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TTPhongBan\FrmChiTietPhongBan.resx">
+      <DependentUpon>FrmChiTietPhongBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TTPhongBan\FrmDanhSachPhongBan.resx">
+      <DependentUpon>FrmDanhSachPhongBan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCMainControl.resx">
       <DependentUpon>UCMainControl.cs</DependentUpon>

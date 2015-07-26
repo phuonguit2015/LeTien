@@ -21,6 +21,7 @@ using DevExpress.XtraReports.UI;
 using System.IO;
 using LeTien.Reports;
 using LeTien.Screens.NgayNghiNgayLe;
+using LeTien.TTPhongBan;
 namespace LeTien.Screens
 {
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -512,6 +513,42 @@ namespace LeTien.Screens
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
                 f = new FrmTinhLuongThang();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnCaiDat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmThamSo();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnDanhMucPhongBan_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmDanhSachPhongBan();
                 f.Name = f.GetType().ToString();
                 e.Item.Tag = f.Name;
                 f.MdiParent = this;

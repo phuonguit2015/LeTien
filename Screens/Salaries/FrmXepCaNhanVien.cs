@@ -2,6 +2,7 @@
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
+using LeTien.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace LeTien.Screens.Salaries
 {
-    public partial class FrmXepCaNhanVien : Form
+    public partial class FrmXepCaNhanVien : FormBase
     {
         public FrmXepCaNhanVien()
         {
@@ -79,6 +80,49 @@ namespace LeTien.Screens.Salaries
                 {
                     col.OptionsColumn.AllowEdit = false;
                 }
+            }
+        }
+
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (XtraMessageBox.Show("Bạn có muốn xóa không?", "THÔNG BÁO", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+            {
+                return;
+            }
+            for (int i = 0; i < gridView1.SelectedRowsCount; i++)
+            {
+                string _id = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[i], colOid).ToString();
+
+                using (var uow = new UnitOfWork())
+                {
+                    ChiTietXepCa br = uow.FindObject<ChiTietXepCa>(CriteriaOperator.Parse("Oid = ?", _id));
+                    if (br != null)
+                    {
+                        br.Delete();
+                        uow.CommitChanges();
+                        uow.PurgeDeletedObjects();
+                    }
+                }
+            }
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            UOW.ReloadChangedObjects();
+            xpcXepCa.Reload();
+            gridControl1.DataSource = xpcXepCa;
+        }
+        private void grvUCList_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            btnXoa.Enabled = false;
+            if (gridView1.SelectedRowsCount > 0)
+            {
+                btnXoa.Enabled = true;
+            }
+            else
+            {
+                btnXoa.Enabled = false;
             }
         }
     }

@@ -14,7 +14,7 @@ namespace LeTien.Utils
         {
             
             //sConnectionString = "XpoProvider=MySql;server=127.0.0.1;user id=letien_database; password=cXJI1obP3xB; database=letien_database;persist security info=true;CharSet=utf8;";
-            sConnectionString = "XpoProvider=MySql;server=127.0.0.1;user id=root;  database=tiki;persist security info=true;CharSet=utf8;";
+            sConnectionString = "XpoProvider=MySql;server=127.0.0.1;user id=root;  database=tikidb;persist security info=true;CharSet=utf8;";
             XpoDefault.ConnectionString = sConnectionString;
             try
             {

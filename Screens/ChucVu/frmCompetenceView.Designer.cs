@@ -71,7 +71,7 @@
             this.txtTenChucVu.Name = "txtTenChucVu";
             this.txtTenChucVu.Size = new System.Drawing.Size(283, 20);
             this.txtTenChucVu.StyleController = this.layoutControl1;
-            this.txtTenChucVu.TabIndex = 5;
+            this.txtTenChucVu.TabIndex = 2;
             this.txtTenChucVu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtMaChucVu
@@ -80,7 +80,7 @@
             this.txtMaChucVu.Name = "txtMaChucVu";
             this.txtMaChucVu.Size = new System.Drawing.Size(283, 20);
             this.txtMaChucVu.StyleController = this.layoutControl1;
-            this.txtMaChucVu.TabIndex = 4;
+            this.txtMaChucVu.TabIndex = 1;
             this.txtMaChucVu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtTienPhuCap
@@ -92,7 +92,7 @@
             this.txtTienPhuCap.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.None;
             this.txtTienPhuCap.Size = new System.Drawing.Size(283, 20);
             this.txtTienPhuCap.StyleController = this.layoutControl1;
-            this.txtTienPhuCap.TabIndex = 6;
+            this.txtTienPhuCap.TabIndex = 3;
             this.txtTienPhuCap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             this.txtTienPhuCap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTienPhuCap_KeyPress);
             // 
@@ -160,7 +160,7 @@
             this.btnThem.Location = new System.Drawing.Point(53, 153);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(89, 30);
-            this.btnThem.TabIndex = 7;
+            this.btnThem.TabIndex = 4;
             this.btnThem.Text = "Thêm";
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
@@ -202,7 +202,7 @@
             this.MinimumSize = new System.Drawing.Size(400, 230);
             this.Name = "frmCompetenceView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Thông tin chức vụ";
+            this.Text = "THÔNG TIN CHỨC VỤ";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtTenChucVu.Properties)).EndInit();

@@ -3,7 +3,6 @@ using DevExpress.Xpo;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
-using LeTien.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,15 +16,41 @@ using System.Windows.Forms;
 
 namespace LeTien.Screens.List
 {
-    public partial class FrmGTriDLChamCongTheoCa : FormBase
+    public partial class FrmThamSo : FormBase
     {
-        public FrmGTriDLChamCongTheoCa()
+        public FrmThamSo()
         {
             InitializeComponent();
-        }
 
-         private string _id = string.Empty;
-     
+            btnXoa.Enabled = false;
+        }
+        private void grvUCList_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            GridView gv = sender as GridView;
+            if (e.Column.FieldName == "GiaTri")
+            {
+                if (gv.GetRowCellValue(e.RowHandle, gv.Columns["KieuDuLieu"]) != null)
+                {
+                        switch (gv.GetRowCellValue(e.RowHandle, gv.Columns["KieuDuLieu"]).ToString())
+                        {
+                            case "Int":
+                                e.RepositoryItem = spinEdit;
+                                break;
+                            case "DateTime":
+                                e.RepositoryItem = dateTime;
+                                break;
+                            case "String": case "Double":
+                                e.RepositoryItem = textEdit;
+                                break;
+
+                        }
+                    }
+
+                }
+            }
+
+        private string _id = string.Empty;
+
 
         #region "Override FromBase"
         protected override void OnDelete()
@@ -40,7 +65,7 @@ namespace LeTien.Screens.List
 
                 using (var uow = new UnitOfWork())
                 {
-                    GiaTriDuLieuChamCongTheoCa br = uow.FindObject<GiaTriDuLieuChamCongTheoCa>(CriteriaOperator.Parse("Oid = ?", _id));
+                    FrmThamSo br = uow.FindObject<FrmThamSo>(CriteriaOperator.Parse("Oid = ?", _id));
                     if (br != null)
                     {
                         br.Delete();
@@ -51,61 +76,22 @@ namespace LeTien.Screens.List
                 }
             }
         }
+
+        private void RefreshData()
+        {
+            UOW.ReloadChangedObjects();
+            xpcThamSo.Reload();
+            gridUCList.DataSource = xpcThamSo;
+        }
         protected override void OnReload()
         {
             SplashScreenManager.ShowForm(typeof(WaitFormMain));
             Thread.Sleep(1000);
             OnReload();
-            SplashScreenManager.CloseForm(); 
+            SplashScreenManager.CloseForm();
         }
-
-      
 
         #endregion
-
-      
-
-
-        public void RefreshData()
-        {
-            UOW.ReloadChangedObjects();
-            xpcGTDLChamCongTheoCa.Reload();
-            xpcCa.Reload();
-            gridUCList.DataSource = xpcGTDLChamCongTheoCa;
-        }
-
-        private void grvUCList_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
-        {
-            GridView gv = sender as GridView;
-            if (e.Column.FieldName == "GiaTri")
-            {
-                if (gv.GetRowCellValue(e.RowHandle, gv.Columns["LoaiDLChamCong!"]) != null)
-                {
-                    var l = gv.GetRowCellValue(e.RowHandle, grvUCList.Columns["LoaiDLChamCong!"]);
-                    XPCollection xpc = new XPCollection(xpcLoaiDLChamCong, CriteriaOperator.Parse("KieuDuLieu = ?",(l as LoaiDuLieuChamCong).KieuDuLieu));
-                    if(xpc.Count > 0)
-                    {
-                        switch ((xpc[0] as LoaiDuLieuChamCong).KieuDuLieu)
-                        {
-                            case "Int":
-                                e.RepositoryItem = spinEdit;
-                                break;
-                            case "DateTime":
-                                e.RepositoryItem = repositoryItemTimeEdit1;
-                                break;
-                            case "String":
-                                e.RepositoryItem = textEdit;
-                                break;
-                        }
-                    }
-                   
-
-
-                }
-            }
-
-
-        }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -120,7 +106,7 @@ namespace LeTien.Screens.List
 
         private void btnXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnExportXls(gridUCList);           
+            OnExportXls(gridUCList);
         }
 
         private void btnDong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -128,7 +114,7 @@ namespace LeTien.Screens.List
             if (XtraMessageBox.Show("Bạn có muốn thoát của sổ làm việc không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 this.Close();
-            }     
+            }
         }
 
         private void btnEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -163,5 +149,6 @@ namespace LeTien.Screens.List
         {
             OnReload();
         }
+
     }
 }
