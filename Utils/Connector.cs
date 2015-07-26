@@ -67,7 +67,7 @@ namespace LeTien.Utils
                                 fDB.txtTenCSDL.Text, fDB.txtMatKhauCSDL.Text);
                             break;
                         case "Firebird":
-                            sConnectionString = String.Format("XpoProvider={0};DataSource=localhost;User=SYSDBA;Password=masterkey;Database={3};ServerType=0;Charset=utf8",
+                            sConnectionString = String.Format("XpoProvider={0};User=SYSDBA;Password=masterkey;Database={3};ServerType=1;Charset=utf8",
                                 fDB.cboLoaiCSDL.SelectedItem.ToString(), fDB.txtMayChuCSDL.Text, fDB.txtTaiKhoanCSDL.Text,
                                 Application.StartupPath + "/" + fDB.txtTenCSDL.Text, fDB.txtMatKhauCSDL.Text);
                             break;

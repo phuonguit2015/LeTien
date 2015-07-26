@@ -56,15 +56,12 @@ namespace LeTien.Screens.List
             for (int i = 0; i < grvUCList.SelectedRowsCount; i++)
             {
                 branchID = grvUCList.GetRowCellValue(grvUCList.GetSelectedRows()[i], colBranchID).ToString();
-                using (var uow = new UnitOfWork())
+                Branch br = XpoDefault.Session.FindObject<Branch>(CriteriaOperator.Parse("BranchID = ?", branchID));
+                if (br != null)
                 {
-                    Branch br = uow.FindObject<Branch>(CriteriaOperator.Parse("BranchID = ?", branchID));
-                    if (br != null)
-                    {
-                        br.Delete();
-                        uow.CommitChanges();
-                        uow.PurgeDeletedObjects();
-                    }
+                    br.Delete();
+                    XpoDefault.Session.CommitTransaction();
+                    XpoDefault.Session.PurgeDeletedObjects();
                 }
             }
 

@@ -35,7 +35,7 @@
     <BootstrapperComponentsUrl>http://letien.kyanon.com/prerequisites/</BootstrapperComponentsUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -588,6 +588,7 @@
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="firebird.conf" />
     <None Include="LeTien_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\LeTien.Objects.Branch.datasource" />
     <None Include="Properties\DataSources\LeTien.Objects.Competence.datasource" />
@@ -602,7 +603,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="bin\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cancel_32x321.png" />
   </ItemGroup>
@@ -832,6 +835,12 @@
     </PublishFile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fbembedded.dll" />
+    <Content Include="FirebirdSql.Data.FirebirdClient.dll" />
+    <Content Include="ib_util.dll" />
+    <Content Include="icudt30.dll" />
+    <Content Include="icuin30.dll" />
+    <Content Include="icuuc30.dll" />
     <Content Include="Tools\calc.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

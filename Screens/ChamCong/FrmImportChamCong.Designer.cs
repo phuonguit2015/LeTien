@@ -361,7 +361,7 @@
             this.colGioVao1.Name = "colGioVao1";
             this.colGioVao1.OptionsColumn.ReadOnly = true;
             this.colGioVao1.Visible = true;
-            this.colGioVao1.VisibleIndex = 6;
+            this.colGioVao1.VisibleIndex = 5;
             this.colGioVao1.Width = 55;
             // 
             // colGioVao2
@@ -375,7 +375,7 @@
             this.colGioVao2.Name = "colGioVao2";
             this.colGioVao2.OptionsColumn.ReadOnly = true;
             this.colGioVao2.Visible = true;
-            this.colGioVao2.VisibleIndex = 8;
+            this.colGioVao2.VisibleIndex = 7;
             this.colGioVao2.Width = 56;
             // 
             // colGioVao3
@@ -389,7 +389,7 @@
             this.colGioVao3.Name = "colGioVao3";
             this.colGioVao3.OptionsColumn.ReadOnly = true;
             this.colGioVao3.Visible = true;
-            this.colGioVao3.VisibleIndex = 10;
+            this.colGioVao3.VisibleIndex = 9;
             this.colGioVao3.Width = 53;
             // 
             // colGioRa1
@@ -403,7 +403,7 @@
             this.colGioRa1.Name = "colGioRa1";
             this.colGioRa1.OptionsColumn.ReadOnly = true;
             this.colGioRa1.Visible = true;
-            this.colGioRa1.VisibleIndex = 7;
+            this.colGioRa1.VisibleIndex = 6;
             this.colGioRa1.Width = 54;
             // 
             // colGioRa2
@@ -417,7 +417,7 @@
             this.colGioRa2.Name = "colGioRa2";
             this.colGioRa2.OptionsColumn.ReadOnly = true;
             this.colGioRa2.Visible = true;
-            this.colGioRa2.VisibleIndex = 9;
+            this.colGioRa2.VisibleIndex = 8;
             this.colGioRa2.Width = 60;
             // 
             // colGioRa3
@@ -431,15 +431,13 @@
             this.colGioRa3.Name = "colGioRa3";
             this.colGioRa3.OptionsColumn.ReadOnly = true;
             this.colGioRa3.Visible = true;
-            this.colGioRa3.VisibleIndex = 11;
+            this.colGioRa3.VisibleIndex = 10;
             this.colGioRa3.Width = 53;
             // 
             // colChecked
             // 
             this.colChecked.FieldName = "Checked";
             this.colChecked.Name = "colChecked";
-            this.colChecked.Visible = true;
-            this.colChecked.VisibleIndex = 5;
             // 
             // btnThoat
             // 

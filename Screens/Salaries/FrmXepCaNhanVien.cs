@@ -91,17 +91,19 @@ namespace LeTien.Screens.Salaries
             }
             for (int i = 0; i < gridView1.SelectedRowsCount; i++)
             {
-                string _id = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[i], colOid).ToString();
-
-                using (var uow = new UnitOfWork())
+                if (Convert.ToInt32(gridView1.GetSelectedRows()[i]) > 0)
                 {
-                    ChiTietXepCa br = uow.FindObject<ChiTietXepCa>(CriteriaOperator.Parse("Oid = ?", _id));
-                    if (br != null)
-                    {
-                        br.Delete();
-                        uow.CommitChanges();
-                        uow.PurgeDeletedObjects();
-                    }
+                    string _id = gridView1.GetRowCellValue(gridView1.GetSelectedRows()[i], colOid).ToString();
+
+                        ChiTietXepCa br = XpoDefault.Session.FindObject< ChiTietXepCa > (CriteriaOperator.Parse("Oid = ?", _id));
+                        if (br != null)
+                        {
+                            br.Delete();
+                            XpoDefault.Session.CommitTransaction();
+                            XpoDefault.Session.PurgeDeletedObjects();
+                        }
+                    
+                   
                 }
             }
             RefreshData();

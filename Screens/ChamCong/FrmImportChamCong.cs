@@ -270,13 +270,13 @@ namespace LeTien.Screens.Salaries
                 }
 
                 #region Tính tông thời gian làm và tăng ca, số ngày công
-                dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}",0);
+                dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.0}",0);
                 dt.Rows[i]["Số Ngày Công"] = 0;
-                dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", 0);
-                dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.00}", 0);
-                dt.Rows[i]["Tăng Ca NN"] = String.Format("{0:0.00}", 0);
-                dt.Rows[i]["Tăng Ca NN Ca Đêm"] = String.Format("{0:0.00}", 0);
-                dt.Rows[i]["Tăng Ca NL"] = String.Format("{0:0.00}", 0);
+                dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.0}", 0);
+                dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.0}", 0);
+                dt.Rows[i]["Tăng Ca NN"] = String.Format("{0:0.0}", 0);
+                dt.Rows[i]["Tăng Ca NN Ca Đêm"] = String.Format("{0:0.0}", 0);
+                dt.Rows[i]["Tăng Ca NL"] = String.Format("{0:0.0}", 0);
 
                 if (dt.Rows[i]["GioVao"] != System.DBNull.Value && dt.Rows[i]["GioRa"] != System.DBNull.Value)
                 {
@@ -295,7 +295,7 @@ namespace LeTien.Screens.Salaries
                                                   select nl).ToList();
                     if (ngayLe.Count > 0)
                     {
-                        dt.Rows[i]["Tăng Ca NL"] = String.Format("{0:0.00}", hours);
+                        dt.Rows[i]["Tăng Ca NL"] = String.Format("{0:0.0}", hours);
                     }
                     //NẾu không phải ngày lễ: ngày thường, ngày nghĩ - Có ca thì ngày thường, không ca thì ngày nghĩ
                     else
@@ -326,24 +326,26 @@ namespace LeTien.Screens.Salaries
                                         DateTime thoiGianPhanBietCa = new DateTime(d1.Year, d1.Month, d1.Day, tempTG.Hour, tempTG.Minute, tempTG.Second);
                                         //Nếu thời gian ra lớn hơn thời gian phân biệt ca thì thời gian tăng ca sẻ là tăng ca NT Ca Đêm
                                         TimeSpan ts1 = d3 - thoiGianPhanBietCa;
+                                        dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.0}", temp_TongThoiGianLam);
                                         if (ts1.TotalHours > khoangGioiHanTangCa)
                                         {
                                             double dtemp = hours - t_TongThoiGianLam;//Tổng Thời Gian Tăng Ca
-                                            dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}", temp_TongThoiGianLam);
-                                            dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", dtemp - ts1.TotalHours);
-                                            dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.00}", ts1.TotalHours);
+                                            dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.0}", dtemp - ts1.TotalHours);
+                                            dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.0}", ts1.TotalHours);
                                         }
                                         //Ngược lại thời gian tăng ca sẽ là tăng ca NT
                                         else
                                         {
-                                            dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}", temp_TongThoiGianLam);
-                                            dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", hours - t_TongThoiGianLam);
+                                            if ((hours - t_TongThoiGianLam) > khoangGioiHanTangCa)
+                                            {
+                                                dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.0}", hours - t_TongThoiGianLam);
+                                            }
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}", hours);
+                                    dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.0}", hours);
                                 }
                             }
                             dt.Rows[i]["Số Ngày Công"] = 1;
@@ -359,12 +361,18 @@ namespace LeTien.Screens.Salaries
                                 TimeSpan ts1 = d3 - thoiGianPhanBietCa;
                                 if (ts1.TotalHours > khoangGioiHanTangCa)
                                 {
-                                    dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", hours - ts1.TotalHours);
-                                    dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.00}", ts1.TotalHours);
+                                    if ((hours - ts1.TotalHours) > khoangGioiHanTangCa)
+                                    {
+                                        dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.0}", hours - ts1.TotalHours);
+                                    }
+                                    dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.0}", ts1.TotalHours);
                                 }
                                 else
                                 {
-                                    dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", hours );
+                                    if (hours > khoangGioiHanTangCa)
+                                    {
+                                        dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.0}", hours);
+                                    }
                                 }
                             } 
                         }
@@ -386,17 +394,19 @@ namespace LeTien.Screens.Salaries
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             if (dtThangImport.EditValue == null)
             {
                 XtraMessageBox.Show("Bạn chưa chọn tháng.", "Thông Báo");
                 return;
             }
+           int count = 0;
 
             string _MaNhanVien = dt.Rows[0]["Mã NV"].ToString();
             ChamCong c = new ChamCong();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (Convert.ToBoolean(dt.Rows[i]["Checked"]) == false)
+                if (dt.Rows[i]["Checked"] == System.DBNull.Value || Convert.ToBoolean(dt.Rows[i]["Checked"]) == false)
                     continue;
                 if (dt.Rows[i]["NhanVien"] == System.DBNull.Value)
                     continue;
@@ -470,7 +480,7 @@ namespace LeTien.Screens.Salaries
             
                 DateTime d = DateTime.Parse(dt.Rows[i]["Ngày"].ToString());
                 TimeSpan ts = d - c.FirstDate;
-                XPCollection xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Thời Gian Vào"));
+                XPCollection xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Giờ Vào"));
                 if (xpcLoaiDLChamCong.Count > 0)
                 {
                     c.LoaiDuLieuChamCong = xpcLoaiDLChamCong[0] as LoaiDuLieuChamCong;
@@ -499,7 +509,7 @@ namespace LeTien.Screens.Salaries
                     LastDate = dtNgayCuoiThang.DateTime,
                     TenBangChamCong = dtThangImport.DateTime.Month.ToString() + "-" + dtThangImport.DateTime.Year.ToString()
                 };
-                xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Thời Gian Ra"));
+                xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Giờ Ra"));
                 if (xpcLoaiDLChamCong.Count > 0)
                 {
                     c.LoaiDuLieuChamCong = xpcLoaiDLChamCong[0] as LoaiDuLieuChamCong;
@@ -718,14 +728,15 @@ namespace LeTien.Screens.Salaries
                 #endregion
 
                 #endregion
+
+                count++;
             }
             XpoDefault.Session.Save(xpcChamCong);
             XpoDefault.Session.Save(xpcChiTietCa);
+            Cursor = Cursors.Default;
 
 
-
-
-            XtraMessageBox.Show("Lưu thành công.", "Thông Báo");
+            XtraMessageBox.Show(String.Format("Lưu thành công {0} dòng.",count), "Thông Báo");
         }
 
         private void dtThangImport_EditValueChanged(object sender, EventArgs e)

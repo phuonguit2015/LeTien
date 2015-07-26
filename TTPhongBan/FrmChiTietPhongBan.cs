@@ -53,7 +53,7 @@ namespace LeTien.TTPhongBan
         {
             using (var uow = new UnitOfWork())
             {
-                PhongBan update = uow.FindObject<PhongBan>(CriteriaOperator.Parse("Oid = ?", txtMaPhongBan.Text));
+                PhongBan update = uow.FindObject<PhongBan>(CriteriaOperator.Parse("MaPhongBan = ?", txtMaPhongBan.Text));
                 if (update != null)
                 {
                     update.TenPhongBan = txtTenPhongBan.Text;

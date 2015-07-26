@@ -50,15 +50,12 @@ namespace LeTien.Screens.List
             {
                 competenceID = grvUCList.GetRowCellValue(grvUCList.GetSelectedRows()[i], colBranchID).ToString();
 
-                using (var uow = new UnitOfWork())
+                Competence br = XpoDefault.Session.FindObject<Competence>(CriteriaOperator.Parse("CompetenceID = ?", competenceID));
+                if (br != null)
                 {
-                    Competence br = uow.FindObject<Competence>(CriteriaOperator.Parse("CompetenceID = ?", competenceID));
-                    if (br != null)
-                    {
-                        br.Delete();
-                        uow.CommitChanges();
-                        uow.PurgeDeletedObjects();
-                    }
+                    br.Delete();
+                    XpoDefault.Session.CommitTransaction();
+                    XpoDefault.Session.PurgeDeletedObjects();
                 }
             }
             RefreshData();
