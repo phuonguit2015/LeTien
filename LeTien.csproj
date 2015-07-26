@@ -118,6 +118,7 @@
     <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.JScript" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -166,6 +167,12 @@
     </Compile>
     <Compile Include="Reports\reportTemplate.Designer.cs">
       <DependentUpon>reportTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmDBServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmDBServer.Designer.cs">
+      <DependentUpon>FrmDBServer.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\List\FrmThamSo.cs">
       <SubType>Form</SubType>
@@ -446,6 +453,9 @@
     <EmbeddedResource Include="Reports\reportTemplate.resx">
       <DependentUpon>reportTemplate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Configurations\FrmDBServer.resx">
+      <DependentUpon>FrmDBServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\List\FrmThamSo.resx">
       <DependentUpon>FrmThamSo.cs</DependentUpon>
     </EmbeddedResource>
@@ -578,6 +588,14 @@
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="Firebird\aliases.conf" />
+    <None Include="Firebird\doc\Firebird-2.5-QuickStart.pdf" />
+    <None Include="Firebird\doc\Firebird_v2.1.5.InstallationGuide.pdf" />
+    <None Include="Firebird\doc\Firebird_v2.5.4.ReleaseNotes.pdf" />
+    <None Include="Firebird\firebird.conf" />
+    <None Include="Firebird\firebird.msg" />
+    <None Include="Firebird\intl\fbintl.conf" />
+    <None Include="Firebird\Microsoft.VC80.CRT.manifest" />
     <None Include="LeTien_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\LeTien.Objects.Branch.datasource" />
     <None Include="Properties\DataSources\LeTien.Objects.Competence.datasource" />
@@ -822,6 +840,25 @@
     </PublishFile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Firebird\doc\README_embedded.txt" />
+    <Content Include="Firebird\doc\WhatsNew.txt" />
+    <Content Include="Firebird\fbclient.dll" />
+    <Content Include="Firebird\ib_util.dll" />
+    <Content Include="Firebird\icudt30.dll" />
+    <Content Include="Firebird\icuin30.dll" />
+    <Content Include="Firebird\icuuc30.dll" />
+    <Content Include="Firebird\IDPLicense.txt" />
+    <Content Include="Firebird\intl\fbintl.dll" />
+    <Content Include="Firebird\IPLicense.txt" />
+    <Content Include="Firebird\msvcp80.dll" />
+    <Content Include="Firebird\msvcr80.dll" />
+    <Content Include="Firebird\Readme.txt" />
+    <Content Include="Firebird\udf\fbudf.dll" />
+    <Content Include="Firebird\udf\fbudf.sql" />
+    <Content Include="Firebird\udf\fbudf.txt" />
+    <Content Include="Firebird\udf\ib_udf.dll" />
+    <Content Include="Firebird\udf\ib_udf.sql" />
+    <Content Include="Firebird\udf\ib_udf2.sql" />
     <Content Include="Tools\calc.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
