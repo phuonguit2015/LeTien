@@ -150,6 +150,12 @@
     <Compile Include="Screens\Configurations\FrmCompetence.Designer.cs">
       <DependentUpon>FrmCompetence.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Configurations\FrmDBServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Configurations\FrmDBServer.Designer.cs">
+      <DependentUpon>FrmDBServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Configurations\FrmPublicHoliday.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -386,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Configurations\FrmCompetence.resx">
       <DependentUpon>FrmCompetence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Configurations\FrmDBServer.resx">
+      <DependentUpon>FrmDBServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\Configurations\FrmPublicHoliday.resx">
       <DependentUpon>FrmPublicHoliday.cs</DependentUpon>

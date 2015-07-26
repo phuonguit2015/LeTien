@@ -9,7 +9,7 @@ namespace LeTien.Utils
 {
     public class Connector
     {
-        public static string sConnectionString = "XpoProvider=MySql;server=localhost;user id=root; password=root; database=letien_db;persist security info=true;CharSet=utf8;";
+        public static string sConnectionString = "XpoProvider=MySql;server=localhost;user id=root; password=; database=letien;persist security info=true;CharSet=utf8;";
         public static bool Connect()
         { 
             
