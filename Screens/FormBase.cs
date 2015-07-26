@@ -12,6 +12,9 @@ using DevExpress.XtraPrinting.Export;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraPrinting;
 using LeTien.Utils;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace LeTien.Screens
 {
@@ -60,7 +63,7 @@ namespace LeTien.Screens
         }
         public void ExportXls()
         {
-            OnExportXls();
+            
         }
         #endregion
 
@@ -100,31 +103,42 @@ namespace LeTien.Screens
         }
         protected virtual void OnReload()
         {
+            SplashScreenManager.ShowForm(typeof(WaitFormMain));
             UOW.ReloadChangedObjects();
+            SplashScreenManager.CloseForm();
         }
        
-        protected virtual void OnExportXls()
+        protected virtual void OnExportXls(GridControl g)
         {
-            if (Printer == null) return;
-
-            DevExpress.XtraPrinting.PrintingSystem ps = new DevExpress.XtraPrinting.PrintingSystem();
-            DevExpress.XtraPrinting.PrintableComponentLink link = new DevExpress.XtraPrinting.PrintableComponentLink(ps);
-            link.Component = Printer;
-            link.CreateReportHeaderArea += new DevExpress.XtraPrinting.CreateAreaEventHandler(printableComponentLink_CreateReportHeaderArea);
-
-            link.PaperKind = System.Drawing.Printing.PaperKind.A4;
-
-            link.Margins.Bottom = link.Margins.Left = link.Margins.Right = link.Margins.Top = 50;
-
-            link.CreateDocument();
             string fileName = string.Empty;
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = "Exel 2013 (*.xls)|*.xls";
             if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
                 fileName = save.FileName;
+                g.ExportToXls(fileName);
+            }           
 
-            if (string.IsNullOrEmpty(fileName)) return;
-            link.ExportToXls(fileName);
+            //if (Printer == null) return;
+
+            //DevExpress.XtraPrinting.PrintingSystem ps = new DevExpress.XtraPrinting.PrintingSystem();
+            //DevExpress.XtraPrinting.PrintableComponentLink link = new DevExpress.XtraPrinting.PrintableComponentLink(ps);
+            //link.Component = Printer;
+            //link.CreateReportHeaderArea += new DevExpress.XtraPrinting.CreateAreaEventHandler(printableComponentLink_CreateReportHeaderArea);
+
+            //link.PaperKind = System.Drawing.Printing.PaperKind.A4;
+
+            //link.Margins.Bottom = link.Margins.Left = link.Margins.Right = link.Margins.Top = 50;
+
+            //link.CreateDocument();
+            //string fileName = string.Empty;
+            //SaveFileDialog save = new SaveFileDialog();
+            //save.Filter = "Exel 2013 (*.xls)|*.xls";
+            //if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //    fileName = save.FileName;
+
+            //if (string.IsNullOrEmpty(fileName)) return;
+            //link.ExportToXls(fileName);
         }
 
         #region "Print"
@@ -136,24 +150,46 @@ namespace LeTien.Screens
         /// Tên báo cáo muốn xuất
         /// </summary>
         protected string PrintCaption = string.Empty;
+
+        public WinControlContainer CopyGridControl(GridControl grid)
+        {
+            WinControlContainer winContainer = new WinControlContainer();
+
+            winContainer.WinControl = grid;
+            return winContainer;
+        }
+
         protected virtual void OnPreview()
         {
-            if (Printer == null) return;
-            SplashScreenManager.ShowForm(typeof(WaitFormMain));
-            DevExpress.XtraPrinting.PrintingSystem ps = new DevExpress.XtraPrinting.PrintingSystem();
-            DevExpress.XtraPrinting.PrintableComponentLink link = new DevExpress.XtraPrinting.PrintableComponentLink(ps);
-            link.Component = Printer;
-            link.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            link.CreateReportHeaderArea += new DevExpress.XtraPrinting.CreateAreaEventHandler(printableComponentLink_CreateReportHeaderArea);
-            link.CreateReportFooterArea += new CreateAreaEventHandler(printableComponentLink_CreateReportFooterArea);
+
+        }
+        protected virtual void OnPreview(GridControl gridUCList, string title, string reportpath)
+        {
+
+            XtraReport report = new XtraReport();
+            report.LoadLayout(Application.StartupPath + "/" + reportpath);
+          
+            report.Bands[BandKind.Detail].Controls.Add(CopyGridControl(gridUCList));
+            report.Bands[BandKind.ReportHeader].Controls["lblTenReport"].Text = title;
+            ReportPrintTool tool = new ReportPrintTool(report);
+            tool.ShowPreview();
+
+            //if (Printer == null) return;
+            //SplashScreenManager.ShowForm(typeof(WaitFormMain));
+            //DevExpress.XtraPrinting.PrintingSystem ps = new DevExpress.XtraPrinting.PrintingSystem();
+            //DevExpress.XtraPrinting.PrintableComponentLink link = new DevExpress.XtraPrinting.PrintableComponentLink(ps);
+            //link.Component = Printer;
+            //link.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            //link.CreateReportHeaderArea += new DevExpress.XtraPrinting.CreateAreaEventHandler(printableComponentLink_CreateReportHeaderArea);
+            //link.CreateReportFooterArea += new CreateAreaEventHandler(printableComponentLink_CreateReportFooterArea);
 
 
 
-            link.Margins.Bottom = link.Margins.Left = link.Margins.Right = link.Margins.Top = 50;
+            //link.Margins.Bottom = link.Margins.Left = link.Margins.Right = link.Margins.Top = 50;
 
-            link.CreateDocument();
-            link.ShowPreview();
-            SplashScreenManager.CloseForm();
+            //link.CreateDocument();
+            //link.ShowPreview();
+            //SplashScreenManager.CloseForm();
         }
         // ghi tên doanh nghiệp, địa chỉ doanh nghiệp, tên báo cáo mặc định
         private void printableComponentLink_CreateReportHeaderArea(object sender, DevExpress.XtraPrinting.CreateAreaEventArgs e)

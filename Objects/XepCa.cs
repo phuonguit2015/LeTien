@@ -26,26 +26,14 @@ namespace LeTien.Objects
             // Place here your initialization code.
         }
 
-        [DisplayName("Ngày")]
-        public DateTime Ngay
+        [DisplayName("Tháng")]
+        public DateTime Thang
         {
             get;
             set;
-        }
+        }      
 
-        [DisplayName("Nhân Viên")]
-        public Employee NhanVien
-        {
-            get;
-            set;
-        }
-
-        [DisplayName("Ca")]
-        public DanhMucCa Ca
-        {
-            get;
-            set;
-        }
+        public string TenBangXepCa;
     }
 
 }

@@ -133,27 +133,27 @@ namespace LeTien.Screens.Salaries
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            for(int i = 1; i <= SoNgayTrongThang(dtThang.DateTime.Month, dtThang.DateTime.Year); i++)
-            {
-                foreach(object nv in lBoxNhanVienDes.Items)
-                {
-                    XepCa xepca = new XepCa()
-                    {
-                        NhanVien = nv as Employee,
-                        Ngay = new DateTime(dtThang.DateTime.Year, dtThang.DateTime.Month, i),
-                        Ca = lkupCa.EditValue as DanhMucCa
-                    };
-                    XPCollection xpc = new XPCollection(xpcXepCa, CriteriaOperator.Parse("NhanVien = '" + xepca.NhanVien + "' AND Ngay = '" + xepca.Ngay + "'"));                   
-                    if(xpc.Count == 0)
-                    {
-                        xpcXepCa.Add(xepca);
-                    }
-                }
-            }
-            XpoDefault.Session.Save(xpcXepCa);
-            XtraMessageBox.Show("Lưu thông tin thành công");
-            FrmXepCa f = this.Tag as FrmXepCa;
-            f.RefreshData();
+            //for(int i = 1; i <= SoNgayTrongThang(dtThang.DateTime.Month, dtThang.DateTime.Year); i++)
+            //{
+            //    foreach(object nv in lBoxNhanVienDes.Items)
+            //    {
+            //        XepCa xepca = new XepCa()
+            //        {
+            //            NhanVien = nv as Employee,
+            //            //Ngay = new DateTime(dtThang.DateTime.Year, dtThang.DateTime.Month, i),
+            //            Ca = lkupCa.EditValue as DanhMucCa
+            //        };
+            //        XPCollection xpc = new XPCollection(xpcXepCa, CriteriaOperator.Parse("NhanVien = '" + xepca.NhanVien + "' AND Ngay = '" + xepca.Ngay + "'"));                   
+            //        if(xpc.Count == 0)
+            //        {
+            //            xpcXepCa.Add(xepca);
+            //        }
+            //    }
+            //}
+            //XpoDefault.Session.Save(xpcXepCa);
+            //XtraMessageBox.Show("Lưu thông tin thành công");
+            //FrmXepCa f = this.Tag as FrmXepCa;
+            //f.RefreshData();
         }
 
         private void lkupCa_EditValueChanged(object sender, EventArgs e)

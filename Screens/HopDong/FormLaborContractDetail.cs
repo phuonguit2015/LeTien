@@ -38,7 +38,7 @@ namespace LeTien.Screens.HopDong
                     dtNgayKy.Text = lb.NgayKy.ToShortDateString();
                     dtNgayHetHan.EditValue = lb.NgayHetHan.ToShortDateString();
                     lkChucVu.EditValue = LayChucVuCuaNhanVien(lb.iNhanVien.MaNhanVien);
-                    calLuongCoBan.Text = (LayLuongCoBanCuaNhanVien(lb.iNhanVien.MaNhanVien) / 20000).ToString();
+                    calLuongCoBan.Text = (LayLuongCoBanCuaNhanVien(lb.iNhanVien.MaNhanVien)).ToString();
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace LeTien.Screens.HopDong
             using (var uow = new UnitOfWork())
             {
                 Employee lb = uow.FindObject<Employee>(CriteriaOperator.Parse("MaNhanVien = ?", MaNhanVien));
-                if (lb != null)
+                if (lb != null && lb.ChucVu != null)
                     return lb.ChucVu.CompetenceID;
                 return null;
             }
@@ -84,12 +84,12 @@ namespace LeTien.Screens.HopDong
                 {
                     CleanTTNV();
                     txtHoTen.Text = nv.HoTen;
-                    txtChiNhanh.Text = nv.ChiNhanh.BranchName;
-                    txtChucVu.Text = nv.ChucVu.CompetenceName;
-                    dtNgaySinh.Text = nv.NgaySinh.ToShortDateString();
-                    txtSoCMND.Text = nv.SoCMND;
-                    dtNgayCap.Text = nv.NgayCapCMND.ToShortDateString();
-                    txtNoiCap.Text = nv.NoiCapCMND;
+                    txtChiNhanh.Text = nv.ChiNhanh == null ? "" : nv.ChiNhanh.BranchName;
+                    txtChucVu.Text = nv.ChucVu == null ? "" : nv.ChucVu.CompetenceName;
+                    dtNgaySinh.Text = String.IsNullOrEmpty(nv.NgaySinh.ToShortDateString()) ? "" : nv.NgaySinh.ToShortDateString();
+                    txtSoCMND.Text = String.IsNullOrEmpty(nv.SoCMND) ? "" : nv.SoCMND;
+                    dtNgayCap.Text = String.IsNullOrEmpty(nv.NgayCapCMND.ToShortDateString()) ? "" : nv.NgayCapCMND.ToShortDateString();
+                    txtNoiCap.Text = String.IsNullOrEmpty(nv.NoiCapCMND) ? "" : nv.NoiCapCMND;
                 }
             }
         }
@@ -118,12 +118,18 @@ namespace LeTien.Screens.HopDong
         {
             bool flag = true;
 
-            #region "Lưu Thông Tin Hợp Đồng"
+            #region "Lưu Thông Tin Hợp Đồng"            
+
             using (var uow = new UnitOfWork())
             {
                 LaborContract lb = uow.FindObject<LaborContract>(CriteriaOperator.Parse("MaHopDong = ?", txtMaHopDong.Text));
-                if (lb == null)
+                if (txtMaHopDong.Enabled == true && lb != null)
                 {
+                    XtraMessageBox.Show("Mã hợp đồng đã tồn tại. Vui lòng nhập mã khác.", "THÔNG BÁO");
+                    return;
+                }
+                if (lb == null)
+                {                    
                     lb = new LaborContract(uow);
                     flag = false;
                     lb.MaHopDong = txtMaHopDong.Text;
@@ -144,7 +150,6 @@ namespace LeTien.Screens.HopDong
                         f.RefreshData();
                         if (flag == false)
                         {
-
                             XtraMessageBox.Show("Thêm thành công", "Đã lưu");
                         }
                         else
@@ -218,11 +223,11 @@ namespace LeTien.Screens.HopDong
                 er.SetError(dtNgayHetHan, "Chọn ngày hết hạn!");
                 flag = false;
             }
-            if (txtPhuCapChucVu.Text == string.Empty)
-            {
-                er.SetError(lkChucVu, "Chọn chức vụ!");
-                flag = false;
-            }
+            //if (txtPhuCapChucVu.Text == string.Empty)
+            //{
+            //    er.SetError(lkChucVu, "Chọn chức vụ!");
+            //    flag = false;
+            //}
             if (calLuongCoBan.Text == string.Empty)
             {
                 er.SetError(calLuongCoBan, "Nhập lương cơ bản!");
@@ -260,7 +265,11 @@ namespace LeTien.Screens.HopDong
         private void btnThemNV_Click(object sender, EventArgs e)
         {
             FormEmployeeDetails f = new FormEmployeeDetails();
-            f.ShowDialog();
+            if (f.ShowDialog() == DialogResult.Cancel)
+            {
+                xpcEmployee.Reload();
+            }
+            
         }
     }
 }

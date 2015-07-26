@@ -104,6 +104,13 @@ namespace LeTien.Objects
         }
         //Chỉ dùng 1 cột màu, 1 cột so sánh
 
+        public bool ShowWhenImport
+        {
+            get;
+            set;
+        }
+
+
         public override void AfterConstruction()
         {
             base.AfterConstruction();

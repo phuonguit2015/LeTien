@@ -17,6 +17,10 @@ using LeTien.Utils;
 using LeTien.Screens.List;
 using LeTien.Screens.HopDong;
 using LeTien.Screens.Salaries;
+using DevExpress.XtraReports.UI;
+using System.IO;
+using LeTien.Reports;
+using LeTien.Screens.NgayNghiNgayLe;
 namespace LeTien.Screens
 {
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -78,7 +82,7 @@ namespace LeTien.Screens
             else
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
-                f = new frmBranch();
+                //f = new frmBranchList();
                 f.Name = f.GetType().ToString();
                 e.Item.Tag = f.Name;
                 f.MdiParent = this;
@@ -96,11 +100,11 @@ namespace LeTien.Screens
             else
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
-                f = new FrmCompetence();
-                f.Name = f.GetType().ToString();
-                e.Item.Tag = f.Name;
-                f.MdiParent = this;
-                f.Show();
+                //f = new FrmCompetence();
+                //f.Name = f.GetType().ToString();
+                //e.Item.Tag = f.Name;
+                //f.MdiParent = this;
+                //f.Show();
                 SplashScreenManager.CloseForm();
             }
         }
@@ -117,15 +121,8 @@ namespace LeTien.Screens
 
         private void Main_Load(object sender, EventArgs e)
         {
-            //FrmLogin form_login = new FrmLogin();
-            //if (form_login.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{
-            //    Objects.User user_login = Global.User;
-            //}
-            //else
-            //{
-            //    Application.Exit();
-            //}
+            //Tạo giao diện ngẫu nhiên
+            DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(rbGallery_Theme, true);
         }
 
         private void BButton_CheckAttendance_ItemClick(object sender, ItemClickEventArgs e)
@@ -277,7 +274,10 @@ namespace LeTien.Screens
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
                 f = new FrmQuanLyNgayNghi();
-                f.ShowDialog();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
                 SplashScreenManager.CloseForm();
             }
         }
@@ -291,8 +291,11 @@ namespace LeTien.Screens
             else
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
-                f = new FrmDanhMucMauNgayNghiLe();
-                f.ShowDialog();
+                f = new FrmDanhMucMauNgayNghiLe(); 
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
                 SplashScreenManager.CloseForm();
             }
         }
@@ -307,7 +310,10 @@ namespace LeTien.Screens
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
                 f = new FrmLoaiDuLieuChamCong();
-                f.ShowDialog();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
                 SplashScreenManager.CloseForm();
             }
         }
@@ -393,7 +399,119 @@ namespace LeTien.Screens
             else
             {
                 SplashScreenManager.ShowForm(typeof(WaitFormMain));
-                f = new FrmXepCa();
+                f = new FrmXepCaNhanVien();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnChuKyTinhLuong_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmCauHinhChuKyLuong();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnLoaiNgayNghi_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmDanhMucMauNgayNghiLe();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnLoaiDuLieuTinhLuong_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmLoaiDuLieuTinhLuong();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+
+        }
+
+        private void btnReport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            XtraReport report = new XtraReport();
+            string path = Application.StartupPath + "/reportTemplate.repx";
+            if(File.Exists(path))
+            {
+                report.LoadLayout(path);
+            }
+            else
+            {
+                report = new reportTemplate();
+            }           
+            ReportDesignTool tool = new ReportDesignTool(report);
+            tool.ShowDesignerDialog();
+        }
+
+        private void btnImport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmImportChamCong();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnBangLuong_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmTinhLuongThang();
                 f.Name = f.GetType().ToString();
                 e.Item.Tag = f.Name;
                 f.MdiParent = this;

@@ -1,6 +1,7 @@
 ﻿using DevExpress.Data.Filtering;
 using DevExpress.Xpo;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using LeTien.Objects;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,13 +22,8 @@ namespace LeTien.Screens.Salaries
         {
             InitializeComponent();
         }
-          private string _id = string.Empty;
-     
-        private void grvUCList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
-        {
-            _id = grvUCList.GetRowCellValue(e.RowHandle, "Oid").ToString();         
-        }    
-     
+          private string _id = string.Empty;    
+       
 
         #region "Override FromBase"     
      
@@ -36,37 +33,35 @@ namespace LeTien.Screens.Salaries
             {
                 return;
             }
-            using (var uow = new UnitOfWork())
+            for (int i = 0; i < grvUCList.SelectedRowsCount; i++)
             {
-                GiaTriTienLuongTheoChucVu br = uow.FindObject<GiaTriTienLuongTheoChucVu>(CriteriaOperator.Parse("Oid = ?", _id));
-                if (br != null)
+                _id = grvUCList.GetRowCellValue(grvUCList.GetSelectedRows()[i], colOid).ToString();
+
+                using (var uow = new UnitOfWork())
                 {
-                    br.Delete();
-                    uow.CommitChanges();
-                    uow.PurgeDeletedObjects();
-                    RefreshData();
+                    GiaTriTienLuongTheoChucVu br = uow.FindObject<GiaTriTienLuongTheoChucVu>(CriteriaOperator.Parse("Oid = ?", _id));
+                    if (br != null)
+                    {
+                        br.Delete();
+                        uow.CommitChanges();
+                        uow.PurgeDeletedObjects();
+                        RefreshData();
+                    }
                 }
             }
         }
         protected override void OnReload()
         {
+            SplashScreenManager.ShowForm(typeof(WaitFormMain));
+            Thread.Sleep(1000);
+           
             UOW.ReloadChangedObjects();
             xpcTienLuongTheoChucVu.Reload();
+            gridUCList.DataSource = xpcTienLuongTheoChucVu;
+            SplashScreenManager.CloseForm(); 
         }
 
-        protected override void OnPreview()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách loại dữ liệu chấm công";
-            base.OnPreview();
-        }
-
-        protected override void OnExportXls()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách loại dữ liệu chấm công";
-            base.OnExportXls();
-        }
+     
         #endregion
 
       
@@ -87,12 +82,13 @@ namespace LeTien.Screens.Salaries
 
         private void btnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnPreview();
+            OnPreview(gridUCList, "DANH SÁCH TIỀN LƯƠNG THEO CHỨC VỤ", "reportTemplate.repx");
+
         }
 
         private void btnXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnExportXls();           
+            OnExportXls(gridUCList);           
         }
 
         private void btnDong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -107,16 +103,33 @@ namespace LeTien.Screens.Salaries
         {
             if (grvUCList.OptionsBehavior.ReadOnly)
             {
-                btnEdit.Caption = "Đang ở chế độ chỉnh sửa";
+                btnEdit.Caption = "CHẾ ĐỘ CHỈNH SỬA";
                 grvUCList.OptionsBehavior.ReadOnly = false;
-                grvUCList.OptionsBehavior.Editable = true;
+                grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             }
             else
             {
-                grvUCList.OptionsBehavior.Editable = false;
                 grvUCList.OptionsBehavior.ReadOnly = true;
-                btnEdit.Caption = "Đang ở Chế độ chỉ đọc";
+                btnEdit.Caption = "CHẾ ĐỘ CHỈ ĐỌC";
+                grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
             }
+        }
+        private void grvUCList_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            btnXoa.Enabled = false;
+            if (grvUCList.SelectedRowsCount > 0)
+            {
+                btnXoa.Enabled = true;
+            }
+            else
+            {
+                btnXoa.Enabled = false;
+            }
+        }
+
+        private void btnNapLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OnReload();
         }
     }
 }

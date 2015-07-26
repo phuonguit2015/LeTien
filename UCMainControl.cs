@@ -24,51 +24,55 @@ namespace LeTien
         public event EventHandler UCMain_Export_Clicked;
         public event EventHandler UCMain_Delete_Clicked;
         public event EventHandler UCMain_Dong_Clicked;
-        public event EventHandler UCMain_MayTinh_Clicked;
+        public event EventHandler UCMain_ThemTuExcel_Clicked;
 
 
-        private void UCMain_Delete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnThem_Click(object sender, EventArgs e)
         {
-            if (UCMain_Delete_Clicked != null)
-                UCMain_Delete_Clicked(this, e);
-        }
-         private void UCMain_Add_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-         {
-             if (UCMain_Add_Clicked != null)
-                 UCMain_Add_Clicked(this, e);
-         }
-        private void UCMain_Refresh_ItemClicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (UCMain_Refresh_Clicked != null)
-                UCMain_Refresh_Clicked(this, e);
+            if (UCMain_Add_Clicked != null)
+                UCMain_Add_Clicked(this, e);
         }
 
-        private void UCMain_Print_ItemClicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnThemTuExcel_Click(object sender, EventArgs e)
         {
-            if (UCMain_Print_Clicked != null)
-                UCMain_Print_Clicked(this, e);
+            if (UCMain_ThemTuExcel_Clicked != null)
+                UCMain_ThemTuExcel_Clicked(this, e);
         }
-        private void UCMain_Export_ItemClicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (UCMain_Export_Clicked != null)
-                UCMain_Export_Clicked(this, e);
-        }
-        private void UCMain_Edit_ItemClicked(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             if (UCMain_Edit_Clicked != null)
                 UCMain_Edit_Clicked(this, e);
         }
 
-        private void UCMain_Dong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (UCMain_Delete_Clicked != null)
+                UCMain_Delete_Clicked(this, e);
+        }
+
+        private void btnNapLai_Click(object sender, EventArgs e)
+        {
+             if (UCMain_Refresh_Clicked != null)
+                UCMain_Refresh_Clicked(this, e);
+        }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            if (UCMain_Print_Clicked != null)
+                UCMain_Print_Clicked(this, e);
+        }
+
+        private void btnXuat_Click(object sender, EventArgs e)
+        {
+            if (UCMain_Export_Clicked != null)
+                UCMain_Export_Clicked(this, e);
+        }
+
+        private void btnDong_Click(object sender, EventArgs e)
         {
             if (UCMain_Dong_Clicked != null)
                 UCMain_Dong_Clicked(this, e);
-        }
-
-        private void UCMain_MayTinh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (UCMain_MayTinh_Clicked != null)
-                UCMain_MayTinh_Clicked(this, e);
         }
     }
 }

@@ -126,16 +126,16 @@
   <data name="xpCollectionEmployee.DisplayableProperties" xml:space="preserve">
     <value>MaNhanVien;Ho;Ten;HoTen;TenTiengNhat;iGioiTinh;NgaySinh;NoiSinh;SoCMND;NgayCapCMND;NoiCapCMND;DiaChiThuongTru;DiaChiTamTru;SoDienThoai;SoTaiKhoan;TonGiao!;TonGiao!Key;TonGiao;ChucVu!;ChucVu!Key;ChucVu;NgayVaoLam;SoBHXH;NgayVaoBHXH;HopDong!;HopDong!Key;HopDong;LuongCoBan;ChiNhanh!;ChiNhanh!Key;ChiNhanh;TinhTrangHopDong;LuongDongBHXH</value>
   </data>
-  <metadata name="session1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>270, 17</value>
+  <metadata name="xpCollectionCompentence.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>426, 17</value>
+  </metadata>
+  <metadata name="xpcReligion.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>621, 17</value>
   </metadata>
   <metadata name="xpCollectionBranch.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>368, 17</value>
-  </metadata>
-  <metadata name="xpCollectionCompentence.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>524, 17</value>
+    <value>270, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>84</value>
+    <value>86</value>
   </metadata>
 </root>

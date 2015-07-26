@@ -73,6 +73,18 @@ namespace LeTien.Objects
             get;
             set;
         }
+
+        public string TenCot
+        {
+            get;
+            set;
+        }
+
+        public int UuTien
+        {
+            get;
+            set;
+        }
    }
 
 }

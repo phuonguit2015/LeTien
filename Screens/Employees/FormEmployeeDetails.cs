@@ -48,11 +48,19 @@ namespace LeTien.Screens.Employees
         private void btnThem_Click(object sender, EventArgs e)
         {
             Session s = XpoDefault.Session;
-            s.Save(xpcEmployee);
+            try
+            {
+                s.Save(xpcEmployee);
+            }
+            catch
+            {
+                XtraMessageBox.Show("Mã Nhân Viên Đã Tồn Tại", "Thông Báo");
+                return;
+            }
             FormEmployeeList f = this.Tag as FormEmployeeList;
             f.RefreshData();            
             XtraMessageBox.Show("Thêm mới thành công", "Đã lưu");
-            
+            this.BindingContext[xpcEmployee].AddNew();
         }
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
@@ -73,18 +81,7 @@ namespace LeTien.Screens.Employees
             }
         }
 
-        private void calDiemA_TextChanged(object sender, EventArgs e)
-        {
-            //txtLuongCoBan.Text = (double.Parse(calDiemA.Text) * 20000).ToString();
-        }
-
-        //private void cbbChucVu_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    using (var uow = new UnitOfWork())
-        //    {
-        //        txtPhuCapChucVu.Text = uow.FindObject<Competence>(CriteriaOperator.Parse("CompetenceID = ?", lkuChucVu.Text)).Allowance; 
-        //    }
-        //}
+      
 
         private void txtHo_EditValueChanged(object sender, EventArgs e)
         {
@@ -139,7 +136,21 @@ namespace LeTien.Screens.Employees
             f.ShowDialog();
 
         }
-
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //Nếu là thêm mới
+                if (btnThem.Enabled == true)
+                {
+                    btnThem_Click(sender, e);
+                }
+                else
+                {
+                    btnCapNhat_Click(sender, e);
+                }
+            }
+        }
   
    
     }

@@ -113,7 +113,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Caption = "Chế độ chỉ đọc";
+            this.btnEdit.Caption = "CHẾ ĐỘ CHỈ ĐỌC";
             this.btnEdit.Glyph = ((System.Drawing.Image)(resources.GetObject("btnEdit.Glyph")));
             this.btnEdit.Id = 0;
             this.btnEdit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEdit.LargeGlyph")));
@@ -122,7 +122,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Caption = "Xóa";
+            this.btnXoa.Caption = "XÓA";
             this.btnXoa.Glyph = ((System.Drawing.Image)(resources.GetObject("btnXoa.Glyph")));
             this.btnXoa.Id = 6;
             this.btnXoa.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXoa.LargeGlyph")));
@@ -131,7 +131,7 @@
             // 
             // btnIn
             // 
-            this.btnIn.Caption = "In";
+            this.btnIn.Caption = "IN";
             this.btnIn.Glyph = ((System.Drawing.Image)(resources.GetObject("btnIn.Glyph")));
             this.btnIn.Id = 4;
             this.btnIn.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnIn.LargeGlyph")));
@@ -140,7 +140,7 @@
             // 
             // btnXuat
             // 
-            this.btnXuat.Caption = "Xuất";
+            this.btnXuat.Caption = "XUẤT";
             this.btnXuat.Glyph = ((System.Drawing.Image)(resources.GetObject("btnXuat.Glyph")));
             this.btnXuat.Id = 5;
             this.btnXuat.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXuat.LargeGlyph")));
@@ -149,7 +149,7 @@
             // 
             // btnDong
             // 
-            this.btnDong.Caption = "Đóng";
+            this.btnDong.Caption = "ĐÓNG";
             this.btnDong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnDong.Glyph")));
             this.btnDong.Id = 3;
             this.btnDong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnDong.LargeGlyph")));
@@ -248,20 +248,23 @@
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grvUCList.Name = "grvUCList";
+            this.grvUCList.NewItemRowText = "Thêm thông tin loại ngày nghĩ ở đây...";
             this.grvUCList.OptionsBehavior.ReadOnly = true;
-            this.grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.grvUCList.OptionsSelection.MultiSelect = true;
+            this.grvUCList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.grvUCList.OptionsView.ShowAutoFilterRow = true;
             this.grvUCList.OptionsView.ShowGroupPanel = false;
+            this.grvUCList.OptionsView.ShowIndicator = false;
             this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
-            this.grvUCList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvUCList_RowClick);
-            this.grvUCList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.grvUCList_RowCellClick);
+            this.grvUCList.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grvUCList_SelectionChanged);
             // 
             // colTenNgayNghi
             // 
             this.colTenNgayNghi.FieldName = "TenNgayNghi";
             this.colTenNgayNghi.Name = "colTenNgayNghi";
             this.colTenNgayNghi.Visible = true;
-            this.colTenNgayNghi.VisibleIndex = 0;
+            this.colTenNgayNghi.VisibleIndex = 1;
+            this.colTenNgayNghi.Width = 304;
             // 
             // colMauHienThi
             // 
@@ -269,7 +272,8 @@
             this.colMauHienThi.FieldName = "MauHienThi";
             this.colMauHienThi.Name = "colMauHienThi";
             this.colMauHienThi.Visible = true;
-            this.colMauHienThi.VisibleIndex = 1;
+            this.colMauHienThi.VisibleIndex = 2;
+            this.colMauHienThi.Width = 313;
             // 
             // repositoryItemColorPickEdit1
             // 
@@ -299,7 +303,7 @@
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(690, 378);
-            this.layoutControlGroup2.Text = "Danh mục màu ngày nghĩ";
+            this.layoutControlGroup2.Text = "Loại Ngày Nghĩ";
             // 
             // layoutControlItem1
             // 
@@ -327,7 +331,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmDanhMucMauNgayNghiLe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Danh mục màu ngày nghĩ ";
+            this.Text = "QUẢN LÝ LOẠI NGÀY NGHĨ";
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();

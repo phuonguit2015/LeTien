@@ -19,6 +19,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Data.Filtering;
 using System.Diagnostics;
+using System.Threading;
 namespace LeTien.Screens.Employees
 {
     public partial class FormEmployeeList : FormBase
@@ -31,6 +32,15 @@ namespace LeTien.Screens.Employees
             InitializeComponent();
             employee = new Employee();
             employeeID = string.Empty;
+
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCompentence)).BeginInit();
+            this.xpCollectionCompentence.ObjectType = typeof(LeTien.Objects.Competence);
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCompentence)).EndInit();
+
+            ((System.ComponentModel.ISupportInitialize)(this.xpcReligion)).BeginInit();
+            this.xpcReligion.ObjectType = typeof(LeTien.Objects.Religion);
+            ((System.ComponentModel.ISupportInitialize)(this.xpcReligion)).EndInit();
+
         }
 
         private void FormEmployeeList_Load(object sender, EventArgs e)
@@ -40,15 +50,16 @@ namespace LeTien.Screens.Employees
             ucMenu.UCMain_Print_Clicked += ucMenu_Print_Clicked;
             ucMenu.UCMain_Export_Clicked += ucMenu_Export_Clicked;
             ucMenu.UCMain_Dong_Clicked += ucMenu_Dong_Clicked;
-            ucMenu.UCMain_MayTinh_Clicked += ucMenu_MayTinh_Clicked;
+            ucMenu.UCMain_Edit_Clicked += ucMenu_Edit_Clicked;
 
-            ucMenu.UCMain_Edit.Enabled = false;
-            ucMenu.UCMain_Delete.Enabled = false;
-            ucMenu.UCMain_MayTinh.Visibility = BarItemVisibility.Never;
+            ucMenu.btnEdit.Enabled = false;
+            ucMenu.btnXoa.Enabled = false;
         }
         public void RefreshData()
         {
-            OnReload();
+            UOW.ReloadChangedObjects();
+            xpCollectionEmployee.Reload();
+            gridControl1.DataSource = xpCollectionEmployee;
         }
         private void ucMenu_MayTinh_Clicked(object sender, EventArgs e)
         {
@@ -71,17 +82,18 @@ namespace LeTien.Screens.Employees
 
         private void ucMenu_Export_Clicked(object sender, EventArgs e)
         {
-            OnExportXls();
+            OnExportXls(gridControl1);
         }
 
         private void ucMenu_Print_Clicked(object sender, EventArgs e)
         {
-            OnPreview();
+            OnPreview(gridControl1, "DANH SÁCH NHÂN VIÊN", "reportTemplate.repx");
         }
 
         private void ucMenu_Refresh_Clicked(object sender, EventArgs e)
         {
             OnReload();
+
         }
 
         private void ucMenu_Add_Clicked(object sender, EventArgs e)
@@ -89,65 +101,6 @@ namespace LeTien.Screens.Employees
             OnNew();
         }
 
-        void EmployeeList_Control_UCMain_Edit_Clicked(object sender, EventArgs e)
-        {
-
-            if (bandedGridView1.FocusedRowHandle < 0) return;
-            try
-            {
-                Objects.Employee employee = (Objects.Employee)bandedGridView1.GetRow(bandedGridView1.FocusedRowHandle);
-                if (employee == null)
-                {
-                    MessageBox.Show("Chưa chọn nhân viên", "Thông báo lỗi");
-                    return;
-                }
-                using (var uow = new UnitOfWork())
-                {
-                    //Object.NhanVien getRecords = new XPCollection<Object.NhanVien>(uow, CriteriaOperator.Parse("Oid = ?", employee_id)).FirstOrDefault();
-                    Objects.Employee getRecords = uow.GetObjectByKey<Objects.Employee>(employee.Oid);
-                    if (getRecords == null) return;
-                    //FormEmployeeDetail f = new FormEmployeeDetail(getRecords);
-                    //f.ShowDialog();
-
-                }
-                
-                
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Đã có lỗi không mong muốn sảy ra/n" + ex.ToString(), "Thông báo lỗi");
-            }
-        }
-
-        void EmployeeList_Control_UCMain_Add_Clicked(object sender, EventArgs e)
-        {
-            //SplashScreenManager.ShowForm(typeof(WaitFormMain));
-            //FormEmployeeDetail f = new FormEmployeeDetail();
-            //f.ShowDialog();
-            //SplashScreenManager.CloseForm();
-        }
-
-        void EmployeeList_Control_UCMain_Refresh_Clicked(object sender, EventArgs e)
-        {
-            SplashScreenManager.ShowForm(typeof(WaitFormMain));
-            xpCollectionEmployee.Reload();
-            //gridControl1.Refresh();
-            SplashScreenManager.CloseForm();
-        }
-
-        void EmployeeList_Control_UCMain_Print_Clicked(object sender, EventArgs e)
-        {
-            // Check whether the GridControl can be previewed.
-            if (!gridControl1.IsPrintingAvailable)
-            {
-                MessageBox.Show("The 'DevExpress.XtraPrinting' library is not found", "Error");
-                return;
-            }
-            // Open the Preview window.
-           // gridControl1.ShowPrintPreview();
-
-            gridControl1.Print();
-        }
 
         private void xpCollectionEmployee_CollectionChanged(object sender, DevExpress.Xpo.XPCollectionChangedEventArgs e)
         {
@@ -160,14 +113,16 @@ namespace LeTien.Screens.Employees
             //if (bandedGridView1.FocusedRowHandle < 0) return;
             //DataRow dr = bandedGridView1.GetDataRow(bandedGridView1.FocusedRowHandle);
             //if (dr == null) return;
-            FormEmployeeDetails f = new FormEmployeeDetails(employeeID);
-            f.Text = "Cập nhật thông tin nhân viên";
-            f.Tag = this;
-            f.ShowDialog();
+            
+            OnEdit();
         }
 
         private void bandedGridView1_RowClick(object sender, RowClickEventArgs e)
         {
+            if (bandedGridView1.GetRowCellValue(e.RowHandle, "MaNhanVien") == null)
+            {
+                return;
+            }
             employeeID = bandedGridView1.GetRowCellValue(e.RowHandle, "MaNhanVien").ToString();
             try
             {
@@ -296,8 +251,8 @@ namespace LeTien.Screens.Employees
             catch
             { }
 
-            ucMenu.UCMain_Edit.Enabled = true;
-            ucMenu.UCMain_Delete.Enabled = true;
+            //ucMenu.UCMain_Edit.Enabled = true;
+            //ucMenu.UCMain_Delete.Enabled = true;
 
             ucMenu.UCMain_Edit_Clicked += ucMenu_Edit_Clicked;
             ucMenu.UCMain_Delete_Clicked += ucMenu_Delete_Clicked;
@@ -316,17 +271,19 @@ namespace LeTien.Screens.Employees
         protected override void OnNew()
         {
             FormEmployeeDetails f = new FormEmployeeDetails();
-            f.Text = "Thêm nhân viên";
+            f.Text = "THÊM NHÂN VIÊN";
             f.Tag = this;
             f.ShowDialog();
         }
 
         protected override void OnEdit()
         {
-            //FormEmployeeDetails f = new FormEmployeeDetails(employee);
-            //f.Text = "Cập nhật thông tin nhân viên";
-            //f.Tag = this;
-            //f.ShowDialog();
+            if (String.IsNullOrEmpty(employeeID))
+                return;
+            FormEmployeeDetails f = new FormEmployeeDetails(employeeID);
+            f.Text = "CẬP NHẬT THÔNG TIN NHÂN VIÊN";
+            f.Tag = this;
+            f.ShowDialog();
         }
 
         protected override void OnDelete()
@@ -335,48 +292,78 @@ namespace LeTien.Screens.Employees
             {
                 return;
             }
-            using (var uow = new UnitOfWork())
+            for (int i = 0; i < bandedGridView1.SelectedRowsCount; i++)
             {
-                Employee br = uow.FindObject<Employee>(CriteriaOperator.Parse("MaNhanVien = ?", employee.MaNhanVien));
-                if (br != null)
+                employeeID = bandedGridView1.GetRowCellValue(bandedGridView1.GetSelectedRows()[i], colMaNhanVien).ToString();
+
+                using (var uow = new UnitOfWork())
                 {
-                    br.Delete();
-                    uow.CommitChanges();
-                    RefreshData();
+                    Employee br = uow.FindObject<Employee>(CriteriaOperator.Parse("MaNhanVien = ?", employeeID));
+                    if (br != null)
+                    {
+                        br.Delete();
+                        uow.CommitChanges();
+                        RefreshData();
+                    }
                 }
             }
         }
         protected override void OnReload()
         {
             SplashScreenManager.ShowForm(typeof(WaitFormMain));
-            UOW.ReloadChangedObjects();
-            xpCollectionEmployee.Reload();
+            Thread.Sleep(1000);
+            RefreshData();
             SplashScreenManager.CloseForm();
+            
         }
+             
 
-        protected override void OnPreview()
+
+        private void grvUCList_SelectionChanged_1(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
-            //this.Printer = bandedGridView1;
-            //this.PrintCaption = "Danh sách chi nhánh";
-            //base.OnPreview();
-            // Check whether the GridControl can be previewed.
-            if (!gridControl1.IsPrintingAvailable)
+            ucMenu.btnEdit.Enabled = false;
+            ucMenu.btnXoa.Enabled = false;
+            if (bandedGridView1.SelectedRowsCount > 0)
             {
-                MessageBox.Show("The 'DevExpress.XtraPrinting' library is not found", "Error");
-                return;
+                if (bandedGridView1.SelectedRowsCount == 1)
+                {
+                    if (bandedGridView1.GetRowCellValue(bandedGridView1.GetSelectedRows()[0], colMaNhanVien) != null)
+                    {
+                        employeeID = bandedGridView1.GetRowCellValue(bandedGridView1.GetSelectedRows()[0], colMaNhanVien).ToString();
+                        ucMenu.btnEdit.Enabled = true;
+                    }
+                }
+                ucMenu.btnXoa.Enabled = true;
             }
-            // Open the Preview window.
-            // gridControl1.ShowPrintPreview();
-
-            gridControl1.Print();
+            else
+            {
+                ucMenu.btnEdit.Enabled = false;
+                ucMenu.btnXoa.Enabled = false;
+            }
         }
 
-        protected override void OnExportXls()
+        private void checkXem_CheckedChanged(object sender, EventArgs e)
         {
-            //this.Printer = gridUCList;
-            //this.PrintCaption = "Danh sách chi nhánh";
-            //base.OnExportXls();
+            if(checkXem.Checked == true)
+            {
+                checkXem.Text = "CHẾ ĐỘ XEM";
+                bandedGridView1.OptionsBehavior.ReadOnly = true;
+                bandedGridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
+            }
+            else
+            {
+                checkXem.Text = "CHẾ ĐỘ CHỈNH SỬA";
+                bandedGridView1.OptionsBehavior.ReadOnly = false;
+                bandedGridView1.NewItemRowText = "Thêm dòng mới tại đây...";
+                bandedGridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
+            }
         }
+
+        private void bandedGridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+
+        }
+
 
     }
 }

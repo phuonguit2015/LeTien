@@ -71,7 +71,7 @@ namespace LeTien.Screens.User
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ;
             }
         }
 

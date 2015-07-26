@@ -28,29 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCMainControl));
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             this.bar4 = new DevExpress.XtraBars.Bar();
             this.bar1 = new DevExpress.XtraBars.Bar();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.bar2 = new DevExpress.XtraBars.Bar();
-            this.UCMain_MayTinh = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.UCMain_Add = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.UCMain_Edit = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.UCMain_Delete = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.UCMain_Refresh = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.UCMain_Print = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.UCMain_Export = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.UCMain_Dong = new DevExpress.XtraBars.BarLargeButtonItem();
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
+            this.btnDong = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXuat = new DevExpress.XtraEditors.SimpleButton();
+            this.btnIn = new DevExpress.XtraEditors.SimpleButton();
+            this.btnNapLai = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
+            this.btnThem = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.simpleSeparator2 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.simpleSeparator3 = new DevExpress.XtraLayout.SimpleSeparator();
+            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
+            this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // bar4
@@ -79,180 +93,274 @@
             this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Custom 5";
             // 
-            // barManager1
+            // layoutControl1
             // 
-            this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar2});
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.UCMain_Add,
-            this.UCMain_Delete,
-            this.UCMain_Edit,
-            this.UCMain_Refresh,
-            this.UCMain_Print,
-            this.UCMain_Export,
-            this.UCMain_Dong,
-            this.barButtonItem1,
-            this.UCMain_MayTinh});
-            this.barManager1.MaxItemId = 14;
-            this.barManager1.ShowFullMenus = true;
+            this.layoutControl1.Controls.Add(this.btnEdit);
+            this.layoutControl1.Controls.Add(this.btnDong);
+            this.layoutControl1.Controls.Add(this.btnXuat);
+            this.layoutControl1.Controls.Add(this.btnIn);
+            this.layoutControl1.Controls.Add(this.btnNapLai);
+            this.layoutControl1.Controls.Add(this.btnXoa);
+            this.layoutControl1.Controls.Add(this.btnThem);
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(469, 241, 250, 350);
+            this.layoutControl1.Root = this.layoutControlGroup1;
+            this.layoutControl1.Size = new System.Drawing.Size(609, 28);
+            this.layoutControl1.TabIndex = 4;
+            this.layoutControl1.Text = "layoutControl1";
             // 
-            // bar2
+            // btnEdit
             // 
-            this.bar2.BarName = "Action";
-            this.bar2.DockCol = 0;
-            this.bar2.DockRow = 0;
-            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar2.FloatLocation = new System.Drawing.Point(1643, 113);
-            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.UCMain_MayTinh, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.UCMain_Add, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.UCMain_Edit, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.UCMain_Delete, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.UCMain_Refresh, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.UCMain_Print, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.UCMain_Export, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.UCMain_Dong, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
-            this.bar2.OptionsBar.AllowQuickCustomization = false;
-            this.bar2.OptionsBar.DisableCustomization = true;
-            this.bar2.OptionsBar.DrawDragBorder = false;
-            this.bar2.Text = "Action";
+            this.btnEdit.AutoWidthInLayoutControl = true;
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(63, 2);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(51, 22);
+            this.btnEdit.StyleController = this.layoutControl1;
+            this.btnEdit.TabIndex = 10;
+            this.btnEdit.Text = "SỬA";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // UCMain_MayTinh
+            // btnDong
             // 
-            this.UCMain_MayTinh.Caption = "Máy Tính";
-            this.UCMain_MayTinh.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.UCMain_MayTinh.Glyph = ((System.Drawing.Image)(resources.GetObject("UCMain_MayTinh.Glyph")));
-            this.UCMain_MayTinh.Id = 13;
-            this.UCMain_MayTinh.Name = "UCMain_MayTinh";
-            this.UCMain_MayTinh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.UCMain_MayTinh_ItemClick);
+            this.btnDong.AutoWidthInLayoutControl = true;
+            this.btnDong.Image = ((System.Drawing.Image)(resources.GetObject("btnDong.Image")));
+            this.btnDong.Location = new System.Drawing.Point(405, 2);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(60, 22);
+            this.btnDong.StyleController = this.layoutControl1;
+            this.btnDong.TabIndex = 9;
+            this.btnDong.Text = "ĐÓNG";
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
-            // UCMain_Add
+            // btnXuat
             // 
-            this.UCMain_Add.Caption = "Thêm";
-            this.UCMain_Add.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.UCMain_Add.Glyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Add.Glyph")));
-            this.UCMain_Add.Id = 0;
-            this.UCMain_Add.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Add.LargeGlyph")));
-            this.UCMain_Add.Name = "UCMain_Add";
-            toolTipItem1.Appearance.Options.UseImage = true;
-            toolTipTitleItem1.Text = "Thêm";
-            superToolTip1.Items.Add(toolTipItem1);
-            superToolTip1.Items.Add(toolTipTitleItem1);
-            this.UCMain_Add.SuperTip = superToolTip1;
-            this.UCMain_Add.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.UCMain_Add_ItemClick);
+            this.btnXuat.AutoWidthInLayoutControl = true;
+            this.btnXuat.Image = ((System.Drawing.Image)(resources.GetObject("btnXuat.Image")));
+            this.btnXuat.Location = new System.Drawing.Point(310, 2);
+            this.btnXuat.Name = "btnXuat";
+            this.btnXuat.Size = new System.Drawing.Size(89, 22);
+            this.btnXuat.StyleController = this.layoutControl1;
+            this.btnXuat.TabIndex = 8;
+            this.btnXuat.Text = "XUẤT EXCEL";
+            this.btnXuat.Click += new System.EventHandler(this.btnXuat_Click);
             // 
-            // UCMain_Edit
+            // btnIn
             // 
-            this.UCMain_Edit.Caption = "Sửa";
-            this.UCMain_Edit.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.UCMain_Edit.Glyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Edit.Glyph")));
-            this.UCMain_Edit.Id = 2;
-            this.UCMain_Edit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Edit.LargeGlyph")));
-            this.UCMain_Edit.Name = "UCMain_Edit";
-            this.UCMain_Edit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.UCMain_Edit_ItemClicked);
+            this.btnIn.AutoWidthInLayoutControl = true;
+            this.btnIn.Image = ((System.Drawing.Image)(resources.GetObject("btnIn.Image")));
+            this.btnIn.Location = new System.Drawing.Point(250, 2);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(56, 22);
+            this.btnIn.StyleController = this.layoutControl1;
+            this.btnIn.TabIndex = 7;
+            this.btnIn.Text = "  IN   ";
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
-            // UCMain_Delete
+            // btnNapLai
             // 
-            this.UCMain_Delete.Caption = "Xóa";
-            this.UCMain_Delete.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.UCMain_Delete.Enabled = false;
-            this.UCMain_Delete.Glyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Delete.Glyph")));
-            this.UCMain_Delete.Id = 1;
-            this.UCMain_Delete.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Delete.LargeGlyph")));
-            this.UCMain_Delete.Name = "UCMain_Delete";
-            this.UCMain_Delete.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.UCMain_Delete_ItemClick);
+            this.btnNapLai.AutoWidthInLayoutControl = true;
+            this.btnNapLai.Image = ((System.Drawing.Image)(resources.GetObject("btnNapLai.Image")));
+            this.btnNapLai.Location = new System.Drawing.Point(175, 2);
+            this.btnNapLai.Name = "btnNapLai";
+            this.btnNapLai.Size = new System.Drawing.Size(69, 22);
+            this.btnNapLai.StyleController = this.layoutControl1;
+            this.btnNapLai.TabIndex = 6;
+            this.btnNapLai.Text = "NẠP LẠI";
+            this.btnNapLai.Click += new System.EventHandler(this.btnNapLai_Click);
             // 
-            // UCMain_Refresh
+            // btnXoa
             // 
-            this.UCMain_Refresh.Caption = "Nạp lại";
-            this.UCMain_Refresh.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.UCMain_Refresh.Glyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Refresh.Glyph")));
-            this.UCMain_Refresh.Id = 3;
-            this.UCMain_Refresh.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Refresh.LargeGlyph")));
-            this.UCMain_Refresh.Name = "UCMain_Refresh";
-            this.UCMain_Refresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.UCMain_Refresh_ItemClicked);
+            this.btnXoa.AutoWidthInLayoutControl = true;
+            this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
+            this.btnXoa.Location = new System.Drawing.Point(118, 2);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(51, 22);
+            this.btnXoa.StyleController = this.layoutControl1;
+            this.btnXoa.TabIndex = 5;
+            this.btnXoa.Text = "XÓA";
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
-            // UCMain_Print
+            // btnThem
             // 
-            this.UCMain_Print.Caption = "In";
-            this.UCMain_Print.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.UCMain_Print.Glyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Print.Glyph")));
-            this.UCMain_Print.Id = 4;
-            this.UCMain_Print.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Print.LargeGlyph")));
-            this.UCMain_Print.Name = "UCMain_Print";
-            this.UCMain_Print.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.UCMain_Print_ItemClicked);
+            this.btnThem.AutoWidthInLayoutControl = true;
+            this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
+            this.btnThem.Location = new System.Drawing.Point(2, 2);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(57, 22);
+            this.btnThem.StyleController = this.layoutControl1;
+            this.btnThem.TabIndex = 4;
+            this.btnThem.Text = "THÊM";
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // UCMain_Export
+            // layoutControlGroup1
             // 
-            this.UCMain_Export.Caption = "Xuất";
-            this.UCMain_Export.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.UCMain_Export.Glyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Export.Glyph")));
-            this.UCMain_Export.Id = 5;
-            this.UCMain_Export.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Export.LargeGlyph")));
-            this.UCMain_Export.Name = "UCMain_Export";
-            this.UCMain_Export.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.UCMain_Export_ItemClicked);
+            this.layoutControlGroup1.CustomizationFormText = "Root";
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem1,
+            this.layoutControlItem2,
+            this.layoutControlItem3,
+            this.layoutControlItem4,
+            this.layoutControlItem5,
+            this.layoutControlItem6,
+            this.simpleSeparator1,
+            this.simpleSeparator2,
+            this.simpleSeparator3,
+            this.emptySpaceItem5,
+            this.layoutControlItem7});
+            this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlGroup1.Name = "Root";
+            this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(609, 28);
+            this.layoutControlGroup1.Text = "Root";
+            this.layoutControlGroup1.TextVisible = false;
             // 
-            // UCMain_Dong
+            // layoutControlItem1
             // 
-            this.UCMain_Dong.Caption = "Đóng";
-            this.UCMain_Dong.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
-            this.UCMain_Dong.Glyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Dong.Glyph")));
-            this.UCMain_Dong.Id = 10;
-            this.UCMain_Dong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("UCMain_Dong.LargeGlyph")));
-            this.UCMain_Dong.Name = "UCMain_Dong";
-            this.UCMain_Dong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.UCMain_Dong_ItemClick);
+            this.layoutControlItem1.Control = this.btnThem;
+            this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(61, 28);
+            this.layoutControlItem1.Text = "layoutControlItem1";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem1.TextToControlDistance = 0;
+            this.layoutControlItem1.TextVisible = false;
             // 
-            // barDockControlTop
+            // layoutControlItem2
             // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(925, 31);
+            this.layoutControlItem2.Control = this.btnXoa;
+            this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
+            this.layoutControlItem2.Location = new System.Drawing.Point(116, 0);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(55, 28);
+            this.layoutControlItem2.Text = "layoutControlItem2";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextToControlDistance = 0;
+            this.layoutControlItem2.TextVisible = false;
             // 
-            // barDockControlBottom
+            // layoutControlItem3
             // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 32);
-            this.barDockControlBottom.Size = new System.Drawing.Size(925, 0);
+            this.layoutControlItem3.Control = this.btnNapLai;
+            this.layoutControlItem3.CustomizationFormText = "layoutControlItem3";
+            this.layoutControlItem3.Location = new System.Drawing.Point(173, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(73, 28);
+            this.layoutControlItem3.Text = "layoutControlItem3";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextToControlDistance = 0;
+            this.layoutControlItem3.TextVisible = false;
             // 
-            // barDockControlLeft
+            // layoutControlItem4
             // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 31);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1);
+            this.layoutControlItem4.Control = this.btnIn;
+            this.layoutControlItem4.CustomizationFormText = "layoutControlItem4";
+            this.layoutControlItem4.Location = new System.Drawing.Point(248, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(60, 28);
+            this.layoutControlItem4.Text = "layoutControlItem4";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextToControlDistance = 0;
+            this.layoutControlItem4.TextVisible = false;
             // 
-            // barDockControlRight
+            // layoutControlItem5
             // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(925, 31);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1);
+            this.layoutControlItem5.Control = this.btnXuat;
+            this.layoutControlItem5.CustomizationFormText = "layoutControlItem5";
+            this.layoutControlItem5.Location = new System.Drawing.Point(308, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(93, 28);
+            this.layoutControlItem5.Text = "layoutControlItem5";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextToControlDistance = 0;
+            this.layoutControlItem5.TextVisible = false;
             // 
-            // barButtonItem1
+            // layoutControlItem6
             // 
-            this.barButtonItem1.Caption = "Máy Tính";
-            this.barButtonItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.Glyph")));
-            this.barButtonItem1.Id = 12;
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.layoutControlItem6.Control = this.btnDong;
+            this.layoutControlItem6.CustomizationFormText = "layoutControlItem6";
+            this.layoutControlItem6.Location = new System.Drawing.Point(403, 0);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(64, 28);
+            this.layoutControlItem6.Text = "layoutControlItem6";
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextToControlDistance = 0;
+            this.layoutControlItem6.TextVisible = false;
+            // 
+            // simpleSeparator1
+            // 
+            this.simpleSeparator1.AllowHotTrack = false;
+            this.simpleSeparator1.CustomizationFormText = "simpleSeparator1";
+            this.simpleSeparator1.Location = new System.Drawing.Point(171, 0);
+            this.simpleSeparator1.Name = "simpleSeparator1";
+            this.simpleSeparator1.Size = new System.Drawing.Size(2, 28);
+            this.simpleSeparator1.Text = "simpleSeparator1";
+            // 
+            // simpleSeparator2
+            // 
+            this.simpleSeparator2.AllowHotTrack = false;
+            this.simpleSeparator2.CustomizationFormText = "simpleSeparator2";
+            this.simpleSeparator2.Location = new System.Drawing.Point(246, 0);
+            this.simpleSeparator2.Name = "simpleSeparator2";
+            this.simpleSeparator2.Size = new System.Drawing.Size(2, 28);
+            this.simpleSeparator2.Text = "simpleSeparator2";
+            // 
+            // simpleSeparator3
+            // 
+            this.simpleSeparator3.AllowHotTrack = false;
+            this.simpleSeparator3.CustomizationFormText = "simpleSeparator3";
+            this.simpleSeparator3.Location = new System.Drawing.Point(401, 0);
+            this.simpleSeparator3.Name = "simpleSeparator3";
+            this.simpleSeparator3.Size = new System.Drawing.Size(2, 28);
+            this.simpleSeparator3.Text = "simpleSeparator3";
+            // 
+            // emptySpaceItem5
+            // 
+            this.emptySpaceItem5.AllowHotTrack = false;
+            this.emptySpaceItem5.CustomizationFormText = "emptySpaceItem5";
+            this.emptySpaceItem5.Location = new System.Drawing.Point(467, 0);
+            this.emptySpaceItem5.Name = "emptySpaceItem5";
+            this.emptySpaceItem5.Size = new System.Drawing.Size(142, 28);
+            this.emptySpaceItem5.Text = "emptySpaceItem5";
+            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.btnEdit;
+            this.layoutControlItem7.CustomizationFormText = "layoutControlItem7";
+            this.layoutControlItem7.Location = new System.Drawing.Point(61, 0);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(55, 28);
+            this.layoutControlItem7.Text = "layoutControlItem7";
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextToControlDistance = 0;
+            this.layoutControlItem7.TextVisible = false;
             // 
             // UCMainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.barDockControlLeft);
-            this.Controls.Add(this.barDockControlRight);
-            this.Controls.Add(this.barDockControlBottom);
-            this.Controls.Add(this.barDockControlTop);
+            this.Controls.Add(this.layoutControl1);
             this.Name = "UCMainControl";
-            this.Size = new System.Drawing.Size(925, 32);
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            this.Size = new System.Drawing.Size(609, 28);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
+            this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,21 +369,26 @@
 
         private DevExpress.XtraBars.Bar bar4;
         private DevExpress.XtraBars.Bar bar1;
-        private DevExpress.XtraBars.BarManager barManager1;
-        private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.BarDockControl barDockControlTop;
-        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
-        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
-        private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        public DevExpress.XtraBars.BarLargeButtonItem UCMain_Add;
-        public DevExpress.XtraBars.BarLargeButtonItem UCMain_Delete;
-        public DevExpress.XtraBars.BarLargeButtonItem UCMain_Edit;
-        public DevExpress.XtraBars.BarLargeButtonItem UCMain_Refresh;
-        public DevExpress.XtraBars.BarLargeButtonItem UCMain_Print;
-        public DevExpress.XtraBars.BarLargeButtonItem UCMain_Export;
-        private DevExpress.XtraBars.BarLargeButtonItem UCMain_Dong;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        public DevExpress.XtraBars.BarLargeButtonItem UCMain_MayTinh;
+        private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator2;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator3;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        public DevExpress.XtraEditors.SimpleButton btnDong;
+        public DevExpress.XtraEditors.SimpleButton btnXuat;
+        public DevExpress.XtraEditors.SimpleButton btnIn;
+        public DevExpress.XtraEditors.SimpleButton btnNapLai;
+        public DevExpress.XtraEditors.SimpleButton btnXoa;
+        public DevExpress.XtraEditors.SimpleButton btnThem;
+        public DevExpress.XtraEditors.SimpleButton btnEdit;
 
 
 

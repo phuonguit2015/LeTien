@@ -100,5 +100,21 @@ namespace LeTien.Screens.List
         private void cbbKieuDuLieu_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //Nếu là thêm mới
+                if (btnThem.Enabled == true)
+                {
+                    btnThem_Click(sender, e);
+                }
+                else
+                {
+                    btnCapNhat_Click(sender, e);
+                }
+            }
+        }
     }
 }

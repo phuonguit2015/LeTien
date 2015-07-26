@@ -24,19 +24,24 @@ namespace LeTien.Screens.List
         }
         protected override void OnDelete()
         {
-            if (XtraMessageBox.Show("Bạn có muốn xóa không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+            if (XtraMessageBox.Show("Bạn có muốn xóa không?", "THÔNG BÁO", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
             {
                 return;
             }
-            using (var uow = new UnitOfWork())
+            for (int i = 0; i < grvUCList.SelectedRowsCount; i++)
             {
-                DanhMucMauNgayNghiLe br = uow.FindObject<DanhMucMauNgayNghiLe>(CriteriaOperator.Parse("TenNgayNghi = ?", _tenNgayNghi));
-                if (br != null)
+                _tenNgayNghi = grvUCList.GetRowCellValue(grvUCList.GetSelectedRows()[i], colTenNgayNghi).ToString();
+
+                using (var uow = new UnitOfWork())
                 {
-                    br.Delete();
-                    uow.CommitChanges();
-                    uow.PurgeDeletedObjects();
-                    OnReload();
+                    DanhMucMauNgayNghiLe br = uow.FindObject<DanhMucMauNgayNghiLe>(CriteriaOperator.Parse("TenNgayNghi = ?", _tenNgayNghi));
+                    if (br != null)
+                    {
+                        br.Delete();
+                        uow.CommitChanges();
+                        uow.PurgeDeletedObjects();
+                        OnReload();
+                    }
                 }
             }
         }
@@ -49,21 +54,16 @@ namespace LeTien.Screens.List
         protected override void OnPreview()
         {
             this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách danh mục màu ngày nghĩ lễ";
+            this.PrintCaption = "DANH SÁCH LOẠI NGÀY NGHĨ";
             base.OnPreview();
         }
 
-        protected override void OnExportXls()
-        {
-            this.Printer = gridUCList;
-            this.PrintCaption = "Danh sách danh mục màu ngày nghĩ lễ";
-            base.OnExportXls();
-        }
+       
 
 
         private void btnDong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (XtraMessageBox.Show("Bạn có muốn thoát không?", "Cảnh Báo!", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (XtraMessageBox.Show("Bạn có muốn thoát không?", "THÔNG BÁO", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 this.Close();
             }
@@ -71,12 +71,13 @@ namespace LeTien.Screens.List
 
         private void btnXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnExportXls();
+            OnExportXls(gridUCList);
         }
 
         private void btnIn_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OnPreview();
+            OnPreview(gridUCList, "DANH SÁCH MÀU NGÀY NGHĨ LỄ", "reportTemplate.repx");
+
         }
 
 
@@ -89,22 +90,21 @@ namespace LeTien.Screens.List
         {
             if (grvUCList.OptionsBehavior.ReadOnly)
             {
-                btnEdit.Caption = "Chế độ chỉnh sửa";
+                btnEdit.Caption = "CHẾ ĐỘ CHỈNH SỬA";
                 grvUCList.OptionsBehavior.ReadOnly = false;
-                //btnEdit.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/edit_16x16.png");
+                grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             }
             else
             {
                 grvUCList.OptionsBehavior.ReadOnly = true;
-                btnEdit.Caption = "Chế độ chỉ đọc";
-                //btnEdit.Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/show_16x16.png");
-
+                btnEdit.Caption = "CHẾ ĐỘ CHỈ ĐỌC";
+                grvUCList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
             }
         }
 
         private void grvUCList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            _tenNgayNghi = grvUCList.GetRowCellDisplayText(e.RowHandle,"TenNgayNghi");
+            _tenNgayNghi = grvUCList.GetRowCellDisplayText(e.RowHandle, "TenNgayNghi");
             btnXoa.Enabled = true;
         }
 
@@ -113,5 +113,19 @@ namespace LeTien.Screens.List
             _tenNgayNghi = grvUCList.GetRowCellDisplayText(e.RowHandle, "TenNgayNghi");
             btnXoa.Enabled = true;
         }
+
+        private void grvUCList_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            btnXoa.Enabled = false;
+            if (grvUCList.SelectedRowsCount > 0)
+            {
+                btnXoa.Enabled = true;
+            }
+            else
+            {
+                btnXoa.Enabled = false;
+            }
+        }
     }
+    
 }
