@@ -138,7 +138,6 @@ namespace LeTien.Screens.Salaries
                                    Giá trị [Giá Trị]
                                  VD: [C3] + [C5] * [100]*/
 
-
                                 string[] congThuc = temp.CongThuc.Split('[', ']'); // "", C3, +, C10, *, 100, "" 8+10*100
                                 string bieuthuc = string.Empty;
                                 for (int j = 1; j < congThuc.Length; j++)
@@ -185,8 +184,7 @@ namespace LeTien.Screens.Salaries
                 }
             }
             XpoDefault.Session.Save(xpcChiTietLuong);
-            pivotGridControl1.RefreshData();
-        
+            pivotGridControl1.RefreshData();        
         }
 
 
@@ -270,119 +268,7 @@ namespace LeTien.Screens.Salaries
             return decimal.Parse(Eval.JScriptEvaluate(bieuthuc, vsaEngine).ToString());
         }
 
-        /*private void TinhLuong()
-        {
-            XPCollection xpcLuongChucVu = new XPCollection(typeof(GiaTriTienLuongTheoChucVu));
-            if (xpcLuongChucVu.Count == 0)
-            {
-                XtraMessageBox.Show("Chưa có dữ liệu lương chức vụ. Vui lòng khởi tạo dữ liệu lương chức vụ.");
-                return;
-            }
-
-
-            //Lấy bảng chấm công theo tháng cần tính lương
-            if (dtThang.EditValue == null)
-            {
-                XtraMessageBox.Show("Bạn chưa chọn tháng.", "THÔNG BÁO");
-                return;
-            }
-            xpcChamCong.Reload();
-            DateTime thang = DateTime.Parse(dtThang.EditValue.ToString());
-
-            string str = thang.Month.ToString() + "-" + thang.Year.ToString();// Phân biệt bảng xếp ca các tháng
-            XPCollection xpcChamCongTheoThang = new XPCollection(xpcChamCong, new BinaryOperator("TenBangChamCong", str, BinaryOperatorType.Equal));
-
-            if (xpcChamCongTheoThang.Count > 0)
-            {
-                foreach (ChamCong item in xpcChamCongTheoThang)
-                {                  
-                    foreach (LoaiDuLieuTinhLuong loaiDL in xpcMucTienLuong)
-                    {
-                        ChiTietTienLuong ctLuong = new ChiTietTienLuong()
-                        {
-                            NhanVien = item.NhanVien,
-                            Thang = DateTime.Parse(dtThang.EditValue.ToString())
-                        };
-                        ctLuong.LoaiDLTinhLuong = loaiDL;
-                        //Giá trị lương do người dùng tự nhập
-                        ctLuong.GiaTri = 0;
-
-                        //Tính lương theo chức vụ
-                        #region "Lương theo chức vụ"
-                        #endregion
-                        XPCollection xpcLCV = new XPCollection(xpcLuongChucVu, new BinaryOperator("MucTienLuong", loaiDL));
-                        if (xpcLCV.Count != 0)
-                        {
-                            ctLuong.GiaTri = (xpcLCV[0] as GiaTriTienLuongTheoChucVu).GiaTri;
-
-                        }
-
-                        //Tính lương theo công thức
-                        if (loaiDL.CongThuc != null && loaiDL.CongThuc != string.Empty)
-                        {
-                            //Công thức được định dạng chuẩn:
-                            /* Cột lưu [C+số thứ tự] : C tiền tớ bắt buộc
-                               Giá trị [Giá Trị]
-                             VD: [C3] + [C5] * [100]
-                             
-                            
-                            string[] CongThuc = loaiDL.CongThuc.Split('[', ']'); // "", C3, +, C10, *, 100, ""
-                            double value = 0;
-                            for (int i = 1; i < CongThuc.Length - 1; i += 2)
-                            {
-                                double temp1 = 0;
-                                if(CongThuc[i].Contains('C'))
-                                {
-                                    XPCollection xpcGiatri = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
-                                new BinaryOperator("Thang", ctLuong.Thang), new BinaryOperator("NhanVien", ctLuong.NhanVien)
-                                , new BinaryOperator("LoaiDLTinhLuong.STT", CongThuc[i])));
-                                }
-                            }
-
-
-
-
-                            //    //decimal value = decimal.Parse(loaiDL.GiaTriMacDinh);
-                            //    for (int i = 2; i < CongThuc.Length - 2; i += 2)
-                            //    {
-                            //        XPCollection xpcvalue = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
-                            //    new BinaryOperator("Thang", ctLuong.Thang), new BinaryOperator("NhanVien", ctLuong.NhanVien)
-                            //    , new BinaryOperator("LoaiDLTinhLuong.TenLoaiDuLieu", CongThuc[i + 1])));
-                            //        decimal giatri = (xpcvalue[0] as ChiTietTienLuong).GiaTri;
-                            //        value = TinhToan(value, giatri, CongThuc[i]);
-                            //    }
-                            //ctLuong.GiaTri = value;
-                        }
-                        //Tính lương theo dữ liệu chấm công
-                        XPCollection xpcLCC = new XPCollection(xpcChamCongTheoThang, CriteriaOperator.And(new BinaryOperator("NhanVien", ctLuong.NhanVien),
-                            new BinaryOperator("LoaiDuLieuChamCong.LoaiChamCong", loaiDL.TenLoaiDuLieu)));
-                        if (xpcLCC.Count != 0)
-                        {
-                            ctLuong.GiaTri = decimal.Parse((xpcLCC[0] as ChamCong).KetQua);
-                        }
-
-
-                        //Kiểm tra chi tiết lương đã có chưa
-                        XPCollection xpc = new XPCollection(xpcChiTietLuong, CriteriaOperator.And(
-                          new BinaryOperator("Thang", ctLuong.Thang), new BinaryOperator("NhanVien", ctLuong.NhanVien)
-                          , new BinaryOperator("LoaiDLTinhLuong", ctLuong.LoaiDLTinhLuong)));
-                        if (xpc.Count == 0)
-                        {
-                            xpcChiTietLuong.Add(ctLuong);
-                        }
-                        else
-                        {
-                            ChiTietTienLuong ctTemp = xpc[0] as ChiTietTienLuong;
-                            ctTemp = ctLuong;
-                        }
-                    }
-
-                }
-            }
-            XpoDefault.Session.Save(xpcChiTietLuong);
-            pivotGridControl1.RefreshData();
-        }*/
-
+       
        
 
         private void gridView1_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)

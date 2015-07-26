@@ -26,6 +26,7 @@ namespace LeTien.Objects
         }
 
         //[Indexed("NhanVien;Thang;LoaiDuLieuChamCong", Unique = true)]
+
         public Employee NhanVien
         {
             get;

@@ -32,8 +32,10 @@ namespace LeTien.Screens.Employees
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmployeeDetails));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.txtTinhTrangHD = new DevExpress.XtraEditors.TextEdit();
+            this.lkupPhongBan = new DevExpress.XtraEditors.LookUpEdit();
             this.xpcEmployee = new DevExpress.Xpo.XPCollection(this.components);
+            this.xpcPhongBan = new DevExpress.Xpo.XPCollection(this.components);
+            this.txtTinhTrangHD = new DevExpress.XtraEditors.TextEdit();
             this.btnThemHopDong = new DevExpress.XtraEditors.SimpleButton();
             this.calLuongDongBHXH = new DevExpress.XtraEditors.CalcEdit();
             this.cbbGioiTinh = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -64,7 +66,6 @@ namespace LeTien.Screens.Employees
             this.memoThuongTru = new DevExpress.XtraEditors.MemoEdit();
             this.dtNgaySinh = new DevExpress.XtraEditors.DateEdit();
             this.txtTenTiengNhat = new DevExpress.XtraEditors.TextEdit();
-            this.txtTen = new DevExpress.XtraEditors.TextEdit();
             this.txtHo = new DevExpress.XtraEditors.TextEdit();
             this.txtMaNhanVien = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -89,7 +90,6 @@ namespace LeTien.Screens.Employees
             this.laout = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -107,10 +107,15 @@ namespace LeTien.Screens.Employees
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtTen = new DevExpress.XtraEditors.TextEdit();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTinhTrangHD.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupPhongBan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcPhongBan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTinhTrangHD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.calLuongDongBHXH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbGioiTinh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.calLuongCanBan.Properties)).BeginInit();
@@ -142,7 +147,6 @@ namespace LeTien.Screens.Employees
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenTiengNhat.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaNhanVien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -167,7 +171,6 @@ namespace LeTien.Screens.Employees
             ((System.ComponentModel.ISupportInitialize)(this.laout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
@@ -185,10 +188,15 @@ namespace LeTien.Screens.Employees
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTen.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.txtTen);
+            this.layoutControl1.Controls.Add(this.lkupPhongBan);
             this.layoutControl1.Controls.Add(this.txtTinhTrangHD);
             this.layoutControl1.Controls.Add(this.btnThemHopDong);
             this.layoutControl1.Controls.Add(this.calLuongDongBHXH);
@@ -216,7 +224,6 @@ namespace LeTien.Screens.Employees
             this.layoutControl1.Controls.Add(this.memoThuongTru);
             this.layoutControl1.Controls.Add(this.dtNgaySinh);
             this.layoutControl1.Controls.Add(this.txtTenTiengNhat);
-            this.layoutControl1.Controls.Add(this.txtTen);
             this.layoutControl1.Controls.Add(this.txtHo);
             this.layoutControl1.Controls.Add(this.txtMaNhanVien);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -228,6 +235,31 @@ namespace LeTien.Screens.Employees
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // lkupPhongBan
+            // 
+            this.lkupPhongBan.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "phongBan!", true));
+            this.lkupPhongBan.Location = new System.Drawing.Point(404, 43);
+            this.lkupPhongBan.Name = "lkupPhongBan";
+            this.lkupPhongBan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupPhongBan.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenPhongBan", "Tên Phòng Ban")});
+            this.lkupPhongBan.Properties.DataSource = this.xpcPhongBan;
+            this.lkupPhongBan.Properties.DisplayMember = "TenPhongBan";
+            this.lkupPhongBan.Properties.NullText = "Chọn Phòng Ban";
+            this.lkupPhongBan.Properties.ValueMember = "This";
+            this.lkupPhongBan.Size = new System.Drawing.Size(124, 20);
+            this.lkupPhongBan.StyleController = this.layoutControl1;
+            this.lkupPhongBan.TabIndex = 47;
+            // 
+            // xpcEmployee
+            // 
+            this.xpcEmployee.ObjectType = typeof(LeTien.Objects.Employee);
+            // 
+            // xpcPhongBan
+            // 
+            this.xpcPhongBan.ObjectType = typeof(LeTien.Objects.PhongBan);
+            // 
             // txtTinhTrangHD
             // 
             this.txtTinhTrangHD.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "TinhTrangHopDong", true));
@@ -237,10 +269,6 @@ namespace LeTien.Screens.Employees
             this.txtTinhTrangHD.StyleController = this.layoutControl1;
             this.txtTinhTrangHD.TabIndex = 46;
             this.txtTinhTrangHD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            // 
-            // xpcEmployee
-            // 
-            this.xpcEmployee.ObjectType = typeof(LeTien.Objects.Employee);
             // 
             // btnThemHopDong
             // 
@@ -317,7 +345,7 @@ namespace LeTien.Screens.Employees
             this.lkuChiNhanh.Properties.DisplayMember = "BranchName";
             this.lkuChiNhanh.Properties.NullText = "Chọn chi nhánh";
             this.lkuChiNhanh.Properties.ValueMember = "This";
-            this.lkuChiNhanh.Size = new System.Drawing.Size(399, 20);
+            this.lkuChiNhanh.Size = new System.Drawing.Size(166, 20);
             this.lkuChiNhanh.StyleController = this.layoutControl1;
             this.lkuChiNhanh.TabIndex = 40;
             // 
@@ -550,9 +578,9 @@ namespace LeTien.Screens.Employees
             // memoTamTru
             // 
             this.memoTamTru.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "DiaChiTamTru", true));
-            this.memoTamTru.Location = new System.Drawing.Point(129, 278);
+            this.memoTamTru.Location = new System.Drawing.Point(129, 275);
             this.memoTamTru.Name = "memoTamTru";
-            this.memoTamTru.Size = new System.Drawing.Size(546, 43);
+            this.memoTamTru.Size = new System.Drawing.Size(546, 46);
             this.memoTamTru.StyleController = this.layoutControl1;
             this.memoTamTru.TabIndex = 11;
             // 
@@ -561,7 +589,7 @@ namespace LeTien.Screens.Employees
             this.memoThuongTru.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "DiaChiThuongTru", true));
             this.memoThuongTru.Location = new System.Drawing.Point(129, 235);
             this.memoThuongTru.Name = "memoThuongTru";
-            this.memoThuongTru.Size = new System.Drawing.Size(546, 39);
+            this.memoThuongTru.Size = new System.Drawing.Size(546, 36);
             this.memoThuongTru.StyleController = this.layoutControl1;
             this.memoThuongTru.TabIndex = 10;
             // 
@@ -588,16 +616,6 @@ namespace LeTien.Screens.Employees
             this.txtTenTiengNhat.Size = new System.Drawing.Size(399, 20);
             this.txtTenTiengNhat.StyleController = this.layoutControl1;
             this.txtTenTiengNhat.TabIndex = 7;
-            // 
-            // txtTen
-            // 
-            this.txtTen.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "Ten", true));
-            this.txtTen.Location = new System.Drawing.Point(404, 91);
-            this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(124, 20);
-            this.txtTen.StyleController = this.layoutControl1;
-            this.txtTen.TabIndex = 6;
-            this.txtTen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtHo
             // 
@@ -657,7 +675,6 @@ namespace LeTien.Screens.Employees
             this.laout,
             this.layoutControlItem14,
             this.layoutControlItem9,
-            this.layoutControlItem3,
             this.layoutControlItem28,
             this.layoutControlItem29,
             this.layoutControlItem20,
@@ -669,7 +686,9 @@ namespace LeTien.Screens.Employees
             this.layoutControlGroup3,
             this.layoutControlItem13,
             this.layoutControlItem11,
-            this.emptySpaceItem1});
+            this.emptySpaceItem1,
+            this.layoutControlItem30,
+            this.layoutControlItem3});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Size = new System.Drawing.Size(679, 556);
@@ -701,7 +720,7 @@ namespace LeTien.Screens.Employees
             this.layoutControlItem2.CustomizationFormText = "Địa Chỉ Thường Trú";
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 192);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(655, 43);
+            this.layoutControlItem2.Size = new System.Drawing.Size(655, 40);
             this.layoutControlItem2.Text = "Địa Chỉ Thường Trú";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(102, 13);
             // 
@@ -719,9 +738,9 @@ namespace LeTien.Screens.Employees
             // 
             this.layoutControlItem7.Control = this.memoTamTru;
             this.layoutControlItem7.CustomizationFormText = "Địa Chỉ Tạm Trú";
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 235);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 232);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(655, 47);
+            this.layoutControlItem7.Size = new System.Drawing.Size(655, 50);
             this.layoutControlItem7.Text = "Địa Chỉ Tạm Trú";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(102, 13);
             // 
@@ -860,7 +879,7 @@ namespace LeTien.Screens.Employees
             this.laout.Location = new System.Drawing.Point(0, 48);
             this.laout.Name = "laout";
             this.laout.Size = new System.Drawing.Size(275, 24);
-            this.laout.Text = "Họ";
+            this.laout.Text = "Họ Lót";
             this.laout.TextSize = new System.Drawing.Size(102, 13);
             // 
             // layoutControlItem14
@@ -882,16 +901,6 @@ namespace LeTien.Screens.Employees
             this.layoutControlItem9.Size = new System.Drawing.Size(319, 24);
             this.layoutControlItem9.Text = "Ngày Cấp";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(102, 13);
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.txtTen;
-            this.layoutControlItem3.CustomizationFormText = "Tên";
-            this.layoutControlItem3.Location = new System.Drawing.Point(275, 48);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(233, 24);
-            this.layoutControlItem3.Text = "Tên";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(102, 13);
             // 
             // layoutControlItem28
             // 
@@ -929,7 +938,7 @@ namespace LeTien.Screens.Employees
             this.layoutControlItem19.CustomizationFormText = "Chi Nhánh";
             this.layoutControlItem19.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(508, 24);
+            this.layoutControlItem19.Size = new System.Drawing.Size(275, 24);
             this.layoutControlItem19.Text = "Chi Nhánh";
             this.layoutControlItem19.TextSize = new System.Drawing.Size(102, 13);
             // 
@@ -1069,6 +1078,35 @@ namespace LeTien.Screens.Employees
             this.emptySpaceItem1.Text = "emptySpaceItem1";
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem30
+            // 
+            this.layoutControlItem30.Control = this.lkupPhongBan;
+            this.layoutControlItem30.CustomizationFormText = "Phòng Ban";
+            this.layoutControlItem30.Location = new System.Drawing.Point(275, 0);
+            this.layoutControlItem30.Name = "layoutControlItem30";
+            this.layoutControlItem30.Size = new System.Drawing.Size(233, 24);
+            this.layoutControlItem30.Text = "Phòng Ban";
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(102, 13);
+            // 
+            // txtTen
+            // 
+            this.txtTen.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "Ten", true));
+            this.txtTen.Location = new System.Drawing.Point(404, 91);
+            this.txtTen.Name = "txtTen";
+            this.txtTen.Size = new System.Drawing.Size(124, 20);
+            this.txtTen.StyleController = this.layoutControl1;
+            this.txtTen.TabIndex = 48;
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.txtTen;
+            this.layoutControlItem3.CustomizationFormText = "Tên";
+            this.layoutControlItem3.Location = new System.Drawing.Point(275, 48);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(233, 24);
+            this.layoutControlItem3.Text = "Tên";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(102, 13);
+            // 
             // FormEmployeeDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1082,8 +1120,10 @@ namespace LeTien.Screens.Employees
             this.Text = "Thông tin nhân viên";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtTinhTrangHD.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupPhongBan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcPhongBan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTinhTrangHD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.calLuongDongBHXH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbGioiTinh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.calLuongCanBan.Properties)).EndInit();
@@ -1115,7 +1155,6 @@ namespace LeTien.Screens.Employees
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenTiengNhat.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaNhanVien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -1140,7 +1179,6 @@ namespace LeTien.Screens.Employees
             ((System.ComponentModel.ISupportInitialize)(this.laout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
@@ -1158,6 +1196,9 @@ namespace LeTien.Screens.Employees
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTen.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1168,10 +1209,8 @@ namespace LeTien.Screens.Employees
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.TextEdit txtTen;
         private DevExpress.XtraEditors.TextEdit txtHo;
         private DevExpress.XtraLayout.LayoutControlItem laout;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.TextEdit txtTenTiengNhat;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.DateEdit dtNgaySinh;
@@ -1239,5 +1278,10 @@ namespace LeTien.Screens.Employees
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraEditors.LookUpEdit lkupPhongBan;
+        private DevExpress.Xpo.XPCollection xpcPhongBan;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
+        private DevExpress.XtraEditors.TextEdit txtTen;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }
 }

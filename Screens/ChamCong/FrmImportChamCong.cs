@@ -20,6 +20,9 @@ namespace LeTien.Screens.Salaries
     public partial class FrmImportChamCong : Form
     {
         DataTable dt = new DataTable();
+        XPQuery<PublicHoliday> publicHoliday = Session.DefaultSession.Query<PublicHoliday>();
+        XPQuery<ThamSo> thamSo = Session.DefaultSession.Query<ThamSo>();
+
 
         public FrmImportChamCong()
         {
@@ -51,6 +54,11 @@ namespace LeTien.Screens.Salaries
             this.xpcChiTietCa.ObjectType = typeof(LeTien.Objects.ChiTietXepCa);
             ((System.ComponentModel.ISupportInitialize)(this.xpcChiTietCa)).EndInit();
 
+            ((System.ComponentModel.ISupportInitialize)(this.xpcNgayLe)).BeginInit();
+            this.xpcNgayLe.ObjectType = typeof(LeTien.Objects.PublicHoliday);
+            ((System.ComponentModel.ISupportInitialize)(this.xpcNgayLe)).EndInit();
+
+
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -68,10 +76,7 @@ namespace LeTien.Screens.Salaries
                 txtBrowse.Text = urlFile;
                 LoadData(urlFile);
             }
-        }
-
-
-       
+        }               
 
         public string GetConnectionString(string excelFileName)
         {
@@ -85,6 +90,8 @@ namespace LeTien.Screens.Salaries
 
         public void LoadData(string excelFileName)
         {
+            dt.Clear();
+
             DataTable temp = new DataTable();
             string cmdText = "select * from [Sheet1$]";
             using (OleDbDataAdapter adapter = new OleDbDataAdapter(cmdText, GetConnectionString(excelFileName)))
@@ -130,7 +137,7 @@ namespace LeTien.Screens.Salaries
                 DataColumn columns = temp.Columns[i];
                 foreach (string col in dsCol)
                 {
-                    if (col == columns.ColumnName)
+                    if (col == columns.ColumnName && !dt.Columns.Contains(col))
                     {
                         dt.Columns.Add(col);                       
                         break;
@@ -152,7 +159,10 @@ namespace LeTien.Screens.Salaries
 
                 if (l.ShowWhenImport)
                 {
-                    dt.Columns.Add(l.LoaiChamCong);
+                    if (!dt.Columns.Contains(l.LoaiChamCong))
+                    {
+                        dt.Columns.Add(l.LoaiChamCong);
+                    }
                     bool b = false;
                     GridColumn col = new GridColumn();
                     col.FieldName = l.LoaiChamCong;
@@ -173,11 +183,46 @@ namespace LeTien.Screens.Salaries
             }
 
             //Thêm cột tương ứng vào datatable
-            dt.Columns.Add("Ca", typeof(DanhMucCa));
-            dt.Columns.Add("GioVao", typeof(DateTime));
-            dt.Columns.Add("GioRa", typeof(DateTime));
-            dt.Columns.Add("NhanVien", typeof(Employee));
+           if (!dt.Columns.Contains("Checked"))
+           {
+               dt.Columns.Add("Checked", typeof(bool));
+           }
+           if (!dt.Columns.Contains("Ca"))
+           {
+               dt.Columns.Add("Ca", typeof(DanhMucCa));
+           }
+           if (!dt.Columns.Contains("GioVao"))
+           {
+               dt.Columns.Add("GioVao", typeof(DateTime));
+           }
+           if (!dt.Columns.Contains("GioRa"))
+           {
+               dt.Columns.Add("GioRa", typeof(DateTime));
+           }
+           if (!dt.Columns.Contains("NhanVien"))
+           {
+               dt.Columns.Add("NhanVien", typeof(Employee));
+           }
+            //Nếu giờ ra lớn hơn giờ ra Tham Số Thời Gian Phân Biêt Ca
+            List<ThamSo> _thamSoThoiGian = (from tso in thamSo
+                                            where (tso.TenThamSo == "Thời Gian Tính Tăng Ca Đêm")
+                                            select tso).ToList();
+            //Thời Gian Nghĩ Giữa Ca (Giờ)
+            List<ThamSo> _thamSoNghiGiuaCa = (from tso in thamSo
+                                              where (tso.TenThamSo == "Thời Gian Nghỉ Giữa Ca (Giờ)")
+                                            select tso).ToList();
+            //Ca Không Có Thời Gian Nghỉ
+            List<ThamSo> _thamSoCaKhongCoGioNghi = (from tso in thamSo
+                                              where (tso.TenThamSo == "Ca Không Có Thời Gian Nghỉ")
+                                              select tso).ToList();
 
+            string dsCaKhongCoGioNghi = _thamSoCaKhongCoGioNghi[0].GiaTri;
+
+            //Khoảng Giới Hạn Tăng Ca (Giờ)
+            List<ThamSo> _thamSoKhoangGioiHanTangCa= (from tso in thamSo
+                                                    where (tso.TenThamSo == "Khoảng Giới Hạn Tăng Ca (Giờ)")
+                                                    select tso).ToList();
+            double khoangGioiHanTangCa = double.Parse(_thamSoKhoangGioiHanTangCa[0].GiaTri);
             //Gán giờ ra
             for (int i = 0; i < dt.Rows.Count; i++)
             {               
@@ -207,13 +252,11 @@ namespace LeTien.Screens.Salaries
                 if (dt.Rows[i][2] != System.DBNull.Value)
                 {
                     dt.Rows[i]["GioVao"] = dt.Rows[i][2];
-
-
                     foreach (GiaTriDuLieuChamCongTheoCa gt in xpcGiaTriChamCong)
                     {
                         DateTime d1 = DateTime.Parse(dt.Rows[i]["GioVao"].ToString());//Thời gian vào
 
-                        if (gt.LoaiDLChamCong.LoaiChamCong == "Thời Gian Vào")
+                        if (gt.LoaiDLChamCong.LoaiChamCong == "Giờ Vào")
                         {
                             DateTime d2 = DateTime.Parse(gt.GiaTri);
                             DateTime d3 = new DateTime(d1.Year, d1.Month, d1.Day, d2.Hour, d2.Minute, d2.Second);
@@ -223,20 +266,18 @@ namespace LeTien.Screens.Salaries
                                 dt.Rows[i]["Ca"] = gt.Ca;
                             }
                         }
-                    }                 
+                    }
                 }
-            }
-            #endregion
 
-            gridControl1.DataSource = dt;
-        }
+                #region Tính tông thời gian làm và tăng ca, số ngày công
+                dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}",0);
+                dt.Rows[i]["Số Ngày Công"] = 0;
+                dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", 0);
+                dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.00}", 0);
+                dt.Rows[i]["Tăng Ca NN"] = String.Format("{0:0.00}", 0);
+                dt.Rows[i]["Tăng Ca NN Ca Đêm"] = String.Format("{0:0.00}", 0);
+                dt.Rows[i]["Tăng Ca NL"] = String.Format("{0:0.00}", 0);
 
-
-        private void XuLyDuLieu()
-        {            
-            //Kiểm tra thời gia ra thời gian vào
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
                 if (dt.Rows[i]["GioVao"] != System.DBNull.Value && dt.Rows[i]["GioRa"] != System.DBNull.Value)
                 {
                     DateTime d1 = DateTime.Parse(dt.Rows[i]["GioVao"].ToString());//Thời gian vào
@@ -246,44 +287,98 @@ namespace LeTien.Screens.Salaries
 
                     double hours = ts.Hours + (double)(ts.Minutes) / 60;
 
-                    //Kiểm tra xem có ca không, nếu có thì so sánh thông tin giá trị mặc định của ca
-                    if (dt.Rows[i]["Ca"] != System.DBNull.Value)
+
+                    DateTime dtCurDate = DateTime.Parse(dt.Rows[i]["Ngày"].ToString());//Lấy ngày hiện tại
+                    //Kiểm tra ngày lễ
+                    List<PublicHoliday> ngayLe = (from nl in publicHoliday
+                                                  where (nl.PublicHolidayStart <= dtCurDate && nl.PublicHolidayEnd >= dtCurDate)
+                                                  select nl).ToList();
+                    if (ngayLe.Count > 0)
                     {
-                        //Lấy tổng thời gian làm mặc định của ca
-                        XPCollection xpcGTTCa = new XPCollection(xpcGiaTriChamCong, CriteriaOperator.And(new BinaryOperator("Ca", dt.Rows[i]["Ca"]),
-                            new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Tổng Thời Gian Làm")));
-                        if (xpcGTTCa.Count > 0)
-                        {
-                            int t_TongThoiGianLam = int.Parse((xpcGTTCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
-                            if (hours > t_TongThoiGianLam)
-                            {
-                                dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}",t_TongThoiGianLam);
-                                dt.Rows[i]["Tăng Ca"] = String.Format("{0:0.00}",hours - t_TongThoiGianLam);
-                            }
-                            else
-                            {
-                                dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}",hours);
-                                dt.Rows[i]["Tăng Ca"] = 0;
-                            }
-                        }
-                        dt.Rows[i]["Số Ngày Công"] = 1;
+                        dt.Rows[i]["Tăng Ca NL"] = String.Format("{0:0.00}", hours);
                     }
+                    //NẾu không phải ngày lễ: ngày thường, ngày nghĩ - Có ca thì ngày thường, không ca thì ngày nghĩ
                     else
                     {
-                        dt.Rows[i]["Tổng Thời Gian Làm"] = 0;
-                        dt.Rows[i]["Tăng Ca"] = String.Format("{0:0.00}",hours);
-                        dt.Rows[i]["Số Ngày Công"]  = 0;
+                        
+                        //Kiểm tra xem có ca không, nếu có thì so sánh thông tin giá trị mặc định của ca 
+                        if (dt.Rows[i]["Ca"] != System.DBNull.Value)
+                        {
+                            //Lấy tổng thời gian làm mặc định của ca
+                            XPCollection xpcGTTCa = new XPCollection(xpcGiaTriChamCong, CriteriaOperator.And(new BinaryOperator("Ca", dt.Rows[i]["Ca"]),
+                                new BinaryOperator("LoaiDLChamCong.LoaiChamCong", "Tổng Thời Gian Làm")));
+                            if (xpcGTTCa.Count > 0)
+                            {
+                                double t_TongThoiGianLam = double.Parse((xpcGTTCa[0] as GiaTriDuLieuChamCongTheoCa).GiaTri);
+                                double temp_TongThoiGianLam = t_TongThoiGianLam;
+                                if (!dsCaKhongCoGioNghi.Contains((xpcGTTCa[0] as GiaTriDuLieuChamCongTheoCa).Ca.TenCa))
+                                {
+                                    t_TongThoiGianLam += double.Parse(_thamSoNghiGiuaCa[0].GiaTri);
+                                }
+
+                                //Nếu thời gian làm lớn hơn tông thời gian làm theo ca->mới tính tăng ca, ngược lại không tính tăng ca
+                                if (hours > t_TongThoiGianLam)
+                                {
+                                    //Nếu giờ ra lớn hơn giờ ra Tham Số Thời Gian Phân Biêt Ca                                  
+                                    if (_thamSoThoiGian.Count > 0)
+                                    {
+                                        DateTime tempTG = DateTime.Parse(_thamSoThoiGian[0].GiaTri);
+                                        DateTime thoiGianPhanBietCa = new DateTime(d1.Year, d1.Month, d1.Day, tempTG.Hour, tempTG.Minute, tempTG.Second);
+                                        //Nếu thời gian ra lớn hơn thời gian phân biệt ca thì thời gian tăng ca sẻ là tăng ca NT Ca Đêm
+                                        TimeSpan ts1 = d3 - thoiGianPhanBietCa;
+                                        if (ts1.TotalHours > khoangGioiHanTangCa)
+                                        {
+                                            double dtemp = hours - t_TongThoiGianLam;//Tổng Thời Gian Tăng Ca
+                                            dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}", temp_TongThoiGianLam);
+                                            dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", dtemp - ts1.TotalHours);
+                                            dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.00}", ts1.TotalHours);
+                                        }
+                                        //Ngược lại thời gian tăng ca sẽ là tăng ca NT
+                                        else
+                                        {
+                                            dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}", temp_TongThoiGianLam);
+                                            dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", hours - t_TongThoiGianLam);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    dt.Rows[i]["Tổng Thời Gian Làm"] = String.Format("{0:0.00}", hours);
+                                }
+                            }
+                            dt.Rows[i]["Số Ngày Công"] = 1;
+                        }
+                        //Ngày nghĩ --- Không có ca
+                        else
+                        {                            
+                            if (_thamSoThoiGian.Count > 0)
+                            {
+                                DateTime tempTG = DateTime.Parse(_thamSoThoiGian[0].GiaTri);
+                                DateTime thoiGianPhanBietCa = new DateTime(d1.Year, d1.Month, d1.Day, tempTG.Hour, tempTG.Minute, tempTG.Second);
+                                //Nếu thời gian ra lớn hơn thời gian phân biệt ca thì thời gian tăng ca sẻ là tăng ca NT Ca Đêm
+                                TimeSpan ts1 = d3 - thoiGianPhanBietCa;
+                                if (ts1.TotalHours > khoangGioiHanTangCa)
+                                {
+                                    dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", hours - ts1.TotalHours);
+                                    dt.Rows[i]["Tăng Ca NT Ca Đêm"] = String.Format("{0:0.00}", ts1.TotalHours);
+                                }
+                                else
+                                {
+                                    dt.Rows[i]["Tăng Ca NT"] = String.Format("{0:0.00}", hours );
+                                }
+                            } 
+                        }
                     }
                 }
+                #endregion 
+
+               
             }
+            #endregion
 
-        }
-
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+            gridControl1.DataSource = dt;
+        }             
+        
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -301,6 +396,10 @@ namespace LeTien.Screens.Salaries
             ChamCong c = new ChamCong();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                if (Convert.ToBoolean(dt.Rows[i]["Checked"]) == false)
+                    continue;
+                if (dt.Rows[i]["NhanVien"] == System.DBNull.Value)
+                    continue;
                 //Lưu thông tin xếp ca
                 #region "Xếp Ca"
                 ChiTietXepCa ct = new ChiTietXepCa()
@@ -355,9 +454,11 @@ namespace LeTien.Screens.Salaries
                     xpcChiTietCa.Add(ct);
                 }
                 #endregion
-
+                
                 //Lưu Thông tin chấm công
                 #region "Chấm Công"
+
+                #region Giờ Vào
                 c = new ChamCong()
                 {
                     Thang = dtThangImport.DateTime,
@@ -387,7 +488,9 @@ namespace LeTien.Screens.Salaries
                     }
 
                 }
+                #endregion
 
+                #region Giờ Ra
                 c = new ChamCong()
                 {
                     Thang = dtThangImport.DateTime,
@@ -413,9 +516,9 @@ namespace LeTien.Screens.Salaries
                         xpcChamCong.Add(c);
                     }
                 }
+                #endregion
 
-
-                //
+                #region Tổng Thời Gian Làm
                 c = new ChamCong()
                 {
                     Thang = dtThangImport.DateTime,
@@ -441,8 +544,11 @@ namespace LeTien.Screens.Salaries
                         xpcChamCong.Add(c);
                     }
                 }
+                #endregion
 
-                //
+                //Tăng Ca
+                //5 Loại Tăng Ca: Tăng Ca NT,Tăng Ca NT Ca Đêm, Tăng Ca NN, Tăng Ca NN Ca Đêm, Tăng Ca Ngày Lễ 
+                #region Tăng Ca NT
                 c = new ChamCong()
                 {
                     Thang = dtThangImport.DateTime,
@@ -451,7 +557,7 @@ namespace LeTien.Screens.Salaries
                     LastDate = dtNgayCuoiThang.DateTime,
                     TenBangChamCong = dtThangImport.DateTime.Month.ToString() + "-" + dtThangImport.DateTime.Year.ToString()
                 };
-                xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Tăng Ca"));
+                xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Tăng Ca NT"));
                 if (xpcLoaiDLChamCong.Count > 0)
                 {
                     c.LoaiDuLieuChamCong = xpcLoaiDLChamCong[0] as LoaiDuLieuChamCong;
@@ -460,15 +566,129 @@ namespace LeTien.Screens.Salaries
                     if (xpcCC.Count > 0)
                     {
                         ChamCong c1 = xpcCC[0] as ChamCong;
-                        c1[ts.Days + 1] = dt.Rows[i]["Tăng Ca"].ToString();
+                        c1[ts.Days + 1] = dt.Rows[i]["Tăng Ca NT"].ToString();
                     }
                     else
                     {
-                        c[ts.Days + 1] = dt.Rows[i]["Tăng Ca"].ToString();
+                        c[ts.Days + 1] = dt.Rows[i]["Tăng Ca NT"].ToString();
                         xpcChamCong.Add(c);
                     }
                 }
+                #endregion
 
+                #region Tăng Ca NT Ca Đêm
+                c = new ChamCong()
+                {
+                    Thang = dtThangImport.DateTime,
+                    NhanVien = dt.Rows[i]["NhanVien"] as Employee,
+                    FirstDate = dtNgayDauThang.DateTime,
+                    LastDate = dtNgayCuoiThang.DateTime,
+                    TenBangChamCong = dtThangImport.DateTime.Month.ToString() + "-" + dtThangImport.DateTime.Year.ToString()
+                };
+                xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Tăng Ca NT Ca Đêm"));
+                if (xpcLoaiDLChamCong.Count > 0)
+                {
+                    c.LoaiDuLieuChamCong = xpcLoaiDLChamCong[0] as LoaiDuLieuChamCong;
+                    XPCollection xpcCC = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("NhanVien", c.NhanVien),
+                         new BinaryOperator("Thang", c.Thang), new BinaryOperator("LoaiDuLieuChamCong", c.LoaiDuLieuChamCong)));
+                    if (xpcCC.Count > 0)
+                    {
+                        ChamCong c1 = xpcCC[0] as ChamCong;
+                        c1[ts.Days + 1] = dt.Rows[i]["Tăng Ca NT Ca Đêm"].ToString();
+                    }
+                    else
+                    {
+                        c[ts.Days + 1] = dt.Rows[i]["Tăng Ca NT Ca Đêm"].ToString();
+                        xpcChamCong.Add(c);
+                    }
+                }
+                #endregion
+
+                #region Tăng Ca NN
+                c = new ChamCong()
+                {
+                    Thang = dtThangImport.DateTime,
+                    NhanVien = dt.Rows[i]["NhanVien"] as Employee,
+                    FirstDate = dtNgayDauThang.DateTime,
+                    LastDate = dtNgayCuoiThang.DateTime,
+                    TenBangChamCong = dtThangImport.DateTime.Month.ToString() + "-" + dtThangImport.DateTime.Year.ToString()
+                };
+                xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Tăng Ca NN"));
+                if (xpcLoaiDLChamCong.Count > 0)
+                {
+                    c.LoaiDuLieuChamCong = xpcLoaiDLChamCong[0] as LoaiDuLieuChamCong;
+                    XPCollection xpcCC = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("NhanVien", c.NhanVien),
+                         new BinaryOperator("Thang", c.Thang), new BinaryOperator("LoaiDuLieuChamCong", c.LoaiDuLieuChamCong)));
+                    if (xpcCC.Count > 0)
+                    {
+                        ChamCong c1 = xpcCC[0] as ChamCong;
+                        c1[ts.Days + 1] = dt.Rows[i]["Tăng Ca NN"].ToString();
+                    }
+                    else
+                    {
+                        c[ts.Days + 1] = dt.Rows[i]["Tăng Ca NN"].ToString();
+                        xpcChamCong.Add(c);
+                    }
+                }
+                #endregion
+
+                #region Tăng Ca NN Ca Đêm
+                c = new ChamCong()
+                {
+                    Thang = dtThangImport.DateTime,
+                    NhanVien = dt.Rows[i]["NhanVien"] as Employee,
+                    FirstDate = dtNgayDauThang.DateTime,
+                    LastDate = dtNgayCuoiThang.DateTime,
+                    TenBangChamCong = dtThangImport.DateTime.Month.ToString() + "-" + dtThangImport.DateTime.Year.ToString()
+                };
+                xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Tăng Ca NN Ca Đêm"));
+                if (xpcLoaiDLChamCong.Count > 0)
+                {
+                    c.LoaiDuLieuChamCong = xpcLoaiDLChamCong[0] as LoaiDuLieuChamCong;
+                    XPCollection xpcCC = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("NhanVien", c.NhanVien),
+                         new BinaryOperator("Thang", c.Thang), new BinaryOperator("LoaiDuLieuChamCong", c.LoaiDuLieuChamCong)));
+                    if (xpcCC.Count > 0)
+                    {
+                        ChamCong c1 = xpcCC[0] as ChamCong;
+                        c1[ts.Days + 1] = dt.Rows[i]["Tăng Ca NN Ca Đêm"].ToString();
+                    }
+                    else
+                    {
+                        c[ts.Days + 1] = dt.Rows[i]["Tăng Ca NN Ca Đêm"].ToString();
+                        xpcChamCong.Add(c);
+                    }
+                }
+                #endregion
+
+                #region Tăng Ca Ngày Lễ
+                c = new ChamCong()
+                {
+                    Thang = dtThangImport.DateTime,
+                    NhanVien = dt.Rows[i]["NhanVien"] as Employee,
+                    FirstDate = dtNgayDauThang.DateTime,
+                    LastDate = dtNgayCuoiThang.DateTime,
+                    TenBangChamCong = dtThangImport.DateTime.Month.ToString() + "-" + dtThangImport.DateTime.Year.ToString()
+                };
+                xpcLoaiDLChamCong = new XPCollection(xpcLoaiDuLieuChamCong, new BinaryOperator("LoaiChamCong", "Tăng Ca NL"));
+                if (xpcLoaiDLChamCong.Count > 0)
+                {
+                    c.LoaiDuLieuChamCong = xpcLoaiDLChamCong[0] as LoaiDuLieuChamCong;
+                    XPCollection xpcCC = new XPCollection(xpcChamCong, CriteriaOperator.And(new BinaryOperator("NhanVien", c.NhanVien),
+                         new BinaryOperator("Thang", c.Thang), new BinaryOperator("LoaiDuLieuChamCong", c.LoaiDuLieuChamCong)));
+                    if (xpcCC.Count > 0)
+                    {
+                        ChamCong c1 = xpcCC[0] as ChamCong;
+                        c1[ts.Days + 1] = dt.Rows[i]["Tăng Ca NL"].ToString();
+                    }
+                    else
+                    {
+                        c[ts.Days + 1] = dt.Rows[i]["Tăng Ca NL"].ToString();
+                        xpcChamCong.Add(c);
+                    }
+                }
+                #endregion
+
+                #region Số Ngày Công
                 // Số Ngày Công
                 c = new ChamCong()
                 {
@@ -497,6 +717,7 @@ namespace LeTien.Screens.Salaries
                 }
                 #endregion
 
+                #endregion
             }
             XpoDefault.Session.Save(xpcChamCong);
             XpoDefault.Session.Save(xpcChiTietCa);
@@ -538,9 +759,32 @@ namespace LeTien.Screens.Salaries
 
         }
 
-        private void btnTinhNgayCong_Click(object sender, EventArgs e)
+        private void gridView1_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
-            XuLyDuLieu();
+            for (int j = 0; j < gridView1.RowCount; j++)
+            {
+                gridView1.SetRowCellValue(j, colChecked, false);
+
+            }
+            if (gridView1.SelectedRowsCount > 0)
+            {
+                for (int i = 0; i < gridView1.SelectedRowsCount; i++)
+                {
+                    gridView1.SetRowCellValue(gridView1.GetSelectedRows()[i], colChecked, true);
+                }
+            }
+        }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            string fileName = string.Empty;
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Exel 2013 (*.xls)|*.xls";
+            if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                fileName = save.FileName;
+                gridControl1.ExportToXls(fileName);
+            } 
         }
 
 

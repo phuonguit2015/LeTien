@@ -20,12 +20,16 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Data.Filtering;
 using System.Diagnostics;
 using System.Threading;
+using System.Data.OleDb;
+using System.IO;
 namespace LeTien.Screens.Employees
 {
     public partial class FormEmployeeList : FormBase
     {
         private string employeeID;
         private Employee employee;
+        XPQuery<PhongBan> phongBan = Session.DefaultSession.Query<PhongBan>();
+        XPQuery<Employee> nhanVien = Session.DefaultSession.Query<Employee>();
 
         public FormEmployeeList()
         {
@@ -135,12 +139,14 @@ namespace LeTien.Screens.Employees
                 employee.Ho = bandedGridView1.GetRowCellValue(e.RowHandle, "Ho").ToString();
             }
             catch
-            { } 
+            { }
             try
             {
                 employee.Ten = bandedGridView1.GetRowCellValue(e.RowHandle, "Ten").ToString();
             }
             catch
+            { } 
+          
             { } 
             try
             {
@@ -364,6 +370,124 @@ namespace LeTien.Screens.Employees
 
         }
 
+        private void btnNhapLieuTuExcel_Click(object sender, EventArgs e)
+        {
+            // Displays an OpenFileDialog so the user can select a Cursor.
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+            openFileDialog1.Title = "Select a File Excel";
 
+            // Show the Dialog.
+            // If the user clicked OK in the dialog and
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string urlFile = openFileDialog1.FileName;
+                NhapLieuTuExcel(urlFile);
+            }
+        }
+        public string GetConnectionString(string excelFileName)
+        {
+            string strConnectionString = "";
+            if (Path.GetExtension(excelFileName).ToLower() == ".xlsx")
+                strConnectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\";", excelFileName);
+            else if (Path.GetExtension(excelFileName).ToLower() == ".xls")
+                strConnectionString = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=1\";", excelFileName);
+            return strConnectionString;
+        }
+        private void NhapLieuTuExcel(string urlFile)
+        {
+
+
+            DataTable dt = new DataTable();
+            DataTable temp = new DataTable();
+            string cmdText = "select * from [Sheet1$]";
+            using (OleDbDataAdapter adapter = new OleDbDataAdapter(cmdText, GetConnectionString(urlFile)))
+            {
+                adapter.Fill(temp);
+            }
+
+            if (temp.Rows.Count > 0)
+            {
+                temp.DefaultView.RowFilter = "F3 <> ''";
+                temp = temp.DefaultView.ToTable();
+            }
+
+            //Fomart cấu trúc bảng
+            List<string> dsCol = new List<string>() { "Phòng ban", "Mã NV","Họ lót", "Tên" };
+
+            foreach (DataRow itemrow in temp.Rows)
+            {
+                foreach (string col in dsCol)
+                {
+                    for (int i = 0; i < temp.Columns.Count; i++)
+                    {
+                        if (itemrow[i].ToString() == col)
+                        {
+                            temp.Columns[i].ColumnName = col;
+                        }
+                    }
+                }
+            }
+
+            //Xóa dòng đầu tiền trong bảng
+            temp.Rows.RemoveAt(0);
+
+            //Đưa về bảng 2 cột
+
+            for (int i = 0; i < temp.Columns.Count; i++)
+            {
+                DataColumn columns = temp.Columns[i];
+                foreach (string col in dsCol)
+                {
+                    if (col == columns.ColumnName && !dt.Columns.Contains(col))
+                    {
+                        dt.Columns.Add(col);
+                        break;
+                    }
+                }
+            }
+
+
+            //Thêm dữ liệu xuống database
+            for (int i = 0; i < temp.Rows.Count; i++)
+            {
+                //Kiểm tra xem phòng ban có tên phòng ban chưa nếu chưa thì thêm vào
+                XPCollection xpcPB = new XPCollection(xpcPhongBan, new BinaryOperator("TenPhongBan", temp.Rows[i]["Phòng ban"]));
+                if (xpcPB.Count == 0)
+                {
+                    PhongBan ctPhongBan = new PhongBan()
+                    {
+                        MaPhongBan = temp.Rows[i]["Phòng ban"].ToString(),
+                        TenPhongBan = temp.Rows[i]["Phòng ban"].ToString()
+                    };
+                    xpcPhongBan.Add(ctPhongBan);
+                }
+
+                //Kiểm tra xem có nhân viên chưa, nếu chưa thêm vào luôn
+                XPCollection xpcNV = new XPCollection(xpCollectionEmployee, new BinaryOperator("MaNhanVien", temp.Rows[i]["Mã NV"].ToString()));
+                XPCollection xpcPB1 = new XPCollection(xpcPhongBan, new BinaryOperator("TenPhongBan", temp.Rows[i]["Phòng ban"]));
+
+                if(xpcNV.Count == 0)
+                {
+                    
+                    Employee ctNhanVien = new Employee() { 
+                    MaNhanVien = temp.Rows[i]["Mã NV"].ToString(),
+                    Ho = temp.Rows[i]["Họ lót"].ToString(),
+                    Ten = temp.Rows[i]["Tên"].ToString(),
+                    phongBan = xpcPB1[0] as PhongBan
+                     };
+                    xpCollectionEmployee.Add(ctNhanVien);
+                }
+                else
+                {
+                    Employee nvien = xpcNV[0] as Employee;
+                    nvien.phongBan = xpcPB1[0] as PhongBan;
+                }
+            }
+            XpoDefault.Session.Save(xpcPhongBan);
+            XpoDefault.Session.Save(xpCollectionEmployee);
+        }
+
+       
     }
 }

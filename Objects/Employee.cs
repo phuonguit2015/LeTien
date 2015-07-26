@@ -30,15 +30,22 @@ namespace LeTien.Objects
             set;
         }
 
-        [DisplayName ("Họ lót")]
+        [DisplayName ("Họ Tên")]
         public string Ho
         {
             get;
             set;
         }
 
-        [DisplayName ("Tên")]
+        [DisplayName("Tên")]
         public string Ten
+        {
+            get;
+            set;
+        }
+
+        [DisplayName("Phòng Ban")]
+        public PhongBan phongBan
         {
             get;
             set;
@@ -47,7 +54,7 @@ namespace LeTien.Objects
         [DisplayName("Họ và Tên")]
         public string HoTen
         {
-            get { return string.Format("{0} {1}", Ho, Ten); }       
+            get { return string.Format("{0} {1}", Ho, Ten); }
         }
 
         [DisplayName ("Tên Tiếng Nhật")]

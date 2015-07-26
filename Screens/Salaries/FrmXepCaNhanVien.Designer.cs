@@ -52,6 +52,7 @@
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.btnXepCa = new DevExpress.XtraBars.BarButtonItem();
             this.btnEdit = new DevExpress.XtraBars.BarButtonItem();
+            this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnIn = new DevExpress.XtraBars.BarButtonItem();
             this.btnXuat = new DevExpress.XtraBars.BarButtonItem();
             this.btnDong = new DevExpress.XtraBars.BarButtonItem();
@@ -70,6 +71,7 @@
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcXepCa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcNhanVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcDanhMucCa)).BeginInit();
@@ -141,11 +143,14 @@
             this.gridView1.GroupCount = 1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
+            this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowDetailButtons = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colNhanVien, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grvUCList_SelectionChanged);
             // 
             // colOid
             // 
@@ -168,6 +173,7 @@
             this.lkupNhanVien.DataSource = this.xpcNhanVien;
             this.lkupNhanVien.DisplayMember = "HoTen";
             this.lkupNhanVien.Name = "lkupNhanVien";
+            this.lkupNhanVien.NullText = "[Chọn nhân viên]";
             this.lkupNhanVien.ValueMember = "This";
             // 
             // colCa
@@ -177,7 +183,7 @@
             this.colCa.Name = "colCa";
             this.colCa.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colCa.Visible = true;
-            this.colCa.VisibleIndex = 2;
+            this.colCa.VisibleIndex = 3;
             this.colCa.Width = 497;
             // 
             // lkupCa
@@ -191,6 +197,7 @@
             this.lkupCa.DataSource = this.xpcDanhMucCa;
             this.lkupCa.DisplayMember = "TenCa";
             this.lkupCa.Name = "lkupCa";
+            this.lkupCa.NullText = "[Chọn cal]";
             this.lkupCa.ValueMember = "This";
             // 
             // colNgay
@@ -200,7 +207,7 @@
             this.colNgay.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNgay.OptionsColumn.ReadOnly = true;
             this.colNgay.Visible = true;
-            this.colNgay.VisibleIndex = 1;
+            this.colNgay.VisibleIndex = 2;
             this.colNgay.Width = 495;
             // 
             // gridColumn1
@@ -209,7 +216,7 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.VisibleIndex = 1;
             this.gridColumn1.Width = 70;
             // 
             // layoutControlGroup1
@@ -260,9 +267,10 @@
             this.btnEdit,
             this.btnTaoBangChamCong,
             this.btnCapNhatKQ,
-            this.btnXepCa});
+            this.btnXepCa,
+            this.btnXoa});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 19;
+            this.barManager1.MaxItemId = 20;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEdit1,
             this.repositoryItemSpinEdit2,
@@ -282,6 +290,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.dtThang),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXepCa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnEdit, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnIn, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXuat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDong, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
@@ -334,6 +343,16 @@
             this.btnEdit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnEdit.LargeGlyph")));
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEdit_ItemClick);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Caption = "XÓA";
+            this.btnXoa.Enabled = false;
+            this.btnXoa.Glyph = ((System.Drawing.Image)(resources.GetObject("btnXoa.Glyph")));
+            this.btnXoa.Id = 19;
+            this.btnXoa.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnXoa.LargeGlyph")));
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnIn
             // 
@@ -502,9 +521,11 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.LookAndFeel.SkinName = "Seven Classic";
             this.Name = "FrmXepCaNhanVien";
             this.Text = "XẾP CA NHÂN VIÊN";
             this.Load += new System.EventHandler(this.FrmXepCaNhanVien_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcXepCa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcNhanVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcDanhMucCa)).EndInit();
@@ -570,5 +591,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraBars.BarButtonItem btnXoa;
     }
 }
