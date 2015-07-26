@@ -36,8 +36,7 @@ namespace LeTien
             {
                 DevExpress.Xpo.XpoDefault.Session.UpdateSchema();
                 Application.Run(new FrmLogin());
-            }
-            
+            }            
         }
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

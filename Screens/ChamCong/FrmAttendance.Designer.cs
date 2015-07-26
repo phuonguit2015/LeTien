@@ -76,6 +76,7 @@
             this.colNgay31 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKetQua = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNhanVien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDonVi = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.timeEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTimeEdit();
@@ -88,7 +89,7 @@
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.dtThang = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
-            this.btnTaoBangChamCong = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCapNhatDuLieu = new DevExpress.XtraBars.BarButtonItem();
             this.btnImport = new DevExpress.XtraBars.BarButtonItem();
             this.btnEdit = new DevExpress.XtraBars.BarButtonItem();
             this.btnCapNhatKQ = new DevExpress.XtraBars.BarButtonItem();
@@ -105,6 +106,7 @@
             this.btnNapLai = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btnImportAC = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTaoBangChamCong = new DevExpress.XtraBars.BarButtonItem();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
@@ -239,7 +241,8 @@
             this.colNgay30,
             this.colNgay31,
             this.colKetQua,
-            this.colNhanVien});
+            this.colNhanVien,
+            this.colDonVi});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.ReadOnly = true;
@@ -255,14 +258,10 @@
             this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colNgay1, DevExpress.Data.ColumnSortOrder.Ascending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colMaNhanVien, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.gridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gridView1_RowClick);
-            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick_1);
             this.gridView1.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridView1_CellMerge);
             this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             this.gridView1.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridView1_CustomRowCellEdit);
-            this.gridView1.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.gridView1_ShowingEditor);
             this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
-            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colLoaiDuLieuChamCong
             // 
@@ -296,6 +295,7 @@
             this.colHoTen.OptionsColumn.TabStop = false;
             this.colHoTen.Visible = true;
             this.colHoTen.VisibleIndex = 1;
+            this.colHoTen.Width = 141;
             // 
             // colThoiGian
             // 
@@ -317,7 +317,7 @@
             this.colNgay1.OptionsColumn.AllowEdit = false;
             this.colNgay1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNgay1.Visible = true;
-            this.colNgay1.VisibleIndex = 3;
+            this.colNgay1.VisibleIndex = 5;
             // 
             // txtEdit
             // 
@@ -330,7 +330,7 @@
             this.colNgay2.Name = "colNgay2";
             this.colNgay2.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNgay2.Visible = true;
-            this.colNgay2.VisibleIndex = 4;
+            this.colNgay2.VisibleIndex = 6;
             // 
             // colNgay3
             // 
@@ -338,7 +338,7 @@
             this.colNgay3.Name = "colNgay3";
             this.colNgay3.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNgay3.Visible = true;
-            this.colNgay3.VisibleIndex = 5;
+            this.colNgay3.VisibleIndex = 7;
             // 
             // colNgay4
             // 
@@ -346,7 +346,7 @@
             this.colNgay4.Name = "colNgay4";
             this.colNgay4.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNgay4.Visible = true;
-            this.colNgay4.VisibleIndex = 6;
+            this.colNgay4.VisibleIndex = 8;
             // 
             // colNgay5
             // 
@@ -354,7 +354,7 @@
             this.colNgay5.Name = "colNgay5";
             this.colNgay5.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNgay5.Visible = true;
-            this.colNgay5.VisibleIndex = 7;
+            this.colNgay5.VisibleIndex = 9;
             // 
             // colNgay6
             // 
@@ -362,196 +362,206 @@
             this.colNgay6.Name = "colNgay6";
             this.colNgay6.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNgay6.Visible = true;
-            this.colNgay6.VisibleIndex = 8;
+            this.colNgay6.VisibleIndex = 10;
             // 
             // colNgay7
             // 
             this.colNgay7.FieldName = "Ngay7";
             this.colNgay7.Name = "colNgay7";
             this.colNgay7.Visible = true;
-            this.colNgay7.VisibleIndex = 9;
+            this.colNgay7.VisibleIndex = 11;
             // 
             // colNgay8
             // 
             this.colNgay8.FieldName = "Ngay8";
             this.colNgay8.Name = "colNgay8";
             this.colNgay8.Visible = true;
-            this.colNgay8.VisibleIndex = 10;
+            this.colNgay8.VisibleIndex = 12;
             // 
             // colNgay9
             // 
             this.colNgay9.FieldName = "Ngay9";
             this.colNgay9.Name = "colNgay9";
             this.colNgay9.Visible = true;
-            this.colNgay9.VisibleIndex = 11;
+            this.colNgay9.VisibleIndex = 13;
             // 
             // colNgay10
             // 
             this.colNgay10.FieldName = "Ngay10";
             this.colNgay10.Name = "colNgay10";
             this.colNgay10.Visible = true;
-            this.colNgay10.VisibleIndex = 12;
+            this.colNgay10.VisibleIndex = 14;
             // 
             // colNgay11
             // 
             this.colNgay11.FieldName = "Ngay11";
             this.colNgay11.Name = "colNgay11";
             this.colNgay11.Visible = true;
-            this.colNgay11.VisibleIndex = 13;
+            this.colNgay11.VisibleIndex = 15;
             // 
             // colNgay12
             // 
             this.colNgay12.FieldName = "Ngay12";
             this.colNgay12.Name = "colNgay12";
             this.colNgay12.Visible = true;
-            this.colNgay12.VisibleIndex = 14;
+            this.colNgay12.VisibleIndex = 16;
             // 
             // colNgay13
             // 
             this.colNgay13.FieldName = "Ngay13";
             this.colNgay13.Name = "colNgay13";
             this.colNgay13.Visible = true;
-            this.colNgay13.VisibleIndex = 15;
+            this.colNgay13.VisibleIndex = 17;
             // 
             // colNgay14
             // 
             this.colNgay14.FieldName = "Ngay14";
             this.colNgay14.Name = "colNgay14";
             this.colNgay14.Visible = true;
-            this.colNgay14.VisibleIndex = 16;
+            this.colNgay14.VisibleIndex = 18;
             // 
             // colNgay15
             // 
             this.colNgay15.FieldName = "Ngay15";
             this.colNgay15.Name = "colNgay15";
             this.colNgay15.Visible = true;
-            this.colNgay15.VisibleIndex = 17;
+            this.colNgay15.VisibleIndex = 19;
             // 
             // colNgay16
             // 
             this.colNgay16.FieldName = "Ngay16";
             this.colNgay16.Name = "colNgay16";
             this.colNgay16.Visible = true;
-            this.colNgay16.VisibleIndex = 18;
+            this.colNgay16.VisibleIndex = 20;
             // 
             // colNgay17
             // 
             this.colNgay17.FieldName = "Ngay17";
             this.colNgay17.Name = "colNgay17";
             this.colNgay17.Visible = true;
-            this.colNgay17.VisibleIndex = 19;
+            this.colNgay17.VisibleIndex = 21;
             // 
             // colNgay18
             // 
             this.colNgay18.FieldName = "Ngay18";
             this.colNgay18.Name = "colNgay18";
             this.colNgay18.Visible = true;
-            this.colNgay18.VisibleIndex = 20;
+            this.colNgay18.VisibleIndex = 22;
             // 
             // colNgay19
             // 
             this.colNgay19.FieldName = "Ngay19";
             this.colNgay19.Name = "colNgay19";
             this.colNgay19.Visible = true;
-            this.colNgay19.VisibleIndex = 21;
+            this.colNgay19.VisibleIndex = 23;
             // 
             // colNgay20
             // 
             this.colNgay20.FieldName = "Ngay20";
             this.colNgay20.Name = "colNgay20";
             this.colNgay20.Visible = true;
-            this.colNgay20.VisibleIndex = 22;
+            this.colNgay20.VisibleIndex = 24;
             // 
             // colNgay21
             // 
             this.colNgay21.FieldName = "Ngay21";
             this.colNgay21.Name = "colNgay21";
             this.colNgay21.Visible = true;
-            this.colNgay21.VisibleIndex = 23;
+            this.colNgay21.VisibleIndex = 25;
             // 
             // colNgay22
             // 
             this.colNgay22.FieldName = "Ngay22";
             this.colNgay22.Name = "colNgay22";
             this.colNgay22.Visible = true;
-            this.colNgay22.VisibleIndex = 24;
+            this.colNgay22.VisibleIndex = 26;
             // 
             // colNgay23
             // 
             this.colNgay23.FieldName = "Ngay23";
             this.colNgay23.Name = "colNgay23";
             this.colNgay23.Visible = true;
-            this.colNgay23.VisibleIndex = 25;
+            this.colNgay23.VisibleIndex = 27;
             // 
             // colNgay24
             // 
             this.colNgay24.FieldName = "Ngay24";
             this.colNgay24.Name = "colNgay24";
             this.colNgay24.Visible = true;
-            this.colNgay24.VisibleIndex = 26;
+            this.colNgay24.VisibleIndex = 28;
             // 
             // colNgay25
             // 
             this.colNgay25.FieldName = "Ngay25";
             this.colNgay25.Name = "colNgay25";
             this.colNgay25.Visible = true;
-            this.colNgay25.VisibleIndex = 27;
+            this.colNgay25.VisibleIndex = 29;
             // 
             // colNgay26
             // 
             this.colNgay26.FieldName = "Ngay26";
             this.colNgay26.Name = "colNgay26";
             this.colNgay26.Visible = true;
-            this.colNgay26.VisibleIndex = 28;
+            this.colNgay26.VisibleIndex = 30;
             // 
             // colNgay27
             // 
             this.colNgay27.FieldName = "Ngay27";
             this.colNgay27.Name = "colNgay27";
             this.colNgay27.Visible = true;
-            this.colNgay27.VisibleIndex = 29;
+            this.colNgay27.VisibleIndex = 31;
             // 
             // colNgay28
             // 
             this.colNgay28.FieldName = "Ngay28";
             this.colNgay28.Name = "colNgay28";
             this.colNgay28.Visible = true;
-            this.colNgay28.VisibleIndex = 30;
+            this.colNgay28.VisibleIndex = 32;
             // 
             // colNgay29
             // 
             this.colNgay29.FieldName = "Ngay29";
             this.colNgay29.Name = "colNgay29";
             this.colNgay29.Visible = true;
-            this.colNgay29.VisibleIndex = 31;
+            this.colNgay29.VisibleIndex = 33;
             // 
             // colNgay30
             // 
             this.colNgay30.FieldName = "Ngay30";
             this.colNgay30.Name = "colNgay30";
             this.colNgay30.Visible = true;
-            this.colNgay30.VisibleIndex = 32;
+            this.colNgay30.VisibleIndex = 34;
             // 
             // colNgay31
             // 
             this.colNgay31.FieldName = "Ngay31";
             this.colNgay31.Name = "colNgay31";
             this.colNgay31.Visible = true;
-            this.colNgay31.VisibleIndex = 33;
+            this.colNgay31.VisibleIndex = 35;
             // 
             // colKetQua
             // 
             this.colKetQua.FieldName = "KetQua";
-            this.colKetQua.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right;
+            this.colKetQua.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.colKetQua.Name = "colKetQua";
             this.colKetQua.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colKetQua.Visible = true;
-            this.colKetQua.VisibleIndex = 34;
+            this.colKetQua.VisibleIndex = 3;
             // 
             // colNhanVien
             // 
             this.colNhanVien.FieldName = "NhanVien!";
             this.colNhanVien.Name = "colNhanVien";
+            // 
+            // colDonVi
+            // 
+            this.colDonVi.Caption = "Ghi Chú";
+            this.colDonVi.FieldName = "DonVi";
+            this.colDonVi.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.colDonVi.Name = "colDonVi";
+            this.colDonVi.OptionsColumn.ReadOnly = true;
+            this.colDonVi.Visible = true;
+            this.colDonVi.VisibleIndex = 4;
             // 
             // repositoryItemColorPickEdit1
             // 
@@ -649,9 +659,10 @@
             this.btnEdit,
             this.btnTaoBangChamCong,
             this.btnCapNhatKQ,
-            this.btnImport});
+            this.btnImport,
+            this.btnCapNhatDuLieu});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 19;
+            this.barManager1.MaxItemId = 20;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemSpinEdit1,
             this.repositoryItemSpinEdit2,
@@ -668,7 +679,8 @@
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.dtThang),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnImport, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCapNhatDuLieu, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnImport, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnEdit, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCapNhatKQ, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnIn, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -693,7 +705,7 @@
             this.dtThang.Id = 12;
             this.dtThang.Name = "dtThang";
             this.dtThang.Width = 120;
-            this.dtThang.EditValueChanged += new System.EventHandler(this.dtThang_EditValueChanged);
+            this.dtThang.EditValueChanged += new System.EventHandler(this.dtThang_EditValueChanged_1);
             // 
             // repositoryItemDateEdit2
             // 
@@ -702,18 +714,23 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemDateEdit2.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit2.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.TouchUI;
+            this.repositoryItemDateEdit2.DisplayFormat.FormatString = "M/yyyy";
+            this.repositoryItemDateEdit2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.repositoryItemDateEdit2.Mask.EditMask = "M/yyyy";
+            this.repositoryItemDateEdit2.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.DateTimeAdvancingCaret;
             this.repositoryItemDateEdit2.Mask.UseMaskAsDisplayFormat = true;
             this.repositoryItemDateEdit2.Name = "repositoryItemDateEdit2";
+            this.repositoryItemDateEdit2.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
             // 
-            // btnTaoBangChamCong
+            // btnCapNhatDuLieu
             // 
-            this.btnTaoBangChamCong.Caption = "Tạo Bảng Chấm Công";
-            this.btnTaoBangChamCong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnTaoBangChamCong.Glyph")));
-            this.btnTaoBangChamCong.Id = 15;
-            this.btnTaoBangChamCong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnTaoBangChamCong.LargeGlyph")));
-            this.btnTaoBangChamCong.Name = "btnTaoBangChamCong";
-            this.btnTaoBangChamCong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaoBangChamCong_ItemClick);
+            this.btnCapNhatDuLieu.Caption = "CẬP NHẬT DỮ LIỆU";
+            this.btnCapNhatDuLieu.Glyph = ((System.Drawing.Image)(resources.GetObject("btnCapNhatDuLieu.Glyph")));
+            this.btnCapNhatDuLieu.Id = 19;
+            this.btnCapNhatDuLieu.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnCapNhatDuLieu.LargeGlyph")));
+            this.btnCapNhatDuLieu.Name = "btnCapNhatDuLieu";
+            this.btnCapNhatDuLieu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCapNhatDuLieu_ItemClick);
             // 
             // btnImport
             // 
@@ -840,6 +857,15 @@
             this.btnImportAC.Id = 13;
             this.btnImportAC.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImportAC.LargeGlyph")));
             this.btnImportAC.Name = "btnImportAC";
+            // 
+            // btnTaoBangChamCong
+            // 
+            this.btnTaoBangChamCong.Caption = "Tạo Bảng Chấm Công";
+            this.btnTaoBangChamCong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnTaoBangChamCong.Glyph")));
+            this.btnTaoBangChamCong.Id = 15;
+            this.btnTaoBangChamCong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnTaoBangChamCong.LargeGlyph")));
+            this.btnTaoBangChamCong.Name = "btnTaoBangChamCong";
+            this.btnTaoBangChamCong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaoBangChamCong_ItemClick);
             // 
             // repositoryItemSpinEdit1
             // 
@@ -1056,5 +1082,7 @@
         private DevExpress.XtraBars.BarButtonItem btnCapNhatKQ;
         private DevExpress.XtraBars.BarButtonItem btnImport;
         private DevExpress.Xpo.XPCollection xpcChuKyLuong;
+        private DevExpress.XtraBars.BarButtonItem btnCapNhatDuLieu;
+        private DevExpress.XtraGrid.Columns.GridColumn colDonVi;
     }
 }

@@ -32,6 +32,15 @@ namespace LeTien.Screens.Employees
             InitializeComponent();
             employee = new Employee();
             employeeID = string.Empty;
+
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCompentence)).BeginInit();
+            this.xpCollectionCompentence.ObjectType = typeof(LeTien.Objects.Competence);
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCompentence)).EndInit();
+
+            ((System.ComponentModel.ISupportInitialize)(this.xpcReligion)).BeginInit();
+            this.xpcReligion.ObjectType = typeof(LeTien.Objects.Religion);
+            ((System.ComponentModel.ISupportInitialize)(this.xpcReligion)).EndInit();
+
         }
 
         private void FormEmployeeList_Load(object sender, EventArgs e)
@@ -41,7 +50,6 @@ namespace LeTien.Screens.Employees
             ucMenu.UCMain_Print_Clicked += ucMenu_Print_Clicked;
             ucMenu.UCMain_Export_Clicked += ucMenu_Export_Clicked;
             ucMenu.UCMain_Dong_Clicked += ucMenu_Dong_Clicked;
-            ucMenu.UCMain_MayTinh_Clicked += ucMenu_MayTinh_Clicked;
             ucMenu.UCMain_Edit_Clicked += ucMenu_Edit_Clicked;
 
             ucMenu.btnEdit.Enabled = false;
@@ -332,6 +340,28 @@ namespace LeTien.Screens.Employees
                 ucMenu.btnEdit.Enabled = false;
                 ucMenu.btnXoa.Enabled = false;
             }
+        }
+
+        private void checkXem_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkXem.Checked == true)
+            {
+                checkXem.Text = "CHẾ ĐỘ XEM";
+                bandedGridView1.OptionsBehavior.ReadOnly = true;
+                bandedGridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.None;
+            }
+            else
+            {
+                checkXem.Text = "CHẾ ĐỘ CHỈNH SỬA";
+                bandedGridView1.OptionsBehavior.ReadOnly = false;
+                bandedGridView1.NewItemRowText = "Thêm dòng mới tại đây...";
+                bandedGridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
+            }
+        }
+
+        private void bandedGridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+
         }
 
 

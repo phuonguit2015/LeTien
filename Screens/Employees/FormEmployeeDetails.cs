@@ -60,7 +60,7 @@ namespace LeTien.Screens.Employees
             FormEmployeeList f = this.Tag as FormEmployeeList;
             f.RefreshData();            
             XtraMessageBox.Show("Thêm mới thành công", "Đã lưu");
-            
+            this.BindingContext[xpcEmployee].AddNew();
         }
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
@@ -136,7 +136,21 @@ namespace LeTien.Screens.Employees
             f.ShowDialog();
 
         }
-
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //Nếu là thêm mới
+                if (btnThem.Enabled == true)
+                {
+                    btnThem_Click(sender, e);
+                }
+                else
+                {
+                    btnCapNhat_Click(sender, e);
+                }
+            }
+        }
   
    
     }

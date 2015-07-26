@@ -24,13 +24,19 @@ namespace LeTien
         public event EventHandler UCMain_Export_Clicked;
         public event EventHandler UCMain_Delete_Clicked;
         public event EventHandler UCMain_Dong_Clicked;
-        public event EventHandler UCMain_MayTinh_Clicked;
+        public event EventHandler UCMain_ThemTuExcel_Clicked;
 
 
         private void btnThem_Click(object sender, EventArgs e)
         {
             if (UCMain_Add_Clicked != null)
                 UCMain_Add_Clicked(this, e);
+        }
+
+        private void btnThemTuExcel_Click(object sender, EventArgs e)
+        {
+            if (UCMain_ThemTuExcel_Clicked != null)
+                UCMain_ThemTuExcel_Clicked(this, e);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

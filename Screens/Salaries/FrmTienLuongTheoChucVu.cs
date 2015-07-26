@@ -126,5 +126,10 @@ namespace LeTien.Screens.Salaries
                 btnXoa.Enabled = false;
             }
         }
+
+        private void btnNapLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OnReload();
+        }
     }
 }

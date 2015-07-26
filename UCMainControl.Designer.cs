@@ -107,7 +107,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(469, 241, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(478, 28);
+            this.layoutControl1.Size = new System.Drawing.Size(609, 28);
             this.layoutControl1.TabIndex = 4;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -215,7 +215,7 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(478, 28);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(609, 28);
             this.layoutControlGroup1.Text = "Root";
             this.layoutControlGroup1.TextVisible = false;
             // 
@@ -324,7 +324,7 @@
             this.emptySpaceItem5.CustomizationFormText = "emptySpaceItem5";
             this.emptySpaceItem5.Location = new System.Drawing.Point(467, 0);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(11, 28);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(142, 28);
             this.emptySpaceItem5.Text = "emptySpaceItem5";
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -346,7 +346,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
             this.Name = "UCMainControl";
-            this.Size = new System.Drawing.Size(478, 28);
+            this.Size = new System.Drawing.Size(609, 28);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using LeTien.Objects;
 using System.Windows.Forms;
 
 namespace LeTien.Screens.Salaries
@@ -37,26 +38,27 @@ namespace LeTien.Screens.Salaries
 
                 using (var uow = new UnitOfWork())
                 {
-                    FrmLoaiDuLieuTinhLuong br = uow.FindObject<FrmLoaiDuLieuTinhLuong>(CriteriaOperator.Parse("Oid = ?", _id));
+                    LoaiDuLieuTinhLuong br = uow.FindObject<LoaiDuLieuTinhLuong>(CriteriaOperator.Parse("Oid = ?", _id));
                     if (br != null)
                     {
                         br.Delete();
                         uow.CommitChanges();
                         uow.PurgeDeletedObjects();
-                        OnReload();
                     }
                 }
             }
+            UOW.ReloadChangedObjects();
+            xpcLoaiDuLieuTinhLuong.Reload();
+            gridUCList.DataSource = xpcLoaiDuLieuTinhLuong;
         }
 
         protected override void OnReload()
         {
             SplashScreenManager.ShowForm(typeof(WaitFormMain));
             Thread.Sleep(1000);
-
             UOW.ReloadChangedObjects();
             xpcLoaiDuLieuTinhLuong.Reload();
-            gridUCList.DataSource = xpcLoaiDuLieuChamCong;
+            gridUCList.DataSource = xpcLoaiDuLieuTinhLuong;
             SplashScreenManager.CloseForm(); 
             
         }
@@ -115,6 +117,11 @@ namespace LeTien.Screens.Salaries
             {
                 btnXoa.Enabled = false;
             }
+        }
+
+        private void btnNapLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OnReload();
         }
     }
 }

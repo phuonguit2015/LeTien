@@ -116,6 +116,7 @@
     <Reference Include="DevExpress.XtraScheduler.v14.1.Core, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraSpreadsheet.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.JScript" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -128,6 +129,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculator.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="Objects\AdvancePayment.cs" />
     <Compile Include="Objects\Branch.cs" />
@@ -265,6 +267,12 @@
     </Compile>
     <Compile Include="Screens\NgayNghiNgayLe\FrmQuanLyNgayNghi.Designer.cs">
       <DependentUpon>FrmQuanLyNgayNghi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmTinhLuongThang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Salaries\FrmTinhLuongThang.Designer.cs">
+      <DependentUpon>FrmTinhLuongThang.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\TonGiao\frmReligionList.cs">
       <SubType>Form</SubType>
@@ -469,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\NgayNghiNgayLe\FrmQuanLyNgayNghi.resx">
       <DependentUpon>FrmQuanLyNgayNghi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Salaries\FrmTinhLuongThang.resx">
+      <DependentUpon>FrmTinhLuongThang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\TonGiao\frmReligionList.resx">
       <DependentUpon>frmReligionList.cs</DependentUpon>

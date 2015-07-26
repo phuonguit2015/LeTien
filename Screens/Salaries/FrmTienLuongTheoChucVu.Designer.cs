@@ -71,6 +71,7 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnNapLai = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTimeEdit1)).BeginInit();
@@ -402,9 +403,10 @@
             this.btnIn,
             this.btnXuat,
             this.btnXoa,
-            this.barEditItem1});
+            this.barEditItem1,
+            this.btnNapLai});
             this.barManager1.MainMenu = this.bar1;
-            this.barManager1.MaxItemId = 8;
+            this.barManager1.MaxItemId = 9;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
             // 
@@ -417,6 +419,7 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnEdit, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnNapLai, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnIn, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXuat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnDong, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
@@ -514,6 +517,15 @@
             this.layoutControl1.TabIndex = 4;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnNapLai
+            // 
+            this.btnNapLai.Caption = "NẠP LẠI";
+            this.btnNapLai.Glyph = ((System.Drawing.Image)(resources.GetObject("btnNapLai.Glyph")));
+            this.btnNapLai.Id = 8;
+            this.btnNapLai.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnNapLai.LargeGlyph")));
+            this.btnNapLai.Name = "btnNapLai";
+            this.btnNapLai.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNapLai_ItemClick);
+            // 
             // FrmTienLuongTheoChucVu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -603,5 +615,6 @@
         private DevExpress.Xpo.XPCollection xpcChucVu;
         private DevExpress.Xpo.XPCollection xpcMucTienLuong;
         private DevExpress.XtraGrid.Columns.GridColumn colOid;
+        private DevExpress.XtraBars.BarButtonItem btnNapLai;
     }
 }

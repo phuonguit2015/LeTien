@@ -484,6 +484,42 @@ namespace LeTien.Screens
             tool.ShowDesignerDialog();
         }
 
+        private void btnImport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmImportChamCong();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
+        private void btnBangLuong_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            string typeName = e.Item.Tag == null ? string.Empty : e.Item.Tag.ToString();
+            Form f = GetMdiFormByName(typeName);
+            if (f != null)
+                f.BringToFront();
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(WaitFormMain));
+                f = new FrmTinhLuongThang();
+                f.Name = f.GetType().ToString();
+                e.Item.Tag = f.Name;
+                f.MdiParent = this;
+                f.Show();
+                SplashScreenManager.CloseForm();
+            }
+        }
+
       
 
     }

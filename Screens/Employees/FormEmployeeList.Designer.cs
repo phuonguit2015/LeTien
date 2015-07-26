@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmployeeList));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.checkXem = new DevExpress.XtraEditors.CheckEdit();
             this.ucMenu = new LeTien.UCMainControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.xpCollectionEmployee = new DevExpress.Xpo.XPCollection(this.components);
-            this.session1 = new DevExpress.Xpo.Session(this.components);
             this.bandedGridView1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.MaNhanVien = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.colMaNhanVien = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -45,10 +45,12 @@
             this.colTen = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand19 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.colTenTiengNhat = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridBand21 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.colChucVu = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand10 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.colGioiTinh = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand21 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+            this.colChucVu = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.lkupChucVu = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.xpCollectionCompentence = new DevExpress.Xpo.XPCollection(this.components);
             this.gridBand4 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.colNgaySinh = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand9 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -84,6 +86,8 @@
             this.colSoBHXH = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand14 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.colTonGiao = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.lkupTonGiao = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.xpcReligion = new DevExpress.Xpo.XPCollection(this.components);
             this.colTinhTrangHopDong = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.RITextFistname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.RITextLastname = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
@@ -94,20 +98,24 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xpCollectionBranch = new DevExpress.Xpo.XPCollection(this.components);
-            this.xpCollectionCompentence = new DevExpress.Xpo.XPCollection(this.components);
             this.bandedGridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkXem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionEmployee)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.session1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupChucVu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCompentence)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupTonGiao)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcReligion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RITextFistname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RITextLastname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.R_BranchSelect)).BeginInit();
@@ -117,14 +125,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionBranch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCompentence)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.checkXem);
             this.layoutControl1.Controls.Add(this.ucMenu);
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -138,19 +147,32 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // checkXem
+            // 
+            this.checkXem.EditValue = true;
+            this.checkXem.Location = new System.Drawing.Point(29, 81);
+            this.checkXem.Name = "checkXem";
+            this.checkXem.Properties.Caption = "CHẾ ĐỘ XEM";
+            this.checkXem.Size = new System.Drawing.Size(998, 19);
+            this.checkXem.StyleController = this.layoutControl1;
+            this.checkXem.TabIndex = 6;
+            this.checkXem.CheckedChanged += new System.EventHandler(this.checkXem_CheckedChanged);
+            // 
             // ucMenu
             // 
             this.ucMenu.Location = new System.Drawing.Point(12, 12);
+            this.ucMenu.MaximumSize = new System.Drawing.Size(776, 29);
+            this.ucMenu.MinimumSize = new System.Drawing.Size(776, 29);
             this.ucMenu.Name = "ucMenu";
-            this.ucMenu.Size = new System.Drawing.Size(1032, 31);
+            this.ucMenu.Size = new System.Drawing.Size(776, 29);
             this.ucMenu.TabIndex = 5;
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.gridControl1);
-            this.panelControl1.Location = new System.Drawing.Point(24, 78);
+            this.panelControl1.Location = new System.Drawing.Point(24, 109);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1008, 372);
+            this.panelControl1.Size = new System.Drawing.Size(1008, 343);
             this.panelControl1.TabIndex = 4;
             // 
             // gridControl1
@@ -165,8 +187,10 @@
             this.RITextFistname,
             this.RITextLastname,
             this.R_BranchSelect,
-            this.R_CompentenceSelect});
-            this.gridControl1.Size = new System.Drawing.Size(1004, 368);
+            this.R_CompentenceSelect,
+            this.lkupChucVu,
+            this.lkupTonGiao});
+            this.gridControl1.Size = new System.Drawing.Size(1004, 339);
             this.gridControl1.TabIndex = 6;
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -176,13 +200,7 @@
             // 
             this.xpCollectionEmployee.DisplayableProperties = resources.GetString("xpCollectionEmployee.DisplayableProperties");
             this.xpCollectionEmployee.ObjectType = typeof(LeTien.Objects.Employee);
-            this.xpCollectionEmployee.Session = this.session1;
             this.xpCollectionEmployee.CollectionChanged += new DevExpress.Xpo.XPCollectionChangedEventHandler(this.xpCollectionEmployee_CollectionChanged);
-            // 
-            // session1
-            // 
-            this.session1.IsObjectModifiedOnNonPersistentPropertyChange = null;
-            this.session1.TrackPropertiesModifications = false;
             // 
             // bandedGridView1
             // 
@@ -191,8 +209,8 @@
             this.gridBand2,
             this.gridBand3,
             this.gridBand19,
-            this.gridBand21,
             this.gridBand10,
+            this.gridBand21,
             this.gridBand4,
             this.gridBand9,
             this.gridBand8,
@@ -237,9 +255,9 @@
             this.bandedGridView1.GridControl = this.gridControl1;
             this.bandedGridView1.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.bandedGridView1.Name = "bandedGridView1";
+            this.bandedGridView1.NewItemRowText = "Thêm dòng mới tại đây....";
             this.bandedGridView1.OptionsBehavior.ReadOnly = true;
             this.bandedGridView1.OptionsPrint.AllowMultilineHeaders = true;
-            this.bandedGridView1.OptionsSelection.MultiSelect = true;
             this.bandedGridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.bandedGridView1.OptionsView.ColumnAutoWidth = false;
             this.bandedGridView1.OptionsView.ShowAutoFilterRow = true;
@@ -247,8 +265,9 @@
             this.bandedGridView1.OptionsView.ShowDetailButtons = false;
             this.bandedGridView1.OptionsView.ShowGroupPanel = false;
             this.bandedGridView1.OptionsView.ShowIndicator = false;
-            this.bandedGridView1.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
+            this.bandedGridView1.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.bandedGridView1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.bandedGridView1_RowClick);
+            this.bandedGridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.bandedGridView1_RowCellClick);
             this.bandedGridView1.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grvUCList_SelectionChanged_1);
             this.bandedGridView1.DoubleClick += new System.EventHandler(this.bandedGridView1_DoubleClick);
             // 
@@ -317,6 +336,22 @@
             this.colTenTiengNhat.Visible = true;
             this.colTenTiengNhat.Width = 83;
             // 
+            // gridBand10
+            // 
+            this.gridBand10.Caption = "Giới tính";
+            this.gridBand10.Columns.Add(this.colGioiTinh);
+            this.gridBand10.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            this.gridBand10.Name = "gridBand10";
+            this.gridBand10.VisibleIndex = 4;
+            this.gridBand10.Width = 75;
+            // 
+            // colGioiTinh
+            // 
+            this.colGioiTinh.FieldName = "iGioiTinh";
+            this.colGioiTinh.Name = "colGioiTinh";
+            this.colGioiTinh.OptionsColumn.ShowCaption = false;
+            this.colGioiTinh.Visible = true;
+            // 
             // gridBand21
             // 
             this.gridBand21.AppearanceHeader.BackColor = System.Drawing.Color.White;
@@ -329,32 +364,30 @@
             this.gridBand21.Columns.Add(this.colChucVu);
             this.gridBand21.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.gridBand21.Name = "gridBand21";
-            this.gridBand21.VisibleIndex = 4;
+            this.gridBand21.VisibleIndex = 5;
             this.gridBand21.Width = 75;
             // 
             // colChucVu
             // 
             this.colChucVu.Caption = "Chức Vụ";
-            this.colChucVu.FieldName = "ChucVu.CompetenceName";
+            this.colChucVu.ColumnEdit = this.lkupChucVu;
+            this.colChucVu.FieldName = "ChucVu!";
             this.colChucVu.Name = "colChucVu";
             this.colChucVu.OptionsColumn.ShowCaption = false;
             this.colChucVu.Visible = true;
             // 
-            // gridBand10
+            // lkupChucVu
             // 
-            this.gridBand10.Caption = "Giới tính";
-            this.gridBand10.Columns.Add(this.colGioiTinh);
-            this.gridBand10.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-            this.gridBand10.Name = "gridBand10";
-            this.gridBand10.VisibleIndex = 5;
-            this.gridBand10.Width = 75;
-            // 
-            // colGioiTinh
-            // 
-            this.colGioiTinh.FieldName = "iGioiTinh";
-            this.colGioiTinh.Name = "colGioiTinh";
-            this.colGioiTinh.OptionsColumn.ShowCaption = false;
-            this.colGioiTinh.Visible = true;
+            this.lkupChucVu.AutoHeight = false;
+            this.lkupChucVu.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupChucVu.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CompetenceName", "Chức Vụ")});
+            this.lkupChucVu.DataSource = this.xpCollectionCompentence;
+            this.lkupChucVu.DisplayMember = "CompetenceName";
+            this.lkupChucVu.Name = "lkupChucVu";
+            this.lkupChucVu.NullText = "";
+            this.lkupChucVu.ValueMember = "This";
             // 
             // gridBand4
             // 
@@ -627,11 +660,29 @@
             // 
             // colTonGiao
             // 
-            this.colTonGiao.FieldName = "TonGiao.ReligionName";
+            this.colTonGiao.ColumnEdit = this.lkupTonGiao;
+            this.colTonGiao.FieldName = "TonGiao!";
             this.colTonGiao.Name = "colTonGiao";
             this.colTonGiao.OptionsColumn.ShowCaption = false;
             this.colTonGiao.Visible = true;
             this.colTonGiao.Width = 123;
+            // 
+            // lkupTonGiao
+            // 
+            this.lkupTonGiao.AutoHeight = false;
+            this.lkupTonGiao.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lkupTonGiao.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ReligionName", "Tôn Giáo")});
+            this.lkupTonGiao.DataSource = this.xpcReligion;
+            this.lkupTonGiao.DisplayMember = "ReligionName";
+            this.lkupTonGiao.Name = "lkupTonGiao";
+            this.lkupTonGiao.NullText = "";
+            this.lkupTonGiao.ValueMember = "this";
+            // 
+            // xpcReligion
+            // 
+            this.xpcReligion.ObjectType = typeof(LeTien.Objects.Religion);
             // 
             // colTinhTrangHopDong
             // 
@@ -720,31 +771,45 @@
             // 
             this.layoutControlGroup2.CustomizationFormText = "Danh sách nhân viên";
             this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
-            this.layoutControlItem1});
-            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 35);
+            this.layoutControlItem1,
+            this.layoutControlItem5});
+            this.layoutControlGroup2.Location = new System.Drawing.Point(0, 33);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(1036, 419);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(1036, 423);
             this.layoutControlGroup2.Text = "Danh sách nhân viên";
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.panelControl1;
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 33);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1012, 376);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1012, 347);
             this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextToControlDistance = 0;
             this.layoutControlItem1.TextVisible = false;
             // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.checkXem;
+            this.layoutControlItem5.CustomizationFormText = "layoutControlItem5";
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(1012, 33);
+            this.layoutControlItem5.Spacing = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
+            this.layoutControlItem5.Text = "layoutControlItem5";
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextToControlDistance = 0;
+            this.layoutControlItem5.TextVisible = false;
+            // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.CustomizationFormText = "emptySpaceItem2";
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 454);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 456);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(1036, 22);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(1036, 20);
             this.emptySpaceItem2.Text = "emptySpaceItem2";
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
@@ -754,19 +819,11 @@
             this.layoutControlItem4.CustomizationFormText = "layoutControlItem4";
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1036, 35);
+            this.layoutControlItem4.Size = new System.Drawing.Size(1036, 33);
             this.layoutControlItem4.Text = "layoutControlItem4";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextToControlDistance = 0;
             this.layoutControlItem4.TextVisible = false;
-            // 
-            // xpCollectionBranch
-            // 
-            this.xpCollectionBranch.Session = this.session1;
-            // 
-            // xpCollectionCompentence
-            // 
-            this.xpCollectionCompentence.Session = this.session1;
             // 
             // bandedGridColumn1
             // 
@@ -785,12 +842,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkXem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionEmployee)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.session1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupChucVu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCompentence)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkupTonGiao)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xpcReligion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RITextFistname)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RITextLastname)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.R_BranchSelect)).EndInit();
@@ -800,10 +861,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpCollectionBranch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xpCollectionCompentence)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -813,7 +874,6 @@
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.Xpo.XPCollection xpCollectionEmployee;
-        private DevExpress.Xpo.Session session1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn1;
         private DevExpress.Xpo.XPCollection xpCollectionBranch;
         private DevExpress.Xpo.XPCollection xpCollectionCompentence;
@@ -881,5 +941,10 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand15;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand26;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand14;
+        private DevExpress.XtraEditors.CheckEdit checkXem;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkupChucVu;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkupTonGiao;
+        private DevExpress.Xpo.XPCollection xpcReligion;
     }
 }

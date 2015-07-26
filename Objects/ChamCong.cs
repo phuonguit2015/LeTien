@@ -50,6 +50,12 @@ namespace LeTien.Objects
             get;
             set;
         }
+        [DisplayName ("Đơn Vị")]
+        public string DonVi
+        {
+            get;
+            set;
+        }
 
         [DisplayName ("Ngày Đầu Tháng")]
         public DateTime FirstDate
@@ -64,11 +70,7 @@ namespace LeTien.Objects
             get;
             set;
         }
-        public string HieuSuat
-        {
-            get;
-            set;
-        }
+      
 
         public string this[int index]
         {

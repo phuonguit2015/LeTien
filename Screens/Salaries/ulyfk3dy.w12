@@ -47,8 +47,6 @@
             this.colNhomChucVu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSTT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colOid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.spinID = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.repositoryItemColorPickEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemColorPickEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -68,7 +66,8 @@
             this.btnNapLai = new DevExpress.XtraBars.BarButtonItem();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.colUuTien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.spinID = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             ((System.ComponentModel.ISupportInitialize)(this.UOW)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -79,7 +78,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbbNhomDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkLoaiDuLieuChamCong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcLoaiDuLieuChamCong)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
@@ -87,6 +85,7 @@
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinID)).BeginInit();
             this.SuspendLayout();
             // 
             // bar2
@@ -153,8 +152,7 @@
             this.colNhomChucVu,
             this.colSTT,
             this.colOid,
-            this.colID,
-            this.colUuTien});
+            this.colID});
             this.grvUCList.GridControl = this.gridUCList;
             this.grvUCList.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grvUCList.Name = "grvUCList";
@@ -166,7 +164,7 @@
             this.grvUCList.OptionsView.ShowAutoFilterRow = true;
             this.grvUCList.OptionsView.ShowDetailButtons = false;
             this.grvUCList.OptionsView.ShowGroupPanel = false;
-            this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
+            this.grvUCList.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Never;
             this.grvUCList.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grvUCList_SelectionChanged);
             // 
             // colTenLoaiDuLieu
@@ -174,9 +172,9 @@
             this.colTenLoaiDuLieu.Caption = "Cột Tính Lương";
             this.colTenLoaiDuLieu.FieldName = "TenLoaiDuLieu";
             this.colTenLoaiDuLieu.Name = "colTenLoaiDuLieu";
-            this.colTenLoaiDuLieu.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+            this.colTenLoaiDuLieu.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colTenLoaiDuLieu.Visible = true;
-            this.colTenLoaiDuLieu.VisibleIndex = 3;
+            this.colTenLoaiDuLieu.VisibleIndex = 2;
             this.colTenLoaiDuLieu.Width = 81;
             // 
             // colNhomDuLieu
@@ -184,8 +182,9 @@
             this.colNhomDuLieu.ColumnEdit = this.cbbNhomDuLieu;
             this.colNhomDuLieu.FieldName = "NhomDuLieu";
             this.colNhomDuLieu.Name = "colNhomDuLieu";
+            this.colNhomDuLieu.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNhomDuLieu.Visible = true;
-            this.colNhomDuLieu.VisibleIndex = 4;
+            this.colNhomDuLieu.VisibleIndex = 3;
             this.colNhomDuLieu.Width = 81;
             // 
             // cbbNhomDuLieu
@@ -204,8 +203,9 @@
             // 
             this.colGiaTriMacDinh.FieldName = "GiaTriMacDinh";
             this.colGiaTriMacDinh.Name = "colGiaTriMacDinh";
+            this.colGiaTriMacDinh.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colGiaTriMacDinh.Visible = true;
-            this.colGiaTriMacDinh.VisibleIndex = 5;
+            this.colGiaTriMacDinh.VisibleIndex = 4;
             this.colGiaTriMacDinh.Width = 81;
             // 
             // gridColumn1
@@ -214,8 +214,9 @@
             this.gridColumn1.ColumnEdit = this.lkLoaiDuLieuChamCong;
             this.gridColumn1.FieldName = "LoaiDLChamCong!";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 6;
+            this.gridColumn1.VisibleIndex = 5;
             this.gridColumn1.Width = 81;
             // 
             // lkLoaiDuLieuChamCong
@@ -240,8 +241,9 @@
             this.colCongThuc.Caption = "Công Thức Tính";
             this.colCongThuc.FieldName = "CongThuc";
             this.colCongThuc.Name = "colCongThuc";
+            this.colCongThuc.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colCongThuc.Visible = true;
-            this.colCongThuc.VisibleIndex = 8;
+            this.colCongThuc.VisibleIndex = 7;
             this.colCongThuc.Width = 81;
             // 
             // colNhomChucVu
@@ -250,7 +252,7 @@
             this.colNhomChucVu.Name = "colNhomChucVu";
             this.colNhomChucVu.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colNhomChucVu.Visible = true;
-            this.colNhomChucVu.VisibleIndex = 9;
+            this.colNhomChucVu.VisibleIndex = 8;
             this.colNhomChucVu.Width = 91;
             // 
             // colSTT
@@ -258,8 +260,9 @@
             this.colSTT.Caption = "Tên Cột Tính Lương";
             this.colSTT.FieldName = "TenCot";
             this.colSTT.Name = "colSTT";
+            this.colSTT.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.colSTT.Visible = true;
-            this.colSTT.VisibleIndex = 7;
+            this.colSTT.VisibleIndex = 6;
             this.colSTT.Width = 81;
             // 
             // colOid
@@ -267,25 +270,6 @@
             this.colOid.Caption = "Oid";
             this.colOid.FieldName = "Oid";
             this.colOid.Name = "colOid";
-            // 
-            // colID
-            // 
-            this.colID.Caption = "ID";
-            this.colID.ColumnEdit = this.spinID;
-            this.colID.FieldName = "STT";
-            this.colID.Name = "colID";
-            this.colID.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
-            this.colID.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.True;
-            this.colID.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
-            this.colID.Visible = true;
-            this.colID.VisibleIndex = 1;
-            // 
-            // spinID
-            // 
-            this.spinID.AutoHeight = false;
-            this.spinID.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinID.Name = "spinID";
             // 
             // repositoryItemColorPickEdit1
             // 
@@ -471,13 +455,24 @@
             this.barDockControlRight.Location = new System.Drawing.Point(700, 24);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 398);
             // 
-            // colUuTien
+            // colID
             // 
-            this.colUuTien.Caption = "Ưu Tiên Tính";
-            this.colUuTien.FieldName = "UuTien";
-            this.colUuTien.Name = "colUuTien";
-            this.colUuTien.Visible = true;
-            this.colUuTien.VisibleIndex = 2;
+            this.colID.Caption = "ID";
+            this.colID.ColumnEdit = this.spinID;
+            this.colID.FieldName = "STT";
+            this.colID.Name = "colID";
+            this.colID.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+            this.colID.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.True;
+            this.colID.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
+            this.colID.Visible = true;
+            this.colID.VisibleIndex = 1;
+            // 
+            // spinID
+            // 
+            this.spinID.AutoHeight = false;
+            this.spinID.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinID.Name = "spinID";
             // 
             // FrmLoaiDuLieuTinhLuong
             // 
@@ -502,7 +497,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbbNhomDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkLoaiDuLieuChamCong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xpcLoaiDuLieuChamCong)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemColorPickEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
@@ -510,6 +504,7 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinID)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -554,6 +549,5 @@
         private DevExpress.XtraBars.BarButtonItem btnNapLai;
         private DevExpress.XtraGrid.Columns.GridColumn colID;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit spinID;
-        private DevExpress.XtraGrid.Columns.GridColumn colUuTien;
     }
 }

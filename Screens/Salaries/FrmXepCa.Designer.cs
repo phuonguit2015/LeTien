@@ -1137,6 +1137,7 @@
             this.Controls.Add(this.barDockControl4);
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
+            this.LookAndFeel.SkinName = "Seven Classic";
             this.Name = "FrmXepCa";
             this.Text = "Xếp Ca";
             this.Load += new System.EventHandler(this.FrmXepCa_Load);

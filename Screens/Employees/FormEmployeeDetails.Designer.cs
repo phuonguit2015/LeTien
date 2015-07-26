@@ -236,6 +236,7 @@ namespace LeTien.Screens.Employees
             this.txtTinhTrangHD.Size = new System.Drawing.Size(197, 20);
             this.txtTinhTrangHD.StyleController = this.layoutControl1;
             this.txtTinhTrangHD.TabIndex = 46;
+            this.txtTinhTrangHD.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // xpcEmployee
             // 
@@ -262,6 +263,7 @@ namespace LeTien.Screens.Employees
             this.calLuongDongBHXH.Size = new System.Drawing.Size(227, 20);
             this.calLuongDongBHXH.StyleController = this.layoutControl1;
             this.calLuongDongBHXH.TabIndex = 44;
+            this.calLuongDongBHXH.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // cbbGioiTinh
             // 
@@ -273,9 +275,10 @@ namespace LeTien.Screens.Employees
             this.cbbGioiTinh.Properties.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cbbGioiTinh.Size = new System.Drawing.Size(86, 20);
+            this.cbbGioiTinh.Size = new System.Drawing.Size(166, 20);
             this.cbbGioiTinh.StyleController = this.layoutControl1;
             this.cbbGioiTinh.TabIndex = 43;
+            this.cbbGioiTinh.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // calLuongCanBan
             // 
@@ -296,6 +299,7 @@ namespace LeTien.Screens.Employees
             this.txtSoCMND.Size = new System.Drawing.Size(227, 20);
             this.txtSoCMND.StyleController = this.layoutControl1;
             this.txtSoCMND.TabIndex = 41;
+            this.txtSoCMND.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // lkuChiNhanh
             // 
@@ -336,10 +340,11 @@ namespace LeTien.Screens.Employees
             this.lkuChucVu.Properties.DisplayMember = "CompetenceName";
             this.lkuChucVu.Properties.NullText = "Chọn chức vụ";
             this.lkuChucVu.Properties.ValueMember = "This";
-            this.lkuChucVu.Size = new System.Drawing.Size(156, 20);
+            this.lkuChucVu.Size = new System.Drawing.Size(166, 20);
             this.lkuChucVu.StyleController = this.layoutControl1;
             this.lkuChucVu.TabIndex = 39;
             this.lkuChucVu.EditValueChanged += new System.EventHandler(this.lkuChucVu_EditValueChanged);
+            this.lkuChucVu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // xpcCompetence
             // 
@@ -348,11 +353,12 @@ namespace LeTien.Screens.Employees
             // txtSoDienThoai
             // 
             this.txtSoDienThoai.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "SoDienThoai", true));
-            this.txtSoDienThoai.Location = new System.Drawing.Point(324, 139);
+            this.txtSoDienThoai.Location = new System.Drawing.Point(404, 139);
             this.txtSoDienThoai.Name = "txtSoDienThoai";
-            this.txtSoDienThoai.Size = new System.Drawing.Size(204, 20);
+            this.txtSoDienThoai.Size = new System.Drawing.Size(124, 20);
             this.txtSoDienThoai.StyleController = this.layoutControl1;
             this.txtSoDienThoai.TabIndex = 38;
+            this.txtSoDienThoai.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // lkuSoHopDong
             // 
@@ -392,6 +398,7 @@ namespace LeTien.Screens.Employees
             this.lkuTonGiao.Size = new System.Drawing.Size(399, 20);
             this.lkuTonGiao.StyleController = this.layoutControl1;
             this.lkuTonGiao.TabIndex = 35;
+            this.lkuTonGiao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // xpcReligion
             // 
@@ -449,15 +456,17 @@ namespace LeTien.Screens.Employees
             this.txtSoTaiKhoan.Size = new System.Drawing.Size(210, 20);
             this.txtSoTaiKhoan.StyleController = this.layoutControl1;
             this.txtSoTaiKhoan.TabIndex = 21;
+            this.txtSoTaiKhoan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtPhuCapChucVu
             // 
             this.txtPhuCapChucVu.Enabled = false;
-            this.txtPhuCapChucVu.Location = new System.Drawing.Point(394, 211);
+            this.txtPhuCapChucVu.Location = new System.Drawing.Point(404, 211);
             this.txtPhuCapChucVu.Name = "txtPhuCapChucVu";
-            this.txtPhuCapChucVu.Size = new System.Drawing.Size(281, 20);
+            this.txtPhuCapChucVu.Size = new System.Drawing.Size(271, 20);
             this.txtPhuCapChucVu.StyleController = this.layoutControl1;
             this.txtPhuCapChucVu.TabIndex = 20;
+            this.txtPhuCapChucVu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // dtNgayVaoBH
             // 
@@ -472,6 +481,7 @@ namespace LeTien.Screens.Employees
             this.dtNgayVaoBH.Size = new System.Drawing.Size(210, 20);
             this.dtNgayVaoBH.StyleController = this.layoutControl1;
             this.dtNgayVaoBH.TabIndex = 18;
+            this.dtNgayVaoBH.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtSoBHXH
             // 
@@ -481,6 +491,7 @@ namespace LeTien.Screens.Employees
             this.txtSoBHXH.Size = new System.Drawing.Size(227, 20);
             this.txtSoBHXH.StyleController = this.layoutControl1;
             this.txtSoBHXH.TabIndex = 17;
+            this.txtSoBHXH.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // dtNgayVaoHopDong
             // 
@@ -509,6 +520,7 @@ namespace LeTien.Screens.Employees
             this.dtNgayVaoLam.Size = new System.Drawing.Size(210, 20);
             this.dtNgayVaoLam.StyleController = this.layoutControl1;
             this.dtNgayVaoLam.TabIndex = 15;
+            this.dtNgayVaoLam.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtNoiCapCMND
             // 
@@ -518,6 +530,7 @@ namespace LeTien.Screens.Employees
             this.txtNoiCapCMND.Size = new System.Drawing.Size(227, 20);
             this.txtNoiCapCMND.StyleController = this.layoutControl1;
             this.txtNoiCapCMND.TabIndex = 14;
+            this.txtNoiCapCMND.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // dtNgayCapCMND
             // 
@@ -532,6 +545,7 @@ namespace LeTien.Screens.Employees
             this.dtNgayCapCMND.Size = new System.Drawing.Size(210, 20);
             this.dtNgayCapCMND.StyleController = this.layoutControl1;
             this.dtNgayCapCMND.TabIndex = 13;
+            this.dtNgayCapCMND.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // memoTamTru
             // 
@@ -564,6 +578,7 @@ namespace LeTien.Screens.Employees
             this.dtNgaySinh.Size = new System.Drawing.Size(546, 20);
             this.dtNgaySinh.StyleController = this.layoutControl1;
             this.dtNgaySinh.TabIndex = 9;
+            this.dtNgaySinh.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtTenTiengNhat
             // 
@@ -577,21 +592,23 @@ namespace LeTien.Screens.Employees
             // txtTen
             // 
             this.txtTen.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "Ten", true));
-            this.txtTen.Location = new System.Drawing.Point(324, 91);
+            this.txtTen.Location = new System.Drawing.Point(404, 91);
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(204, 20);
+            this.txtTen.Size = new System.Drawing.Size(124, 20);
             this.txtTen.StyleController = this.layoutControl1;
             this.txtTen.TabIndex = 6;
+            this.txtTen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtHo
             // 
             this.txtHo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.xpcEmployee, "Ho", true));
             this.txtHo.Location = new System.Drawing.Point(129, 91);
             this.txtHo.Name = "txtHo";
-            this.txtHo.Size = new System.Drawing.Size(86, 20);
+            this.txtHo.Size = new System.Drawing.Size(166, 20);
             this.txtHo.StyleController = this.layoutControl1;
             this.txtHo.TabIndex = 5;
             this.txtHo.EditValueChanged += new System.EventHandler(this.txtHo_EditValueChanged);
+            this.txtHo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // txtMaNhanVien
             // 
@@ -601,6 +618,7 @@ namespace LeTien.Screens.Employees
             this.txtMaNhanVien.Size = new System.Drawing.Size(399, 20);
             this.txtMaNhanVien.StyleController = this.layoutControl1;
             this.txtMaNhanVien.TabIndex = 4;
+            this.txtMaNhanVien.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // layoutControlGroup1
             // 
@@ -829,9 +847,9 @@ namespace LeTien.Screens.Employees
             // 
             this.layoutControlItem16.Control = this.txtPhuCapChucVu;
             this.layoutControlItem16.CustomizationFormText = "Phụ Cấp Chức Vụ";
-            this.layoutControlItem16.Location = new System.Drawing.Point(265, 168);
+            this.layoutControlItem16.Location = new System.Drawing.Point(275, 168);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(390, 24);
+            this.layoutControlItem16.Size = new System.Drawing.Size(380, 24);
             this.layoutControlItem16.Text = "Phụ Cấp Chức Vụ";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(102, 13);
             // 
@@ -841,7 +859,7 @@ namespace LeTien.Screens.Employees
             this.laout.CustomizationFormText = "Họ";
             this.laout.Location = new System.Drawing.Point(0, 48);
             this.laout.Name = "laout";
-            this.laout.Size = new System.Drawing.Size(195, 24);
+            this.laout.Size = new System.Drawing.Size(275, 24);
             this.laout.Text = "Họ";
             this.laout.TextSize = new System.Drawing.Size(102, 13);
             // 
@@ -869,9 +887,9 @@ namespace LeTien.Screens.Employees
             // 
             this.layoutControlItem3.Control = this.txtTen;
             this.layoutControlItem3.CustomizationFormText = "Tên";
-            this.layoutControlItem3.Location = new System.Drawing.Point(195, 48);
+            this.layoutControlItem3.Location = new System.Drawing.Point(275, 48);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(313, 24);
+            this.layoutControlItem3.Size = new System.Drawing.Size(233, 24);
             this.layoutControlItem3.Text = "Tên";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(102, 13);
             // 
@@ -889,9 +907,9 @@ namespace LeTien.Screens.Employees
             // 
             this.layoutControlItem29.Control = this.txtSoDienThoai;
             this.layoutControlItem29.CustomizationFormText = "Số Điện Thoại";
-            this.layoutControlItem29.Location = new System.Drawing.Point(195, 96);
+            this.layoutControlItem29.Location = new System.Drawing.Point(275, 96);
             this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(313, 24);
+            this.layoutControlItem29.Size = new System.Drawing.Size(233, 24);
             this.layoutControlItem29.Text = "Số Điện Thoại";
             this.layoutControlItem29.TextSize = new System.Drawing.Size(102, 13);
             // 
@@ -901,7 +919,7 @@ namespace LeTien.Screens.Employees
             this.layoutControlItem20.CustomizationFormText = "Chức Vụ";
             this.layoutControlItem20.Location = new System.Drawing.Point(0, 168);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(265, 24);
+            this.layoutControlItem20.Size = new System.Drawing.Size(275, 24);
             this.layoutControlItem20.Text = "Chức Vụ";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(102, 13);
             // 
@@ -931,7 +949,7 @@ namespace LeTien.Screens.Employees
             this.layoutControlItem5.CustomizationFormText = "Giới Tính";
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(195, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(275, 24);
             this.layoutControlItem5.Text = "Giới Tính";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(102, 13);
             // 

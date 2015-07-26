@@ -55,7 +55,6 @@ namespace LeTien.Screens.List
         {
             SplashScreenManager.ShowForm(typeof(WaitFormMain));
             Thread.Sleep(1000);
-
             UOW.ReloadChangedObjects();
             xpcGTDLChamCongTheoCa.Reload();
             gridUCList.DataSource = xpcGTDLChamCongTheoCa;
@@ -157,6 +156,11 @@ namespace LeTien.Screens.List
             {
                 btnXoa.Enabled = false;
             }
+        }
+
+        private void btnNapLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OnReload();
         }
     }
 }

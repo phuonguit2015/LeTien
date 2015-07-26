@@ -77,6 +77,7 @@
             this.btnGTriDLChamCongTheoCa = new DevExpress.XtraBars.BarButtonItem();
             this.btnXepCa = new DevExpress.XtraBars.BarButtonItem();
             this.rbGallery_Theme = new DevExpress.XtraBars.RibbonGalleryBarItem();
+            this.btnReport = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -86,11 +87,12 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.MdiManager = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.SplashScreenManager = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::LeTien.Screens.WaitFormMain), true, true);
-            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnImport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBangLuong = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
@@ -147,9 +149,11 @@
             this.rbGallery_Theme,
             this.btnChuKyTinhLuong,
             this.btnLoaiNgayNghi,
-            this.btnReport});
+            this.btnReport,
+            this.btnImport,
+            this.btnBangLuong});
             resources.ApplyResources(this.ribbon, "ribbon");
-            this.ribbon.MaxItemId = 67;
+            this.ribbon.MaxItemId = 69;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -550,6 +554,15 @@
             this.rbGallery_Theme.Id = 62;
             this.rbGallery_Theme.Name = "rbGallery_Theme";
             // 
+            // btnReport
+            // 
+            resources.ApplyResources(this.btnReport, "btnReport");
+            this.btnReport.Glyph = ((System.Drawing.Image)(resources.GetObject("btnReport.Glyph")));
+            this.btnReport.Id = 66;
+            this.btnReport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnReport.LargeGlyph")));
+            this.btnReport.Name = "btnReport";
+            this.btnReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReport_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -608,6 +621,7 @@
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.subItem_BangLuong);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnBangLuong);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             resources.ApplyResources(this.ribbonPageGroup4, "ribbonPageGroup4");
             // 
@@ -616,8 +630,15 @@
             this.ribbonPageGroup6.ItemLinks.Add(this.btnXepCa);
             this.ribbonPageGroup6.ItemLinks.Add(this.btnItem_ChamCong);
             this.ribbonPageGroup6.ItemLinks.Add(this.btnGTriDLChamCongTheoCa);
+            this.ribbonPageGroup6.ItemLinks.Add(this.btnImport);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
             resources.ApplyResources(this.ribbonPageGroup6, "ribbonPageGroup6");
+            // 
+            // ribbonPageGroup8
+            // 
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnReport);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            resources.ApplyResources(this.ribbonPageGroup8, "ribbonPageGroup8");
             // 
             // popupMenu1
             // 
@@ -628,20 +649,23 @@
             // 
             this.MdiManager.MdiParent = this;
             // 
-            // ribbonPageGroup8
+            // btnImport
             // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnReport);
-            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            resources.ApplyResources(this.ribbonPageGroup8, "ribbonPageGroup8");
+            resources.ApplyResources(this.btnImport, "btnImport");
+            this.btnImport.Glyph = ((System.Drawing.Image)(resources.GetObject("btnImport.Glyph")));
+            this.btnImport.Id = 67;
+            this.btnImport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnImport.LargeGlyph")));
+            this.btnImport.Name = "btnImport";
+            this.btnImport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImport_ItemClick);
             // 
-            // btnReport
+            // btnBangLuong
             // 
-            resources.ApplyResources(this.btnReport, "btnReport");
-            this.btnReport.Glyph = ((System.Drawing.Image)(resources.GetObject("btnReport.Glyph")));
-            this.btnReport.Id = 66;
-            this.btnReport.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnReport.LargeGlyph")));
-            this.btnReport.Name = "btnReport";
-            this.btnReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReport_ItemClick);
+            resources.ApplyResources(this.btnBangLuong, "btnBangLuong");
+            this.btnBangLuong.Glyph = ((System.Drawing.Image)(resources.GetObject("btnBangLuong.Glyph")));
+            this.btnBangLuong.Id = 68;
+            this.btnBangLuong.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnBangLuong.LargeGlyph")));
+            this.btnBangLuong.Name = "btnBangLuong";
+            this.btnBangLuong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBangLuong_ItemClick);
             // 
             // Main
             // 
@@ -728,6 +752,8 @@
         private DevExpress.XtraBars.BarButtonItem btnLoaiNgayNghi;
         private DevExpress.XtraBars.BarButtonItem btnReport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraBars.BarButtonItem btnImport;
+        private DevExpress.XtraBars.BarButtonItem btnBangLuong;
         private DevExpress.XtraSplashScreen.SplashScreenManager SplashScreenManager;
     }
 }
