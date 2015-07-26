@@ -18,9 +18,10 @@ namespace LeTien.Screens.Configurations
       InitializeComponent();
     }
 
-    private void Btn_Login_Click(object sender, EventArgs e)
+    private void Btn_Luu_Click(object sender, EventArgs e)
     {
-
+        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        this.Close();
     }
   }
 }
